@@ -1063,28 +1063,35 @@
     }
     setTimeout(typeWriter, 400);
 
-    // --- NAVIGATION LOGIC ---
-    const navCards = document.querySelectorAll('.nav-card');
-    const mainSlider = document.getElementById('slider');
+   // --- NAVIGATION LOGIC ---
+const navCards = document.querySelectorAll('.nav-card');
+const mainSlider = document.getElementById('slider');
 
-    function scrollToSlide(index, msg) {
-        const targetSlide = document.getElementById('slide-' + index);
-        if (targetSlide) {
-            targetSlide.scrollIntoView({ behavior: 'smooth' });
-            updateActiveNav(index);
-        }
-        // Pesan mandiri tidak pakai suara lagi agar tidak mengganggu, hanya suara tour
-        if(msg) {
-            tooltipTitle.innerText = "Pemandu";
-            tooltipDesc.innerText = msg;
-            holoContainer.classList.add('show');
-            tourTooltip.classList.add('active');
-            setTimeout(() => {
-                holoContainer.classList.remove('show');
-                tourTooltip.classList.remove('active');
-            }, 3000);
-        }
+// Tambahkan parameter 'audioFile' di sini
+function scrollToSlide(index, msg, audioFile) {
+    const targetSlide = document.getElementById('slide-' + index);
+    if (targetSlide) {
+        targetSlide.scrollIntoView({ behavior: 'smooth' });
+        updateActiveNav(index);
     }
+    
+    // Jika ada pesan, tampilkan hologram dan mainkan audio
+    if(msg) {
+        // Panggil showHoloMessage dengan audioFile
+        showHoloMessage("Pemandu", msg, audioFile, null);
+    }
+}
+
+function updateActiveNav(index) {
+    navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
+}
+
+mainSlider.addEventListener('scroll', () => {
+    const scrollLeft = mainSlider.scrollLeft;
+    const slideWidth = mainSlider.clientWidth;
+    const activeIndex = Math.round(scrollLeft / slideWidth);
+    updateActiveNav(activeIndex);
+});
 
     function updateActiveNav(index) {
         navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
