@@ -1009,396 +1009,371 @@
     </div>
 
     <script>
-        // --- SETUP & GLOBALS ---
-        const synth = window.speechSynthesis;
-        let voiceAI = null;
-        const holoContainer = document.getElementById('holoContainer');
-        const tourTooltip = document.getElementById('tourTooltip');
-        const tooltipTitle = document.getElementById('tooltipTitle');
-        const tooltipDesc = document.getElementById('tooltipDesc');
-        const tourOverlay = document.getElementById('tourOverlay');
-        const tourHighlight = document.getElementById('tourHighlight');
-        const creditsOverlay = document.getElementById('creditsOverlay');
-        const creditsContent = document.getElementById('creditsContent');
-        const bgMusic = document.getElementById('bgMusic');
-        const starContainer = document.getElementById('starContainer');
+    // --- SETUP & GLOBALS ---
+    // Kita tidak lagi memerlukan 'synth' dan 'voiceAI' karena menggunakan Audio API
+    const holoContainer = document.getElementById('holoContainer');
+    const tourTooltip = document.getElementById('tourTooltip');
+    const tooltipTitle = document.getElementById('tooltipTitle');
+    const tooltipDesc = document.getElementById('tooltipDesc');
+    const tourOverlay = document.getElementById('tourOverlay');
+    const tourHighlight = document.getElementById('tourHighlight');
+    const creditsOverlay = document.getElementById('creditsOverlay');
+    const creditsContent = document.getElementById('creditsContent');
+    const bgMusic = document.getElementById('bgMusic');
+    const starContainer = document.getElementById('starContainer');
 
-        function loadVoices() {
-            const voices = synth.getVoices();
-            voiceAI = voices.find(v => v.lang === 'id-ID') || voices.find(v => v.name.includes('Male')) || voices[0];
+    // --- HEADER ANIMATION ---
+    const phrases = [ "Komunitas dan Edukasi Ginjal", "Lihat Video Perawatan CVC", "Ingatkan Jadwal Ganti Kasa", "Akses Sehat, HD Hebat" ];
+    const taglineElement = document.getElementById('tagline');
+    let phraseIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 70;
+    function typeWriter() {
+        const currentPhrase = phrases[phraseIndex];
+        if (isDeleting) { taglineElement.innerHTML = currentPhrase.substring(0, charIndex - 1) + '<span class="typewriter-cursor">|</span>'; charIndex--; typingSpeed = 25; if (charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 400; } }
+        else { taglineElement.innerHTML = currentPhrase.substring(0, charIndex + 1) + '<span class="typewriter-cursor">|</span>'; charIndex++; typingSpeed = 60; if (charIndex === currentPhrase.length) { isDeleting = true; typingSpeed = 1500; } }
+        setTimeout(typeWriter, typingSpeed);
+    }
+    setTimeout(typeWriter, 400);
+
+    // --- NAVIGATION LOGIC ---
+    const navCards = document.querySelectorAll('.nav-card');
+    const mainSlider = document.getElementById('slider');
+
+    function scrollToSlide(index, msg) {
+        const targetSlide = document.getElementById('slide-' + index);
+        if (targetSlide) {
+            targetSlide.scrollIntoView({ behavior: 'smooth' });
+            updateActiveNav(index);
         }
-        if (synth.onvoiceschanged !== undefined) { synth.onvoiceschanged = loadVoices; }
-        loadVoices();
+        if(msg) showHoloMessage("Pemandu", msg);
+    }
 
-        // --- HEADER ANIMATION ---
-        const phrases = [ "Komunitas dan Edukasi Ginjal", "Lihat Video Perawatan CVC", "Ingatkan Jadwal Ganti Kasa", "Akses Sehat, HD Hebat" ];
-        const taglineElement = document.getElementById('tagline');
-        let phraseIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 70;
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) { taglineElement.innerHTML = currentPhrase.substring(0, charIndex - 1) + '<span class="typewriter-cursor">|</span>'; charIndex--; typingSpeed = 25; if (charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 400; } }
-            else { taglineElement.innerHTML = currentPhrase.substring(0, charIndex + 1) + '<span class="typewriter-cursor">|</span>'; charIndex++; typingSpeed = 60; if (charIndex === currentPhrase.length) { isDeleting = true; typingSpeed = 1500; } }
-            setTimeout(typeWriter, typingSpeed);
-        }
-        setTimeout(typeWriter, 400);
+    function updateActiveNav(index) {
+        navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
+    }
 
-        // --- NAVIGATION LOGIC ---
-        const navCards = document.querySelectorAll('.nav-card');
-        const mainSlider = document.getElementById('slider');
+    mainSlider.addEventListener('scroll', () => {
+        const scrollLeft = mainSlider.scrollLeft;
+        const slideWidth = mainSlider.clientWidth;
+        const activeIndex = Math.round(scrollLeft / slideWidth);
+        updateActiveNav(activeIndex);
+    });
 
-        function scrollToSlide(index, msg) {
-            const targetSlide = document.getElementById('slide-' + index);
-            if (targetSlide) {
-                targetSlide.scrollIntoView({ behavior: 'smooth' });
-                updateActiveNav(index);
-            }
-            if(msg) showHoloMessage("Pemandu", msg);
-        }
+    // --- CONTENT SLIDER ---
+    let currentContentSlide = 0;
+    const contentTrack = document.getElementById('contentTrack');
+    const dots = document.querySelectorAll('.dot');
+    const totalContentSlides = 2;
+    function goToContentSlide(index) {
+        currentContentSlide = index;
+        contentTrack.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
+    }
+    setInterval(() => {
+        currentContentSlide = (currentContentSlide + 1) % totalContentSlides;
+        goToContentSlide(currentContentSlide);
+    }, 5000);
 
-        function updateActiveNav(index) {
-            navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
-        }
-
-        mainSlider.addEventListener('scroll', () => {
-            const scrollLeft = mainSlider.scrollLeft;
-            const slideWidth = mainSlider.clientWidth;
-            const activeIndex = Math.round(scrollLeft / slideWidth);
-            updateActiveNav(activeIndex);
-        });
-
-        // --- CONTENT SLIDER ---
-        let currentContentSlide = 0;
-        const contentTrack = document.getElementById('contentTrack');
-        const dots = document.querySelectorAll('.dot');
-        const totalContentSlides = 2;
-        function goToContentSlide(index) {
-            currentContentSlide = index;
-            contentTrack.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
-        }
-        setInterval(() => {
-            currentContentSlide = (currentContentSlide + 1) % totalContentSlides;
-            goToContentSlide(currentContentSlide);
-        }, 5000);
-
-        // --- HOLOGRAM CORE FUNCTION ---
-        function showHoloMessage(title, text, callback) {
-            tooltipTitle.innerText = title;
-            tooltipDesc.innerText = text;
-            holoContainer.classList.add('show');
-            tourTooltip.classList.add('active');
-            speakText(text, () => {
-                setTimeout(() => {
-                    holoContainer.classList.remove('show');
-                    tourTooltip.classList.remove('active');
-                    if(callback) callback();
-                }, 1000);
-            });
-        }
-
-        function speakText(text, onEndCallback) {
-            if (synth.speaking) { synth.cancel(); }
-            const utterance = new SpeechSynthesisUtterance(text);
-            if (voiceAI) { utterance.voice = voiceAI; }
-            utterance.pitch = 1.1; utterance.rate = 1.1;
-            if (onEndCallback) { utterance.onend = onEndCallback; }
-            synth.speak(utterance);
-        }
-
-        // --- TOUR GUIDE LOGIC ---
-        const tourSteps = [
-            { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0 },
-            { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0 },
-            { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0 },
-            { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2 }
-        ];
-        let currentTourStep = -1;
-
-        function startTour() {
-            currentTourStep = -1;
-            tourOverlay.classList.add('active');
-            tourHighlight.classList.remove('animate');
-            showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", () => {
-                tourHighlight.classList.add('animate');
-                nextTourStep();
-            });
-        }
-
-        function nextTourStep() {
-            currentTourStep++;
-            if (currentTourStep >= tourSteps.length) {
-                endTour();
-                return;
-            }
-            const step = tourSteps[currentTourStep];
-            const targetEl = document.querySelector(step.element);
-            
-            const targetSlide = document.getElementById('slide-' + step.slide);
-            if (targetSlide) {
-                targetSlide.scrollIntoView({ behavior: 'smooth' });
-                updateActiveNav(step.slide);
-            }
-
+    // --- HOLOGRAM CORE FUNCTION (MODIFIED) ---
+    function showHoloMessage(title, text, callback) {
+        tooltipTitle.innerText = title;
+        tooltipDesc.innerText = text;
+        holoContainer.classList.add('show');
+        tourTooltip.classList.add('active');
+        
+        // Panggil fungsi suara baru
+        speakText(text, () => {
             setTimeout(() => {
-                if (targetEl) {
-                    const rect = targetEl.getBoundingClientRect();
-                    tourHighlight.style.top = rect.top + 'px';
-                    tourHighlight.style.left = rect.left + 'px';
-                    tourHighlight.style.width = rect.width + 'px';
-                    tourHighlight.style.height = rect.height + 'px';
-                    showHoloMessage(step.title, step.desc, () => {
-                        setTimeout(nextTourStep, 500); 
-                    });
-                }
-            }, 600);
-        }
-
-        function endTour() {
-            synth.cancel();
-            tourOverlay.classList.remove('active');
-            tourHighlight.classList.remove('animate');
-            
-            showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", () => {
+                holoContainer.classList.remove('show');
                 tourTooltip.classList.remove('active');
-                startCredits();
-            });
+                if(callback) callback();
+            }, 1000);
+        });
+    }
+
+    // --- NEW SPEECH FUNCTION (GOOGLE TTS) ---
+    // Menggunakan Audio API agar suara konsisten di semua perangkat
+    function speakText(text, onEndCallback) {
+        if (!text) {
+            if(onEndCallback) onEndCallback();
+            return;
         }
 
-        // --- CREDITS LOGIC ---
-        function createStars() {
-            starContainer.innerHTML = '';
-            for(let i=0; i<50; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.left = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDuration = Math.random() * 3 + 2 + 's';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                starContainer.appendChild(star);
-            }
-        }
-
-        function startCredits() {
-            createStars();
-            creditsOverlay.classList.add('active');
-            creditsContent.style.animation = 'none';
-            creditsContent.offsetHeight;
-            creditsContent.style.animation = 'scrollDown 150s linear forwards';
-            if (bgMusic) { bgMusic.currentTime = 0; bgMusic.volume = 0.6; bgMusic.play().catch(e => {}); }
-            creditsContent.addEventListener('animationend', handleCreditsEnd);
-        }
-
-        function handleCreditsEnd() {
-            creditsOverlay.classList.remove('active');
-            if(bgMusic) bgMusic.pause();
-            creditsContent.removeEventListener('animationend', handleCreditsEnd);
-            setTimeout(() => { scrollToSlide(0, null); }, 500);
-        }
-
-        // --- BACKGROUND SLIDER ---
-        const slides = document.querySelectorAll('.bg-slide');
-        let currentSlide = 0;
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 5000);
-
-        // --- MODALS & HELPERS ---
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-        function confirmWA(phone, name) {
-            const text = `Halo ${name}, saya ingin bertanya.`;
-            const linkBtn = document.getElementById('confirmWaBtn');
-            linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-            openModal('waModal');
-        }
-
-        // --- EVENT LOGIC ---
-        const PASSWORD = "1111";
+        // Encode text untuk URL
+        const encodedText = encodeURIComponent(text);
+        // Menggunakan Google Translate TTS API (Bahasa Indonesia)
+        // client=tw-ob memastikan suara yang dihasilkan konsisten
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=id&client=tw-ob&q=${encodedText}`;
         
-        function checkPassword() {
-            if (document.getElementById('passwordInput').value === PASSWORD) {
-                closeModal('passwordModal'); 
-                openModal('eventModal'); 
-                document.getElementById('passwordInput').value = ""; 
-            } else { 
-                alert("Kode salah!"); 
-            }
-        }
+        const audio = new Audio(url);
         
-        // Fungsi untuk mengubah URL dalam teks menjadi link yang bisa diklik
-        function makeLinksClickable(text) {
-            if (!text) return '';
-            // Regex untuk mendeteksi URL (http:// atau https://)
-            const urlRegex = /(https?:\/\/[^\s<]+)/g;
-            // Escape HTML terlebih dahulu untuk keamanan
-            const escapedText = text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-            
-            // Ganti URL dengan link yang bisa diklik
-            return escapedText.replace(urlRegex, function(url) {
-                return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
-            });
-        }
+        // Event listener ketika audio selesai diputar
+        audio.onended = () => {
+            if(onEndCallback) onEndCallback();
+        };
         
-        function saveEvent() {
-            const title = document.getElementById('evTitle').value.trim();
-            const date = document.getElementById('evDate').value.trim();
-            const img = document.getElementById('evImg').value.trim();
-            const link = document.getElementById('evLink').value.trim();
-            const desc = document.getElementById('evDesc').value.trim();
-            
-            if (!title || !date) { 
-                alert("Judul & Tanggal wajib diisi!"); 
-                return; 
+        // Event listener jika terjadi error (misal koneksi lambat)
+        audio.onerror = () => {
+            console.log("TTS Error, fallback to callback");
+            if(onEndCallback) onEndCallback();
+        };
+
+        // Putar audio. Browser modern membutuhkan interaksi user pertama kali
+        audio.play().catch(e => {
+            console.log("Autoplay blocked by browser:", e);
+            // Jika autoplay diblokir, langsung jalankan callback agar tour tidak stuck
+            if(onEndCallback) onEndCallback();
+        });
+    }
+
+    // --- TOUR GUIDE LOGIC ---
+    const tourSteps = [
+        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0 },
+        { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0 },
+        { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0 },
+        { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2 }
+    ];
+    let currentTourStep = -1;
+
+    function startTour() {
+        currentTourStep = -1;
+        tourOverlay.classList.add('active');
+        tourHighlight.classList.remove('animate');
+        showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", () => {
+            tourHighlight.classList.add('animate');
+            nextTourStep();
+        });
+    }
+
+    function nextTourStep() {
+        currentTourStep++;
+        if (currentTourStep >= tourSteps.length) {
+            endTour();
+            return;
+        }
+        const step = tourSteps[currentTourStep];
+        const targetEl = document.querySelector(step.element);
+        
+        const targetSlide = document.getElementById('slide-' + step.slide);
+        if (targetSlide) {
+            targetSlide.scrollIntoView({ behavior: 'smooth' });
+            updateActiveNav(step.slide);
+        }
+
+        setTimeout(() => {
+            if (targetEl) {
+                const rect = targetEl.getBoundingClientRect();
+                tourHighlight.style.top = rect.top + 'px';
+                tourHighlight.style.left = rect.left + 'px';
+                tourHighlight.style.width = rect.width + 'px';
+                tourHighlight.style.height = rect.height + 'px';
+                showHoloMessage(step.title, step.desc, () => {
+                    setTimeout(nextTourStep, 500); 
+                });
             }
-            
-            const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-            events.push({ 
-                id: Date.now(), 
-                title: title, 
-                date: date, 
-                img: img, 
-                link: link, 
-                desc: desc 
-            });
+        }, 600);
+    }
+
+    function endTour() {
+        tourOverlay.classList.remove('active');
+        tourHighlight.classList.remove('animate');
+        
+        showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", () => {
+            tourTooltip.classList.remove('active');
+            startCredits();
+        });
+    }
+
+    // --- CREDITS LOGIC ---
+    function createStars() {
+        starContainer.innerHTML = '';
+        for(let i=0; i<50; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starContainer.appendChild(star);
+        }
+    }
+
+    function startCredits() {
+        createStars();
+        creditsOverlay.classList.add('active');
+        creditsContent.style.animation = 'none';
+        creditsContent.offsetHeight;
+        creditsContent.style.animation = 'scrollDown 150s linear forwards';
+        if (bgMusic) { bgMusic.currentTime = 0; bgMusic.volume = 0.6; bgMusic.play().catch(e => {}); }
+        creditsContent.addEventListener('animationend', handleCreditsEnd);
+    }
+
+    function handleCreditsEnd() {
+        creditsOverlay.classList.remove('active');
+        if(bgMusic) bgMusic.pause();
+        creditsContent.removeEventListener('animationend', handleCreditsEnd);
+        setTimeout(() => { scrollToSlide(0, null); }, 500);
+    }
+
+    // --- BACKGROUND SLIDER ---
+    const slides = document.querySelectorAll('.bg-slide');
+    let currentSlide = 0;
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000);
+
+    // --- MODALS & HELPERS ---
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function confirmWA(phone, name) {
+        const text = `Halo ${name}, saya ingin bertanya.`;
+        const linkBtn = document.getElementById('confirmWaBtn');
+        linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+        openModal('waModal');
+    }
+
+    // --- EVENT LOGIC ---
+    const PASSWORD = "1111";
+    
+    function checkPassword() {
+        if (document.getElementById('passwordInput').value === PASSWORD) {
+            closeModal('passwordModal'); openModal('eventModal'); document.getElementById('passwordInput').value = ""; 
+        } else { alert("Kode salah!"); }
+    }
+    
+    // Fungsi untuk mengubah URL dalam teks menjadi link yang bisa diklik
+    function makeLinksClickable(text) {
+        if (!text) return '';
+        const urlRegex = /(https?:\/\/[^\s<]+)/g;
+        const escapedText = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        return escapedText.replace(urlRegex, function(url) {
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
+        });
+    }
+    
+    function saveEvent() {
+        const title = document.getElementById('evTitle').value;
+        const date = document.getElementById('evDate').value;
+        const img = document.getElementById('evImg').value;
+        const link = document.getElementById('evLink').value;
+        const desc = document.getElementById('evDesc').value;
+        if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
+        const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
+        events.push({ id: Date.now(), title, date, img, link, desc });
+        localStorage.setItem('asahginjal_events', JSON.stringify(events));
+        ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
+        closeModal('eventModal'); loadEvents();
+    }
+    
+    function deleteEvent(id) {
+        if(confirm("Hapus acara ini?")) {
+            let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
+            events = events.filter(e => e.id !== id);
             localStorage.setItem('asahginjal_events', JSON.stringify(events));
-            
-            // Reset form
-            ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
-            closeModal('eventModal'); 
             loadEvents();
         }
-        
-        function deleteEvent(id) {
-            if(confirm("Hapus acara ini?")) {
-                let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-                events = events.filter(e => e.id !== id);
-                localStorage.setItem('asahginjal_events', JSON.stringify(events));
-                loadEvents();
-            }
-        }
-        
-        function loadEvents() {
-            const container = document.getElementById('eventList');
-            const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-            
-            if (!events.length) { 
-                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px; padding: 20px;">Belum ada acara. Klik tombol di atas untuk menambah acara baru.</p>'; 
-                return; 
-            }
-            
-            container.innerHTML = events.map(ev => {
-                // Proses deskripsi untuk membuat link clickable
-                const clickableDesc = makeLinksClickable(ev.desc);
-                
-                // Generate HTML untuk gambar poster
-                let posterHtml = '';
-                if (ev.img) {
-                    if (ev.link) {
-                        // Jika ada link tujuan, bungkus gambar dalam link
-                        posterHtml = `
-                            <a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link">
-                                <img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'">
-                            </a>
-                        `;
-                    } else {
-                        // Jika tidak ada link, tampilkan gambar biasa
-                        posterHtml = `
-                            <div class="event-item-img-container">
-                                <img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'">
-                            </div>
-                        `;
-                    }
+    }
+    
+    function loadEvents() {
+        const container = document.getElementById('eventList');
+        const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
+        if (!events.length) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara. Klik tombol di atas untuk menambah acara baru.</p>'; return; }
+        container.innerHTML = events.map(ev => {
+            const clickableDesc = makeLinksClickable(ev.desc);
+            let posterHtml = '';
+            if (ev.img) {
+                if (ev.link) {
+                    posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'"></a>`;
+                } else {
+                    posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'"></div>`;
                 }
-                
-                // Generate tombol link jika ada link tapi tidak ada gambar
-                let linkBtnHtml = '';
-                if (ev.link && !ev.img) {
-                    linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
-                }
-                
-                return `
-                    <div class="event-item-card">
-                        ${posterHtml}
-                        <button class="delete-event-btn" onclick="deleteEvent(${ev.id})" title="Hapus acara">✕</button>
-                        <div class="event-item-body">
-                            <div class="event-item-title">${ev.title}</div>
-                            <div class="event-item-date">🗓 ${ev.date}</div>
-                            <div class="event-item-desc">${clickableDesc}</div>
-                            ${linkBtnHtml}
-                        </div>
+            }
+            let linkBtnHtml = '';
+            if (ev.link && !ev.img) {
+                linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
+            }
+            return `
+                <div class="event-item-card">
+                    ${posterHtml}
+                    <button class="delete-event-btn" onclick="deleteEvent(${ev.id})" title="Hapus acara">✕</button>
+                    <div class="event-item-body">
+                        <div class="event-item-title">${ev.title}</div>
+                        <div class="event-item-date">🗓 ${ev.date}</div>
+                        <div class="event-item-desc">${clickableDesc}</div>
+                        ${linkBtnHtml}
                     </div>
-                `;
-            }).join('');
-        }
+                </div>
+            `;
+        }).join('');
+    }
+    
+    window.addEventListener('load', loadEvents);
+
+    // --- CALCULATORS ---
+    const WA_ADMIN_UTAMA = '6282227707573'; 
+    const WA_DOKTER = '6281252651083'; 
+
+    function calculateCVC() {
+        let symptomCount = 0; let hasCriticalSign = false; 
+        if (document.getElementById('q1')?.checked) symptomCount++; 
+        if (document.getElementById('q2')?.checked) symptomCount++; 
+        if (document.getElementById('q3')?.checked) symptomCount++; 
+        if (document.getElementById('q4')?.checked) { symptomCount++; hasCriticalSign = true; }
+        if (document.getElementById('q5')?.checked) { symptomCount++; hasCriticalSign = true; }
+
+        let level = "", msg = "", bc = ""; 
+        const scoreCircle = document.getElementById('cvc-score-circle');
+        scoreCircle.classList.remove('risk-low', 'risk-medium', 'risk-high');
+
+        if (hasCriticalSign || symptomCount >= 4) { level = "Tinggi"; msg = "🚨 DARURAT! Segera ke RS."; bc = "badge-red"; scoreCircle.classList.add('risk-high'); }
+        else if (symptomCount >= 2) { level = "Sedang"; msg = "⚠️ SEGERA LAPOR."; bc = "badge-orange"; scoreCircle.classList.add('risk-medium'); }
+        else if (symptomCount === 1) { level = "Rendah"; msg = "⚠️ Perlu Perhatian."; bc = "badge-teal"; scoreCircle.classList.add('risk-low'); }
+        else { level = "Aman"; msg = "✔️ Kondisi Aman."; bc = "badge-teal"; scoreCircle.classList.add('risk-low'); }
+
+        document.getElementById('cvc-form').style.display = 'none';
+        document.getElementById('cvc-result').style.display = 'block';
+        document.getElementById('score-val').innerText = symptomCount; 
+        document.getElementById('risk-msg').innerText = msg;
+        const badge = document.getElementById('risk-badge');
+        badge.innerText = level; badge.className = 'badge ' + bc;
         
-        window.addEventListener('load', loadEvents);
-
-        // --- CALCULATORS ---
-        const WA_ADMIN_UTAMA = '6282227707573'; 
-        const WA_DOKTER = '6281252651083'; 
-
-        function calculateCVC() {
-            let symptomCount = 0; let hasCriticalSign = false; 
-            if (document.getElementById('q1')?.checked) symptomCount++; 
-            if (document.getElementById('q2')?.checked) symptomCount++; 
-            if (document.getElementById('q3')?.checked) symptomCount++; 
-            if (document.getElementById('q4')?.checked) { symptomCount++; hasCriticalSign = true; }
-            if (document.getElementById('q5')?.checked) { symptomCount++; hasCriticalSign = true; }
-
-            let level = "", msg = "", bc = ""; 
-            const scoreCircle = document.getElementById('cvc-score-circle');
-            scoreCircle.classList.remove('risk-low', 'risk-medium', 'risk-high');
-
-            if (hasCriticalSign || symptomCount >= 4) { level = "Tinggi"; msg = "🚨 DARURAT! Segera ke RS."; bc = "badge-red"; scoreCircle.classList.add('risk-high'); }
-            else if (symptomCount >= 2) { level = "Sedang"; msg = "⚠️ SEGERA LAPOR."; bc = "badge-orange"; scoreCircle.classList.add('risk-medium'); }
-            else if (symptomCount === 1) { level = "Rendah"; msg = "⚠️ Perlu Perhatian."; bc = "badge-teal"; scoreCircle.classList.add('risk-low'); }
-            else { level = "Aman"; msg = "✔️ Kondisi Aman."; bc = "badge-teal"; scoreCircle.classList.add('risk-low'); }
-
-            document.getElementById('cvc-form').style.display = 'none';
-            document.getElementById('cvc-result').style.display = 'block';
-            document.getElementById('score-val').innerText = symptomCount; 
-            document.getElementById('risk-msg').innerText = msg;
-            const badge = document.getElementById('risk-badge');
-            badge.innerText = level; badge.className = 'badge ' + bc;
-            
-            const criticalDiv = document.getElementById('cvc-critical-action');
-            const patientId = document.getElementById('cvc_id').value || 'Unknown';
-            criticalDiv.style.display = 'none';
-            
-            if (level === "Tinggi") {
-                const waText = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}`;
-                criticalDiv.innerHTML = `<a href="https://wa.me/${WA_DOKTER}?text=${waText}" target="_blank" class="btn btn-danger" style="width:100%; text-decoration:none;">&#128680; Lapor Dokter</a>`;
-                criticalDiv.style.display = 'block';
-            } else if (level === "Sedang") {
-                const waText = `⚠️ LAPORAN RISIKO CVC%0AID: ${patientId}%0AStatus: ${level}`;
-                criticalDiv.innerHTML = `<a href="https://wa.me/${WA_ADMIN_UTAMA}?text=${waText}" target="_blank" class="btn btn-outline" style="width:100%; text-decoration:none;">&#128172; Lapor Admin</a>`;
-                criticalDiv.style.display = 'block';
-            }
+        const criticalDiv = document.getElementById('cvc-critical-action');
+        const patientId = document.getElementById('cvc_id').value || 'Unknown';
+        criticalDiv.style.display = 'none';
+        
+        if (level === "Tinggi") {
+            const waText = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}`;
+            criticalDiv.innerHTML = `<a href="https://wa.me/${WA_DOKTER}?text=${waText}" target="_blank" class="btn btn-danger" style="width:100%; text-decoration:none;">&#128680; Lapor Dokter</a>`;
+            criticalDiv.style.display = 'block';
+        } else if (level === "Sedang") {
+            const waText = `⚠️ LAPORAN RISIKO CVC%0AID: ${patientId}%0AStatus: ${level}`;
+            criticalDiv.innerHTML = `<a href="https://wa.me/${WA_ADMIN_UTAMA}?text=${waText}" target="_blank" class="btn btn-outline" style="width:100%; text-decoration:none;">&#128172; Lapor Admin</a>`;
+            criticalDiv.style.display = 'block';
         }
-        function resetCVC() { document.getElementById('cvc-form').style.display = 'block'; document.getElementById('cvc-result').style.display = 'none'; document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); }
+    }
+    function resetCVC() { document.getElementById('cvc-form').style.display = 'block'; document.getElementById('cvc-result').style.display = 'none'; document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); }
 
-        function calculateAV() {
-            const n = document.getElementById('av1').checked; const s = document.getElementById('av2').checked;
-            const l = document.getElementById('av3').checked; const sw = document.getElementById('av4').checked;
-            const pn = document.getElementById('av5').checked;
-            let st = "BAIK", b = "badge-teal", mg = "Kondisi fistula baik.", rc = "Lanjutkan perawatan rutin.";
-            if (sw || pn) { st = "BURUK"; b = "badge-red"; mg = "Tanda komplikasi."; rc = "Segera ke dokter."; }
-            else if (l || !n || !s) { st = "SEDANG"; b = "badge-orange"; mg = "Ada perubahan."; rc = "Monitor ketat."; }
-            document.getElementById('av-form').style.display = 'none'; document.getElementById('av-result').style.display = 'block';
-            document.getElementById('av-badge').innerText = st; document.getElementById('av-badge').className = 'badge ' + b;
-            document.getElementById('av-msg').innerText = mg; document.getElementById('av-recom').innerText = rc;
-        }
-        function resetAV() { document.getElementById('av-form').style.display = 'block'; document.getElementById('av-result').style.display = 'none'; document.querySelectorAll('#av-form input').forEach(c => c.checked = false); }
+    function calculateAV() {
+        const n = document.getElementById('av1').checked; const s = document.getElementById('av2').checked;
+        const l = document.getElementById('av3').checked; const sw = document.getElementById('av4').checked;
+        const pn = document.getElementById('av5').checked;
+        let st = "BAIK", b = "badge-teal", mg = "Kondisi fistula baik.", rc = "Lanjutkan perawatan rutin.";
+        if (sw || pn) { st = "BURUK"; b = "badge-red"; mg = "Tanda komplikasi."; rc = "Segera ke dokter."; }
+        else if (l || !n || !s) { st = "SEDANG"; b = "badge-orange"; mg = "Ada perubahan."; rc = "Monitor ketat."; }
+        document.getElementById('av-form').style.display = 'none'; document.getElementById('av-result').style.display = 'block';
+        document.getElementById('av-badge').innerText = st; document.getElementById('av-badge').className = 'badge ' + b;
+        document.getElementById('av-msg').innerText = mg; document.getElementById('av-recom').innerText = rc;
+    }
+    function resetAV() { document.getElementById('av-form').style.display = 'block'; document.getElementById('av-result').style.display = 'none'; document.querySelectorAll('#av-form input').forEach(c => c.checked = false); }
 
-    </script>
+</script>
 </body>
 </html>
