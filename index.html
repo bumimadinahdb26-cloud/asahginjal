@@ -109,6 +109,85 @@
         /* Main Content */
         main { 
             margin-top: 68px; 
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+<!DOCTYPE html>
+
             margin-bottom: 80px; 
             display: flex; 
             overflow-x: auto; 
@@ -203,7 +282,7 @@
         /* Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box { background: white; padding: 28px; border-radius: 20px; width: 300px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); transform: scale(0.9); transition: transform 0.3s; }
+        .modal-box { background: white; padding: 28px; border-radius: 20px; width: 320px; max-width: 90vw; max-height: 85vh; overflow-y: auto; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); transform: scale(0.9); transition: transform 0.3s; }
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
         .modal-btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; border: none; font-size: 13px; text-decoration: none; transition: all 0.2s; }
@@ -216,6 +295,7 @@
         .input-field:focus { outline: none; border-color: var(--primary-teal); background: white; box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1); }
         .input-group { margin-bottom: 14px; text-align: left; }
         .input-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+        .input-hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
         
         /* Checkbox */
         .check-label { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-soft); border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; margin-bottom: 10px; transition: all 0.2s; }
@@ -287,12 +367,93 @@
         /* Event Custom */
         .event-list-container { display: flex; flex-direction: column; gap: 16px; }
         .event-item-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; }
-        .event-item-img { width: 100%; height: 140px; object-fit: cover; background: #eee; }
+        .event-item-img-container { 
+            width: 100%; 
+            height: 160px; 
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .event-item-img-container img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.3s ease;
+        }
+        .event-item-img-container:hover img {
+            transform: scale(1.05);
+        }
+        .event-item-img-container.has-link::after {
+            content: '🔗 Klik untuk membuka link';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            font-size: 11px;
+            padding: 20px 10px 8px;
+            text-align: center;
+        }
         .event-item-body { padding: 14px; }
         .event-item-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
         .event-item-date { font-size: 12px; color: var(--primary-teal); margin-bottom: 8px; font-weight: 600; }
-        .event-item-desc { font-size: 13px; color: var(--text-muted); white-space: pre-wrap; }
-        .delete-event-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; cursor: pointer; color: var(--color-danger); box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .event-item-desc { 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            white-space: pre-wrap; 
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .event-item-desc a {
+            color: var(--primary-teal);
+            text-decoration: underline;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        .event-item-desc a:hover {
+            color: var(--primary-teal-dark);
+        }
+        .delete-event-btn { 
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+            background: rgba(255,255,255,0.95); 
+            border: none; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            font-size: 16px; 
+            cursor: pointer; 
+            color: var(--color-danger); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 10;
+            transition: all 0.2s;
+        }
+        .delete-event-btn:hover {
+            background: var(--color-danger);
+            color: white;
+            transform: scale(1.1);
+        }
+        .event-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-light));
+            color: white;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+            transition: all 0.2s;
+        }
+        .event-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
+        }
 
         /* ==========================================
            HOLOGRAM & TOUR STYLES
@@ -472,14 +633,33 @@
         </div>
     </div>
     <div class="modal-overlay" id="eventModal">
-        <div class="modal-box" style="width: 320px;">
+        <div class="modal-box" style="width: 340px;">
             <div style="font-size:48px; margin-bottom:10px;">&#128197;</div>
             <h3 style="color:var(--dark-blue); font-size: 18px; font-weight: 700;">Tambah Acara Baru</h3>
             <div style="margin-top: 15px; text-align: left;">
-                <div class="input-group"><label>Judul Acara</label><input type="text" id="evTitle" class="input-field" placeholder="Nama acara..."></div>
-                <div class="input-group"><label>Tanggal & Waktu</label><input type="text" id="evDate" class="input-field" placeholder="Mis: Sabtu, 20 Jan 13:00"></div>
-                <div class="input-group"><label>Link Poster (Opsional)</label><input type="text" id="evImg" class="input-field" placeholder="https://..."></div>
-                <div class="input-group"><label>Deskripsi</label><textarea id="evDesc" class="input-field" rows="3" placeholder="Detail acara..."></textarea></div>
+                <div class="input-group">
+                    <label>Judul Acara *</label>
+                    <input type="text" id="evTitle" class="input-field" placeholder="Nama acara...">
+                </div>
+                <div class="input-group">
+                    <label>Tanggal & Waktu *</label>
+                    <input type="text" id="evDate" class="input-field" placeholder="Mis: Kamis, 12 Maret 2026">
+                </div>
+                <div class="input-group">
+                    <label>Link Gambar Poster (Opsional)</label>
+                    <input type="text" id="evImg" class="input-field" placeholder="https://... (URL gambar)">
+                    <div class="input-hint">Masukkan URL gambar poster acara</div>
+                </div>
+                <div class="input-group">
+                    <label>Link Tujuan Poster (Opsional)</label>
+                    <input type="text" id="evLink" class="input-field" placeholder="https://... (Link Zoom, pendaftaran, dll)">
+                    <div class="input-hint">Poster akan bisa diklik dan mengarah ke link ini</div>
+                </div>
+                <div class="input-group">
+                    <label>Deskripsi / Informasi Acara</label>
+                    <textarea id="evDesc" class="input-field" rows="5" placeholder="Detail acara, narasumber, link Zoom, link pendaftaran, dll...&#10;&#10;Contoh:&#10;Narasumber:&#10;1. Dr. X, Sp.PD&#10;&#10;Link Zoom: https://zoom.us/...&#10;Link Daftar: https://bit.ly/..."></textarea>
+                    <div class="input-hint">Link URL dalam deskripsi akan otomatis menjadi klik-able</div>
+                </div>
             </div>
             <div class="modal-btns">
                 <button class="modal-btn no" onclick="closeModal('eventModal')">Batal</button>
@@ -682,7 +862,7 @@
             </div>
         </section>
         
-        <!-- SLIDE 4: EDUKASI (RESTORED) -->
+        <!-- SLIDE 4: EDUKASI -->
         <section class="slide-section" id="slide-4">
              <div class="glass-card">
                 <div class="card-header">
@@ -723,7 +903,7 @@
             </div>
         </section>
         
-        <!-- SLIDE 5: KONSULTASI (RESTORED) -->
+        <!-- SLIDE 5: KONSULTASI -->
         <section class="slide-section" id="slide-5">
             <div class="glass-card">
                 <div class="card-header">
@@ -1038,47 +1218,128 @@
 
         // --- EVENT LOGIC ---
         const PASSWORD = "1111";
+        
         function checkPassword() {
             if (document.getElementById('passwordInput').value === PASSWORD) {
-                closeModal('passwordModal'); openModal('eventModal'); document.getElementById('passwordInput').value = ""; 
-            } else { alert("Kode salah!"); }
+                closeModal('passwordModal'); 
+                openModal('eventModal'); 
+                document.getElementById('passwordInput').value = ""; 
+            } else { 
+                alert("Kode salah!"); 
+            }
         }
+        
+        // Fungsi untuk mengubah URL dalam teks menjadi link yang bisa diklik
+        function makeLinksClickable(text) {
+            if (!text) return '';
+            // Regex untuk mendeteksi URL (http:// atau https://)
+            const urlRegex = /(https?:\/\/[^\s<]+)/g;
+            // Escape HTML terlebih dahulu untuk keamanan
+            const escapedText = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+            
+            // Ganti URL dengan link yang bisa diklik
+            return escapedText.replace(urlRegex, function(url) {
+                return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
+            });
+        }
+        
         function saveEvent() {
-            const title = document.getElementById('evTitle').value;
-            const date = document.getElementById('evDate').value;
-            const img = document.getElementById('evImg').value;
-            const desc = document.getElementById('evDesc').value;
-            if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
+            const title = document.getElementById('evTitle').value.trim();
+            const date = document.getElementById('evDate').value.trim();
+            const img = document.getElementById('evImg').value.trim();
+            const link = document.getElementById('evLink').value.trim();
+            const desc = document.getElementById('evDesc').value.trim();
+            
+            if (!title || !date) { 
+                alert("Judul & Tanggal wajib diisi!"); 
+                return; 
+            }
+            
             const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-            events.push({ id: Date.now(), title, date, img, desc });
+            events.push({ 
+                id: Date.now(), 
+                title: title, 
+                date: date, 
+                img: img, 
+                link: link, 
+                desc: desc 
+            });
             localStorage.setItem('asahginjal_events', JSON.stringify(events));
-            ['evTitle', 'evDate', 'evImg', 'evDesc'].forEach(id => document.getElementById(id).value = '');
-            closeModal('eventModal'); loadEvents();
+            
+            // Reset form
+            ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
+            closeModal('eventModal'); 
+            loadEvents();
         }
+        
         function deleteEvent(id) {
-            if(confirm("Hapus acara?")) {
+            if(confirm("Hapus acara ini?")) {
                 let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
                 events = events.filter(e => e.id !== id);
                 localStorage.setItem('asahginjal_events', JSON.stringify(events));
                 loadEvents();
             }
         }
+        
         function loadEvents() {
             const container = document.getElementById('eventList');
             const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-            if (!events.length) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara.</p>'; return; }
-            container.innerHTML = events.map(ev => `
-                <div class="event-item-card">
-                    ${ev.img ? `<img src="${ev.img}" class="event-item-img" alt="Poster" onerror="this.style.display='none'">` : ''}
-                    <button class="delete-event-btn" onclick="deleteEvent(${ev.id})">✕</button>
-                    <div class="event-item-body">
-                        <div class="event-item-title">${ev.title}</div>
-                        <div class="event-item-date">🗓 ${ev.date}</div>
-                        <div class="event-item-desc">${ev.desc || ''}</div>
+            
+            if (!events.length) { 
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px; padding: 20px;">Belum ada acara. Klik tombol di atas untuk menambah acara baru.</p>'; 
+                return; 
+            }
+            
+            container.innerHTML = events.map(ev => {
+                // Proses deskripsi untuk membuat link clickable
+                const clickableDesc = makeLinksClickable(ev.desc);
+                
+                // Generate HTML untuk gambar poster
+                let posterHtml = '';
+                if (ev.img) {
+                    if (ev.link) {
+                        // Jika ada link tujuan, bungkus gambar dalam link
+                        posterHtml = `
+                            <a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link">
+                                <img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'">
+                            </a>
+                        `;
+                    } else {
+                        // Jika tidak ada link, tampilkan gambar biasa
+                        posterHtml = `
+                            <div class="event-item-img-container">
+                                <img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'">
+                            </div>
+                        `;
+                    }
+                }
+                
+                // Generate tombol link jika ada link tapi tidak ada gambar
+                let linkBtnHtml = '';
+                if (ev.link && !ev.img) {
+                    linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
+                }
+                
+                return `
+                    <div class="event-item-card">
+                        ${posterHtml}
+                        <button class="delete-event-btn" onclick="deleteEvent(${ev.id})" title="Hapus acara">✕</button>
+                        <div class="event-item-body">
+                            <div class="event-item-title">${ev.title}</div>
+                            <div class="event-item-date">🗓 ${ev.date}</div>
+                            <div class="event-item-desc">${clickableDesc}</div>
+                            ${linkBtnHtml}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
+        
         window.addEventListener('load', loadEvents);
 
         // --- CALCULATORS ---
