@@ -711,20 +711,47 @@
         </button>
     </header>
 
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <div class="nav-track" id="navTrack">
-            <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.')"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda"><div class="text-overlay"><span class="text">Beranda</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.')"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Acara"><div class="text-overlay"><span class="text">Acara</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(2, 'CVC. Lakukan penilaian risiko infeksi kateter di sini.')"><img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" alt="CVC"><div class="text-overlay"><span class="text">CVC</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.')"><img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2072&auto=format&fit=crop" alt="AV Shunt"><div class="text-overlay"><span class="text">AV Shunt</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.')"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="Edukasi"><div class="text-overlay"><span class="text">Edukasi</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.')"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi"><div class="text-overlay"><span class="text">Konsultasi</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi. Kenali lebih dekat pengembang.')"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info"><div class="text-overlay"><span class="text">Info</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.')"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Privasi"><div class="text-overlay"><span class="text">Privasi</span></div></div>
-            <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.')"><img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Donasi"><div class="text-overlay"><span class="text">Donasi</span></div></div>
+  <!-- NAVIGATION -->
+<nav id="navbar">
+    <div class="nav-track" id="navTrack">
+        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.', 'nav_beranda.mp3')">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda">
+            <div class="text-overlay"><span class="text">Beranda</span></div>
         </div>
-    </nav>
+        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.', 'nav_acara.mp3')">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Acara">
+            <div class="text-overlay"><span class="text">Acara</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(2, 'CVC. Lakukan penilaian risiko infeksi kateter di sini.', 'nav_cvc.mp3')">
+            <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" alt="CVC">
+            <div class="text-overlay"><span class="text">CVC</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.', 'nav_avshunt.mp3')">
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2072&auto=format&fit=crop" alt="AV Shunt">
+            <div class="text-overlay"><span class="text">AV Shunt</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.', 'nav_edukasi.mp3')">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="Edukasi">
+            <div class="text-overlay"><span class="text">Edukasi</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.', 'nav_konsultasi.mp3')">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
+            <div class="text-overlay"><span class="text">Konsultasi</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi. Kenali lebih dekat pengembang.', 'nav_info.mp3')">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
+            <div class="text-overlay"><span class="text">Info</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.', 'nav_privasi.mp3')">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Privasi">
+            <div class="text-overlay"><span class="text">Privasi</span></div>
+        </div>
+        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.', 'nav_donasi.mp3')">
+            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Donasi">
+            <div class="text-overlay"><span class="text">Donasi</span></div>
+        </div>
+    </div>
+</nav>
 
     <!-- MAIN CONTENT -->
     <main id="slider">
