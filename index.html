@@ -1010,7 +1010,6 @@
 
     <script>
     // --- SETUP & GLOBALS ---
-    // Kita tidak lagi memerlukan 'synth' dan 'voiceAI' karena menggunakan Audio API
     const holoContainer = document.getElementById('holoContainer');
     const tourTooltip = document.getElementById('tourTooltip');
     const tooltipTitle = document.getElementById('tooltipTitle');
@@ -1021,6 +1020,9 @@
     const creditsContent = document.getElementById('creditsContent');
     const bgMusic = document.getElementById('bgMusic');
     const starContainer = document.getElementById('starContainer');
+
+    // Variable untuk menampung audio player agar tidak bentrok
+    let currentAudioPlayer = null;
 
     // --- HEADER ANIMATION ---
     const phrases = [ "Komunitas dan Edukasi Ginjal", "Lihat Video Perawatan CVC", "Ingatkan Jadwal Ganti Kasa", "Akses Sehat, HD Hebat" ];
@@ -1044,7 +1046,17 @@
             targetSlide.scrollIntoView({ behavior: 'smooth' });
             updateActiveNav(index);
         }
-        if(msg) showHoloMessage("Pemandu", msg);
+        // Pesan mandiri tidak pakai suara lagi agar tidak mengganggu, hanya suara tour
+        if(msg) {
+            tooltipTitle.innerText = "Pemandu";
+            tooltipDesc.innerText = msg;
+            holoContainer.classList.add('show');
+            tourTooltip.classList.add('active');
+            setTimeout(() => {
+                holoContainer.classList.remove('show');
+                tourTooltip.classList.remove('active');
+            }, 3000);
+        }
     }
 
     function updateActiveNav(index) {
@@ -1073,64 +1085,92 @@
         goToContentSlide(currentContentSlide);
     }, 5000);
 
-    // --- HOLOGRAM CORE FUNCTION (MODIFIED) ---
-    function showHoloMessage(title, text, callback) {
+    // --- HOLOGRAM CORE FUNCTION (DENGAN AUDIO FILE) ---
+    function showHoloMessage(title, text, audioFile, callback) {
         tooltipTitle.innerText = title;
         tooltipDesc.innerText = text;
         holoContainer.classList.add('show');
         tourTooltip.classList.add('active');
         
-        // Panggil fungsi suara baru
-        speakText(text, () => {
+        // Putar audio file
+        playAudioFile(audioFile, () => {
             setTimeout(() => {
                 holoContainer.classList.remove('show');
                 tourTooltip.classList.remove('active');
                 if(callback) callback();
-            }, 1000);
+            }, 500); // Jeda sedikit setelah suara selesai
         });
     }
 
-    // --- NEW SPEECH FUNCTION (GOOGLE TTS) ---
-    // Menggunakan Audio API agar suara konsisten di semua perangkat
-    function speakText(text, onEndCallback) {
-        if (!text) {
+    // --- FUNGSI PLAY AUDIO FILE (SOLUSI UTAMA) ---
+    function playAudioFile(filename, onEndCallback) {
+        // Hentikan audio sebelumnya jika ada
+        if (currentAudioPlayer) {
+            currentAudioPlayer.pause();
+            currentAudioPlayer.currentTime = 0;
+        }
+
+        // Jika tidak ada nama file, lewati
+        if (!filename) {
             if(onEndCallback) onEndCallback();
             return;
         }
 
-        // Encode text untuk URL
-        const encodedText = encodeURIComponent(text);
-        // Menggunakan Google Translate TTS API (Bahasa Indonesia)
-        // client=tw-ob memastikan suara yang dihasilkan konsisten
-        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=id&client=tw-ob&q=${encodedText}`;
+        currentAudioPlayer = new Audio('audio/' + filename);
         
-        const audio = new Audio(url);
-        
-        // Event listener ketika audio selesai diputar
-        audio.onended = () => {
-            if(onEndCallback) onEndCallback();
-        };
-        
-        // Event listener jika terjadi error (misal koneksi lambat)
-        audio.onerror = () => {
-            console.log("TTS Error, fallback to callback");
+        currentAudioPlayer.onended = () => {
             if(onEndCallback) onEndCallback();
         };
 
-        // Putar audio. Browser modern membutuhkan interaksi user pertama kali
-        audio.play().catch(e => {
-            console.log("Autoplay blocked by browser:", e);
-            // Jika autoplay diblokir, langsung jalankan callback agar tour tidak stuck
-            if(onEndCallback) onEndCallback();
+        currentAudioPlayer.onerror = (e) => {
+            console.error("Error loading audio file: " + filename, e);
+            // Fallback jika file tidak ada: tunggu 3 detik lalu lanjut
+            // Ini mencegah tour "nendang" atau cepat sekali
+            setTimeout(() => {
+                if(onEndCallback) onEndCallback();
+            }, 3000);
+        };
+
+        // Play audio
+        currentAudioPlayer.play().catch(e => {
+            console.log("Autoplay blocked, waiting for interaction or fallback", e);
+            // Jika autoplay diblokir, paksa lanjut setelah 3 detik
+            setTimeout(() => {
+                if(onEndCallback) onEndCallback();
+            }, 3000);
         });
     }
 
-    // --- TOUR GUIDE LOGIC ---
+    // --- TOUR GUIDE LOGIC (DENGAN AUDIO FILE) ---
     const tourSteps = [
-        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0 },
-        { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0 },
-        { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0 },
-        { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2 }
+        { 
+            element: '#tour-step-0', 
+            title: 'Selamat Datang!', 
+            desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', 
+            slide: 0, 
+            audio: 'step_welcome.mp3' 
+        },
+        { 
+            element: '#navbar', 
+            title: 'Navigasi Utama', 
+            desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', 
+            slide: 0, 
+            audio: 'step_nav.mp3' 
+        },
+        { 
+            element: '#tour-step-1', 
+            title: 'Info Fokus Bulanan', 
+            desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', 
+            slide: 0, 
+            audio: 'step_banner.mp3' 
+        },
+        { 
+            element: '#tour-step-3', 
+            title: 'Assessment CVC', 
+            desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', 
+            slide: 2, 
+            audio: 'step_cvc.mp3' 
+        }
     ];
     let currentTourStep = -1;
 
@@ -1138,7 +1178,9 @@
         currentTourStep = -1;
         tourOverlay.classList.add('active');
         tourHighlight.classList.remove('animate');
-        showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", () => {
+        
+        // Intro Tour
+        showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", "intro.mp3", () => {
             tourHighlight.classList.add('animate');
             nextTourStep();
         });
@@ -1166,7 +1208,9 @@
                 tourHighlight.style.left = rect.left + 'px';
                 tourHighlight.style.width = rect.width + 'px';
                 tourHighlight.style.height = rect.height + 'px';
-                showHoloMessage(step.title, step.desc, () => {
+                
+                // Panggil dengan parameter audio
+                showHoloMessage(step.title, step.desc, step.audio, () => {
                     setTimeout(nextTourStep, 500); 
                 });
             }
@@ -1177,7 +1221,7 @@
         tourOverlay.classList.remove('active');
         tourHighlight.classList.remove('animate');
         
-        showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", () => {
+        showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", "outro.mp3", () => {
             tourTooltip.classList.remove('active');
             startCredits();
         });
@@ -1244,7 +1288,6 @@
         } else { alert("Kode salah!"); }
     }
     
-    // Fungsi untuk mengubah URL dalam teks menjadi link yang bisa diklik
     function makeLinksClickable(text) {
         if (!text) return '';
         const urlRegex = /(https?:\/\/[^\s<]+)/g;
