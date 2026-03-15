@@ -275,7 +275,7 @@
         .ppt-info h4 { margin: 0 0 4px 0; font-size: 12px; font-weight: 600; }
         .ppt-info span { font-size: 11px; opacity: 0.7; }
         
-        /* Edu Box (Used for CVC and Legal) */
+        /* Edu Box */
         .cvc-edu-box { background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(109, 40, 217, 0.05)); border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
         .cvc-edu-box h3 { font-size: 0.9rem; color: var(--primary-teal-dark); margin-bottom: 10px; font-weight: 600; }
         .cvc-edu-box ul { margin: 0; padding-left: 18px; }
@@ -302,10 +302,13 @@
         .event-item-desc { font-size: 13px; color: var(--text-muted); white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
         .event-item-desc a { color: var(--primary-teal); text-decoration: underline; font-weight: 500; word-break: break-all; }
         .event-item-desc a:hover { color: var(--primary-teal-dark); }
-        .delete-event-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.95); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--color-danger); box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; transition: all 0.2s; }
-        .delete-event-btn:hover { background: var(--color-danger); color: white; transform: scale(1.1); }
+        .delete-event-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.95); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--color-danger); box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; transition: all 0.2s; display: none; } /* Disembunyikan dulu karena butuh backend untuk delete */
         .event-link-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-light)); color: white; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25); transition: all 0.2s; }
         .event-link-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35); }
+
+        /* Loading Spinner */
+        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-teal); border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* HOLOGRAM & TOUR STYLES */
         .holo-container { position: fixed; bottom: 90px; right: 15px; width: 140px; height: 220px; z-index: 9999; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s; perspective: 1000px; }
@@ -397,17 +400,14 @@
                 <div class="input-group">
                     <label>Link Gambar Poster (Opsional)</label>
                     <input type="text" id="evImg" class="input-field" placeholder="https://... (URL gambar)">
-                    <div class="input-hint">Masukkan URL gambar poster acara</div>
                 </div>
                 <div class="input-group">
                     <label>Link Tujuan Poster (Opsional)</label>
                     <input type="text" id="evLink" class="input-field" placeholder="https://... (Link Zoom, pendaftaran, dll)">
-                    <div class="input-hint">Poster akan bisa diklik dan mengarah ke link ini</div>
                 </div>
                 <div class="input-group">
                     <label>Deskripsi / Informasi Acara</label>
-                    <textarea id="evDesc" class="input-field" rows="5" placeholder="Detail acara, narasumber, link Zoom, link pendaftaran, dll...&#10;&#10;Contoh:&#10;Narasumber:&#10;1. Dr. X, Sp.PD&#10;&#10;Link Zoom: https://zoom.us/...&#10;Link Daftar: https://bit.ly/..."></textarea>
-                    <div class="input-hint">Link URL dalam deskripsi akan otomatis menjadi klik-able</div>
+                    <textarea id="evDesc" class="input-field" rows="5" placeholder="Detail acara..."></textarea>
                 </div>
             </div>
             <div class="modal-btns">
@@ -415,6 +415,14 @@
                 <button class="modal-btn yes" onclick="saveEvent()">Simpan</button>
             </div>
         </div>
+    </div>
+    
+    <!-- Loading Modal -->
+    <div class="modal-overlay" id="loadingModal">
+         <div class="modal-box" style="padding: 20px;">
+             <div class="spinner"></div>
+             <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">Menyimpan data...</p>
+         </div>
     </div>
 
     <!-- TOUR ELEMENTS -->
@@ -558,7 +566,9 @@
                 </div>
                 <p class="card-desc">Daftar kegiatan dan acara yang akan atau sedang berlangsung.</p>
                 <button class="btn btn-bright" style="width: 100%; margin-bottom: 16px;" onclick="openModal('passwordModal')">+ Tambah Acara Baru</button>
-                <div id="eventList" class="event-list-container"></div>
+                <div id="eventList" class="event-list-container">
+                    <div class="spinner"></div> <!-- Initial Loader -->
+                </div>
             </div>
         </section>
         
@@ -622,13 +632,11 @@
                         <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
                     </div>
 
-                    <!-- 1. Pemeriksaan Visual -->
                     <div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div>
                     <label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label>
                     <label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label>
                     <label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label>
 
-                    <!-- 2. Pemeriksaan Raba -->
                     <div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div>
                     <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Rasakan getaran (thrill) di area shunt:</p>
                     <label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label>
@@ -637,7 +645,6 @@
                     
                     <label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label>
 
-                    <!-- 3. Tanda Lain -->
                     <div class="section-title-sm">3. Tanda Peringatan Lain</div>
                     <label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label>
                     <label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label>
@@ -744,7 +751,7 @@
             </div>
         </section>
         
-        <!-- SLIDE 6: INFO (UPDATED) -->
+        <!-- SLIDE 6: INFO -->
         <section class="slide-section" id="slide-6">
             <div class="glass-card">
                 <div class="card-header">
@@ -753,7 +760,6 @@
                 </div>
                 <p class="card-desc">asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum dengan informasi yang akurat dan terpercaya.</p>
                 
-                <!-- Legal Section Added Here -->
                 <div class="cvc-edu-box" style="background: linear-gradient(135deg, rgba(109, 40, 217, 0.05), rgba(20, 184, 166, 0.05)); border-color: rgba(109, 40, 217, 0.15);">
                      <h3 style="color: var(--primary-purple);">⚖️ Badan Hukum</h3>
                      <ul>
@@ -812,6 +818,10 @@
     </div>
 
     <script>
+    // --- PENTING: MASUKKAN URL GOOGLE SCRIPT ANDA DI SINI ---
+    const API_URL = 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_ANDA_DISINI'; 
+    // Contoh: 'https://script.google.com/macros/s/AKfycb.../exec'
+
     // --- SETUP & GLOBALS ---
     const holoContainer = document.getElementById('holoContainer');
     const tourTooltip = document.getElementById('tourTooltip');
@@ -834,7 +844,6 @@
         { name: 'Rinda', phone: '6285210622568' }
     ];
 
-    // Helper untuk membuat tombol laporan
     function createReportButtons(patientId, statusText, type) {
         const text = `Laporan ${type}%0AID: ${patientId}%0AStatus: ${statusText}`;
         let html = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border-light); text-align: center;">
@@ -950,13 +959,122 @@
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function confirmWA(phone, name) { const text = `Halo ${name}, saya ingin bertanya.`; const linkBtn = document.getElementById('confirmWaBtn'); linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; openModal('waModal'); }
 
-    // --- EVENT LOGIC ---
+    // --- EVENT LOGIC (GANTI DENGAN API) ---
     const PASSWORD = "1111";
-    function checkPassword() { if (document.getElementById('passwordInput').value === PASSWORD) { closeModal('passwordModal'); openModal('eventModal'); document.getElementById('passwordInput').value = ""; } else { alert("Kode salah!"); } }
-    function makeLinksClickable(text) { if (!text) return ''; const urlRegex = /(https?:\/\/[^\s<]+)/g; const escapedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); return escapedText.replace(urlRegex, function(url) { return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>'; }); }
-    function saveEvent() { const title = document.getElementById('evTitle').value; const date = document.getElementById('evDate').value; const img = document.getElementById('evImg').value; const link = document.getElementById('evLink').value; const desc = document.getElementById('evDesc').value; if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; } const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); events.push({ id: Date.now(), title, date, img, link, desc }); localStorage.setItem('asahginjal_events', JSON.stringify(events)); ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = ''); closeModal('eventModal'); loadEvents(); }
-    function deleteEvent(id) { if(confirm("Hapus acara ini?")) { let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); events = events.filter(e => e.id !== id); localStorage.setItem('asahginjal_events', JSON.stringify(events)); loadEvents(); } }
-    function loadEvents() { const container = document.getElementById('eventList'); const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); if (!events.length) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara.</p>'; return; } container.innerHTML = events.map(ev => { const clickableDesc = makeLinksClickable(ev.desc); let posterHtml = ''; if (ev.img) { if (ev.link) { posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></a>`; } else { posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></div>`; } } let linkBtnHtml = ''; if (ev.link && !ev.img) { linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`; } return `<div class="event-item-card">${posterHtml}<button class="delete-event-btn" onclick="deleteEvent(${ev.id})">✕</button><div class="event-item-body"><div class="event-item-title">${ev.title}</div><div class="event-item-date">🗓 ${ev.date}</div><div class="event-item-desc">${clickableDesc}</div>${linkBtnHtml}</div></div>`; }).join(''); }
+    
+    function checkPassword() { 
+        if (document.getElementById('passwordInput').value === PASSWORD) {
+            closeModal('passwordModal'); 
+            openModal('eventModal'); 
+            document.getElementById('passwordInput').value = ""; 
+        } else { 
+            alert("Kode salah!"); 
+        } 
+    }
+
+    function makeLinksClickable(text) {
+        if (!text) return '';
+        const urlRegex = /(https?:\/\/[^\s<]+)/g;
+        const escapedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        return escapedText.replace(urlRegex, function(url) {
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
+        });
+    }
+    
+    // Function to Load Events from Google Sheets
+    function loadEvents() {
+        const container = document.getElementById('eventList');
+        
+        // Jika URL belum diset, tampilkan pesan error
+        if (API_URL === 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_ANDA_DISINI' || !API_URL) {
+            container.innerHTML = '<p style="text-align:center; color:var(--color-danger); margin-top:20px; font-size: 12px;">ERROR: URL Google Script belum diatur di bagian `const API_URL` di dalam kode.</p>';
+            return;
+        }
+
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.length) { 
+                    container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara. Klik tombol di atas untuk menambah acara baru.</p>'; 
+                    return; 
+                }
+                
+                container.innerHTML = data.map(ev => {
+                    const clickableDesc = makeLinksClickable(ev.desc);
+                    let posterHtml = '';
+                    if (ev.img) {
+                        if (ev.link) {
+                            posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></a>`;
+                        } else {
+                            posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></div>`;
+                        }
+                    }
+                    let linkBtnHtml = '';
+                    if (ev.link && !ev.img) {
+                        linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
+                    }
+                    // Delete button disabled for public users in this simple version to avoid complexity
+                    return `
+                        <div class="event-item-card">
+                            ${posterHtml}
+                            <div class="event-item-body">
+                                <div class="event-item-title">${ev.title}</div>
+                                <div class="event-item-date">🗓 ${ev.date}</div>
+                                <div class="event-item-desc">${clickableDesc}</div>
+                                ${linkBtnHtml}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(err => {
+                console.error(err);
+                container.innerHTML = '<p style="text-align:center; color:var(--color-danger); margin-top:20px;">Gagal memuat data. Periksa koneksi internet atau URL Script.</p>';
+            });
+    }
+
+    // Function to Save Event to Google Sheets
+    function saveEvent() {
+        const title = document.getElementById('evTitle').value;
+        const date = document.getElementById('evDate').value;
+        const img = document.getElementById('evImg').value;
+        const link = document.getElementById('evLink').value;
+        const desc = document.getElementById('evDesc').value;
+        
+        if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
+        
+        // Show loading
+        openModal('loadingModal');
+
+        const data = {
+            password: PASSWORD, // Kirim password untuk validasi di backend
+            title: title,
+            date: date,
+            img: img,
+            link: link,
+            desc: desc
+        };
+
+        fetch(API_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Apps Script simple POST
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            closeModal('loadingModal');
+            closeModal('eventModal');
+            alert("Acara berhasil ditambahkan!");
+            ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
+            loadEvents(); // Refresh list
+        })
+        .catch(err => {
+            closeModal('loadingModal');
+            console.error(err);
+            alert("Gagal menyimpan acara.");
+        });
+    }
+    
     window.addEventListener('load', loadEvents);
 
     // --- CALCULATORS ---
@@ -1003,7 +1121,6 @@
     }
     function resetCVC() { document.getElementById('cvc-form').style.display = 'block'; document.getElementById('cvc-result').style.display = 'none'; document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); }
 
-    // --- UPDATED AV SHUNT CALCULATOR ---
     function calculateAV() {
         const patientId = document.getElementById('av_id').value || 'Pasien';
         
