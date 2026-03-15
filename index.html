@@ -218,14 +218,19 @@
         .input-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
         .input-hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
         
-        /* Checkbox */
+        /* Checkbox & Radio Custom */
         .check-label { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-soft); border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; margin-bottom: 10px; transition: all 0.2s; }
         .check-label:hover { border-color: var(--primary-teal); background: rgba(20, 184, 166, 0.05); }
         .check-label input { display: none; }
         .check-box { width: 22px; height: 22px; border: 2px solid #cbd5e1; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; background: white; }
+        /* Style for Radio look inside check-label logic */
+        .check-box.radio-style { border-radius: 50%; } 
+        
         .check-label input:checked + .check-box { background: var(--primary-teal); border-color: var(--primary-teal); }
         .check-label input:checked + .check-box::after { content: '✓'; font-size: 12px; color: white; font-weight: bold; }
         .check-label span { font-size: 13px; color: var(--text-dark); }
+        
+        .section-title-sm { font-size: 12px; font-weight: 700; color: var(--primary-teal-dark); margin: 16px 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px; }
         
         /* Badges */
         .badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
@@ -288,193 +293,35 @@
         /* Event Custom */
         .event-list-container { display: flex; flex-direction: column; gap: 16px; }
         .event-item-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; }
-        .event-item-img-container { 
-            width: 100%; 
-            height: 160px; 
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-        .event-item-img-container img {
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.3s ease;
-        }
-        .event-item-img-container:hover img {
-            transform: scale(1.05);
-        }
-        .event-item-img-container.has-link::after {
-            content: '🔗 Klik untuk membuka link';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            font-size: 11px;
-            padding: 20px 10px 8px;
-            text-align: center;
-        }
+        .event-item-img-container { width: 100%; height: 160px; overflow: hidden; position: relative; cursor: pointer; }
+        .event-item-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .event-item-img-container:hover img { transform: scale(1.05); }
+        .event-item-img-container.has-link::after { content: '🔗 Klik untuk membuka link'; position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; font-size: 11px; padding: 20px 10px 8px; text-align: center; }
         .event-item-body { padding: 14px; }
         .event-item-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
         .event-item-date { font-size: 12px; color: var(--primary-teal); margin-bottom: 8px; font-weight: 600; }
-        .event-item-desc { 
-            font-size: 13px; 
-            color: var(--text-muted); 
-            white-space: pre-wrap; 
-            line-height: 1.6;
-            word-break: break-word;
-        }
-        .event-item-desc a {
-            color: var(--primary-teal);
-            text-decoration: underline;
-            font-weight: 500;
-            word-break: break-all;
-        }
-        .event-item-desc a:hover {
-            color: var(--primary-teal-dark);
-        }
-        .delete-event-btn { 
-            position: absolute; 
-            top: 10px; 
-            right: 10px; 
-            background: rgba(255,255,255,0.95); 
-            border: none; 
-            width: 32px; 
-            height: 32px; 
-            border-radius: 50%; 
-            font-size: 16px; 
-            cursor: pointer; 
-            color: var(--color-danger); 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            z-index: 10;
-            transition: all 0.2s;
-        }
-        .delete-event-btn:hover {
-            background: var(--color-danger);
-            color: white;
-            transform: scale(1.1);
-        }
-        .event-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-            padding: 10px 16px;
-            background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-light));
-            color: white;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
-            transition: all 0.2s;
-        }
-        .event-link-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
-        }
+        .event-item-desc { font-size: 13px; color: var(--text-muted); white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
+        .event-item-desc a { color: var(--primary-teal); text-decoration: underline; font-weight: 500; word-break: break-all; }
+        .event-item-desc a:hover { color: var(--primary-teal-dark); }
+        .delete-event-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.95); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--color-danger); box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; transition: all 0.2s; }
+        .delete-event-btn:hover { background: var(--color-danger); color: white; transform: scale(1.1); }
+        .event-link-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-light)); color: white; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25); transition: all 0.2s; }
+        .event-link-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35); }
 
-        /* ==========================================
-           HOLOGRAM & TOUR STYLES
-        ========================================== */
-        .holo-container {
-            position: fixed;
-            bottom: 90px; 
-            right: 15px;
-            width: 140px;
-            height: 220px;
-            z-index: 9999;
-            pointer-events: none; 
-            
-            opacity: 0; 
-            visibility: hidden;
-            transform: translateY(20px) scale(0.95); 
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s;
-            perspective: 1000px;
-        }
-
-        .holo-container.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .holo-base {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 25px;
-            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.6) 0%, rgba(0, 255, 255, 0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-            animation: none; 
-        }
+        /* HOLOGRAM & TOUR STYLES */
+        .holo-container { position: fixed; bottom: 90px; right: 15px; width: 140px; height: 220px; z-index: 9999; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s; perspective: 1000px; }
+        .holo-container.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .holo-base { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.6) 0%, rgba(0, 255, 255, 0) 70%); border-radius: 50%; z-index: 1; animation: none; }
         .holo-container.show .holo-base { animation: basePulse 3s infinite ease-in-out; }
-
-        .holo-beam {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 180px;
-            background: linear-gradient(to bottom, rgba(0, 255, 255, 0.15), transparent);
-            clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%);
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
+        .holo-beam { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 180px; background: linear-gradient(to bottom, rgba(0, 255, 255, 0.15), transparent); clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%); z-index: 0; opacity: 0; transition: opacity 0.5s; }
         .holo-container.show .holo-beam { opacity: 1; }
-
-        .holo-body {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 180px;
-            transform-style: preserve-3d;
-            z-index: 2;
-        }
+        .holo-body { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 100px; height: 180px; transform-style: preserve-3d; z-index: 2; }
         .holo-container.show .holo-body { animation: holoFloat 6s infinite ease-in-out; }
-
-        .holo-avatar {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.9)) brightness(1.1) contrast(1.1);
-            mix-blend-mode: screen;
-            opacity: 0.9;
-        }
-
-        /* Tooltip */
-        .tour-tooltip { 
-            position: fixed; 
-            bottom: 130px; 
-            right: 165px; 
-            background: rgba(255, 255, 255, 0.98); 
-            padding: 18px 22px; 
-            border-radius: 16px 16px 0 16px; 
-            width: 260px; 
-            max-width: calc(100% - 180px); 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
-            border: 1px solid rgba(255,255,255,0.5);
-            z-index: 10000; 
-            
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px) scale(0.95); 
-            transition: all 0.3s ease; 
-            text-align: left; 
-        }
+        .holo-avatar { width: 100%; height: auto; filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.9)) brightness(1.1) contrast(1.1); mix-blend-mode: screen; opacity: 0.9; }
+        .tour-tooltip { position: fixed; bottom: 130px; right: 165px; background: rgba(255, 255, 255, 0.98); padding: 18px 22px; border-radius: 16px 16px 0 16px; width: 260px; max-width: calc(100% - 180px); box-shadow: 0 10px 40px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.5); z-index: 10000; opacity: 0; visibility: hidden; transform: translateY(10px) scale(0.95); transition: all 0.3s ease; text-align: left; }
         .tour-tooltip.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
         .tour-tooltip h4 { color: var(--primary-teal-dark); margin-bottom: 6px; font-size: 1rem; font-weight: 700; }
         .tour-tooltip p { font-size: 13px; margin-bottom: 0; line-height: 1.5; color: var(--text-dark); }
-
-        /* Tour Overlay & Highlight */
         .tour-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; }
         .tour-overlay.active { opacity: 1; visibility: visible; }
         .tour-highlight { position: fixed; background: transparent; border: 3px solid var(--primary-teal); border-radius: 16px; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; z-index: 9999; opacity: 0; visibility: hidden; }
@@ -485,27 +332,9 @@
         @keyframes basePulse { 0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
 
         /* Credits Overlay */
-        .credits-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--dark-blue); 
-            z-index: 10010;
-            display: flex; justify-content: center; align-items: flex-start; 
-            overflow: hidden;
-            opacity: 0; visibility: hidden; transition: opacity 1.5s ease;
-        }
+        .credits-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--dark-blue); z-index: 10010; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity 1.5s ease; }
         .credits-overlay.active { opacity: 1; visibility: visible; }
-        .credits-content {
-            width: 100%; 
-            text-align: center; 
-            color: white; 
-            font-family: 'Outfit', sans-serif;
-            padding: 0 24px;
-            padding-top: 100vh;
-            padding-bottom: 50px;
-            animation: scrollDown 150s linear forwards; 
-            position: relative;
-            z-index: 2;
-        }
+        .credits-content { width: 100%; text-align: center; color: white; font-family: 'Outfit', sans-serif; padding: 0 24px; padding-top: 100vh; padding-bottom: 50px; animation: scrollDown 150s linear forwards; position: relative; z-index: 2; }
         @keyframes scrollDown { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
         .credits-title { font-size: 28px; font-weight: 800; letter-spacing: 5px; margin-bottom: 80px; text-transform: uppercase; color: var(--primary-teal-light); }
         .credits-section { margin-bottom: 100px; }
@@ -635,39 +464,39 @@
   <!-- NAVIGATION -->
 <nav id="navbar">
     <div class="nav-track" id="navTrack">
-        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.', 'nav_beranda.mp3')">
+        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda.', 'nav_beranda.mp3')">
             <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda">
             <div class="text-overlay"><span class="text">Beranda</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.', 'nav_acara.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara.', 'nav_acara.mp3')">
             <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Acara">
             <div class="text-overlay"><span class="text">Acara</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(2, 'CVC atau Double lumen kateter. Lakukan penilaian risiko infeksi kateter di sini.', 'nav_cvc.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(2, 'Penilaian risiko infeksi kateter.', 'nav_cvc.mp3')">
             <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" alt="CVC">
             <div class="text-overlay"><span class="text">CVC</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.', 'nav_avshunt.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(3, 'Cek kondisi AV Shunt.', 'nav_avshunt.mp3')">
             <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2072&auto=format&fit=crop" alt="AV Shunt">
             <div class="text-overlay"><span class="text">AV Shunt</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.', 'nav_edukasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(4, 'Materi Edukasi.', 'nav_edukasi.mp3')">
             <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="Edukasi">
             <div class="text-overlay"><span class="text">Edukasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.', 'nav_konsultasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi.', 'nav_konsultasi.mp3')">
             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
             <div class="text-overlay"><span class="text">Konsultasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi. Kenali lebih dekat pengembang.', 'nav_info.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi.', 'nav_info.mp3')">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
             <div class="text-overlay"><span class="text">Info</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.', 'nav_privasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi.', 'nav_privasi.mp3')">
             <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Privasi">
             <div class="text-overlay"><span class="text">Privasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.', 'nav_donasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan.', 'nav_donasi.mp3')">
             <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Donasi">
             <div class="text-overlay"><span class="text">Donasi</span></div>
         </div>
@@ -779,36 +608,50 @@
             </div>
         </section>
         
-        <!-- SLIDE 3: AV SHUNT -->
+        <!-- SLIDE 3: AV SHUNT (UPDATED) -->
         <section class="slide-section" id="slide-3">
             <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box orange">&#128140;</div>
-                    <h2>Cek Kondisi AV Shunt</h2>
+                    <h2>Penilaian Mandiri AV Shunt</h2>
                 </div>
-                <p class="card-desc">Evaluasi kondisi fistula arterivenosa (jalan darah) Anda.</p>
+                <p class="card-desc">Periksa kondisi fistula/jalan darah Anda sebelum cuci darah atau di rumah.</p>
                 <div id="av-form" style="margin-top: 14px;">
-                    <!-- INPUT ID DITAMBAHKAN -->
-                    <div class="input-group" style="margin-bottom: 12px;">
+                    
+                    <div class="input-group">
                         <label>ID Pasien (Opsional)</label>
                         <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
                     </div>
-                    <!-- ------------------- -->
-                    <label class="check-label"><input type="checkbox" id="av1"><span class="check-box"></span><span>Getaran (thrill) terasa normal</span></label>
-                    <label class="check-label"><input type="checkbox" id="av2"><span class="check-box"></span><span>Bising (bruit) terdengar jelas</span></label>
-                    <label class="check-label"><input type="checkbox" id="av3"><span class="check-box"></span><span>Ada benjolan di area shunt</span></label>
-                    <label class="check-label"><input type="checkbox" id="av4"><span class="check-box"></span><span>Tangan bengkak atau kemerahan</span></label>
-                    <label class="check-label"><input type="checkbox" id="av5"><span class="check-box"></span><span>Nyeri hebat saat cuci darah</span></label>
-                    <button class="btn btn-teal" style="width: 100%; margin-top: 16px; color: white; font-size: 13px;" onclick="calculateAV()">Cek Kondisi</button>
+
+                    <!-- 1. Pemeriksaan Visual -->
+                    <div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div>
+                    <label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label>
+
+                    <!-- 2. Pemeriksaan Raba -->
+                    <div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Rasakan getaran (thrill) di area shunt:</p>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label>
+                    
+                    <label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label>
+
+                    <!-- 3. Tanda Lain -->
+                    <div class="section-title-sm">3. Tanda Peringatan Lain</div>
+                    <label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label>
+
+                    <button class="btn btn-teal" style="width: 100%; margin-top: 20px; color: white; font-size: 13px;" onclick="calculateAV()">Cek Kondisi</button>
                 </div>
-                <div id="av-result" style="display: none;">
-                    <div class="result-box">
-                        <span id="av-badge" class="badge badge-teal" style="font-size: 12px; padding: 6px 14px;">BAIK</span>
-                        <p style="margin-top: 12px; font-weight: 600; color: var(--text-dark); font-size: 14px;" id="av-msg">Kondisi fistula baik.</p>
-                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;" id="av-recom">Rekomendasi.</p>
-                    </div>
-                    <div id="av-critical-action" style="display:none; margin-top:14px;"></div>
-                    <button class="btn btn-outline" style="width: 100%; margin-top: 16px; font-size: 13px;" onclick="resetAV()">Cek Ulang</button>
+                
+                <div id="av-result" style="display: none; text-align: center; padding-top: 16px;">
+                    <span id="av-badge" class="badge badge-teal" style="font-size: 14px; padding: 8px 18px;">BAIK</span>
+                    <p style="margin-top: 14px; font-weight: 600; color: var(--text-dark); font-size: 15px;" id="av-msg">Kondisi fistula baik.</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;" id="av-recom">Rekomendasi.</p>
+                    <div id="av-critical-action" style="display:none; margin-top:16px;"></div>
+                    <button class="btn btn-outline" style="margin-top: 16px; font-size: 13px;" onclick="resetAV()">Cek Ulang</button>
                 </div>
             </div>
         </section>
@@ -820,7 +663,7 @@
                     <div class="icon-box blue">&#127891;</div>
                     <h2>Materi Edukasi (PPT)</h2>
                 </div>
-                <p class="card-desc">Klik materi untuk membuka presentasi lengkap dan pelajari lebih dalam tentang kesehatan ginjal.</p>
+                <p class="card-desc">Klik materi untuk membuka presentasi lengkap.</p>
                 <div class="ppt-grid">
                     <a class="ppt-card" href="https://docs.google.com/presentation/d/19G8hIoLFmtSgrWcSD_41seKCcgMxUoxO/present?usp=sharing" target="_blank">
                         <img src="https://docs.google.com/presentation/d/19G8hIoLFmtSgrWcSD_41seKCcgMxUoxO/export/thumbnail?id=19G8hIoLFmtSgrWcSD_41seKCcgMxUoxO&pageid=p" alt="Virus NIPAH">
@@ -861,7 +704,7 @@
                     <div class="icon-box">&#128101;</div>
                     <h2>Konsultasi</h2>
                 </div>
-                <p class="card-desc">Hubungi Admin Pendamping untuk konsultasi lebih lanjut seputar kesehatan ginjal Anda.</p>
+                <p class="card-desc">Hubungi Admin Pendamping untuk konsultasi lebih lanjut.</p>
                 <div style="margin-top: 14px;">
                     <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 500;">Admin Pendamping:</p>
                     <div class="staff-grid">
@@ -909,7 +752,7 @@
                     <div class="icon-box purple">&#9432;</div>
                     <h2>Tentang Aplikasi</h2>
                 </div>
-                <p class="card-desc">asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum dengan informasi yang akurat dan terpercaya.</p>
+                <p class="card-desc">asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum.</p>
                 <div class="info-box">
                     <p><strong>Developer:</strong><br>TIM INOCA INSTALASI DIALYSIS RSSA</p>
                     <p style="margin-top: 8px;"><strong>Kontak:</strong><br>(0341) 362101 (2075)</p>
@@ -972,11 +815,9 @@
     const bgMusic = document.getElementById('bgMusic');
     const starContainer = document.getElementById('starContainer');
 
-    // Variable untuk menampung audio player agar tidak bentrok
     let currentAudioPlayer = null;
 
-    // --- DATA KONTAK UNTUK PENILAIAN (ASSESSMENT) ---
-    // Data ini digunakan pada halaman CVC dan AV Shunt
+    // --- DATA KONTAK UNTUK PENILAIAN ---
     const assessmentContacts = [
         { name: 'Riza A', phone: '6282227707573' },
         { name: 'Pembayun Y', phone: '6283831217784' },
@@ -984,7 +825,7 @@
         { name: 'Rinda', phone: '6285210622568' }
     ];
 
-    // Fungsi helper untuk membuat tombol laporan
+    // Helper untuk membuat tombol laporan
     function createReportButtons(patientId, statusText, type) {
         const text = `Laporan ${type}%0AID: ${patientId}%0AStatus: ${statusText}`;
         let html = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border-light); text-align: center;">
@@ -1015,338 +856,101 @@
     setTimeout(typeWriter, 400);
 
    // --- NAVIGATION LOGIC ---
-const navCards = document.querySelectorAll('.nav-card');
-const mainSlider = document.getElementById('slider');
-
-// Tambahkan parameter 'audioFile' di sini
-function scrollToSlide(index, msg, audioFile) {
-    const targetSlide = document.getElementById('slide-' + index);
-    if (targetSlide) {
-        targetSlide.scrollIntoView({ behavior: 'smooth' });
-        updateActiveNav(index);
+    const navCards = document.querySelectorAll('.nav-card');
+    const mainSlider = document.getElementById('slider');
+    function scrollToSlide(index, msg, audioFile) {
+        const targetSlide = document.getElementById('slide-' + index);
+        if (targetSlide) {
+            targetSlide.scrollIntoView({ behavior: 'smooth' });
+            updateActiveNav(index);
+        }
+        if(msg) { showHoloMessage("Pemandu", msg, audioFile, null); }
     }
-    
-    // Jika ada pesan, tampilkan hologram dan mainkan audio
-    if(msg) {
-        // Panggil showHoloMessage dengan audioFile
-        showHoloMessage("Pemandu", msg, audioFile, null);
-    }
-}
-
-function updateActiveNav(index) {
-    navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
-}
-
-mainSlider.addEventListener('scroll', () => {
-    const scrollLeft = mainSlider.scrollLeft;
-    const slideWidth = mainSlider.clientWidth;
-    const activeIndex = Math.round(scrollLeft / slideWidth);
-    updateActiveNav(activeIndex);
-});
-
-    function updateActiveNav(index) {
-        navCards.forEach((card, i) => { card.classList.toggle('active', i === index); });
-    }
-
-    mainSlider.addEventListener('scroll', () => {
-        const scrollLeft = mainSlider.scrollLeft;
-        const slideWidth = mainSlider.clientWidth;
-        const activeIndex = Math.round(scrollLeft / slideWidth);
-        updateActiveNav(activeIndex);
-    });
+    function updateActiveNav(index) { navCards.forEach((card, i) => { card.classList.toggle('active', i === index); }); }
+    mainSlider.addEventListener('scroll', () => { const scrollLeft = mainSlider.scrollLeft; const slideWidth = mainSlider.clientWidth; const activeIndex = Math.round(scrollLeft / slideWidth); updateActiveNav(activeIndex); });
 
     // --- CONTENT SLIDER ---
     let currentContentSlide = 0;
     const contentTrack = document.getElementById('contentTrack');
     const dots = document.querySelectorAll('.dot');
     const totalContentSlides = 2;
-    function goToContentSlide(index) {
-        currentContentSlide = index;
-        contentTrack.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
-    }
-    setInterval(() => {
-        currentContentSlide = (currentContentSlide + 1) % totalContentSlides;
-        goToContentSlide(currentContentSlide);
-    }, 5000);
+    function goToContentSlide(index) { currentContentSlide = index; contentTrack.style.transform = `translateX(-${index * 100}%)`; dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); }); }
+    setInterval(() => { currentContentSlide = (currentContentSlide + 1) % totalContentSlides; goToContentSlide(currentContentSlide); }, 5000);
 
-    // --- HOLOGRAM CORE FUNCTION (DENGAN AUDIO FILE) ---
+    // --- HOLOGRAM & AUDIO FUNCTIONS ---
     function showHoloMessage(title, text, audioFile, callback) {
         tooltipTitle.innerText = title;
         tooltipDesc.innerText = text;
         holoContainer.classList.add('show');
         tourTooltip.classList.add('active');
-        
-        // Putar audio file
         playAudioFile(audioFile, () => {
             setTimeout(() => {
                 holoContainer.classList.remove('show');
                 tourTooltip.classList.remove('active');
                 if(callback) callback();
-            }, 500); // Jeda sedikit setelah suara selesai
+            }, 500);
         });
     }
-
-    // --- FUNGSI PLAY AUDIO FILE (SOLUSI UTAMA) ---
     function playAudioFile(filename, onEndCallback) {
-        // Hentikan audio sebelumnya jika ada
-        if (currentAudioPlayer) {
-            currentAudioPlayer.pause();
-            currentAudioPlayer.currentTime = 0;
-        }
-
-        // Jika tidak ada nama file, lewati
-        if (!filename) {
-            if(onEndCallback) onEndCallback();
-            return;
-        }
-
+        if (currentAudioPlayer) { currentAudioPlayer.pause(); currentAudioPlayer.currentTime = 0; }
+        if (!filename) { if(onEndCallback) onEndCallback(); return; }
         currentAudioPlayer = new Audio('audio/' + filename);
-        
-        currentAudioPlayer.onended = () => {
-            if(onEndCallback) onEndCallback();
-        };
-
-        currentAudioPlayer.onerror = (e) => {
-            console.error("Error loading audio file: " + filename, e);
-            // Fallback jika file tidak ada: tunggu 3 detik lalu lanjut
-            // Ini mencegah tour "nendang" atau cepat sekali
-            setTimeout(() => {
-                if(onEndCallback) onEndCallback();
-            }, 3000);
-        };
-
-        // Play audio
-        currentAudioPlayer.play().catch(e => {
-            console.log("Autoplay blocked, waiting for interaction or fallback", e);
-            // Jika autoplay diblokir, paksa lanjut setelah 3 detik
-            setTimeout(() => {
-                if(onEndCallback) onEndCallback();
-            }, 3000);
-        });
+        currentAudioPlayer.onended = () => { if(onEndCallback) onEndCallback(); };
+        currentAudioPlayer.onerror = (e) => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); };
+        currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
     }
 
-    // --- TOUR GUIDE LOGIC (DENGAN AUDIO FILE) ---
+    // --- TOUR LOGIC ---
     const tourSteps = [
-        { 
-            element: '#tour-step-0', 
-            title: 'Selamat Datang!', 
-            desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', 
-            slide: 0, 
-            audio: 'step_welcome.mp3' 
-        },
-        { 
-            element: '#navbar', 
-            title: 'Navigasi Utama', 
-            desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', 
-            slide: 0, 
-            audio: 'step_nav.mp3' 
-        },
-        { 
-            element: '#tour-step-1', 
-            title: 'Info Fokus Bulanan', 
-            desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', 
-            slide: 0, 
-            audio: 'step_banner.mp3' 
-        },
-        { 
-            element: '#tour-step-3', 
-            title: 'Assessment CVC', 
-            desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', 
-            slide: 2, 
-            audio: 'step_cvc.mp3' 
-        }
+        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal.', slide: 0, audio: 'step_welcome.mp3' },
+        { element: '#navbar', title: 'Navigasi', desc: 'Geser menu di bawah untuk menjelajah.', slide: 0, audio: 'step_nav.mp3' },
+        { element: '#tour-step-1', title: 'Info Fokus', desc: 'Informasi kampanye kesehatan terkini.', slide: 0, audio: 'step_banner.mp3' },
+        { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Cek risiko infeksi secara mandiri.', slide: 2, audio: 'step_cvc.mp3' }
     ];
     let currentTourStep = -1;
-
-    function startTour() {
-        currentTourStep = -1;
-        tourOverlay.classList.add('active');
-        tourHighlight.classList.remove('animate');
-        
-        // Intro Tour
-        showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", "intro.mp3", () => {
-            tourHighlight.classList.add('animate');
-            nextTourStep();
-        });
-    }
-
+    function startTour() { currentTourStep = -1; tourOverlay.classList.add('active'); tourHighlight.classList.remove('animate'); showHoloMessage("Memulai Tur", "Saya akan memandu kakak.", "intro.mp3", () => { tourHighlight.classList.add('animate'); nextTourStep(); }); }
     function nextTourStep() {
         currentTourStep++;
-        if (currentTourStep >= tourSteps.length) {
-            endTour();
-            return;
-        }
+        if (currentTourStep >= tourSteps.length) { endTour(); return; }
         const step = tourSteps[currentTourStep];
         const targetEl = document.querySelector(step.element);
-        
         const targetSlide = document.getElementById('slide-' + step.slide);
-        if (targetSlide) {
-            targetSlide.scrollIntoView({ behavior: 'smooth' });
-            updateActiveNav(step.slide);
-        }
-
+        if (targetSlide) { targetSlide.scrollIntoView({ behavior: 'smooth' }); updateActiveNav(step.slide); }
         setTimeout(() => {
             if (targetEl) {
                 const rect = targetEl.getBoundingClientRect();
-                tourHighlight.style.top = rect.top + 'px';
-                tourHighlight.style.left = rect.left + 'px';
-                tourHighlight.style.width = rect.width + 'px';
-                tourHighlight.style.height = rect.height + 'px';
-                
-                // Panggil dengan parameter audio
-                showHoloMessage(step.title, step.desc, step.audio, () => {
-                    setTimeout(nextTourStep, 500); 
-                });
+                tourHighlight.style.top = rect.top + 'px'; tourHighlight.style.left = rect.left + 'px'; tourHighlight.style.width = rect.width + 'px'; tourHighlight.style.height = rect.height + 'px';
+                showHoloMessage(step.title, step.desc, step.audio, () => { setTimeout(nextTourStep, 500); });
             }
         }, 600);
     }
-
-    function endTour() {
-        tourOverlay.classList.remove('active');
-        tourHighlight.classList.remove('animate');
-        
-        showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", "outro.mp3", () => {
-            tourTooltip.classList.remove('active');
-            startCredits();
-        });
-    }
+    function endTour() { tourOverlay.classList.remove('active'); tourHighlight.classList.remove('animate'); showHoloMessage("Sampai Jumpa", "Sekian tur kita.", "outro.mp3", () => { tourTooltip.classList.remove('active'); startCredits(); }); }
 
     // --- CREDITS LOGIC ---
-    function createStars() {
-        starContainer.innerHTML = '';
-        for(let i=0; i<50; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = Math.random() * 100 + '%';
-            star.style.width = Math.random() * 3 + 1 + 'px';
-            star.style.height = star.style.width;
-            star.style.animationDuration = Math.random() * 3 + 2 + 's';
-            star.style.animationDelay = Math.random() * 5 + 's';
-            starContainer.appendChild(star);
-        }
-    }
-
-    function startCredits() {
-        createStars();
-        creditsOverlay.classList.add('active');
-        creditsContent.style.animation = 'none';
-        creditsContent.offsetHeight;
-        creditsContent.style.animation = 'scrollDown 150s linear forwards';
-        if (bgMusic) { bgMusic.currentTime = 0; bgMusic.volume = 0.6; bgMusic.play().catch(e => {}); }
-        creditsContent.addEventListener('animationend', handleCreditsEnd);
-    }
-
-    function handleCreditsEnd() {
-        creditsOverlay.classList.remove('active');
-        if(bgMusic) bgMusic.pause();
-        creditsContent.removeEventListener('animationend', handleCreditsEnd);
-        setTimeout(() => { scrollToSlide(0, null); }, 500);
-    }
+    function createStars() { starContainer.innerHTML = ''; for(let i=0; i<50; i++) { const star = document.createElement('div'); star.classList.add('star'); star.style.left = Math.random() * 100 + '%'; star.style.width = Math.random() * 3 + 1 + 'px'; star.style.height = star.style.width; star.style.animationDuration = Math.random() * 3 + 2 + 's'; star.style.animationDelay = Math.random() * 5 + 's'; starContainer.appendChild(star); } }
+    function startCredits() { createStars(); creditsOverlay.classList.add('active'); creditsContent.style.animation = 'none'; creditsContent.offsetHeight; creditsContent.style.animation = 'scrollDown 150s linear forwards'; if (bgMusic) { bgMusic.currentTime = 0; bgMusic.volume = 0.6; bgMusic.play().catch(e => {}); } creditsContent.addEventListener('animationend', handleCreditsEnd); }
+    function handleCreditsEnd() { creditsOverlay.classList.remove('active'); if(bgMusic) bgMusic.pause(); creditsContent.removeEventListener('animationend', handleCreditsEnd); setTimeout(() => { scrollToSlide(0, null); }, 500); }
 
     // --- BACKGROUND SLIDER ---
-    const slides = document.querySelectorAll('.bg-slide');
-    let currentSlide = 0;
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }
+    const slides = document.querySelectorAll('.bg-slide'); let currentSlide = 0;
+    function nextSlide() { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }
     setInterval(nextSlide, 5000);
 
     // --- MODALS & HELPERS ---
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    function confirmWA(phone, name) {
-        const text = `Halo ${name}, saya ingin bertanya.`;
-        const linkBtn = document.getElementById('confirmWaBtn');
-        linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-        openModal('waModal');
-    }
+    function confirmWA(phone, name) { const text = `Halo ${name}, saya ingin bertanya.`; const linkBtn = document.getElementById('confirmWaBtn'); linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; openModal('waModal'); }
 
     // --- EVENT LOGIC ---
     const PASSWORD = "1111";
-    
-    function checkPassword() {
-        if (document.getElementById('passwordInput').value === PASSWORD) {
-            closeModal('passwordModal'); openModal('eventModal'); document.getElementById('passwordInput').value = ""; 
-        } else { alert("Kode salah!"); }
-    }
-    
-    function makeLinksClickable(text) {
-        if (!text) return '';
-        const urlRegex = /(https?:\/\/[^\s<]+)/g;
-        const escapedText = text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-        return escapedText.replace(urlRegex, function(url) {
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
-        });
-    }
-    
-    function saveEvent() {
-        const title = document.getElementById('evTitle').value;
-        const date = document.getElementById('evDate').value;
-        const img = document.getElementById('evImg').value;
-        const link = document.getElementById('evLink').value;
-        const desc = document.getElementById('evDesc').value;
-        if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
-        const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-        events.push({ id: Date.now(), title, date, img, link, desc });
-        localStorage.setItem('asahginjal_events', JSON.stringify(events));
-        ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
-        closeModal('eventModal'); loadEvents();
-    }
-    
-    function deleteEvent(id) {
-        if(confirm("Hapus acara ini?")) {
-            let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-            events = events.filter(e => e.id !== id);
-            localStorage.setItem('asahginjal_events', JSON.stringify(events));
-            loadEvents();
-        }
-    }
-    
-    function loadEvents() {
-        const container = document.getElementById('eventList');
-        const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]');
-        if (!events.length) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara. Klik tombol di atas untuk menambah acara baru.</p>'; return; }
-        container.innerHTML = events.map(ev => {
-            const clickableDesc = makeLinksClickable(ev.desc);
-            let posterHtml = '';
-            if (ev.img) {
-                if (ev.link) {
-                    posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'"></a>`;
-                } else {
-                    posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster ${ev.title}" onerror="this.parentElement.style.display='none'"></div>`;
-                }
-            }
-            let linkBtnHtml = '';
-            if (ev.link && !ev.img) {
-                linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
-            }
-            return `
-                <div class="event-item-card">
-                    ${posterHtml}
-                    <button class="delete-event-btn" onclick="deleteEvent(${ev.id})" title="Hapus acara">✕</button>
-                    <div class="event-item-body">
-                        <div class="event-item-title">${ev.title}</div>
-                        <div class="event-item-date">🗓 ${ev.date}</div>
-                        <div class="event-item-desc">${clickableDesc}</div>
-                        ${linkBtnHtml}
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-    
+    function checkPassword() { if (document.getElementById('passwordInput').value === PASSWORD) { closeModal('passwordModal'); openModal('eventModal'); document.getElementById('passwordInput').value = ""; } else { alert("Kode salah!"); } }
+    function makeLinksClickable(text) { if (!text) return ''; const urlRegex = /(https?:\/\/[^\s<]+)/g; const escapedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); return escapedText.replace(urlRegex, function(url) { return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>'; }); }
+    function saveEvent() { const title = document.getElementById('evTitle').value; const date = document.getElementById('evDate').value; const img = document.getElementById('evImg').value; const link = document.getElementById('evLink').value; const desc = document.getElementById('evDesc').value; if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; } const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); events.push({ id: Date.now(), title, date, img, link, desc }); localStorage.setItem('asahginjal_events', JSON.stringify(events)); ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = ''); closeModal('eventModal'); loadEvents(); }
+    function deleteEvent(id) { if(confirm("Hapus acara ini?")) { let events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); events = events.filter(e => e.id !== id); localStorage.setItem('asahginjal_events', JSON.stringify(events)); loadEvents(); } }
+    function loadEvents() { const container = document.getElementById('eventList'); const events = JSON.parse(localStorage.getItem('asahginjal_events') || '[]'); if (!events.length) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">Belum ada acara.</p>'; return; } container.innerHTML = events.map(ev => { const clickableDesc = makeLinksClickable(ev.desc); let posterHtml = ''; if (ev.img) { if (ev.link) { posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></a>`; } else { posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></div>`; } } let linkBtnHtml = ''; if (ev.link && !ev.img) { linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`; } return `<div class="event-item-card">${posterHtml}<button class="delete-event-btn" onclick="deleteEvent(${ev.id})">✕</button><div class="event-item-body"><div class="event-item-title">${ev.title}</div><div class="event-item-date">🗓 ${ev.date}</div><div class="event-item-desc">${clickableDesc}</div>${linkBtnHtml}</div></div>`; }).join(''); }
     window.addEventListener('load', loadEvents);
 
     // --- CALCULATORS ---
-    // Kontak Dokter untuk rujukan darurat (opsional, biarkan sebagai fallback)
     const WA_DOKTER = '6281252651083'; 
 
     function calculateCVC() {
@@ -1377,16 +981,11 @@ mainSlider.addEventListener('scroll', () => {
         const patientId = document.getElementById('cvc_id').value || 'Pasien CVC';
         
         let actionHTML = '';
-
-        // Logika baru: Jika Tinggi (Darurat)
         if (level === "Tinggi") {
-            const waTextDokter = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}%0AJumlah Gejala: ${symptomCount}`;
+            const waTextDokter = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}`;
             actionHTML += `<a href="https://wa.me/${WA_DOKTER}?text=${waTextDokter}" target="_blank" class="btn btn-danger" style="width:100%; text-decoration:none; margin-bottom: 10px;">&#128680; Lapor Dokter (Darurat)</a>`;
-            // Tambahkan tombol admin di bawahnya
             actionHTML += createReportButtons(patientId, `${level} (Darurat)`, 'CVC');
-        } 
-        // Logika baru: Jika Sedang atau Rendah
-        else if (level === "Sedang" || level === "Rendah") {
+        } else if (level === "Sedang" || level === "Rendah") {
             actionHTML = createReportButtons(patientId, level, 'CVC');
         }
         
@@ -1395,33 +994,80 @@ mainSlider.addEventListener('scroll', () => {
     }
     function resetCVC() { document.getElementById('cvc-form').style.display = 'block'; document.getElementById('cvc-result').style.display = 'none'; document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); }
 
+    // --- UPDATED AV SHUNT CALCULATOR ---
     function calculateAV() {
-        const n = document.getElementById('av1').checked; const s = document.getElementById('av2').checked;
-        const l = document.getElementById('av3').checked; const sw = document.getElementById('av4').checked;
-        const pn = document.getElementById('av5').checked;
+        // Get all elements
+        const patientId = document.getElementById('av_id').value || 'Pasien';
         
-        let st = "BAIK", b = "badge-teal", mg = "Kondisi fistula baik.", rc = "Lanjutkan perawatan rutin.";
+        // Checkboxes
+        const c_vis_red = document.getElementById('av_vis_red').checked; // Warning
+        const c_vis_pus = document.getElementById('av_vis_pus').checked; // Critical
+        const c_vis_bleed = document.getElementById('av_vis_bleed').checked; // Critical
+        const c_palp_pain = document.getElementById('av_palp_pain').checked; // Warning
+        const c_other_cold = document.getElementById('av_other_cold').checked; // Critical
+        const c_other_fever = document.getElementById('av_other_fever').checked; // Critical
+
+        // Radio for Thrill
+        const thrillVal = document.querySelector('input[name="av_thrill"]:checked')?.value;
         
-        if (sw || pn) { st = "BURUK"; b = "badge-red"; mg = "Tanda komplikasi."; rc = "Segera ke dokter."; }
-        else if (l || !n || !s) { st = "SEDANG"; b = "badge-orange"; mg = "Ada perubahan."; rc = "Monitor ketat."; }
-        
-        document.getElementById('av-form').style.display = 'none'; document.getElementById('av-result').style.display = 'block';
-        document.getElementById('av-badge').innerText = st; document.getElementById('av-badge').className = 'badge ' + b;
-        document.getElementById('av-msg').innerText = mg; document.getElementById('av-recom').innerText = rc;
-        
-        const criticalDiv = document.getElementById('av-critical-action');
-        const patientId = document.getElementById('av_id')?.value || 'Pasien AV Shunt';
-        
-        // Tambahkan tombol laporan jika status BURUK atau SEDANG
-        let actionHTML = '';
-        if (st === "BURUK" || st === "SEDANG") {
-            actionHTML = createReportButtons(patientId, st, 'AV Shunt');
+        let status = "BAIK";
+        let msg = "Kondisi fistula baik.";
+        let recom = "Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.";
+        let isCritical = false;
+        let isWarning = false;
+
+        // Logic Critical
+        if (c_vis_pus || c_vis_bleed || c_other_cold || c_other_fever || thrillVal === 'gone') {
+            status = "DARURAT";
+            msg = "🚨 Kondisi Kritis!";
+            recom = "Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";
+            isCritical = true;
+        } 
+        // Logic Warning
+        else if (c_vis_red || c_palp_pain || thrillVal === 'weak') {
+            status = "PERHATIAN";
+            msg = "⚠️ Ada tanda yang perlu diwaspadai.";
+            recom = "Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin untuk pemeriksaan lebih lanjut.";
+            isWarning = true;
         }
+
+        document.getElementById('av-form').style.display = 'none';
+        document.getElementById('av-result').style.display = 'block';
         
+        const badge = document.getElementById('av-badge');
+        badge.innerText = status;
+        badge.className = 'badge ' + (isCritical ? 'badge-red' : isWarning ? 'badge-orange' : 'badge-teal');
+        
+        document.getElementById('av-msg').innerText = msg;
+        document.getElementById('av-recom').innerText = recom;
+
+        // Action Buttons
+        const criticalDiv = document.getElementById('av-critical-action');
+        let actionHTML = '';
+
+        if (isCritical) {
+            // Add emergency call button if critical
+            actionHTML += `<a href="tel:119" class="btn btn-danger" style="width:100%; margin-bottom:10px; text-decoration:none;">🚨 Hubungi Layanan Darurat</a>`;
+            // Use the helper function to show all 4 admins
+            actionHTML += createReportButtons(patientId, "DARURAT", "AV Shunt");
+        } else if (isWarning) {
+            // Use the helper function to show all 4 admins
+            actionHTML = createReportButtons(patientId, "PERHATIAN", "AV Shunt");
+        }
+
         criticalDiv.innerHTML = actionHTML;
         criticalDiv.style.display = actionHTML ? 'block' : 'none';
     }
-    function resetAV() { document.getElementById('av-form').style.display = 'block'; document.getElementById('av-result').style.display = 'none'; document.querySelectorAll('#av-form input').forEach(c => c.checked = false); }
+
+    function resetAV() { 
+        document.getElementById('av-form').style.display = 'block'; 
+        document.getElementById('av-result').style.display = 'none'; 
+        // Reset all inputs
+        document.querySelectorAll('#av-form input[type="checkbox"]').forEach(c => c.checked = false);
+        // Reset radio to normal
+        const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
+        if(normalRadio) normalRadio.checked = true;
+    }
 
 </script>
 </body>
