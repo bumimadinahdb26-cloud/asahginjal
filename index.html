@@ -223,7 +223,6 @@
         .check-label:hover { border-color: var(--primary-teal); background: rgba(20, 184, 166, 0.05); }
         .check-label input { display: none; }
         .check-box { width: 22px; height: 22px; border: 2px solid #cbd5e1; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; background: white; }
-        /* Style for Radio look inside check-label logic */
         .check-box.radio-style { border-radius: 50%; } 
         
         .check-label input:checked + .check-box { background: var(--primary-teal); border-color: var(--primary-teal); }
@@ -276,7 +275,7 @@
         .ppt-info h4 { margin: 0 0 4px 0; font-size: 12px; font-weight: 600; }
         .ppt-info span { font-size: 11px; opacity: 0.7; }
         
-        /* CVC Edu Box */
+        /* Edu Box (Used for CVC and Legal) */
         .cvc-edu-box { background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(109, 40, 217, 0.05)); border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
         .cvc-edu-box h3 { font-size: 0.9rem; color: var(--primary-teal-dark); margin-bottom: 10px; font-weight: 600; }
         .cvc-edu-box ul { margin: 0; padding-left: 18px; }
@@ -608,7 +607,7 @@
             </div>
         </section>
         
-        <!-- SLIDE 3: AV SHUNT (UPDATED) -->
+        <!-- SLIDE 3: AV SHUNT -->
         <section class="slide-section" id="slide-3">
             <div class="glass-card">
                 <div class="card-header">
@@ -745,14 +744,24 @@
             </div>
         </section>
         
-        <!-- SLIDE 6: INFO -->
+        <!-- SLIDE 6: INFO (UPDATED) -->
         <section class="slide-section" id="slide-6">
             <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box purple">&#9432;</div>
                     <h2>Tentang Aplikasi</h2>
                 </div>
-                <p class="card-desc">asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum.</p>
+                <p class="card-desc">asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum dengan informasi yang akurat dan terpercaya.</p>
+                
+                <!-- Legal Section Added Here -->
+                <div class="cvc-edu-box" style="background: linear-gradient(135deg, rgba(109, 40, 217, 0.05), rgba(20, 184, 166, 0.05)); border-color: rgba(109, 40, 217, 0.15);">
+                     <h3 style="color: var(--primary-purple);">⚖️ Badan Hukum</h3>
+                     <ul>
+                         <li>Permenkes No. 26 Tahun 2019 tentang Peraturan Pelaksanaan UU Keperawatan</li>
+                         <li>UU No. 38 Tahun 2014 tentang Keperawatan</li>
+                     </ul>
+                </div>
+                
                 <div class="info-box">
                     <p><strong>Developer:</strong><br>TIM INOCA INSTALASI DIALYSIS RSSA</p>
                     <p style="margin-top: 8px;"><strong>Kontak:</strong><br>(0341) 362101 (2075)</p>
@@ -996,18 +1005,15 @@
 
     // --- UPDATED AV SHUNT CALCULATOR ---
     function calculateAV() {
-        // Get all elements
         const patientId = document.getElementById('av_id').value || 'Pasien';
         
-        // Checkboxes
-        const c_vis_red = document.getElementById('av_vis_red').checked; // Warning
-        const c_vis_pus = document.getElementById('av_vis_pus').checked; // Critical
-        const c_vis_bleed = document.getElementById('av_vis_bleed').checked; // Critical
-        const c_palp_pain = document.getElementById('av_palp_pain').checked; // Warning
-        const c_other_cold = document.getElementById('av_other_cold').checked; // Critical
-        const c_other_fever = document.getElementById('av_other_fever').checked; // Critical
+        const c_vis_red = document.getElementById('av_vis_red').checked;
+        const c_vis_pus = document.getElementById('av_vis_pus').checked;
+        const c_vis_bleed = document.getElementById('av_vis_bleed').checked;
+        const c_palp_pain = document.getElementById('av_palp_pain').checked;
+        const c_other_cold = document.getElementById('av_other_cold').checked;
+        const c_other_fever = document.getElementById('av_other_fever').checked;
 
-        // Radio for Thrill
         const thrillVal = document.querySelector('input[name="av_thrill"]:checked')?.value;
         
         let status = "BAIK";
@@ -1016,15 +1022,12 @@
         let isCritical = false;
         let isWarning = false;
 
-        // Logic Critical
         if (c_vis_pus || c_vis_bleed || c_other_cold || c_other_fever || thrillVal === 'gone') {
             status = "DARURAT";
             msg = "🚨 Kondisi Kritis!";
             recom = "Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";
             isCritical = true;
-        } 
-        // Logic Warning
-        else if (c_vis_red || c_palp_pain || thrillVal === 'weak') {
+        } else if (c_vis_red || c_palp_pain || thrillVal === 'weak') {
             status = "PERHATIAN";
             msg = "⚠️ Ada tanda yang perlu diwaspadai.";
             recom = "Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin untuk pemeriksaan lebih lanjut.";
@@ -1041,17 +1044,13 @@
         document.getElementById('av-msg').innerText = msg;
         document.getElementById('av-recom').innerText = recom;
 
-        // Action Buttons
         const criticalDiv = document.getElementById('av-critical-action');
         let actionHTML = '';
 
         if (isCritical) {
-            // Add emergency call button if critical
             actionHTML += `<a href="tel:119" class="btn btn-danger" style="width:100%; margin-bottom:10px; text-decoration:none;">🚨 Hubungi Layanan Darurat</a>`;
-            // Use the helper function to show all 4 admins
             actionHTML += createReportButtons(patientId, "DARURAT", "AV Shunt");
         } else if (isWarning) {
-            // Use the helper function to show all 4 admins
             actionHTML = createReportButtons(patientId, "PERHATIAN", "AV Shunt");
         }
 
@@ -1062,9 +1061,7 @@
     function resetAV() { 
         document.getElementById('av-form').style.display = 'block'; 
         document.getElementById('av-result').style.display = 'none'; 
-        // Reset all inputs
         document.querySelectorAll('#av-form input[type="checkbox"]').forEach(c => c.checked = false);
-        // Reset radio to normal
         const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
         if(normalRadio) normalRadio.checked = true;
     }
