@@ -342,7 +342,7 @@
         .credits-section h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px; opacity: 0.6; font-weight: 400; }
         .credits-section p { font-size: 26px; font-weight: 700; line-height: 1.7; color: white; margin-bottom: 20px; }
         .credits-section .role { font-size: 16px; opacity: 0.7; margin-bottom: 12px; font-weight: 400; font-style: italic; }
-        .credits-footer { margin-top: 120px; opacity: 0.5; font-size: 14px; }
+        .credits-footer { margin-top: 120km; opacity: 0.5; font-size: 14px; }
         .audio-hidden { position: absolute; top: -9999px; left: -9999px; }
 
         /* Star Animation for Credits */
@@ -398,11 +398,13 @@
                 </div>
                 <div class="input-group">
                     <label>Link Gambar Poster (Opsional)</label>
-                    <input type="text" id="evImg" class="input-field" placeholder="https://... (URL gambar)">
+                    <input type="text" id="evImg" class="input-field" placeholder="Link Google Drive atau link gambar langsung">
+                    <div class="input-hint">Gunakan link Google Drive yang aksesnya "Anyone with the link".</div>
                 </div>
                 <div class="input-group">
                     <label>Link Tujuan Poster (Opsional)</label>
-                    <input type="text" id="evLink" class="input-field" placeholder="https://... (Link Zoom, pendaftaran, dll)">
+                    <input type="text" id="evLink" class="input-field" placeholder="Link Zoom, pendaftaran, dll">
+                    <div class="input-hint">Alamat web yang terbuka saat poster diklik.</div>
                 </div>
                 <div class="input-group">
                     <label>Deskripsi / Informasi Acara</label>
@@ -470,7 +472,6 @@
   <!-- NAVIGATION -->
 <nav id="navbar">
     <div class="nav-track" id="navTrack">
-        <!-- TEKS DIKENALKAN KEMBALI SEPERTI SEMULA -->
         <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.', 'nav_beranda.mp3')">
             <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda">
             <div class="text-overlay"><span class="text">Beranda</span></div>
@@ -818,7 +819,7 @@
     </div>
 
     <script>
-    // --- URL ANDA SUDAH DIPASANG DI SINI ---
+    // --- URL API ANDA ---
     const API_URL = 'https://script.google.com/macros/s/AKfycbzu_WfyID_ggPD9TFbbdQFysAvcQyO5w7W22cD1udUF6ZHx5xG313ejhGwDmAXrJT4C/exec';
 
     // --- SETUP & GLOBALS ---
@@ -917,7 +918,7 @@
         currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
     }
 
-    // --- TOUR LOGIC (TEKS DIKENALKAN KEMBALI) ---
+    // --- TOUR LOGIC ---
     const tourSteps = [
         { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0, audio: 'step_welcome.mp3' },
         { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0, audio: 'step_nav.mp3' },
@@ -999,6 +1000,24 @@
             return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>';
         });
     }
+
+    // --- FUNGSI KONVERSI LINK GOOGLE DRIVE ---
+    function convertToDirectLink(url) {
+        if (!url) return '';
+        // Jika link Google Drive format baru
+        if (url.includes('drive.google.com/file/d/')) {
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+            }
+        }
+        // Jika sudah format uc?export=view (langsung kembalikan)
+        if (url.includes('drive.google.com/uc?')) {
+            return url;
+        }
+        // Jika bukan Google Drive, kembalikan apa adanya (asumsi sudah direct link)
+        return url;
+    }
     
     function loadEvents() {
         const container = document.getElementById('eventList');
@@ -1012,16 +1031,20 @@
                 
                 container.innerHTML = data.map(ev => {
                     const clickableDesc = makeLinksClickable(ev.desc);
+                    
+                    // CONVERT LINK GAMBAR JIKA DARI GOOGLE DRIVE
+                    const directImgUrl = convertToDirectLink(ev.img);
+                    
                     let posterHtml = '';
-                    if (ev.img) {
+                    if (directImgUrl) {
                         if (ev.link) {
-                            posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></a>`;
+                            posterHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-item-img-container has-link"><img src="${directImgUrl}" alt="Poster" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#f1f5f9;color:#64748b;font-size:12px;\'>Gagal memuat gambar</div>'"></a>`;
                         } else {
-                            posterHtml = `<div class="event-item-img-container"><img src="${ev.img}" alt="Poster" onerror="this.parentElement.style.display='none'"></div>`;
+                            posterHtml = `<div class="event-item-img-container"><img src="${directImgUrl}" alt="Poster" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;background:#f1f5f9;color:#64748b;font-size:12px;\'>Gagal memuat gambar</div>'"></div>`;
                         }
                     }
                     let linkBtnHtml = '';
-                    if (ev.link && !ev.img) {
+                    if (ev.link && !directImgUrl) {
                         linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
                     }
                     return `
@@ -1058,7 +1081,7 @@
             password: PASSWORD,
             title: title,
             date: date,
-            img: img,
+            img: img, // Kirim raw link, nanti di load convert
             link: link,
             desc: desc
         };
