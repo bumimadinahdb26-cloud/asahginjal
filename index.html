@@ -302,7 +302,6 @@
         .event-item-desc { font-size: 13px; color: var(--text-muted); white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
         .event-item-desc a { color: var(--primary-teal); text-decoration: underline; font-weight: 500; word-break: break-all; }
         .event-item-desc a:hover { color: var(--primary-teal-dark); }
-        .delete-event-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.95); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--color-danger); box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 10; transition: all 0.2s; display: none; } /* Disembunyikan dulu karena butuh backend untuk delete */
         .event-link-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-light)); color: white; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25); transition: all 0.2s; }
         .event-link-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35); }
 
@@ -471,39 +470,40 @@
   <!-- NAVIGATION -->
 <nav id="navbar">
     <div class="nav-track" id="navTrack">
-        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda.', 'nav_beranda.mp3')">
+        <!-- TEKS DIKENALKAN KEMBALI SEPERTI SEMULA -->
+        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.', 'nav_beranda.mp3')">
             <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda">
             <div class="text-overlay"><span class="text">Beranda</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara.', 'nav_acara.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.', 'nav_acara.mp3')">
             <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Acara">
             <div class="text-overlay"><span class="text">Acara</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(2, 'Penilaian risiko infeksi kateter.', 'nav_cvc.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(2, 'CVC atau Double lumen kateter. Lakukan penilaian risiko infeksi kateter di sini.', 'nav_cvc.mp3')">
             <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" alt="CVC">
             <div class="text-overlay"><span class="text">CVC</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(3, 'Cek kondisi AV Shunt.', 'nav_avshunt.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.', 'nav_avshunt.mp3')">
             <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2072&auto=format&fit=crop" alt="AV Shunt">
             <div class="text-overlay"><span class="text">AV Shunt</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(4, 'Materi Edukasi.', 'nav_edukasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.', 'nav_edukasi.mp3')">
             <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="Edukasi">
             <div class="text-overlay"><span class="text">Edukasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi.', 'nav_konsultasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.', 'nav_konsultasi.mp3')">
             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
             <div class="text-overlay"><span class="text">Konsultasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi.', 'nav_info.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi. Kenali lebih dekat pengembang.', 'nav_info.mp3')">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
             <div class="text-overlay"><span class="text">Info</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi.', 'nav_privasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.', 'nav_privasi.mp3')">
             <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Privasi">
             <div class="text-overlay"><span class="text">Privasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan.', 'nav_donasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.', 'nav_donasi.mp3')">
             <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Donasi">
             <div class="text-overlay"><span class="text">Donasi</span></div>
         </div>
@@ -567,7 +567,7 @@
                 <p class="card-desc">Daftar kegiatan dan acara yang akan atau sedang berlangsung.</p>
                 <button class="btn btn-bright" style="width: 100%; margin-bottom: 16px;" onclick="openModal('passwordModal')">+ Tambah Acara Baru</button>
                 <div id="eventList" class="event-list-container">
-                    <div class="spinner"></div> <!-- Initial Loader -->
+                    <div class="spinner"></div>
                 </div>
             </div>
         </section>
@@ -818,9 +818,8 @@
     </div>
 
     <script>
-    // --- PENTING: MASUKKAN URL GOOGLE SCRIPT ANDA DI SINI ---
-    const API_URL = 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_ANDA_DISINI'; 
-    // Contoh: 'https://script.google.com/macros/s/AKfycb.../exec'
+    // --- URL ANDA SUDAH DIPASANG DI SINI ---
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzu_WfyID_ggPD9TFbbdQFysAvcQyO5w7W22cD1udUF6ZHx5xG313ejhGwDmAXrJT4C/exec';
 
     // --- SETUP & GLOBALS ---
     const holoContainer = document.getElementById('holoContainer');
@@ -918,15 +917,26 @@
         currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
     }
 
-    // --- TOUR LOGIC ---
+    // --- TOUR LOGIC (TEKS DIKENALKAN KEMBALI) ---
     const tourSteps = [
-        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal.', slide: 0, audio: 'step_welcome.mp3' },
-        { element: '#navbar', title: 'Navigasi', desc: 'Geser menu di bawah untuk menjelajah.', slide: 0, audio: 'step_nav.mp3' },
-        { element: '#tour-step-1', title: 'Info Fokus', desc: 'Informasi kampanye kesehatan terkini.', slide: 0, audio: 'step_banner.mp3' },
-        { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Cek risiko infeksi secara mandiri.', slide: 2, audio: 'step_cvc.mp3' }
+        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0, audio: 'step_welcome.mp3' },
+        { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0, audio: 'step_nav.mp3' },
+        { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0, audio: 'step_banner.mp3' },
+        { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2, audio: 'step_cvc.mp3' }
     ];
     let currentTourStep = -1;
-    function startTour() { currentTourStep = -1; tourOverlay.classList.add('active'); tourHighlight.classList.remove('animate'); showHoloMessage("Memulai Tur", "Saya akan memandu kakak.", "intro.mp3", () => { tourHighlight.classList.add('animate'); nextTourStep(); }); }
+    
+    function startTour() { 
+        currentTourStep = -1; 
+        tourOverlay.classList.add('active'); 
+        tourHighlight.classList.remove('animate'); 
+        
+        showHoloMessage("Memulai Tur", "Terima kasih kakak. Saya akan memandu kakak melihat fitur-fitur menarik disini.", "intro.mp3", () => { 
+            tourHighlight.classList.add('animate'); 
+            nextTourStep(); 
+        }); 
+    }
+
     function nextTourStep() {
         currentTourStep++;
         if (currentTourStep >= tourSteps.length) { endTour(); return; }
@@ -942,7 +952,16 @@
             }
         }, 600);
     }
-    function endTour() { tourOverlay.classList.remove('active'); tourHighlight.classList.remove('animate'); showHoloMessage("Sampai Jumpa", "Sekian tur kita.", "outro.mp3", () => { tourTooltip.classList.remove('active'); startCredits(); }); }
+    
+    function endTour() { 
+        tourOverlay.classList.remove('active'); 
+        tourHighlight.classList.remove('animate'); 
+        
+        showHoloMessage("Sampai Jumpa", "Sekian tur kita hari ini, saya ucapkan terima kasih.", "outro.mp3", () => { 
+            tourTooltip.classList.remove('active'); 
+            startCredits(); 
+        }); 
+    }
 
     // --- CREDITS LOGIC ---
     function createStars() { starContainer.innerHTML = ''; for(let i=0; i<50; i++) { const star = document.createElement('div'); star.classList.add('star'); star.style.left = Math.random() * 100 + '%'; star.style.width = Math.random() * 3 + 1 + 'px'; star.style.height = star.style.width; star.style.animationDuration = Math.random() * 3 + 2 + 's'; star.style.animationDelay = Math.random() * 5 + 's'; starContainer.appendChild(star); } }
@@ -959,7 +978,7 @@
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function confirmWA(phone, name) { const text = `Halo ${name}, saya ingin bertanya.`; const linkBtn = document.getElementById('confirmWaBtn'); linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; openModal('waModal'); }
 
-    // --- EVENT LOGIC (GANTI DENGAN API) ---
+    // --- EVENT LOGIC (API) ---
     const PASSWORD = "1111";
     
     function checkPassword() { 
@@ -981,16 +1000,8 @@
         });
     }
     
-    // Function to Load Events from Google Sheets
     function loadEvents() {
         const container = document.getElementById('eventList');
-        
-        // Jika URL belum diset, tampilkan pesan error
-        if (API_URL === 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_ANDA_DISINI' || !API_URL) {
-            container.innerHTML = '<p style="text-align:center; color:var(--color-danger); margin-top:20px; font-size: 12px;">ERROR: URL Google Script belum diatur di bagian `const API_URL` di dalam kode.</p>';
-            return;
-        }
-
         fetch(API_URL)
             .then(response => response.json())
             .then(data => {
@@ -1013,7 +1024,6 @@
                     if (ev.link && !ev.img) {
                         linkBtnHtml = `<a href="${ev.link}" target="_blank" rel="noopener noreferrer" class="event-link-btn">🔗 Buka Link Acara</a>`;
                     }
-                    // Delete button disabled for public users in this simple version to avoid complexity
                     return `
                         <div class="event-item-card">
                             ${posterHtml}
@@ -1029,11 +1039,10 @@
             })
             .catch(err => {
                 console.error(err);
-                container.innerHTML = '<p style="text-align:center; color:var(--color-danger); margin-top:20px;">Gagal memuat data. Periksa koneksi internet atau URL Script.</p>';
+                container.innerHTML = '<p style="text-align:center; color:var(--color-danger); margin-top:20px;">Gagal memuat data. Periksa koneksi atau URL Script.</p>';
             });
     }
 
-    // Function to Save Event to Google Sheets
     function saveEvent() {
         const title = document.getElementById('evTitle').value;
         const date = document.getElementById('evDate').value;
@@ -1043,11 +1052,10 @@
         
         if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
         
-        // Show loading
         openModal('loadingModal');
 
         const data = {
-            password: PASSWORD, // Kirim password untuk validasi di backend
+            password: PASSWORD,
             title: title,
             date: date,
             img: img,
@@ -1057,7 +1065,7 @@
 
         fetch(API_URL, {
             method: 'POST',
-            mode: 'no-cors', // Important for Google Apps Script simple POST
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
@@ -1066,7 +1074,7 @@
             closeModal('eventModal');
             alert("Acara berhasil ditambahkan!");
             ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
-            loadEvents(); // Refresh list
+            loadEvents();
         })
         .catch(err => {
             closeModal('loadingModal');
