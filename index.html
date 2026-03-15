@@ -496,7 +496,8 @@
             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
             <div class="text-overlay"><span class="text">Konsultasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(6, 'Info Aplikasi. Kenali lebih dekat tentang aplikasi ini. asahginjal dikembangkan untuk membantu edukasi para pemerhati ginjal dan masyarakat umum dengan informasi yang akurat dan terpercaya. Secara makna, AsahGinjal dapat diartikan sebagai platform untuk mengasah pengetahuan dan kesadaran tentang kesehatan ginjal."', 'nav_info.mp3')">
+        <!-- PERBAIKAN: Teks onclick dibuat lebih singkat dan fokus -->
+        <div class="nav-card" onclick="scrollToSlide(6, 'Halaman Info Aplikasi. Kenali lebih dekat tentang asahginjal.', 'nav_info.mp3')">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
             <div class="text-overlay"><span class="text">Info</span></div>
         </div>
@@ -938,16 +939,17 @@
         currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
     }
 
-    // --- TOUR LOGIC (UPDATED & COMPLETE) ---
+        // --- TOUR LOGIC (UPDATED & COMPLETE) ---
     const tourSteps = [
         // 1. Sambutan Awal
         { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0, audio: 'step_welcome.mp3' },
         
-        // 2. Perkenalan Aplikasi (BARU)
+        // 2. Perkenalan Aplikasi (SLIDE 6 - INFO)
+        // Kita letakkan di urutan kedua agar user tahu ini aplikasi apa, sebelum diajari navigasi
         { 
             element: '#tour-step-info', 
             title: 'Perkenalan Aplikasi', 
-            desc: 'Perkenalkan, aplikasi ini dikembangkan oleh TIM INOCA INSTALASI DIALISIS RSSA. AsahGinjal adalah platform untuk mengasah pengetahuan dan kesadaran tentang kesehatan ginjal.', 
+            desc: 'Aplikasi ini dikembangkan oleh TIM INOCA RSSA. AsahGinjal adalah platform untuk mengasah pengetahuan kesehatan ginjal.', 
             slide: 6, 
             audio: 'step_intro.mp3' 
         },
@@ -977,17 +979,47 @@
     function nextTourStep() {
         currentTourStep++;
         if (currentTourStep >= tourSteps.length) { endTour(); return; }
+        
         const step = tourSteps[currentTourStep];
         const targetEl = document.querySelector(step.element);
         const targetSlide = document.getElementById('slide-' + step.slide);
-        if (targetSlide) { targetSlide.scrollIntoView({ behavior: 'smooth' }); updateActiveNav(step.slide); }
+        
+        if (targetSlide) {
+            targetSlide.scrollIntoView({ behavior: 'smooth' });
+            updateActiveNav(step.slide);
+        }
+
+        // LOGIKA PERBAIKAN: 
+        // Beri waktu lebih lama (1200ms) jika slide yang dituju jauh (misal dari 0 ke 6)
+        // Ini mencegah highlight muncul sebelum scroll selesai.
         setTimeout(() => {
             if (targetEl) {
                 const rect = targetEl.getBoundingClientRect();
-                tourHighlight.style.top = rect.top + 'px'; tourHighlight.style.left = rect.left + 'px'; tourHighlight.style.width = rect.width + 'px'; tourHighlight.style.height = rect.height + 'px';
-                showHoloMessage(step.title, step.desc, step.audio, () => { setTimeout(nextTourStep, 500); });
+                
+                // Pastikan elemen benar-benar terlihat di viewport sebelum highlight
+                if (rect.top > 0 && rect.left > 0) {
+                    tourHighlight.style.top = rect.top + 'px'; 
+                    tourHighlight.style.left = rect.left + 'px'; 
+                    tourHighlight.style.width = rect.width + 'px'; 
+                    tourHighlight.style.height = rect.height + 'px';
+                    
+                    showHoloMessage(step.title, step.desc, step.audio, () => { 
+                        setTimeout(nextTourStep, 500); 
+                    });
+                } else {
+                    // Jika gagal menemukan posisi, coba lagi sedikit lagi waktu
+                    console.log("Elemen belum terlihat, menunggu...");
+                    setTimeout(() => {
+                         const rect2 = targetEl.getBoundingClientRect();
+                         tourHighlight.style.top = rect2.top + 'px'; 
+                         tourHighlight.style.left = rect2.left + 'px'; 
+                         tourHighlight.style.width = rect2.width + 'px'; 
+                         tourHighlight.style.height = rect2.height + 'px';
+                         showHoloMessage(step.title, step.desc, step.audio, () => { setTimeout(nextTourStep, 500); });
+                    }, 500);
+                }
             }
-        }, 600);
+        }, 1200); // Delay ditingkatkan dari 600ms menjadi 1200ms
     }
     
     function endTour() { 
