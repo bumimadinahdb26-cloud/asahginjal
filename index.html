@@ -752,9 +752,9 @@
             </div>
         </section>
         
-        <!-- SLIDE 6: INFO (UPDATED) -->
+        <!-- SLIDE 6: INFO (UPDATED WITH ID) -->
         <section class="slide-section" id="slide-6">
-            <div class="glass-card">
+            <div class="glass-card" id="tour-step-info">
                 <div class="card-header">
                     <div class="icon-box purple">&#9432;</div>
                     <h2>Tentang Aplikasi</h2>
@@ -938,11 +938,27 @@
         currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
     }
 
-    // --- TOUR LOGIC ---
+    // --- TOUR LOGIC (UPDATED STEPS) ---
     const tourSteps = [
+        // Step 0: Welcome
         { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0, audio: 'step_welcome.mp3' },
+        
+        // Step 1: Introduction (NEW - Sesuai Permintaan)
+        { 
+            element: '#tour-step-info', 
+            title: 'Perkenalan', 
+            desc: 'Perkenalkan, aplikasi ini dikembangkan oleh TIM INOCA INSTALASI DIALISIS RSSA. AsahGinjal adalah platform untuk mengasah pengetahuan dan kesadaran tentang kesehatan ginjal.', 
+            slide: 6, 
+            audio: 'step_intro.mp3' 
+        },
+        
+        // Step 2: Navigation
         { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0, audio: 'step_nav.mp3' },
+        
+        // Step 3: Banner
         { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0, audio: 'step_banner.mp3' },
+        
+        // Step 4: CVC Assessment
         { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2, audio: 'step_cvc.mp3' }
     ];
     let currentTourStep = -1;
