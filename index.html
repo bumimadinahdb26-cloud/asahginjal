@@ -109,85 +109,6 @@
         /* Main Content */
         main { 
             margin-top: 68px; 
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-<!DOCTYPE html>
-
             margin-bottom: 80px; 
             display: flex; 
             overflow-x: auto; 
@@ -867,6 +788,12 @@
                 </div>
                 <p class="card-desc">Evaluasi kondisi fistula arterivenosa (jalan darah) Anda.</p>
                 <div id="av-form" style="margin-top: 14px;">
+                    <!-- INPUT ID DITAMBAHKAN -->
+                    <div class="input-group" style="margin-bottom: 12px;">
+                        <label>ID Pasien (Opsional)</label>
+                        <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
+                    </div>
+                    <!-- ------------------- -->
                     <label class="check-label"><input type="checkbox" id="av1"><span class="check-box"></span><span>Getaran (thrill) terasa normal</span></label>
                     <label class="check-label"><input type="checkbox" id="av2"><span class="check-box"></span><span>Bising (bruit) terdengar jelas</span></label>
                     <label class="check-label"><input type="checkbox" id="av3"><span class="check-box"></span><span>Ada benjolan di area shunt</span></label>
@@ -1047,6 +974,33 @@
 
     // Variable untuk menampung audio player agar tidak bentrok
     let currentAudioPlayer = null;
+
+    // --- DATA KONTAK UNTUK PENILAIAN (ASSESSMENT) ---
+    // Data ini digunakan pada halaman CVC dan AV Shunt
+    const assessmentContacts = [
+        { name: 'Riza A', phone: '6282227707573' },
+        { name: 'Pembayun Y', phone: '6283831217784' },
+        { name: 'Hesty', phone: '6282124700093' },
+        { name: 'Rinda', phone: '6285210622568' }
+    ];
+
+    // Fungsi helper untuk membuat tombol laporan
+    function createReportButtons(patientId, statusText, type) {
+        const text = `Laporan ${type}%0AID: ${patientId}%0AStatus: ${statusText}`;
+        let html = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border-light); text-align: center;">
+                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">Hubungi Admin untuk melaporkan:</p>
+                        <div class="grid-2" style="gap: 8px;">`;
+        
+        assessmentContacts.forEach(c => {
+            html += `<a href="https://wa.me/${c.phone}?text=${text}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 8px; text-decoration: none; border-color: var(--primary-teal); color: var(--primary-teal-dark);">
+                        &#128172; ${c.name}
+                     </a>`;
+        });
+
+        html += `   </div>
+                   </div>`;
+        return html;
+    }
 
     // --- HEADER ANIMATION ---
     const phrases = [ "Komunitas dan Edukasi Ginjal", "Lihat Video Perawatan CVC", "Ingatkan Jadwal Ganti Kasa", "Akses Sehat, HD Hebat" ];
@@ -1392,7 +1346,7 @@ mainSlider.addEventListener('scroll', () => {
     window.addEventListener('load', loadEvents);
 
     // --- CALCULATORS ---
-    const WA_ADMIN_UTAMA = '6282227707573'; 
+    // Kontak Dokter untuk rujukan darurat (opsional, biarkan sebagai fallback)
     const WA_DOKTER = '6281252651083'; 
 
     function calculateCVC() {
@@ -1420,18 +1374,24 @@ mainSlider.addEventListener('scroll', () => {
         badge.innerText = level; badge.className = 'badge ' + bc;
         
         const criticalDiv = document.getElementById('cvc-critical-action');
-        const patientId = document.getElementById('cvc_id').value || 'Unknown';
-        criticalDiv.style.display = 'none';
+        const patientId = document.getElementById('cvc_id').value || 'Pasien CVC';
         
+        let actionHTML = '';
+
+        // Logika baru: Jika Tinggi (Darurat)
         if (level === "Tinggi") {
-            const waText = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}`;
-            criticalDiv.innerHTML = `<a href="https://wa.me/${WA_DOKTER}?text=${waText}" target="_blank" class="btn btn-danger" style="width:100%; text-decoration:none;">&#128680; Lapor Dokter</a>`;
-            criticalDiv.style.display = 'block';
-        } else if (level === "Sedang") {
-            const waText = `⚠️ LAPORAN RISIKO CVC%0AID: ${patientId}%0AStatus: ${level}`;
-            criticalDiv.innerHTML = `<a href="https://wa.me/${WA_ADMIN_UTAMA}?text=${waText}" target="_blank" class="btn btn-outline" style="width:100%; text-decoration:none;">&#128172; Lapor Admin</a>`;
-            criticalDiv.style.display = 'block';
+            const waTextDokter = `🚨 LAPORAN DARURAT CVC%0AID: ${patientId}%0AStatus: ${level}%0AJumlah Gejala: ${symptomCount}`;
+            actionHTML += `<a href="https://wa.me/${WA_DOKTER}?text=${waTextDokter}" target="_blank" class="btn btn-danger" style="width:100%; text-decoration:none; margin-bottom: 10px;">&#128680; Lapor Dokter (Darurat)</a>`;
+            // Tambahkan tombol admin di bawahnya
+            actionHTML += createReportButtons(patientId, `${level} (Darurat)`, 'CVC');
+        } 
+        // Logika baru: Jika Sedang atau Rendah
+        else if (level === "Sedang" || level === "Rendah") {
+            actionHTML = createReportButtons(patientId, level, 'CVC');
         }
+        
+        criticalDiv.innerHTML = actionHTML;
+        criticalDiv.style.display = actionHTML ? 'block' : 'none';
     }
     function resetCVC() { document.getElementById('cvc-form').style.display = 'block'; document.getElementById('cvc-result').style.display = 'none'; document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); }
 
@@ -1439,12 +1399,27 @@ mainSlider.addEventListener('scroll', () => {
         const n = document.getElementById('av1').checked; const s = document.getElementById('av2').checked;
         const l = document.getElementById('av3').checked; const sw = document.getElementById('av4').checked;
         const pn = document.getElementById('av5').checked;
+        
         let st = "BAIK", b = "badge-teal", mg = "Kondisi fistula baik.", rc = "Lanjutkan perawatan rutin.";
+        
         if (sw || pn) { st = "BURUK"; b = "badge-red"; mg = "Tanda komplikasi."; rc = "Segera ke dokter."; }
         else if (l || !n || !s) { st = "SEDANG"; b = "badge-orange"; mg = "Ada perubahan."; rc = "Monitor ketat."; }
+        
         document.getElementById('av-form').style.display = 'none'; document.getElementById('av-result').style.display = 'block';
         document.getElementById('av-badge').innerText = st; document.getElementById('av-badge').className = 'badge ' + b;
         document.getElementById('av-msg').innerText = mg; document.getElementById('av-recom').innerText = rc;
+        
+        const criticalDiv = document.getElementById('av-critical-action');
+        const patientId = document.getElementById('av_id')?.value || 'Pasien AV Shunt';
+        
+        // Tambahkan tombol laporan jika status BURUK atau SEDANG
+        let actionHTML = '';
+        if (st === "BURUK" || st === "SEDANG") {
+            actionHTML = createReportButtons(patientId, st, 'AV Shunt');
+        }
+        
+        criticalDiv.innerHTML = actionHTML;
+        criticalDiv.style.display = actionHTML ? 'block' : 'none';
     }
     function resetAV() { document.getElementById('av-form').style.display = 'block'; document.getElementById('av-result').style.display = 'none'; document.querySelectorAll('#av-form input').forEach(c => c.checked = false); }
 
