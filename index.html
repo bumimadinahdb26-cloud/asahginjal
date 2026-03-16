@@ -493,39 +493,40 @@
   <!-- NAVIGATION -->
 <nav id="navbar">
     <div class="nav-track" id="navTrack">
-        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.', 'nav_beranda.mp3')">
+        <!-- NAVIGASI TANPA AUDIO - HANYA TEKS DENGAN HOLOGRAM -->
+        <div class="nav-card active" onclick="scrollToSlide(0, 'Selamat datang di Beranda. Geser layar atau gunakan menu untuk menjelajah.')">
             <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" alt="Beranda">
             <div class="text-overlay"><span class="text">Beranda</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.', 'nav_acara.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(1, 'Halaman Acara. Lihat jadwal kegiatan dan informasi penting lainnya.')">
             <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Acara">
             <div class="text-overlay"><span class="text">Acara</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(2, 'CVC atau Double lumen kateter. Lakukan penilaian risiko infeksi kateter di sini.', 'nav_cvc.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(2, 'CVC atau Double lumen kateter. Lakukan penilaian risiko infeksi kateter di sini.')">
             <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" alt="CVC">
             <div class="text-overlay"><span class="text">CVC</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.', 'nav_avshunt.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(3, 'AV Shunt. Cek kondisi fistula atau jalan darah Anda.')">
             <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=2072&auto=format&fit=crop" alt="AV Shunt">
             <div class="text-overlay"><span class="text">AV Shunt</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.', 'nav_edukasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(4, 'Edukasi. Akses materi presentasi kesehatan ginjal.')">
             <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" alt="Edukasi">
             <div class="text-overlay"><span class="text">Edukasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.', 'nav_konsultasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(5, 'Konsultasi. Hubungi admin atau tim medis kami.')">
             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
             <div class="text-overlay"><span class="text">Konsultasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(6, 'Halaman Info Aplikasi. Kenali lebih dekat tentang asahginjal.', 'nav_info.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(6, 'Halaman Info Aplikasi. Kenali lebih dekat tentang asahginjal.')">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
             <div class="text-overlay"><span class="text">Info</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.', 'nav_privasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(7, 'Kebijakan Privasi pengguna.')">
             <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop" alt="Privasi">
             <div class="text-overlay"><span class="text">Privasi</span></div>
         </div>
-        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.', 'nav_donasi.mp3')">
+        <div class="nav-card" onclick="scrollToSlide(8, 'Dukung pengembangan aplikasi ini.')">
             <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Donasi">
             <div class="text-overlay"><span class="text">Donasi</span></div>
         </div>
@@ -717,7 +718,7 @@
                 </div>
             </div>
 
-            <!-- 3. KOMIK EDUKASI (BARU) -->
+            <!-- 3. KOMIK EDUKASI -->
             <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box orange">&#128214;</div>
@@ -743,6 +744,8 @@
                             <h4>Ginjal dan Fungsinya</h4>
                             <span>Fungsi Ginjal</span>
                         </div>
+                    </a>
+                </div>
             </div>
         </section>
         
@@ -935,19 +938,49 @@
     }
     setTimeout(typeWriter, 400);
 
-   // --- NAVIGATION LOGIC ---
+   // --- NAVIGATION LOGIC (TANPA AUDIO - DIPERBAIKI) ---
     const navCards = document.querySelectorAll('.nav-card');
     const mainSlider = document.getElementById('slider');
-    function scrollToSlide(index, msg, audioFile) {
+    
+    // Fungsi navigasi yang diperbaiki - tanpa audio
+    function scrollToSlide(index, msg) {
         const targetSlide = document.getElementById('slide-' + index);
         if (targetSlide) {
             targetSlide.scrollIntoView({ behavior: 'smooth' });
             updateActiveNav(index);
         }
-        if(msg) { showHoloMessage("Pemandu", msg, audioFile, null); }
+        // Tampilkan hologram dengan pesan (tanpa audio)
+        if(msg) { 
+            showHoloMessageSimple("Pemandu", msg); 
+        }
     }
-    function updateActiveNav(index) { navCards.forEach((card, i) => { card.classList.toggle('active', i === index); }); }
-    mainSlider.addEventListener('scroll', () => { const scrollLeft = mainSlider.scrollLeft; const slideWidth = mainSlider.clientWidth; const activeIndex = Math.round(scrollLeft / slideWidth); updateActiveNav(activeIndex); });
+    
+    // Fungsi baru untuk menampilkan hologram tanpa audio
+    function showHoloMessageSimple(title, text) {
+        tooltipTitle.innerText = title;
+        tooltipDesc.innerText = text;
+        holoContainer.classList.add('show');
+        tourTooltip.classList.add('active');
+        
+        // Auto hide setelah 4 detik
+        setTimeout(() => {
+            holoContainer.classList.remove('show');
+            tourTooltip.classList.remove('active');
+        }, 4000);
+    }
+    
+    function updateActiveNav(index) { 
+        navCards.forEach((card, i) => { 
+            card.classList.toggle('active', i === index); 
+        }); 
+    }
+    
+    mainSlider.addEventListener('scroll', () => { 
+        const scrollLeft = mainSlider.scrollLeft; 
+        const slideWidth = mainSlider.clientWidth; 
+        const activeIndex = Math.round(scrollLeft / slideWidth); 
+        updateActiveNav(activeIndex); 
+    });
 
     // --- CONTENT SLIDER ---
     let currentContentSlide = 0;
@@ -955,7 +988,13 @@
     const dots = document.querySelectorAll('.dot');
     const totalContentSlides = 1; 
     
-    function goToContentSlide(index) { currentContentSlide = index; contentTrack.style.transform = `translateX(-${index * 100}%)`; dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); }); }
+    function goToContentSlide(index) { 
+        currentContentSlide = index; 
+        contentTrack.style.transform = `translateX(-${index * 100}%)`; 
+        dots.forEach((dot, i) => { 
+            dot.classList.toggle('active', i === index); 
+        }); 
+    }
 
     // --- HOLOGRAM & AUDIO FUNCTIONS ---
     function showHoloMessage(title, text, audioFile, callback) {
@@ -971,22 +1010,35 @@
             }, 500);
         });
     }
+    
     function playAudioFile(filename, onEndCallback) {
-        if (currentAudioPlayer) { currentAudioPlayer.pause(); currentAudioPlayer.currentTime = 0; }
-        if (!filename) { if(onEndCallback) onEndCallback(); return; }
+        if (currentAudioPlayer) { 
+            currentAudioPlayer.pause(); 
+            currentAudioPlayer.currentTime = 0; 
+        }
+        if (!filename) { 
+            if(onEndCallback) onEndCallback(); 
+            return; 
+        }
         currentAudioPlayer = new Audio('audio/' + filename);
-        currentAudioPlayer.onended = () => { if(onEndCallback) onEndCallback(); };
-        currentAudioPlayer.onerror = (e) => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); };
-        currentAudioPlayer.play().catch(e => { setTimeout(() => { if(onEndCallback) onEndCallback(); }, 3000); });
+        currentAudioPlayer.onended = () => { 
+            if(onEndCallback) onEndCallback(); 
+        };
+        currentAudioPlayer.onerror = (e) => { 
+            setTimeout(() => { 
+                if(onEndCallback) onEndCallback(); 
+            }, 3000); 
+        };
+        currentAudioPlayer.play().catch(e => { 
+            setTimeout(() => { 
+                if(onEndCallback) onEndCallback(); 
+            }, 3000); 
+        });
     }
 
-        // --- TOUR LOGIC (UPDATED & COMPLETE) ---
+    // --- TOUR LOGIC ---
     const tourSteps = [
-        // 1. Sambutan Awal
         { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Halo! Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', slide: 0, audio: 'step_welcome.mp3' },
-        
-        // 2. Perkenalan Aplikasi (SLIDE 6 - INFO)
-        // Kita letakkan di urutan kedua agar user tahu ini aplikasi apa, sebelum diajari navigasi
         { 
             element: '#tour-step-info', 
             title: 'Perkenalan Aplikasi', 
@@ -994,14 +1046,8 @@
             slide: 6, 
             audio: 'step_intro.mp3' 
         },
-        
-        // 3. Navigasi
         { element: '#navbar', title: 'Navigasi Utama', desc: 'Geser menu di bawah ini untuk menjelajahi berbagai fitur keren.', slide: 0, audio: 'step_nav.mp3' },
-        
-        // 4. Banner Fokus
         { element: '#tour-step-1', title: 'Info Fokus Bulanan', desc: 'Jangan lewatkan informasi kampanye kesehatan terkini di banner ini!', slide: 0, audio: 'step_banner.mp3' },
-        
-        // 5. Assessment CVC
         { element: '#tour-step-3', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', slide: 2, audio: 'step_cvc.mp3' }
     ];
     let currentTourStep = -1;
@@ -1030,14 +1076,10 @@
             updateActiveNav(step.slide);
         }
 
-        // LOGIKA PERBAIKAN: 
-        // Beri waktu lebih lama (1200ms) jika slide yang dituju jauh (misal dari 0 ke 6)
-        // Ini mencegah highlight muncul sebelum scroll selesai.
         setTimeout(() => {
             if (targetEl) {
                 const rect = targetEl.getBoundingClientRect();
                 
-                // Pastikan elemen benar-benar terlihat di viewport sebelum highlight
                 if (rect.top > 0 && rect.left > 0) {
                     tourHighlight.style.top = rect.top + 'px'; 
                     tourHighlight.style.left = rect.left + 'px'; 
@@ -1048,8 +1090,6 @@
                         setTimeout(nextTourStep, 500); 
                     });
                 } else {
-                    // Jika gagal menemukan posisi, coba lagi sedikit lagi waktu
-                    console.log("Elemen belum terlihat, menunggu...");
                     setTimeout(() => {
                          const rect2 = targetEl.getBoundingClientRect();
                          tourHighlight.style.top = rect2.top + 'px'; 
@@ -1060,7 +1100,7 @@
                     }, 500);
                 }
             }
-        }, 1200); // Delay ditingkatkan dari 600ms menjadi 1200ms
+        }, 1200);
     }
     
     function endTour() { 
@@ -1074,19 +1114,60 @@
     }
 
     // --- CREDITS LOGIC ---
-    function createStars() { starContainer.innerHTML = ''; for(let i=0; i<50; i++) { const star = document.createElement('div'); star.classList.add('star'); star.style.left = Math.random() * 100 + '%'; star.style.width = Math.random() * 3 + 1 + 'px'; star.style.height = star.style.width; star.style.animationDuration = Math.random() * 3 + 2 + 's'; star.style.animationDelay = Math.random() * 5 + 's'; starContainer.appendChild(star); } }
-    function startCredits() { createStars(); creditsOverlay.classList.add('active'); creditsContent.style.animation = 'none'; creditsContent.offsetHeight; creditsContent.style.animation = 'scrollDown 150s linear forwards'; if (bgMusic) { bgMusic.currentTime = 0; bgMusic.volume = 0.6; bgMusic.play().catch(e => {}); } creditsContent.addEventListener('animationend', handleCreditsEnd); }
-    function handleCreditsEnd() { creditsOverlay.classList.remove('active'); if(bgMusic) bgMusic.pause(); creditsContent.removeEventListener('animationend', handleCreditsEnd); setTimeout(() => { scrollToSlide(0, null); }, 500); }
+    function createStars() { 
+        starContainer.innerHTML = ''; 
+        for(let i=0; i<50; i++) { 
+            const star = document.createElement('div'); 
+            star.classList.add('star'); 
+            star.style.left = Math.random() * 100 + '%'; 
+            star.style.width = Math.random() * 3 + 1 + 'px'; 
+            star.style.height = star.style.width; 
+            star.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+            star.style.animationDelay = Math.random() * 5 + 's'; 
+            starContainer.appendChild(star); 
+        } 
+    }
+    
+    function startCredits() { 
+        createStars(); 
+        creditsOverlay.classList.add('active'); 
+        creditsContent.style.animation = 'none'; 
+        creditsContent.offsetHeight; 
+        creditsContent.style.animation = 'scrollDown 150s linear forwards'; 
+        if (bgMusic) { 
+            bgMusic.currentTime = 0; 
+            bgMusic.volume = 0.6; 
+            bgMusic.play().catch(e => {}); 
+        } 
+        creditsContent.addEventListener('animationend', handleCreditsEnd); 
+    }
+    
+    function handleCreditsEnd() { 
+        creditsOverlay.classList.remove('active'); 
+        if(bgMusic) bgMusic.pause(); 
+        creditsContent.removeEventListener('animationend', handleCreditsEnd); 
+        setTimeout(() => { scrollToSlide(0, null); }, 500); 
+    }
 
     // --- BACKGROUND SLIDER ---
-    const slides = document.querySelectorAll('.bg-slide'); let currentSlide = 0;
-    function nextSlide() { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }
+    const slides = document.querySelectorAll('.bg-slide'); 
+    let currentSlide = 0;
+    function nextSlide() { 
+        slides[currentSlide].classList.remove('active'); 
+        currentSlide = (currentSlide + 1) % slides.length; 
+        slides[currentSlide].classList.add('active'); 
+    }
     setInterval(nextSlide, 5000);
 
     // --- MODALS & HELPERS ---
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    function confirmWA(phone, name) { const text = `Halo ${name}, saya ingin bertanya.`; const linkBtn = document.getElementById('confirmWaBtn'); linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; openModal('waModal'); }
+    function confirmWA(phone, name) { 
+        const text = `Halo ${name}, saya ingin bertanya.`; 
+        const linkBtn = document.getElementById('confirmWaBtn'); 
+        linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; 
+        openModal('waModal'); 
+    }
 
     // --- EVENT LOGIC (API) ---
     const PASSWORD = "1111";
@@ -1110,28 +1191,23 @@
         });
     }
 
-    // --- FUNGSI KONVERSI LINK GOOGLE DRIVE YANG SUDAH DIPERBAIKI ---
     function convertToDirectLink(url) {
         if (!url) return '';
         
-        // Cek apakah link Google Drive format /file/d/ID/
         let match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
         if (match && match[1]) {
             return `https://drive.google.com/uc?export=view&id=${match[1]}`;
         }
 
-        // Cek apakah link Google Drive format open?id=ID
         match = url.match(/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/);
         if (match && match[1]) {
             return `https://drive.google.com/uc?export=view&id=${match[1]}`;
         }
 
-        // Cek apakah sudah format uc?export=view
         if (url.includes('drive.google.com/uc?')) {
             return url;
         }
 
-        // Jika bukan Google Drive (langsung JPG/PNG), kembalikan apa adanya
         return url;
     }
     
@@ -1147,8 +1223,6 @@
                 
                 container.innerHTML = data.map(ev => {
                     const clickableDesc = makeLinksClickable(ev.desc);
-                    
-                    // CONVERT LINK GAMBAR
                     const directImgUrl = convertToDirectLink(ev.img);
                     
                     let posterHtml = '';
@@ -1156,7 +1230,6 @@
                         const linkTag = ev.link ? `href="${ev.link}" target="_blank"` : `href="${directImgUrl}" target="_blank"`;
                         const linkClass = ev.link ? 'has-link' : '';
                         
-                        // onerror handler untuk menampilkan pesan error yang jelas
                         posterHtml = `<a ${linkTag} class="event-item-img-container ${linkClass}">
                             <img src="${directImgUrl}" alt="Poster" 
                                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23f1f5f9%22 width=%22100%25%22 height=%22100%25%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%2364748b%22>Gagal Muat Gambar%0ACek Akses File</text></svg>';">
