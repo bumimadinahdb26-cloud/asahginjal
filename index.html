@@ -350,6 +350,30 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: fallingStar linear infinite; }
         @keyframes fallingStar { 0% { transform: translateY(-10px) translateX(0) scale(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; } }
 
+        /* ========================================= */
+        /* TAMBAHAN CSS UNTUK VIDEO EDUKASI BARU */
+        /* ========================================= */
+        .video-edu-container {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .video-edu-container video {
+            width: 100%;
+            display: block;
+        }
+        .video-label {
+            font-size: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        /* ========================================= */
+        
     </style>
 </head>
 <body>
@@ -496,7 +520,6 @@
             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2032&auto=format&fit=crop" alt="Konsultasi">
             <div class="text-overlay"><span class="text">Konsultasi</span></div>
         </div>
-        <!-- PERBAIKAN: Teks onclick dibuat lebih singkat dan fokus -->
         <div class="nav-card" onclick="scrollToSlide(6, 'Halaman Info Aplikasi. Kenali lebih dekat tentang asahginjal.', 'nav_info.mp3')">
             <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Info">
             <div class="text-overlay"><span class="text">Info</span></div>
@@ -664,8 +687,41 @@
             </div>
         </section>
         
-        <!-- SLIDE 4: EDUKASI -->
+        <!-- SLIDE 4: EDUKASI (DENGAN TAMBAHAN VIDEO) -->
         <section class="slide-section" id="slide-4">
+             
+            <!-- CARD BARU: VIDEO KARTUN -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <div class="icon-box coral">&#127909;</div>
+                    <h2>Video Kartun Edukasi</h2>
+                </div>
+                <p class="card-desc">Tonton video edukasi kesehatan ginjal dalam format kartun yang mudah dipahami.</p>
+                
+                <!-- Video 1 -->
+                <div style="margin-top: 12px;">
+                    <div class="video-edu-container">
+                        <video controls playsinline>
+                            <source src="kartun1.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
+                    </div>
+                    <p class="video-label">Video 1: Edukasi Kesehatan Ginjal</p>
+                </div>
+
+                <!-- Video 2 -->
+                <div>
+                    <div class="video-edu-container">
+                        <video controls playsinline>
+                            <source src="kartun2.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
+                    </div>
+                    <p class="video-label">Video 2: Tips Perawatan</p>
+                </div>
+            </div>
+
+            <!-- CARD LAMA: MATERI PPT (TIDAK DIHAPUS) -->
              <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box blue">&#127891;</div>
@@ -688,6 +744,7 @@
                         </div>
                     </a>
                 </div>
+            </div>
         </section>
         
         <!-- SLIDE 5: KONSULTASI -->
