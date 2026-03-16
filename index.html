@@ -350,7 +350,7 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: fallingStar linear infinite; }
         @keyframes fallingStar { 0% { transform: translateY(-10px) translateX(0) scale(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; } }
 
-        /* Tambahan CSS untuk Video Edukasi */
+        /* Tambahan CSS untuk Media Edukasi */
         .video-edu-container {
             position: relative;
             border-radius: 14px;
@@ -550,9 +550,6 @@
             <!-- SLIDER CONTENT (Hanya Live Streaming) -->
             <div class="content-slider">
                 <div class="content-track" id="contentTrack">
-                    <!-- Video CVC Card dihapus dari sini -->
-                    
-                    <!-- Hanya Live Streaming Card yang tersisa -->
                     <div class="content-slide">
                         <div class="event-card" style="background: linear-gradient(135deg, var(--dark-blue), #0f172a); padding: 20px; border-radius: 16px; color: white;">
                             <div class="badge badge-teal" style="background: rgba(255,255,255,0.2); color: white;">Live Streaming</div>
@@ -565,7 +562,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Dots disembunyikan karena hanya 1 slide, tapi struktur tetap ada untuk menghindari error JS -->
                 <div class="slider-dots" id="sliderDots" style="display: none;">
                     <div class="dot active" onclick="goToContentSlide(0)"></div>
                 </div>
@@ -680,7 +676,7 @@
         <!-- SLIDE 4: EDUKASI -->
         <section class="slide-section" id="slide-4">
              
-            <!-- 1. VIDEO CVC (Dipindah dari Dashboard) -->
+            <!-- 1. VIDEO CVC -->
             <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box coral">&#127909;</div>
@@ -692,7 +688,7 @@
                 <p style="font-size: 13px; text-align: center; color: var(--text-muted); margin:0;">Pelajari cara merawat kateter dengan benar</p>
             </div>
 
-            <!-- 2. VIDEO KARTUN (Baru) -->
+            <!-- 2. VIDEO KARTUN -->
             <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box coral">&#127909;</div>
@@ -721,7 +717,19 @@
                 </div>
             </div>
 
-            <!-- 3. MATERI  (Lama) -->
+            <!-- 3. KOMIK EDUKASI (BARU) -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <div class="icon-box orange">&#128214;</div>
+                    <h2>Komik Edukasi</h2>
+                </div>
+                <p class="card-desc">Baca komik edukasi kesehatan berikut untuk menambah wawasan.</p>
+                <div style="border-radius: 14px; overflow: hidden; margin-top: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <img src="komik1.png" alt="Komik Edukasi" style="width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+
+            <!-- 4. MATERI PPT -->
              <div class="glass-card">
                 <div class="card-header">
                     <div class="icon-box blue">&#127891;</div>
@@ -736,6 +744,14 @@
                             <span>Fungsi Ginjal</span>
                         </div>
                     </a>
+                    <a class="ppt-card" href="https://docs.google.com/presentation/d/1LqkhKohfnDXGfxE7VoRMdUraQLhD_doq/present?usp=sharing" target="_blank">
+                        <img src="https://docs.google.com/presentation/d/1LqkhKohfnDXGfxE7VoRMdUraQLhD_doq/export/thumbnail?id=1LqkhKohfnDXGfxE7VoRMdUraQLhD_doq&pageid=p" alt="Hipertensi">
+                        <div class="ppt-info">
+                            <h4>Hipertensi</h4>
+                            <span>Kontrol Tekanan Darah</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
         
@@ -946,12 +962,9 @@
     let currentContentSlide = 0;
     const contentTrack = document.getElementById('contentTrack');
     const dots = document.querySelectorAll('.dot');
-    // Diubah menjadi 1 karena video CVC sudah dipindah
     const totalContentSlides = 1; 
     
     function goToContentSlide(index) { currentContentSlide = index; contentTrack.style.transform = `translateX(-${index * 100}%)`; dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); }); }
-    // Auto slide dimatikan atau diabaikan karena hanya ada 1 slide
-    // setInterval(() => { currentContentSlide = (currentContentSlide + 1) % totalContentSlides; goToContentSlide(currentContentSlide); }, 5000);
 
     // --- HOLOGRAM & AUDIO FUNCTIONS ---
     function showHoloMessage(title, text, audioFile, callback) {
