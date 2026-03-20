@@ -3,46 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>asahginjal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>PAMONG AKSI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #1a1a2e;
-            --bg-darker: #16162a;
-            --bg-card: #0f0f1a;
-            --bg-elevated: #1a1a24;
-            --accent-red: #c41e3a;
-            --accent-red-dark: #8b1538;
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f4d03f;
+            --bg-dark: #f3f4f6;
+            --bg-darker: #e5e7eb;
+            --bg-card: #ffffff;
+            --bg-elevated: #f9fafb;
+            --accent-red: #dc2626;
+            --accent-red-dark: #991b1b;
+            --accent-red-light: #fca5a5;
+            --accent-purple: #7c3aed;
+            --accent-purple-dark: #5b21b6;
+            --accent-purple-light: #a78bfa;
+            --accent-gold: #7c3aed;
+            --accent-gold-light: #a78bfa;
+            --text-cream: #1f2937;
+            --text-white: #111827;
+            --text-muted: #6b7280;
+            --text-dark: #1e293b;
+            --border-gold: rgba(124, 58, 237, 0.3);
+            --border-subtle: rgba(0, 0, 0, 0.08);
             --accent-teal: #14b8a6;
             --accent-teal-light: #2dd4bf;
             --accent-teal-dark: #0d9488;
-            --accent-purple: #8b5cf6;
-            --accent-purple-light: #a78bfa;
-            --text-cream: #faf3e0;
-            --text-white: #ffffff;
-            --text-muted: #a0a0b0;
-            --text-dark: #1e293b;
-            --dark-blue: #1e3a5f;
-            --color-danger: #ef4444;
+            --color-danger: #dc2626;
             --color-warning: #f59e0b;
             --color-success: #10b981;
-            --color-info: #3b82f6;
-            --accent-coral: #f97316;
-            --accent-mint: #34d399;
-            --accent-pink: #ec4899;
-            --border-gold: rgba(212, 175, 55, 0.3);
-            --border-subtle: rgba(255, 255, 255, 0.1);
-            --border-light: rgba(0, 0, 0, 0.05);
-            --primary-purple: #6d28d9;
-            --primary-purple-light: #8b5cf6;
-            --primary-teal: #14b8a6;
-            --primary-teal-light: #2dd4bf;
-            --primary-teal-dark: #0d9488;
-            --bg-white: #ffffff;
-            --bg-cream: #faf9f7;
-            --bg-soft: #f8f7f4;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -57,14 +45,13 @@
 
         h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
 
-        /* Background Pattern */
         .bg-pattern {
             position: fixed;
             inset: 0;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(196, 30, 58, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(220, 38, 38, 0.06) 0%, transparent 50%),
+                linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
             z-index: -2;
         }
 
@@ -72,12 +59,11 @@
             position: fixed;
             inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Main Container */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -98,8 +84,8 @@
             flex-direction: column;
             justify-content: flex-end;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 0 100px rgba(0, 0, 0, 0.3);
+                0 20px 60px rgba(0, 0, 0, 0.1),
+                inset 0 0 100px rgba(0, 0, 0, 0.1);
             border: 2px solid var(--border-gold);
         }
 
@@ -109,6 +95,7 @@
             background-size: cover;
             background-position: center;
             transition: transform 10s ease;
+            filter: brightness(0.9);
         }
 
         .panel-header:hover .header-bg {
@@ -120,9 +107,9 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(15, 15, 26, 0.95) 0%,
-                rgba(15, 15, 26, 0.7) 40%,
-                rgba(15, 15, 26, 0.3) 70%,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.8) 40%,
+                rgba(255, 255, 255, 0.4) 70%,
                 transparent 100%
             );
         }
@@ -133,20 +120,73 @@
             padding: 30px;
         }
 
-        .header-badge {
-            display: inline-flex;
+        /* Header Top Row - Clock & Guide */
+        .header-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Digital Clock */
+        .digital-clock {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(220, 38, 38, 0.05));
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);
+        }
+
+        .clock-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .clock-display {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-purple-dark);
+            letter-spacing: 1px;
+        }
+
+        .clock-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Guide Button */
+        .guide-btn {
+            display: flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
-            color: var(--text-white);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
+            padding: 10px 20px;
             border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.4);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .guide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .guide-icon {
+            width: 20px;
+            height: 20px;
         }
 
         .header-title {
@@ -155,20 +195,20 @@
             line-height: 1;
             letter-spacing: 2px;
             color: var(--text-white);
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 8px;
         }
 
         .header-subtitle {
             font-size: 1rem;
-            color: var(--accent-gold-light);
+            color: var(--accent-purple-dark);
             margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* Marquee Animation */
+        /* Marquee */
         .marquee-container {
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light), var(--accent-gold));
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
             padding: 12px 0;
             border-radius: 8px;
             overflow: hidden;
@@ -191,11 +231,11 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.1rem;
             letter-spacing: 2px;
-            color: var(--bg-darker);
+            color: #ffffff;
         }
 
         .marquee-separator {
-            color: var(--bg-darker);
+            color: #ffffff;
         }
 
         @keyframes marquee {
@@ -207,22 +247,22 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            color: var(--bg-darker);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
             padding: 14px 28px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 0.95rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3);
             border: none;
             cursor: pointer;
         }
 
         .event-link-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.4);
         }
 
         /* Panel Grid */
@@ -243,6 +283,7 @@
             transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         .panel-card::before {
@@ -252,7 +293,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
@@ -264,39 +305,66 @@
         .panel-card:hover {
             border-color: var(--border-gold);
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
         }
 
+        /* Icon Wrapper for Custom Images */
         .panel-icon-wrapper {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
             margin-bottom: 20px;
             position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .panel-card:hover .panel-icon-wrapper {
+            transform: scale(1.05);
         }
 
         .panel-icon-wrapper.red {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
-            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+            background: linear-gradient(145deg, #fff5f5, #ffe0e0);
+            box-shadow: 
+                8px 8px 20px rgba(220, 38, 38, 0.15),
+                -4px -4px 15px rgba(255, 255, 255, 0.8);
         }
 
         .panel-icon-wrapper.gold {
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
+            box-shadow: 
+                8px 8px 20px rgba(124, 58, 237, 0.15),
+                -4px -4px 15px rgba(255, 255, 255, 0.8);
         }
 
         .panel-icon-wrapper.teal {
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
-            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
+            background: linear-gradient(145deg, #f0fdfa, #ccfbf1);
+            box-shadow: 
+                8px 8px 20px rgba(20, 184, 166, 0.15),
+                -4px -4px 15px rgba(255, 255, 255, 0.8);
         }
 
         .panel-icon-wrapper.purple {
-            background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            background: linear-gradient(145deg, #faf5ff, #f3e8ff);
+            box-shadow: 
+                8px 8px 20px rgba(139, 92, 246, 0.15),
+                -4px -4px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Custom Icon Image */
+        .icon-custom {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .panel-card:hover .icon-custom {
+            transform: scale(1.1) rotate(3deg);
         }
 
         .panel-title {
@@ -316,7 +384,7 @@
 
         /* Literature Box */
         .literature-box {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--bg-elevated);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
             padding: 14px;
@@ -325,11 +393,19 @@
 
         .literature-title {
             font-size: 0.7rem;
-            color: var(--accent-gold);
+            color: var(--accent-purple-dark);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 10px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .literature-title-icon {
+            width: 14px;
+            height: 14px;
         }
 
         .literature-item {
@@ -347,18 +423,18 @@
         }
 
         .literature-bullet {
-            color: var(--accent-gold);
+            color: var(--accent-purple);
             flex-shrink: 0;
         }
 
         .literature-link {
-            color: var(--accent-teal-light);
+            color: var(--accent-purple);
             text-decoration: none;
             transition: color 0.2s;
         }
 
         .literature-link:hover {
-            color: var(--accent-teal);
+            color: var(--accent-purple-dark);
             text-decoration: underline;
         }
 
@@ -387,34 +463,39 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
-            color: var(--text-white);
-            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.4);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.35);
         }
 
         .btn-secondary {
             background: transparent;
-            border: 2px solid var(--border-gold);
-            color: var(--accent-gold);
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple-dark);
         }
 
         .btn-secondary:hover {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(124, 58, 237, 0.1);
         }
 
         .btn-gold {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            color: var(--bg-darker);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
         }
 
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
         }
 
         /* Panel Footer */
@@ -428,6 +509,7 @@
             justify-content: space-between;
             gap: 20px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         .panel-footer:hover {
@@ -444,12 +526,20 @@
             width: 60px;
             height: 60px;
             border-radius: 14px;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.3);
+            box-shadow: 
+                6px 6px 15px rgba(124, 58, 237, 0.15),
+                -3px -3px 10px rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+        }
+
+        .footer-icon img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
         }
 
         .footer-text h3 {
@@ -477,7 +567,7 @@
         .stat-value {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 2.5rem;
-            color: var(--accent-gold);
+            color: var(--accent-purple);
             line-height: 1;
         }
 
@@ -497,7 +587,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
@@ -547,7 +637,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-elevated);
             border: none;
             color: var(--text-muted);
             cursor: pointer;
@@ -560,7 +650,7 @@
 
         .modal-close:hover {
             background: var(--accent-red);
-            color: var(--text-white);
+            color: #ffffff;
         }
 
         .modal-btns {
@@ -583,14 +673,22 @@
         }
 
         .modal-btn.yes {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            color: var(--bg-darker);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
         }
 
         .modal-btn.no {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-elevated);
             color: var(--text-muted);
             border: 1px solid var(--border-subtle);
+        }
+
+        /* Modal Icon */
+        .modal-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 10px;
+            display: block;
         }
 
         /* Form Elements */
@@ -598,7 +696,7 @@
         
         .input-field {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-elevated);
             border: 2px solid var(--border-subtle);
             padding: 14px 16px;
             border-radius: 12px;
@@ -610,7 +708,7 @@
 
         .input-field:focus {
             outline: none;
-            border-color: var(--accent-gold);
+            border-color: var(--accent-purple);
         }
 
         .input-field::placeholder {
@@ -625,7 +723,7 @@
         .input-group label {
             display: block;
             font-size: 0.75rem;
-            color: var(--accent-gold);
+            color: var(--accent-purple-dark);
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -644,7 +742,7 @@
             align-items: center;
             gap: 12px;
             padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--bg-elevated);
             border: 2px solid var(--border-subtle);
             border-radius: 12px;
             cursor: pointer;
@@ -653,7 +751,7 @@
         }
 
         .check-label:hover {
-            border-color: var(--accent-gold);
+            border-color: var(--accent-purple);
         }
 
         .check-label input {
@@ -670,6 +768,7 @@
             justify-content: center;
             transition: all 0.2s;
             flex-shrink: 0;
+            background: var(--bg-card);
         }
 
         .check-box.radio-style {
@@ -677,14 +776,14 @@
         }
 
         .check-label input:checked + .check-box {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
         }
 
         .check-label input:checked + .check-box::after {
             content: '✓';
             font-size: 12px;
-            color: var(--bg-darker);
+            color: #ffffff;
             font-weight: bold;
         }
 
@@ -696,7 +795,7 @@
         .section-title-sm {
             font-size: 12px;
             font-weight: 700;
-            color: var(--accent-teal-light);
+            color: var(--accent-purple-dark);
             margin: 16px 0 8px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -725,22 +824,22 @@
             justify-content: center;
             border: 4px solid var(--border-subtle);
             position: relative;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-card);
         }
 
         .score-circle.low {
             border-color: var(--accent-teal);
-            box-shadow: 0 0 30px rgba(20, 184, 166, 0.3);
+            box-shadow: 0 0 30px rgba(20, 184, 166, 0.2);
         }
 
         .score-circle.medium {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            border-color: var(--color-warning);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
         }
 
         .score-circle.high {
             border-color: var(--accent-red);
-            box-shadow: 0 0 30px rgba(196, 30, 58, 0.3);
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.2);
         }
 
         .score-value {
@@ -768,24 +867,24 @@
         }
 
         .badge-success {
-            background: rgba(20, 184, 166, 0.2);
-            color: var(--accent-teal-light);
+            background: rgba(20, 184, 166, 0.15);
+            color: #0d9488;
         }
 
         .badge-warning {
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--accent-gold-light);
+            background: rgba(245, 158, 11, 0.15);
+            color: #b45309;
         }
 
         .badge-danger {
-            background: rgba(196, 30, 58, 0.2);
-            color: #ff6b6b;
+            background: rgba(220, 38, 38, 0.15);
+            color: #dc2626;
         }
 
         /* Loading Spinner */
         .spinner {
             border: 3px solid var(--border-subtle);
-            border-top: 3px solid var(--accent-gold);
+            border-top: 3px solid var(--accent-purple);
             border-radius: 50%;
             width: 24px;
             height: 24px;
@@ -827,7 +926,7 @@
             transform: translateX(-50%);
             width: 120px;
             height: 25px;
-            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.6) 0%, rgba(0, 255, 255, 0) 70%);
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.6) 0%, rgba(124, 58, 237, 0) 70%);
             border-radius: 50%;
             z-index: 1;
         }
@@ -843,7 +942,7 @@
             transform: translateX(-50%);
             width: 70px;
             height: 180px;
-            background: linear-gradient(to bottom, rgba(0, 255, 255, 0.15), transparent);
+            background: linear-gradient(to bottom, rgba(124, 58, 237, 0.15), transparent);
             clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%);
             z-index: 0;
             opacity: 0;
@@ -872,8 +971,8 @@
         .holo-avatar {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.9)) brightness(1.1) contrast(1.1);
-            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9)) brightness(1.1) contrast(1.1);
+            mix-blend-mode: multiply;
             opacity: 0.9;
         }
 
@@ -881,12 +980,12 @@
             position: fixed;
             bottom: 130px;
             right: 165px;
-            background: rgba(15, 15, 26, 0.98);
+            background: var(--bg-card);
             padding: 18px 22px;
             border-radius: 16px 16px 0 16px;
             width: 260px;
             max-width: calc(100% - 180px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             border: 1px solid var(--border-gold);
             z-index: 10000;
             opacity: 0;
@@ -903,7 +1002,7 @@
         }
 
         .tour-tooltip h4 {
-            color: var(--accent-gold-light);
+            color: var(--accent-purple-dark);
             margin-bottom: 6px;
             font-size: 1rem;
             font-weight: 700;
@@ -922,7 +1021,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 9998;
             opacity: 0;
             visibility: hidden;
@@ -937,9 +1036,9 @@
         .tour-highlight {
             position: fixed;
             background: transparent;
-            border: 3px solid var(--accent-gold);
+            border: 3px solid var(--accent-purple);
             border-radius: 16px;
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
             z-index: 9999;
@@ -954,9 +1053,9 @@
         }
 
         @keyframes pulseRing {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4), 0 0 0 9999px rgba(0, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0), 0 0 0 9999px rgba(0, 0, 0, 0.7); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0), 0 0 0 9999px rgba(0, 0, 0, 0.7); }
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
         }
 
         @keyframes holoFloat {
@@ -979,7 +1078,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-darker);
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
             z-index: 10010;
             display: flex;
             justify-content: center;
@@ -1020,7 +1119,7 @@
             letter-spacing: 5px;
             margin-bottom: 80px;
             text-transform: uppercase;
-            color: var(--accent-gold-light);
+            color: var(--accent-purple-light);
         }
 
         .credits-section {
@@ -1064,7 +1163,6 @@
             left: -9999px;
         }
 
-        /* Star Animation for Credits */
         .star-container {
             position: absolute;
             top: 0;
@@ -1102,6 +1200,11 @@
             .footer-stats {
                 display: none;
             }
+            
+            .header-top-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1137,6 +1240,24 @@
             .footer-actions {
                 flex-direction: column;
             }
+            
+            .digital-clock {
+                padding: 8px 14px;
+            }
+            
+            .clock-display {
+                font-size: 0.8rem;
+            }
+            
+            .panel-icon-wrapper {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .icon-custom {
+                width: 40px;
+                height: 40px;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1157,7 +1278,7 @@
     <div class="modal-overlay" id="waModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('waModal')">&times;</button>
-            <div style="font-size:48px; margin-bottom:10px;">&#128172;</div>
+            <img src="icon-whatsapp.png" alt="WhatsApp" class="modal-icon" onerror="this.style.display='none'">
             <h3 class="modal-title">Hubungi Kami</h3>
             <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px; text-align: center;">Adakah yang bisa kami bantu?</p>
             <div class="modal-btns">
@@ -1170,7 +1291,7 @@
     <div class="modal-overlay" id="passwordModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('passwordModal')">&times;</button>
-            <div style="font-size:48px; margin-bottom:10px;">&#128274;</div>
+            <img src="icon-lock.png" alt="Lock" class="modal-icon" onerror="this.style.display='none'">
             <h3 class="modal-title">Akses Terbatas</h3>
             <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px; text-align: center;">Masukkan kode untuk menambah acara.</p>
             <div style="margin-top: 15px;">
@@ -1186,7 +1307,7 @@
     <div class="modal-overlay" id="eventModal">
         <div class="modal-box" style="width: 340px;">
             <button class="modal-close" onclick="closeModal('eventModal')">&times;</button>
-            <div style="font-size:48px; margin-bottom:10px;">&#128197;</div>
+            <img src="icon-calendar.png" alt="Calendar" class="modal-icon" onerror="this.style.display='none'">
             <h3 class="modal-title">Tambah Acara Baru</h3>
             <div style="margin-top: 15px; text-align: left;">
                 <div class="input-group">
@@ -1200,7 +1321,7 @@
                 <div class="input-group">
                     <label>Link Gambar Poster (Wajib "Anyone with the link")</label>
                     <input type="text" id="evImg" class="input-field" placeholder="Link Google Drive gambar (JPG/PNG)">
-                    <div class="input-hint" style="color: var(--accent-gold);">PENTING: Pastikan file di Google Drive sudah di-Share ke "Anyone with the link".</div>
+                    <div class="input-hint" style="color: var(--accent-purple-dark);">PENTING: Pastikan file di Google Drive sudah di-Share ke "Anyone with the link".</div>
                 </div>
                 <div class="input-group">
                     <label>Link Tujuan Poster (Opsional)</label>
@@ -1219,7 +1340,6 @@
         </div>
     </div>
     
-    <!-- Loading Modal -->
     <div class="modal-overlay" id="loadingModal">
          <div class="modal-box" style="padding: 20px;">
              <button class="modal-close" onclick="closeModal('loadingModal')">&times;</button>
@@ -1327,7 +1447,7 @@
             <div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div>
             <div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div>
             <div class="credits-section"><p style="font-size: 36px; font-weight: 800; letter-spacing: 4px;">TERIMA KASIH</p></div>
-            <div class="credits-footer"><p>&copy; 2026 asahginjal</p></div>
+            <div class="credits-footer"><p>&copy; 2026 PAMONG AKSI</p></div>
             <div style="height: 200px;"></div>
         </div>
     </div>
@@ -1349,9 +1469,24 @@
             <div class="header-bg" style="background-image: url('banner-saya.png');"></div>
             <div class="header-overlay"></div>
             <div class="header-content">
-                <div class="header-badge">&#127914; Platform Edukasi Kesehatan Ginjal</div>
-                <h1 class="header-title">ASAHGINJAL</h1>
-                <p class="header-subtitle">Komunitas dan Edukasi Kesehatan Ginjal Terpadu</p>
+                <!-- Header Top Row: Clock & Guide -->
+                <div class="header-top-row">
+                    <div class="digital-clock">
+                        <img src="icon-clock.png" alt="Clock" class="clock-icon" onerror="this.style.display='none'">
+                        <div>
+                            <div class="clock-display" id="clockTime">--:--:--</div>
+                            <div class="clock-date" id="clockDate">--, -- --- ----</div>
+                        </div>
+                    </div>
+                    
+                    <button class="guide-btn" onclick="startTour()">
+                        <img src="icon-book.png" alt="Guide" class="guide-icon" onerror="this.style.display='none'">
+                        Panduan
+                    </button>
+                </div>
+
+                <h1 class="header-title">PAMONG AKSI</h1>
+                <p class="header-subtitle">Platform Monitoring Akses dan Edukasi</p>
                 
                 <!-- Marquee -->
                 <div class="marquee-container">
@@ -1384,7 +1519,8 @@
                 </div>
                 
                 <button class="event-link-btn" onclick="openModal('passwordModal')">
-                    &#128197; Tambah Acara Baru
+                    <img src="icon-calendar-add.png" alt="Add" class="btn-icon" onerror="this.style.display='none'">
+                    Tambah Acara Baru
                 </button>
             </div>
         </div>
@@ -1394,12 +1530,17 @@
             
             <!-- Panel 1: CVC -->
             <div class="panel-card" id="tour-step-1">
-                <div class="panel-icon-wrapper red">&#129656;</div>
+                <div class="panel-icon-wrapper red">
+                    <img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'">
+                </div>
                 <h2 class="panel-title">MONITORING CVC</h2>
                 <p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p>
                 
                 <div class="literature-box">
-                    <div class="literature-title">&#128218; Sumber Literatur Terpercaya</div>
+                    <div class="literature-title">
+                        <img src="icon-book-small.png" alt="Book" class="literature-title-icon" onerror="this.style.display='none'">
+                        Sumber Literatur Terpercaya
+                    </div>
                     <div class="literature-item">
                         <span class="literature-bullet">&#9679;</span>
                         <span>Centers for Disease Control and Prevention (CDC) - Guidelines for the Prevention of Intravascular Catheter-Related Infection (2023)</span>
@@ -1415,18 +1556,26 @@
                 </div>
                 
                 <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="openModal('cvcModal')">&#128270; Mulai Screening</button>
+                    <button class="btn btn-primary" onclick="openModal('cvcModal')">
+                        <img src="icon-search.png" alt="Search" class="btn-icon" onerror="this.style.display='none'">
+                        Mulai Screening
+                    </button>
                 </div>
             </div>
 
             <!-- Panel 2: AV-Shunt -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper gold">&#128140;</div>
+                <div class="panel-icon-wrapper gold">
+                    <img src="icon-avshunt.png" alt="AV-Shunt" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%237c3aed%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%235b21b6%22 font-size=%2212%22 font-weight=%22bold%22>AV</text></svg>'">
+                </div>
                 <h2 class="panel-title">MONITORING AV-SHUNT</h2>
                 <p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p>
                 
                 <div class="literature-box">
-                    <div class="literature-title">&#128218; Sumber Literatur Terpercaya</div>
+                    <div class="literature-title">
+                        <img src="icon-book-small.png" alt="Book" class="literature-title-icon" onerror="this.style.display='none'">
+                        Sumber Literatur Terpercaya
+                    </div>
                     <div class="literature-item">
                         <span class="literature-bullet">&#9679;</span>
                         <span>National Kidney Foundation (NKF) - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span>
@@ -1442,18 +1591,26 @@
                 </div>
                 
                 <div class="panel-actions">
-                    <button class="btn btn-gold" onclick="openModal('avModal')">&#128270; Mulai Screening</button>
+                    <button class="btn btn-gold" onclick="openModal('avModal')">
+                        <img src="icon-search.png" alt="Search" class="btn-icon" onerror="this.style.display='none'">
+                        Mulai Screening
+                    </button>
                 </div>
             </div>
 
             <!-- Panel 3: Edukasi -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper teal">&#127891;</div>
+                <div class="panel-icon-wrapper teal">
+                    <img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'">
+                </div>
                 <h2 class="panel-title">EDUKASI</h2>
                 <p class="panel-subtitle">Akses materi presentasi, video edukasi, dan komik kesehatan ginjal yang telah dikurasi.</p>
                 
                 <div class="literature-box">
-                    <div class="literature-title">&#127909; Konten Edukasi Tersedia</div>
+                    <div class="literature-title">
+                        <img src="icon-video.png" alt="Video" class="literature-title-icon" onerror="this.style.display='none'">
+                        Konten Edukasi Tersedia
+                    </div>
                     <div class="literature-item">
                         <span class="literature-bullet">&#9679;</span>
                         <span>Video Edukasi Perawatan CVC</span>
@@ -1473,18 +1630,26 @@
                 </div>
                 
                 <div class="panel-actions">
-                    <a href="https://drive.google.com/file/d/16_RQIDh7VcxzXJw_-dmkdnAANP0pZg8x/view?usp=sharing" target="_blank" class="btn btn-secondary" style="text-decoration: none;">&#128214; Lihat Video CVC</a>
+                    <a href="https://drive.google.com/file/d/16_RQIDh7VcxzXJw_-dmkdnAANP0pZg8x/view?usp=sharing" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                        <img src="icon-play.png" alt="Play" class="btn-icon" onerror="this.style.display='none'">
+                        Lihat Video CVC
+                    </a>
                 </div>
             </div>
 
             <!-- Panel 4: Konsultasi -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper purple">&#128172;</div>
+                <div class="panel-icon-wrapper purple">
+                    <img src="icon-consultation.png" alt="Konsultasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%238b5cf6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%237c3aed%22 font-size=%2214%22 font-weight=%22bold%22>KON</text></svg>'">
+                </div>
                 <h2 class="panel-title">KONSULTASI</h2>
                 <p class="panel-subtitle">Hubungi Admin Pendamping untuk konsultasi lebih lanjut mengenai perawatan dan edukasi.</p>
                 
                 <div class="literature-box">
-                    <div class="literature-title">&#128101; Tim Konsultasi</div>
+                    <div class="literature-title">
+                        <img src="icon-team.png" alt="Team" class="literature-title-icon" onerror="this.style.display='none'">
+                        Tim Konsultasi
+                    </div>
                     <div class="literature-item">
                         <span class="literature-bullet">&#9679;</span>
                         <span><a href="#" onclick="confirmWA('6282227707573', 'Riza A'); return false;" style="color: var(--text-muted); text-decoration: none;">Riza A - Admin Pendamping</a></span>
@@ -1504,7 +1669,10 @@
                 </div>
                 
                 <div class="panel-actions">
-                    <button class="btn btn-secondary" onclick="confirmWA('6282227707573', 'Admin')">&#128222; Hubungi Admin</button>
+                    <button class="btn btn-secondary" onclick="confirmWA('6282227707573', 'Admin')">
+                        <img src="icon-phone.png" alt="Phone" class="btn-icon" onerror="this.style.display='none'">
+                        Hubungi Admin
+                    </button>
                 </div>
             </div>
         </div>
@@ -1512,10 +1680,12 @@
         <!-- Panel Footer -->
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info">
-                <div class="footer-icon">&#9432;</div>
+                <div class="footer-icon">
+                    <img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'">
+                </div>
                 <div class="footer-text">
                     <h3>INFO APLIKASI</h3>
-                    <p>asahginjal - Platform edukasi kesehatan ginjal oleh TIM INOCA RSSA</p>
+                    <p>PAMONG AKSI - Platform Monitoring Akses dan Edukasi oleh TIM INOCA RSSA</p>
                 </div>
             </div>
             <div class="footer-stats">
@@ -1529,8 +1699,14 @@
                 </div>
             </div>
             <div class="footer-actions">
-                <button class="btn btn-secondary" onclick="startTour()">&#128270; Panduan</button>
-                <button class="btn btn-gold" onclick="startCredits()">&#9432; Info Lengkap</button>
+                <button class="btn btn-secondary" onclick="startTour()">
+                    <img src="icon-guide.png" alt="Guide" class="btn-icon" onerror="this.style.display='none'">
+                    Panduan
+                </button>
+                <button class="btn btn-gold" onclick="startCredits()">
+                    <img src="icon-info-white.png" alt="Info" class="btn-icon" onerror="this.style.display='none'">
+                    Info Lengkap
+                </button>
             </div>
         </div>
     </div>
@@ -1558,6 +1734,27 @@
         { name: 'Hesty', phone: '6282124700093' },
         { name: 'Rinda', phone: '6285210622568' }
     ];
+
+    // --- DIGITAL CLOCK ---
+    function updateClock() {
+        const now = new Date();
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        
+        const day = days[now.getDay()];
+        const date = now.getDate();
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds}`;
+        document.getElementById('clockDate').textContent = `${day}, ${date} ${month} ${year}`;
+    }
+    
+    setInterval(updateClock, 1000);
+    updateClock();
 
     // --- ANIMATED COUNTER ---
     function animateValue(id, start, end, duration) {
@@ -1646,7 +1843,7 @@
         const urlRegex = /(https?:\/\/[^\s<]+)/g;
         const escapedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
         return escapedText.replace(urlRegex, function(url) {
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal-light); text-decoration: underline;">' + url + '</a>';
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple); text-decoration: underline;">' + url + '</a>';
         });
     }
 
@@ -1720,7 +1917,7 @@
 
     // --- TOUR LOGIC ---
     const tourSteps = [
-        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Selamat datang di pusat edukasi kesehatan ginjal terlengkap.', },
+        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Selamat datang di PAMONG AKSI - Platform Monitoring Akses dan Edukasi.', },
         { element: '#tour-step-info', title: 'Perkenalan Aplikasi', desc: 'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.', },
         { element: '#tour-step-1', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', }
     ];
