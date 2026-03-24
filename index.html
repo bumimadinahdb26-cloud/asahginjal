@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAMONG AKSI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MONIKA - Monitoring dan Edukasi Akses Dialysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #f3f4f6;
@@ -31,6 +31,8 @@
             --color-danger: #dc2626;
             --color-warning: #f59e0b;
             --color-success: #10b981;
+            --accent-cyan: #06b6d4;
+            --accent-cyan-light: #22d3ee;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -79,7 +81,7 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            min-height: 280px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -107,9 +109,9 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(255, 255, 255, 0.8) 40%,
-                rgba(255, 255, 255, 0.4) 70%,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.85) 40%,
+                rgba(255, 255, 255, 0.5) 70%,
                 transparent 100%
             );
         }
@@ -120,7 +122,7 @@
             padding: 30px;
         }
 
-        /* Header Top Row - Clock & Guide */
+        /* Header Top Row - Clock, Username & Guide */
         .header-top-row {
             display: flex;
             align-items: center;
@@ -130,35 +132,116 @@
             gap: 12px;
         }
 
-        /* Digital Clock */
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Digital Clock - Mencolok */
         .digital-clock {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(220, 38, 38, 0.05));
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 12px 20px;
+            border-radius: 16px;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 
+                0 0 20px rgba(6, 182, 212, 0.4),
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .digital-clock::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan-light), transparent);
         }
 
         .clock-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 8px var(--accent-cyan-light));
         }
 
         .clock-display {
             font-family: 'Orbitron', monospace;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-purple-dark);
-            letter-spacing: 1px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan-light), #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
         }
 
         .clock-date {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .clock-pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan-light);
+            border-radius: 50%;
+            animation: clockPulse 1s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--accent-cyan-light);
+        }
+
+        @keyframes clockPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* Username Input */
+        .username-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.05));
+            padding: 10px 16px;
+            border-radius: 14px;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .username-container:focus-within {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
+        }
+
+        .username-icon {
+            width: 22px;
+            height: 22px;
+            opacity: 0.7;
+        }
+
+        .username-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-white);
+            font-family: 'DM Sans', sans-serif;
+            width: 140px;
+        }
+
+        .username-input::placeholder {
+            color: var(--accent-purple);
+            opacity: 0.7;
         }
 
         /* Guide Button */
@@ -168,8 +251,8 @@
             gap: 8px;
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
             color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 12px 22px;
+            border-radius: 14px;
             font-weight: 600;
             font-size: 0.85rem;
             text-decoration: none;
@@ -191,51 +274,59 @@
 
         .header-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             line-height: 1;
-            letter-spacing: 2px;
-            color: var(--text-white);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 8px;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--accent-purple-dark), var(--accent-red-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
         }
 
         .header-subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--accent-purple-dark);
             margin-bottom: 16px;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         /* Marquee */
         .marquee-container {
             background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
-            padding: 12px 0;
-            border-radius: 8px;
+            padding: 14px 0;
+            border-radius: 12px;
             overflow: hidden;
             margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
         }
 
         .marquee-track {
             display: flex;
-            animation: marquee 30s linear infinite;
+            animation: marquee 40s linear infinite;
         }
 
         .marquee-content {
             display: flex;
-            gap: 50px;
-            padding-right: 50px;
+            gap: 60px;
+            padding-right: 60px;
             white-space: nowrap;
         }
 
         .marquee-item {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .marquee-separator {
             color: #ffffff;
+            opacity: 0.6;
+            font-size: 0.8rem;
         }
 
         @keyframes marquee {
@@ -1187,6 +1278,31 @@
             100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; }
         }
 
+        /* Welcome Message */
+        .welcome-message {
+            font-size: 0.9rem;
+            color: var(--accent-purple-dark);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        .welcome-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .panel-grid {
@@ -1194,7 +1310,7 @@
             }
             
             .header-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .footer-stats {
@@ -1205,6 +1321,11 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .header-left-group {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1213,7 +1334,7 @@
             }
             
             .panel-header {
-                min-height: 220px;
+                min-height: 240px;
             }
             
             .header-content {
@@ -1221,7 +1342,7 @@
             }
             
             .header-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .panel-card {
@@ -1242,11 +1363,11 @@
             }
             
             .digital-clock {
-                padding: 8px 14px;
+                padding: 10px 14px;
             }
             
             .clock-display {
-                font-size: 0.8rem;
+                font-size: 0.95rem;
             }
             
             .panel-icon-wrapper {
@@ -1257,6 +1378,14 @@
             .icon-custom {
                 width: 40px;
                 height: 40px;
+            }
+
+            .username-input {
+                width: 100px;
+            }
+
+            .marquee-item {
+                font-size: 0.85rem;
             }
         }
 
@@ -1447,7 +1576,7 @@
             <div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div>
             <div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div>
             <div class="credits-section"><p style="font-size: 36px; font-weight: 800; letter-spacing: 4px;">TERIMA KASIH</p></div>
-            <div class="credits-footer"><p>&copy; 2026 PAMONG AKSI</p></div>
+            <div class="credits-footer"><p>&copy; 2026 MONIKA - Monitoring dan Edukasi Akses Dialysis</p></div>
             <div style="height: 200px;"></div>
         </div>
     </div>
@@ -1469,13 +1598,23 @@
             <div class="header-bg" style="background-image: url('banner-saya.png');"></div>
             <div class="header-overlay"></div>
             <div class="header-content">
-                <!-- Header Top Row: Clock & Guide -->
+                <!-- Header Top Row: Clock, Username & Guide -->
                 <div class="header-top-row">
-                    <div class="digital-clock">
-                        <img src="icon-clock.png" alt="Clock" class="clock-icon" onerror="this.style.display='none'">
-                        <div>
-                            <div class="clock-display" id="clockTime">--:--:--</div>
-                            <div class="clock-date" id="clockDate">--, -- --- ----</div>
+                    <div class="header-left-group">
+                        <!-- Digital Clock - Mencolok -->
+                        <div class="digital-clock">
+                            <img src="icon-clock.png" alt="Clock" class="clock-icon" onerror="this.style.display='none'">
+                            <div>
+                                <div class="clock-display" id="clockTime">--:--:--</div>
+                                <div class="clock-date" id="clockDate">--, -- --- ----</div>
+                            </div>
+                            <div class="clock-pulse"></div>
+                        </div>
+                        
+                        <!-- Username Input -->
+                        <div class="username-container">
+                            <img src="icon-user.png" alt="User" class="username-icon" onerror="this.style.display='none'">
+                            <input type="text" id="usernameInput" class="username-input" placeholder="Nama Anda..." maxlength="30">
                         </div>
                     </div>
                     
@@ -1485,34 +1624,41 @@
                     </button>
                 </div>
 
-                <h1 class="header-title">PAMONG AKSI</h1>
-                <p class="header-subtitle">Platform Monitoring Akses dan Edukasi</p>
+                <!-- Welcome Message -->
+                <div class="welcome-message" id="welcomeMessage"></div>
+
+                <h1 class="header-title">MONIKA</h1>
+                <p class="header-subtitle">Monitoring dan Edukasi Akses Dialysis</p>
                 
-                <!-- Marquee -->
+                <!-- Marquee - Slogan & Nasihat Kesehatan Akses Vaskular -->
                 <div class="marquee-container">
                     <div class="marquee-track">
                         <div class="marquee-content">
-                            <span class="marquee-item">CVC - Central Venous Catheter</span>
+                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">AV-Shunt - Arteriovenous Fistula</span>
+                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Edukasi Pasien HD</span>
+                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Perawatan Kateter Darah</span>
+                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Penilaian Risiko Infeksi</span>
+                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
                             <span class="marquee-separator">&#9670;</span>
                         </div>
                         <div class="marquee-content">
-                            <span class="marquee-item">CVC - Central Venous Catheter</span>
+                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">AV-Shunt - Arteriovenous Fistula</span>
+                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Edukasi Pasien HD</span>
+                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Perawatan Kateter Darah</span>
+                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
                             <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Penilaian Risiko Infeksi</span>
+                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
                             <span class="marquee-separator">&#9670;</span>
                         </div>
                     </div>
@@ -1685,7 +1831,7 @@
                 </div>
                 <div class="footer-text">
                     <h3>INFO APLIKASI</h3>
-                    <p>PAMONG AKSI - Platform Monitoring Akses dan Edukasi oleh TIM INOCA RSSA</p>
+                    <p>MONIKA - Monitoring dan Edukasi Akses Dialysis oleh TIM INOCA RSSA</p>
                 </div>
             </div>
             <div class="footer-stats">
@@ -1726,6 +1872,8 @@
     const creditsContent = document.getElementById('creditsContent');
     const bgMusic = document.getElementById('bgMusic');
     const starContainer = document.getElementById('starContainer');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const usernameInput = document.getElementById('usernameInput');
 
     // --- DATA KONTAK ---
     const assessmentContacts = [
@@ -1755,6 +1903,38 @@
     
     setInterval(updateClock, 1000);
     updateClock();
+
+    // --- USERNAME HANDLER ---
+    function handleUsername() {
+        const savedUsername = localStorage.getItem('monika_username');
+        if (savedUsername) {
+            usernameInput.value = savedUsername;
+            showWelcomeMessage(savedUsername);
+        }
+    }
+
+    function showWelcomeMessage(name) {
+        if (name && name.trim()) {
+            const greetings = ['Selamat Datang', 'Halo', 'Salam Sehat'];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            welcomeMessage.textContent = `${randomGreeting}, ${name}!`;
+            welcomeMessage.classList.add('show');
+        } else {
+            welcomeMessage.classList.remove('show');
+        }
+    }
+
+    usernameInput.addEventListener('input', function() {
+        const name = this.value.trim();
+        localStorage.setItem('monika_username', name);
+        showWelcomeMessage(name);
+    });
+
+    usernameInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            this.blur();
+        }
+    });
 
     // --- ANIMATED COUNTER ---
     function animateValue(id, start, end, duration) {
@@ -1917,7 +2097,7 @@
 
     // --- TOUR LOGIC ---
     const tourSteps = [
-        { element: '#tour-step-0', title: 'Selamat Datang!', desc: 'Selamat datang di PAMONG AKSI - Platform Monitoring Akses dan Edukasi.', },
+        { element: '#tour-step-0', title: 'Selamat Datang di MONIKA!', desc: 'Monitoring dan Edukasi Akses Dialysis - Platform untuk memantau kesehatan akses vaskular Anda.', },
         { element: '#tour-step-info', title: 'Perkenalan Aplikasi', desc: 'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.', },
         { element: '#tour-step-1', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', }
     ];
@@ -2104,6 +2284,7 @@
     // --- INIT ON LOAD ---
     window.addEventListener('load', () => {
         animateValue('statCount', 0, 1247, 2000);
+        handleUsername();
     });
 
     </script>
