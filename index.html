@@ -8,2287 +8,333 @@
     <style>
         :root {
             --bg-dark: #f3f4f6;
-            --bg-darker: #e5e7eb;
             --bg-card: #ffffff;
-            --bg-elevated: #f9fafb;
-            --accent-red: #dc2626;
-            --accent-red-dark: #991b1b;
-            --accent-red-light: #fca5a5;
             --accent-purple: #7c3aed;
             --accent-purple-dark: #5b21b6;
-            --accent-purple-light: #a78bfa;
-            --accent-gold: #7c3aed;
-            --accent-gold-light: #a78bfa;
-            --text-cream: #1f2937;
-            --text-white: #111827;
-            --text-muted: #6b7280;
-            --text-dark: #1e293b;
-            --border-gold: rgba(124, 58, 237, 0.3);
-            --border-subtle: rgba(0, 0, 0, 0.08);
             --accent-teal: #14b8a6;
-            --accent-teal-light: #2dd4bf;
             --accent-teal-dark: #0d9488;
-            --color-danger: #dc2626;
-            --color-warning: #f59e0b;
-            --color-success: #10b981;
             --accent-cyan: #06b6d4;
-            --accent-cyan-light: #22d3ee;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-gold: rgba(124, 58, 237, 0.3);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg-dark);
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--text-cream);
+            color: var(--text-dark);
         }
-
-        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
-
         .bg-pattern {
-            position: fixed;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(220, 38, 38, 0.06) 0%, transparent 50%),
-                linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
+            position: fixed; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                        linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%);
             z-index: -2;
         }
+        .main-container { max-width: 1400px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 
-        .noise-overlay {
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.02;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* Panel Header */
+        /* HEADER */
         .panel-header {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.1),
-                inset 0 0 100px rgba(0, 0, 0, 0.1);
-            border: 2px solid var(--border-gold);
+            position: relative; border-radius: 20px; overflow: hidden; min-height: 320px;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            border: 2px solid var(--border-gold); box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
+        .header-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.9); }
+        .header-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 40%, transparent 100%); }
+        .header-content { position: relative; z-index: 2; padding: 30px; }
+        
+        .header-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+        .header-left-group { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
-        .header-bg {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 10s ease;
-            filter: brightness(0.9);
-        }
+        /* Clock */
+        .digital-clock { display: flex; align-items: center; gap: 12px; background: transparent; padding: 12px 20px; border-radius: 16px; border: 2px solid var(--accent-cyan); }
+        .clock-display { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); }
 
-        .panel-header:hover .header-bg {
-            transform: scale(1.05);
-        }
-
-        .header-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(255, 255, 255, 0.98) 0%,
-                rgba(255, 255, 255, 0.85) 40%,
-                rgba(255, 255, 255, 0.5) 70%,
-                transparent 100%
-            );
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px;
-        }
-
-        /* Header Top Row - Clock, Username & Guide */
-        .header-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .header-left-group {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* Digital Clock - Transparan & Mencolok */
-        .digital-clock {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            /* Background diubah menjadi transparan */
-            background: transparent;
-            padding: 12px 20px;
-            border-radius: 16px;
-            border: 2px solid var(--accent-cyan);
-            box-shadow: 
-                0 0 15px rgba(6, 182, 212, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .digital-clock::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan-light), transparent);
-        }
-
-        .clock-icon {
-            width: 28px;
-            height: 28px;
-            filter: drop-shadow(0 0 8px var(--accent-cyan-light));
-        }
-
-        .clock-display {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-cyan), #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
-        }
-
-        .clock-date {
-            font-size: 0.75rem;
-            color: var(--accent-cyan-dark);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .clock-pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-cyan-light);
-            border-radius: 50%;
-            animation: clockPulse 1s ease-in-out infinite;
-            box-shadow: 0 0 10px var(--accent-cyan-light);
-        }
-
-        @keyframes clockPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        /* Username Input */
-        .username-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.05));
-            padding: 10px 16px;
-            border-radius: 14px;
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .username-container:focus-within {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
-        }
-
-        .username-icon {
-            width: 22px;
-            height: 22px;
-            opacity: 0.7;
-        }
-
-        .username-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-white);
-            font-family: 'DM Sans', sans-serif;
-            width: 140px;
-        }
-
-        .username-input::placeholder {
-            color: var(--accent-purple);
-            opacity: 0.7;
-        }
-
-        /* Guide Button - Transparan */
-        .guide-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            /* Background diubah menjadi transparan */
-            background: transparent;
-            color: var(--accent-purple-dark);
-            padding: 12px 22px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: none;
-            /* Border ditambahkan agar terlihat outline */
-            border: 2px solid var(--accent-purple);
-            cursor: pointer;
-        }
-
-        .guide-btn:hover {
-            transform: translateY(-2px);
-            background: rgba(124, 58, 237, 0.1);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2);
-        }
-
-        .guide-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .header-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            line-height: 1;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, var(--accent-purple-dark), var(--accent-red-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-        }
-
-        .header-subtitle {
-            font-size: 1.1rem;
-            color: var(--accent-purple-dark);
-            margin-bottom: 16px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* Marquee */
-        .marquee-container {
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
-            padding: 14px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
-        }
-
-        .marquee-track {
-            display: flex;
-            /* Diubah dari 40s menjadi 20s untuk kecepatan 2x lipat */
-            animation: marquee 20s linear infinite;
-        }
-
-        .marquee-content {
-            display: flex;
-            gap: 60px;
-            padding-right: 60px;
-            white-space: nowrap;
-        }
-
-        .marquee-item {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .marquee-separator {
-            color: #ffffff;
-            opacity: 0.6;
-            font-size: 0.8rem;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .event-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .event-link-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.4);
-        }
-
-        /* Panel Grid */
-        .panel-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            flex: 1;
-        }
-
-        .panel-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 2px solid var(--border-subtle);
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .panel-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .panel-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .panel-card:hover {
-            border-color: var(--border-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
-        }
-
-        /* Icon Wrapper for Custom Images */
-        .panel-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            position: relative;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .panel-card:hover .panel-icon-wrapper {
-            transform: scale(1.05);
-        }
-
-        .panel-icon-wrapper.red {
-            background: linear-gradient(145deg, #fff5f5, #ffe0e0);
-            box-shadow: 
-                8px 8px 20px rgba(220, 38, 38, 0.15),
-                -4px -4px 15px rgba(255, 255, 255, 0.8);
-        }
-
-        .panel-icon-wrapper.gold {
-            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
-            box-shadow: 
-                8px 8px 20px rgba(124, 58, 237, 0.15),
-                -4px -4px 15px rgba(255, 255, 255, 0.8);
-        }
-
-        .panel-icon-wrapper.teal {
-            background: linear-gradient(145deg, #f0fdfa, #ccfbf1);
-            box-shadow: 
-                8px 8px 20px rgba(20, 184, 166, 0.15),
-                -4px -4px 15px rgba(255, 255, 255, 0.8);
-        }
-
-        .panel-icon-wrapper.purple {
-            background: linear-gradient(145deg, #faf5ff, #f3e8ff);
-            box-shadow: 
-                8px 8px 20px rgba(139, 92, 246, 0.15),
-                -4px -4px 15px rgba(255, 255, 255, 0.8);
-        }
-
-        /* Custom Icon Image */
-        .icon-custom {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
-            transition: transform 0.3s ease;
-        }
-
-        .panel-card:hover .icon-custom {
-            transform: scale(1.1) rotate(3deg);
-        }
-
-        .panel-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            color: var(--text-white);
-            margin-bottom: 8px;
-        }
-
-        .panel-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        /* Literature Box */
-        .literature-box {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 16px;
-        }
-
-        .literature-title {
-            font-size: 0.7rem;
-            color: var(--accent-purple-dark);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .literature-title-icon {
-            width: 14px;
-            height: 14px;
-        }
-
-        .literature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 8px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        .literature-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .literature-bullet {
-            color: var(--accent-purple);
-            flex-shrink: 0;
-        }
-
-        .literature-link {
-            color: var(--accent-purple);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .literature-link:hover {
-            color: var(--accent-purple-dark);
-            text-decoration: underline;
-        }
-
-        .panel-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-
+        /* Login Button */
+        .user-login-btn { display: flex; align-items: center; gap: 10px; background: rgba(124, 58, 237, 0.1); padding: 10px 18px; border-radius: 14px; border: 2px solid rgba(124, 58, 237, 0.3); cursor: pointer; transition: all 0.3s; }
+        .user-login-btn:hover { border-color: var(--accent-purple); }
+        .user-login-btn.logged-in { background: rgba(20, 184, 166, 0.1); border-color: rgba(20, 184, 166, 0.4); }
+        .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.85rem; display: none; }
+        
         /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.35);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-purple);
-            color: var(--accent-purple-dark);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(124, 58, 237, 0.1);
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
-        }
-
-        .btn-icon {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Panel Footer */
-        .panel-footer {
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 2px solid var(--border-subtle);
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .panel-footer:hover {
-            border-color: var(--border-gold);
-        }
-
-        .footer-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 
-                6px 6px 15px rgba(124, 58, 237, 0.15),
-                -3px -3px 10px rgba(255, 255, 255, 0.8);
-            overflow: hidden;
-        }
-
-        .footer-icon img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
-        }
-
-        .footer-text h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            color: var(--text-white);
-            margin-bottom: 4px;
-        }
-
-        .footer-text p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .footer-stats {
-            display: flex;
-            gap: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--accent-purple);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-actions {
-            display: flex;
-            gap: 12px;
-        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer; border: none; transition: all 0.3s; }
+        .btn-teal { background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark)); color: white; box-shadow: 0 8px 30px rgba(20,184,166,0.3); }
+        .discussion-link-btn { background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark)); color: white; padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; text-decoration: none; box-shadow: 0 8px 30px rgba(20,184,166,0.3); cursor: pointer; border: none; }
 
         /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-box {
-            background: var(--bg-card);
-            border: 2px solid var(--border-gold);
-            padding: 30px;
-            border-radius: 20px;
-            width: 380px;
-            max-width: 90vw;
-            max-height: 85vh;
-            overflow-y: auto;
-            transform: scale(0.9);
-            transition: transform 0.3s;
-            position: relative;
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--text-white);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--bg-elevated);
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: var(--accent-red);
-            color: #ffffff;
-        }
-
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .modal-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            font-size: 13px;
-            text-decoration: none;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .modal-btn.yes {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
-            color: #ffffff;
-        }
-
-        .modal-btn.no {
-            background: var(--bg-elevated);
-            color: var(--text-muted);
-            border: 1px solid var(--border-subtle);
-        }
-
-        /* Modal Icon */
-        .modal-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 10px;
-            display: block;
-        }
-
-        /* Form Elements */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        
-        .input-field {
-            width: 100%;
-            background: var(--bg-elevated);
-            border: 2px solid var(--border-subtle);
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            color: var(--text-white);
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--accent-purple);
-        }
-
-        .input-field::placeholder {
-            color: var(--text-muted);
-        }
-
-        .input-group {
-            margin-bottom: 16px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--accent-purple-dark);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .input-hint {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 4px;
-            font-style: italic;
-        }
-
-        /* Checkbox & Radio */
-        .check-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            background: var(--bg-elevated);
-            border: 2px solid var(--border-subtle);
-            border-radius: 12px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-        }
-
-        .check-label:hover {
-            border-color: var(--accent-purple);
-        }
-
-        .check-label input {
-            display: none;
-        }
-
-        .check-box {
-            width: 22px;
-            height: 22px;
-            border: 2px solid var(--text-muted);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            flex-shrink: 0;
-            background: var(--bg-card);
-        }
-
-        .check-box.radio-style {
-            border-radius: 50%;
-        }
-
-        .check-label input:checked + .check-box {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-        }
-
-        .check-label input:checked + .check-box::after {
-            content: '✓';
-            font-size: 12px;
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        .check-label span {
-            font-size: 13px;
-            color: var(--text-cream);
-        }
-
-        .section-title-sm {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent-purple-dark);
-            margin: 16px 0 8px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section-divider {
-            height: 1px;
-            background: var(--border-subtle);
-            margin: 20px 0;
-        }
-
-        /* Score Display */
-        .score-display {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .score-circle {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 16px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid var(--border-subtle);
-            position: relative;
-            background: var(--bg-card);
-        }
-
-        .score-circle.low {
-            border-color: var(--accent-teal);
-            box-shadow: 0 0 30px rgba(20, 184, 166, 0.2);
-        }
-
-        .score-circle.medium {
-            border-color: var(--color-warning);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
-        }
-
-        .score-circle.high {
-            border-color: var(--accent-red);
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.2);
-        }
-
-        .score-value {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            color: var(--text-white);
-            line-height: 1;
-        }
-
-        .score-label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        /* Badges */
-        .badge {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .badge-success {
-            background: rgba(20, 184, 166, 0.15);
-            color: #0d9488;
-        }
-
-        .badge-warning {
-            background: rgba(245, 158, 11, 0.15);
-            color: #b45309;
-        }
-
-        .badge-danger {
-            background: rgba(220, 38, 38, 0.15);
-            color: #dc2626;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            border: 3px solid var(--border-subtle);
-            border-top: 3px solid var(--accent-purple);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* HOLOGRAM & TOUR STYLES */
-        .holo-container {
-            position: fixed;
-            bottom: 20px;
-            right: 15px;
-            width: 140px;
-            height: 220px;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px) scale(0.95);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s;
-            perspective: 1000px;
-        }
-
-        .holo-container.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .holo-base {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 25px;
-            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.6) 0%, rgba(124, 58, 237, 0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .holo-container.show .holo-base {
-            animation: basePulse 3s infinite ease-in-out;
-        }
-
-        .holo-beam {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 180px;
-            background: linear-gradient(to bottom, rgba(124, 58, 237, 0.15), transparent);
-            clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%);
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .holo-container.show .holo-beam {
-            opacity: 1;
-        }
-
-        .holo-body {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 180px;
-            transform-style: preserve-3d;
-            z-index: 2;
-        }
-
-        .holo-container.show .holo-body {
-            animation: holoFloat 6s infinite ease-in-out;
-        }
-
-        .holo-avatar {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9)) brightness(1.1) contrast(1.1);
-            mix-blend-mode: multiply;
-            opacity: 0.9;
-        }
-
-        .tour-tooltip {
-            position: fixed;
-            bottom: 130px;
-            right: 165px;
-            background: var(--bg-card);
-            padding: 18px 22px;
-            border-radius: 16px 16px 0 16px;
-            width: 260px;
-            max-width: calc(100% - 180px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid var(--border-gold);
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px) scale(0.95);
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .tour-tooltip.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .tour-tooltip h4 {
-            color: var(--accent-purple-dark);
-            margin-bottom: 6px;
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        .tour-tooltip p {
-            font-size: 13px;
-            margin-bottom: 0;
-            line-height: 1.5;
-            color: var(--text-muted);
-        }
-
-        .tour-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 9998;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-
-        .tour-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .tour-highlight {
-            position: fixed;
-            background: transparent;
-            border: 3px solid var(--accent-purple);
-            border-radius: 16px;
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .tour-highlight.animate {
-            animation: pulseRing 2s infinite;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @keyframes pulseRing {
-            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
-            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
-        }
-
-        @keyframes holoFloat {
-            0% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
-            25% { transform: translateX(-50%) translateY(-10px) rotateY(5deg); }
-            50% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
-            75% { transform: translateX(-50%) translateY(-10px) rotateY(-5deg); }
-            100% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
-        }
-
-        @keyframes basePulse {
-            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-
-        /* Credits Overlay */
-        .credits-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-            z-index: 10010;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1.5s ease;
-        }
-
-        .credits-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .credits-content {
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-family: 'Outfit', sans-serif;
-            padding: 0 24px;
-            padding-top: 100vh;
-            padding-bottom: 50px;
-            animation: scrollDown 150s linear forwards;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes scrollDown {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100%); }
-        }
-
-        .credits-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 5px;
-            margin-bottom: 80px;
-            text-transform: uppercase;
-            color: var(--accent-purple-light);
-        }
-
-        .credits-section {
-            margin-bottom: 100px;
-        }
-
-        .credits-section h3 {
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 24px;
-            opacity: 0.6;
-            font-weight: 400;
-        }
-
-        .credits-section p {
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 1.7;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .credits-section .role {
-            font-size: 16px;
-            opacity: 0.7;
-            margin-bottom: 12px;
-            font-weight: 400;
-            font-style: italic;
-        }
-
-        .credits-footer {
-            margin-top: 120px;
-            opacity: 0.5;
-            font-size: 14px;
-        }
-
-        .audio-hidden {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-
-        .star-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0;
-            animation: fallingStar linear infinite;
-        }
-
-        @keyframes fallingStar {
-            0% { transform: translateY(-10px) translateX(0) scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; }
-        }
-
-        /* Welcome Message */
-        .welcome-message {
-            font-size: 0.9rem;
-            color: var(--accent-purple-dark);
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: none;
-        }
-
-        .welcome-message.show {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .panel-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-title {
-                font-size: 2.8rem;
-            }
-            
-            .footer-stats {
-                display: none;
-            }
-            
-            .header-top-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .header-left-group {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .main-container {
-                padding: 12px;
-            }
-            
-            .panel-header {
-                min-height: 240px;
-            }
-            
-            .header-content {
-                padding: 20px;
-            }
-            
-            .header-title {
-                font-size: 2.2rem;
-            }
-            
-            .panel-card {
-                padding: 20px;
-            }
-            
-            .panel-title {
-                font-size: 1.4rem;
-            }
-            
-            .footer-info {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-actions {
-                flex-direction: column;
-            }
-            
-            .digital-clock {
-                padding: 10px 14px;
-            }
-            
-            .clock-display {
-                font-size: 0.95rem;
-            }
-            
-            .panel-icon-wrapper {
-                width: 65px;
-                height: 65px;
-            }
-            
-            .icon-custom {
-                width: 40px;
-                height: 40px;
-            }
-
-            .username-input {
-                width: 100px;
-            }
-
-            .marquee-item {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-box { background: var(--bg-card); border: 2px solid var(--border-gold); padding: 30px; border-radius: 20px; width: 380px; max-width: 90vw; max-height: 85vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s; position: relative; }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-close { position: absolute; top: 15px; right: 15px; width: 36px; height: 36px; border-radius: 50%; background: #f3f4f6; border: none; cursor: pointer; font-size: 18px; }
+        .input-field { width: 100%; background: #f9fafb; border: 2px solid var(--border-subtle); padding: 14px 16px; border-radius: 12px; font-size: 14px; margin-bottom: 16px; }
+
+        /* Discussion Specifics */
+        .discussion-modal { width: 95vw; max-width: 600px; height: 80vh; max-height: 700px; display: flex; flex-direction: column; }
+        .comments-list { flex: 1; overflow-y: auto; margin-bottom: 16px; }
+        .comment-item { background: #f9fafb; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+        .comment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .comment-text { font-size: 0.9rem; line-height: 1.5; }
+        .comment-input-area textarea { width: 100%; min-height: 80px; resize: vertical; background: #f9fafb; border: 2px solid var(--border-subtle); border-radius: 12px; padding: 12px; font-size: 0.9rem; font-family: inherit; }
+
+        /* Panel Footer */
+        .panel-footer { background: var(--bg-card); border-radius: 20px; border: 2px solid var(--border-subtle); padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
     </style>
 </head>
 <body>
-
     <div class="bg-pattern"></div>
-    <div class="noise-overlay"></div>
 
     <!-- MODALS -->
-    <div class="modal-overlay" id="waModal">
+    <div class="modal-overlay" id="loginModal">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('waModal')">&times;</button>
-            <img src="icon-whatsapp.png" alt="WhatsApp" class="modal-icon" onerror="this.style.display='none'">
-            <h3 class="modal-title">Hubungi Kami</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px; text-align: center;">Adakah yang bisa kami bantu?</p>
-            <div class="modal-btns">
-                <button class="modal-btn no" onclick="closeModal('waModal')">Batal</button>
-                <a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a>
-            </div>
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2 style="text-align:center; margin-bottom:20px; font-family:'Bebas Neue'; font-size:1.8rem;">Login</h2>
+            <p style="font-size:14px; color:var(--text-muted); text-align:center; margin-bottom:16px;">Masukkan nama untuk diskusi.</p>
+            <input type="text" id="loginNameInput" class="input-field" placeholder="Nama Anda...">
+            <button class="btn btn-teal" style="width:100%;" onclick="performLogin()">Masuk</button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="passwordModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('passwordModal')">&times;</button>
-            <img src="icon-lock.png" alt="Lock" class="modal-icon" onerror="this.style.display='none'">
-            <h3 class="modal-title">Akses Terbatas</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px; text-align: center;">Masukkan kode untuk menambah acara.</p>
-            <div style="margin-top: 15px;">
-                <input type="password" id="passwordInput" class="input-field" placeholder="Masukkan Kode..." style="text-align: center; letter-spacing: 5px;">
+    <div class="modal-overlay" id="discussionModal">
+        <div class="modal-box discussion-modal">
+            <button class="modal-close" onclick="closeModal('discussionModal')">&times;</button>
+            <h2 style="font-family:'Bebas Neue'; font-size:1.6rem; color:var(--accent-teal-dark);">Komentar & Diskusi</h2>
+            <div style="margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border-subtle);">
+                <span id="commentCount" style="background:var(--accent-teal); color:white; padding:4px 10px; border-radius:10px; font-size:0.8rem;">0</span>
             </div>
-            <div class="modal-btns">
-                <button class="modal-btn no" onclick="closeModal('passwordModal')">Batal</button>
-                <button class="modal-btn yes" onclick="checkPassword()">Lanjut</button>
-            </div>
+            <div class="comments-list" id="commentsList"></div>
+            <div class="comment-input-area" id="commentInputArea"></div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="eventModal">
-        <div class="modal-box" style="width: 340px;">
-            <button class="modal-close" onclick="closeModal('eventModal')">&times;</button>
-            <img src="icon-calendar.png" alt="Calendar" class="modal-icon" onerror="this.style.display='none'">
-            <h3 class="modal-title">Tambah Acara Baru</h3>
-            <div style="margin-top: 15px; text-align: left;">
-                <div class="input-group">
-                    <label>Judul Acara *</label>
-                    <input type="text" id="evTitle" class="input-field" placeholder="Nama acara...">
-                </div>
-                <div class="input-group">
-                    <label>Tanggal & Waktu *</label>
-                    <input type="text" id="evDate" class="input-field" placeholder="Mis: Kamis, 12 Maret 2026">
-                </div>
-                <div class="input-group">
-                    <label>Link Gambar Poster (Wajib "Anyone with the link")</label>
-                    <input type="text" id="evImg" class="input-field" placeholder="Link Google Drive gambar (JPG/PNG)">
-                    <div class="input-hint" style="color: var(--accent-purple-dark);">PENTING: Pastikan file di Google Drive sudah di-Share ke "Anyone with the link".</div>
-                </div>
-                <div class="input-group">
-                    <label>Link Tujuan Poster (Opsional)</label>
-                    <input type="text" id="evLink" class="input-field" placeholder="Link Zoom, pendaftaran, dll">
-                    <div class="input-hint">Alamat web yang terbuka saat poster diklik.</div>
-                </div>
-                <div class="input-group">
-                    <label>Deskripsi / Informasi Acara</label>
-                    <textarea id="evDesc" class="input-field" rows="5" placeholder="Detail acara..."></textarea>
-                </div>
-            </div>
-            <div class="modal-btns">
-                <button class="modal-btn no" onclick="closeModal('eventModal')">Batal</button>
-                <button class="modal-btn yes" onclick="saveEvent()">Simpan</button>
-            </div>
-        </div>
-    </div>
-    
     <div class="modal-overlay" id="loadingModal">
-         <div class="modal-box" style="padding: 20px;">
-             <button class="modal-close" onclick="closeModal('loadingModal')">&times;</button>
-             <div class="spinner"></div>
-             <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted); text-align: center;">Menyimpan data...</p>
-         </div>
-    </div>
-
-    <!-- CVC Modal -->
-    <div class="modal-overlay" id="cvcModal">
-        <div class="modal-box" style="position: relative;">
-            <button class="modal-close" onclick="closeModal('cvcModal')">&times;</button>
-            <h2 class="modal-title">Monitoring & Screening CVC</h2>
-            <div id="cvc-form">
-                <div class="grid-2">
-                    <div class="input-group"><label>ID Pasien</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: RM-001"></div>
-                    <div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div>
-                </div>
-                <div class="section-divider"></div>
-                <label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label>
-                <label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label>
-                <label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label>
-                <label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label>
-                <label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 16px;" onclick="calculateCVC()">Hitung Risiko</button>
-            </div>
-            <div id="cvc-result" style="display: none;">
-                <div class="score-display">
-                    <div class="score-circle" id="cvc-score-circle">
-                        <span class="score-value" id="score-val">0</span>
-                        <span class="score-label">Gejala</span>
-                    </div>
-                    <span id="risk-badge" class="badge badge-success">Aman</span>
-                    <p style="margin-top: 12px; font-size: 14px; color: var(--text-cream);" id="risk-msg">Tidak ada tanda masalah.</p>
-                </div>
-                <div id="cvc-critical-action" style="margin-top:14px;"></div>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 16px;" onclick="resetCVC()">Ulangi Pengecekan</button>
-            </div>
+        <div class="modal-box" style="padding:20px; text-align:center;">
+            <div class="spinner" style="margin:20px auto; border: 3px solid #f3f3f3; border-top: 3px solid var(--accent-teal); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;"></div>
+            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+            <p style="color:var(--text-muted);">Menyimpan...</p>
         </div>
     </div>
 
-    <!-- AV Modal -->
-    <div class="modal-overlay" id="avModal">
-        <div class="modal-box" style="position: relative;">
-            <button class="modal-close" onclick="closeModal('avModal')">&times;</button>
-            <h2 class="modal-title">Monitoring & Screening AV-Shunt</h2>
-            <div id="av-form">
-                <div class="input-group">
-                    <label>ID Pasien (Opsional)</label>
-                    <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
-                </div>
-                <div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div>
-                <label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label>
-                <label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label>
-                <label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label>
-
-                <div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div>
-                <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Rasakan getaran (thrill) di area shunt:</p>
-                <label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label>
-                <label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label>
-                <label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label>
-                
-                <label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label>
-
-                <div class="section-title-sm">3. Tanda Peringatan Lain</div>
-                <label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label>
-                <label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label>
-
-                <button class="btn btn-gold" style="width: 100%; margin-top: 20px;" onclick="calculateAV()">Cek Kondisi</button>
-            </div>
-            
-            <div id="av-result" style="display: none;">
-                <div class="score-display">
-                    <span id="av-badge" class="badge badge-success" style="font-size: 1rem; padding: 10px 24px;">BAIK</span>
-                    <p style="margin-top: 14px; font-weight: 600; color: var(--text-cream); font-size: 15px;" id="av-msg">Kondisi fistula baik.</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;" id="av-recom">Rekomendasi.</p>
-                </div>
-                <div id="av-critical-action" style="margin-top:16px;"></div>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 16px;" onclick="resetAV()">Cek Ulang</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- TOUR ELEMENTS -->
-    <div class="tour-overlay" id="tourOverlay"></div>
-    <div class="tour-highlight" id="tourHighlight"></div>
-    <div class="tour-tooltip" id="tourTooltip">
-        <h4 id="tooltipTitle">Judul</h4>
-        <p id="tooltipDesc">Deskripsi</p>
-    </div>
-
-    <!-- CREDITS OVERLAY -->
-    <div class="credits-overlay" id="creditsOverlay">
-        <audio id="bgMusic" class="audio-hidden" loop>
-            <source src="music.mp4" type="audio/mp4">
-        </audio>
-        <div class="star-container" id="starContainer"></div>
-        <div class="credits-content" id="creditsContent">
-            <div class="credits-title">TIM INOCA RSSA PROV. JATIM</div>
-            <div class="credits-section"><p>Jl. Jaksa Agung Suprapto No. 2, Malang<br>Jawa Timur, Kode Pos 65111</p></div>
-            <div class="credits-section"><h3>INSTALASI DIALISIS RSSA PROV. JATIM</h3></div>
-            <div class="credits-section"><div class="role">Penasihat</div><p>dr. Achmad Rifai, SpPD, K-GH FINASIM</p></div>
-            <div class="credits-section"><div class="role">Penanggung Jawab</div><p>Rini Hadriani, S.Kep.Ners</p></div>
-            <div class="credits-section"><div class="role">Ketua</div><p>Riza Arum A., S.Kep.Ners</p></div>
-            <div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div>
-            <div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div>
-            <div class="credits-section"><p style="font-size: 36px; font-weight: 800; letter-spacing: 4px;">TERIMA KASIH</p></div>
-            <div class="credits-footer"><p>&copy; 2026 MONIKA - Monitoring Kesehatan Akses Dialysis</p></div>
-            <div style="height: 200px;"></div>
-        </div>
-    </div>
-
-    <!-- HOLOGRAM ELEMENT -->
-    <div class="holo-container" id="holoContainer">
-        <div class="holo-beam"></div>
-        <div class="holo-base"></div>
-        <div class="holo-body">
-            <img src="dokter.gif" alt="AI Doctor" class="holo-avatar">
-        </div>
-    </div>
-
-    <!-- Main Container -->
+    <!-- MAIN CONTENT -->
     <div class="main-container">
-        
-        <!-- Panel Header -->
-        <div class="panel-header" id="tour-step-0">
+        <div class="panel-header">
             <div class="header-bg" style="background-image: url('banner-saya.png');"></div>
             <div class="header-overlay"></div>
             <div class="header-content">
-                <!-- Header Top Row: Clock, Username & Guide -->
                 <div class="header-top-row">
                     <div class="header-left-group">
-                        <!-- Digital Clock - Transparan -->
                         <div class="digital-clock">
-                            <img src="icon-clock.png" alt="Clock" class="clock-icon" onerror="this.style.display='none'">
-                            <div>
-                                <div class="clock-display" id="clockTime">--:--:--</div>
-                                <div class="clock-date" id="clockDate">--, -- --- ----</div>
-                            </div>
-                            <div class="clock-pulse"></div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <div class="clock-display" id="clockTime">--:--:--</div>
                         </div>
                         
-                        <!-- Username Input -->
-                        <div class="username-container">
-                            <img src="icon-user.png" alt="User" class="username-icon" onerror="this.style.display='none'">
-                            <input type="text" id="usernameInput" class="username-input" placeholder="Nama Anda..." maxlength="30">
+                        <!-- Tombol Login/Nama User -->
+                        <div class="user-login-btn" id="userLoginBtn" onclick="handleUserButtonClick()">
+                            <div class="user-avatar" id="userAvatar"></div>
+                            <span id="userBtnText">Login / Masuk</span>
                         </div>
                     </div>
-                    
-                    <!-- Tombol Panduan - Transparan -->
-                    <button class="guide-btn" onclick="startTour()">
-                        <img src="icon-book.png" alt="Guide" class="guide-icon" onerror="this.style.display='none'">
-                        Panduan
-                    </button>
-                </div>
-
-                <!-- Welcome Message -->
-                <div class="welcome-message" id="welcomeMessage"></div>
-
-                <h1 class="header-title">MONIKA</h1>
-                <p class="header-subtitle">Monitoring Kesehatan Akses Dialysis</p>
-                
-                <!-- Marquee - Cepat 2x lipat -->
-                <div class="marquee-container">
-                    <div class="marquee-track">
-                        <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
-                            <span class="marquee-separator">&#9670;</span>
-                        </div>
-                        <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
-                            <span class="marquee-separator">&#9670;</span>
-                        </div>
-                    </div>
+                    <button class="btn" style="background:transparent; border:2px solid var(--accent-purple); color:var(--accent-purple-dark);" onclick="alert('Panduan')">Panduan</button>
                 </div>
                 
-                <button class="event-link-btn" onclick="openModal('passwordModal')">
-                    <img src="icon-calendar-add.png" alt="Add" class="btn-icon" onerror="this.style.display='none'">
-                    Tambah Acara Baru
+                <h1 style="font-family:'Bebas Neue'; font-size:4rem; line-height:1; background:linear-gradient(135deg, var(--accent-purple-dark), #991b1b); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">MONIKA</h1>
+                <p style="color:var(--accent-purple-dark); font-weight:600; margin-bottom:20px;">Monitoring Kesehatan Akses Dialysis</p>
+                
+                <!-- Tombol Diskusi -->
+                <button class="discussion-link-btn" onclick="openDiscussion()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    Komentar dan Diskusi
                 </button>
             </div>
         </div>
 
-        <!-- Panel Grid -->
-        <div class="panel-grid">
-            
-            <!-- Panel 1: CVC -->
-            <div class="panel-card" id="tour-step-1">
-                <div class="panel-icon-wrapper red">
-                    <img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'">
+        <!-- Footer -->
+        <div class="panel-footer">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div style="width:50px; height:50px; border-radius:12px; background:linear-gradient(145deg, #f5f3ff, #ede9fe); display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
-                <h2 class="panel-title">MONITORING CVC</h2>
-                <p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p>
-                
-                <div class="literature-box">
-                    <div class="literature-title">
-                        <img src="icon-book-small.png" alt="Book" class="literature-title-icon" onerror="this.style.display='none'">
-                        Sumber Literatur Terpercaya
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Centers for Disease Control and Prevention (CDC) - Guidelines for the Prevention of Intravascular Catheter-Related Infection (2023)</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Kidney Disease Outcomes Quality Initiative (KDOQI) - Vascular Access Guidelines (2019 Update)</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Perdiali - Pedoman Perawatan Kateter HD, Perdosri (2021)</span>
-                    </div>
+                <div>
+                    <h3 style="font-family:'Bebas Neue'; font-size:1.5rem;">INFO APLIKASI</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted);">MONIKA - Monitoring Kesehatan Akses Dialysis</p>
                 </div>
-                
-                <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="openModal('cvcModal')">
-                        <img src="icon-search.png" alt="Search" class="btn-icon" onerror="this.style.display='none'">
-                        Mulai Screening
-                    </button>
-                </div>
-            </div>
-
-            <!-- Panel 2: AV-Shunt -->
-            <div class="panel-card">
-                <div class="panel-icon-wrapper gold">
-                    <img src="icon-avshunt.png" alt="AV-Shunt" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%237c3aed%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%235b21b6%22 font-size=%2212%22 font-weight=%22bold%22>AV</text></svg>'">
-                </div>
-                <h2 class="panel-title">MONITORING AV-SHUNT</h2>
-                <p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p>
-                
-                <div class="literature-box">
-                    <div class="literature-title">
-                        <img src="icon-book-small.png" alt="Book" class="literature-title-icon" onerror="this.style.display='none'">
-                        Sumber Literatur Terpercaya
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>National Kidney Foundation (NKF) - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>European Renal Best Practice (ERBP) - Vascular Access Guidelines (2018)</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Perdosri - Panduan Praktik Klinis Akses Vaskular di Indonesia (2020)</span>
-                    </div>
-                </div>
-                
-                <div class="panel-actions">
-                    <button class="btn btn-gold" onclick="openModal('avModal')">
-                        <img src="icon-search.png" alt="Search" class="btn-icon" onerror="this.style.display='none'">
-                        Mulai Screening
-                    </button>
-                </div>
-            </div>
-
-            <!-- Panel 3: Edukasi -->
-            <div class="panel-card">
-                <div class="panel-icon-wrapper teal">
-                    <img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'">
-                </div>
-                <h2 class="panel-title">EDUKASI</h2>
-                <p class="panel-subtitle">Akses materi presentasi, video edukasi, dan komik kesehatan ginjal yang telah dikurasi.</p>
-                
-                <div class="literature-box">
-                    <div class="literature-title">
-                        <img src="icon-video.png" alt="Video" class="literature-title-icon" onerror="this.style.display='none'">
-                        Konten Edukasi Tersedia
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Video Edukasi Perawatan CVC</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Video Kartun Edukasi Kesehatan Ginjal</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Komik Edukasi Interaktif</span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span>Materi Presentasi (PPT)</span>
-                    </div>
-                </div>
-                
-                <div class="panel-actions">
-                    <a href="https://drive.google.com/file/d/16_RQIDh7VcxzXJw_-dmkdnAANP0pZg8x/view?usp=sharing" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
-                        <img src="icon-play.png" alt="Play" class="btn-icon" onerror="this.style.display='none'">
-                        Lihat Video CVC
-                    </a>
-                </div>
-            </div>
-
-            <!-- Panel 4: Konsultasi -->
-            <div class="panel-card">
-                <div class="panel-icon-wrapper purple">
-                    <img src="icon-consultation.png" alt="Konsultasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%238b5cf6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%237c3aed%22 font-size=%2214%22 font-weight=%22bold%22>KON</text></svg>'">
-                </div>
-                <h2 class="panel-title">KONSULTASI</h2>
-                <p class="panel-subtitle">Hubungi Admin Pendamping untuk konsultasi lebih lanjut mengenai perawatan Kesehatan.</p>
-                
-                <div class="literature-box">
-                    <div class="literature-title">
-                        <img src="icon-team.png" alt="Team" class="literature-title-icon" onerror="this.style.display='none'">
-                        Tim Konsultasi
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span><a href="#" onclick="confirmWA('6282227707573', 'Riza A'); return false;" style="color: var(--text-muted); text-decoration: none;">Riza A - Admin Pendamping</a></span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span><a href="#" onclick="confirmWA('6283831217784', 'Pembayun Y'); return false;" style="color: var(--text-muted); text-decoration: none;">Pembayun Y - Admin Pendamping</a></span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span><a href="#" onclick="confirmWA('6282124700093', 'Hesty'); return false;" style="color: var(--text-muted); text-decoration: none;">Hesty - Admin Pendamping</a></span>
-                    </div>
-                    <div class="literature-item">
-                        <span class="literature-bullet">&#9679;</span>
-                        <span><a href="#" onclick="confirmWA('6285210622568', 'Rinda'); return false;" style="color: var(--text-muted); text-decoration: none;">Rinda - Admin Pendamping</a></span>
-                    </div>
-                </div>
-                
-                <div class="panel-actions">
-                    <button class="btn btn-secondary" onclick="confirmWA('6282227707573', 'Admin')">
-                        <img src="icon-phone.png" alt="Phone" class="btn-icon" onerror="this.style.display='none'">
-                        Hubungi Admin
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel Footer -->
-        <div class="panel-footer" id="tour-step-info">
-            <div class="footer-info">
-                <div class="footer-icon">
-                    <img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'">
-                </div>
-                <div class="footer-text">
-                    <h3>INFO APLIKASI</h3>
-                    <p>MONIKA - Monitoring Kesehatan Akses Dialysis oleh TIM INOCA RSSA</p>
-                </div>
-            </div>
-            <div class="footer-stats">
-                <div class="stat-item">
-                    <div class="stat-value" id="statCount">0</div>
-                    <div class="stat-label">Pengguna</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">86%</div>
-                    <div class="stat-label">Kepuasan</div>
-                </div>
-            </div>
-            <div class="footer-actions">
-                <button class="btn btn-secondary" onclick="startTour()">
-                    <img src="icon-guide.png" alt="Guide" class="btn-icon" onerror="this.style.display='none'">
-                    Panduan
-                </button>
-                <button class="btn btn-gold" onclick="startCredits()">
-                    <img src="icon-info-white.png" alt="Info" class="btn-icon" onerror="this.style.display='none'">
-                    Info Lengkap
-                </button>
             </div>
         </div>
     </div>
 
     <script>
-    // --- URL API ---
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzu_WfyID_ggPD9TFbbdQFysAvcQyO5w7W22cD1udUF6ZHx5xG313ejhGwDmAXrJT4C/exec';
+    // ================= KONFIGURASI PENTING =================
+    // GANTI URL INI DENGAN URL WEB APP DARI GOOGLE APPS SCRIPT ANDA
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwkklSohZuevQaERjnA-xQkdYmbRF1zg3Q_kE-XcjkThRyIzrexd3WFgQzried3TR6R/exec'; 
+    // =======================================================
 
-    // --- GLOBALS ---
-    const holoContainer = document.getElementById('holoContainer');
-    const tourTooltip = document.getElementById('tourTooltip');
-    const tooltipTitle = document.getElementById('tooltipTitle');
-    const tooltipDesc = document.getElementById('tooltipDesc');
-    const tourOverlay = document.getElementById('tourOverlay');
-    const tourHighlight = document.getElementById('tourHighlight');
-    const creditsOverlay = document.getElementById('creditsOverlay');
-    const creditsContent = document.getElementById('creditsContent');
-    const bgMusic = document.getElementById('bgMusic');
-    const starContainer = document.getElementById('starContainer');
-    const welcomeMessage = document.getElementById('welcomeMessage');
-    const usernameInput = document.getElementById('usernameInput');
+    let currentUser = null;
 
-    // --- DATA KONTAK ---
-    const assessmentContacts = [
-        { name: 'Riza A', phone: '6282227707573' },
-        { name: 'Pembayun Y', phone: '6283831217784' },
-        { name: 'Hesty', phone: '6282124700093' },
-        { name: 'Rinda', phone: '6285210622568' }
-    ];
+    // --- INIT ---
+    window.onload = function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+        loadUser();
+    };
 
-    // --- DIGITAL CLOCK ---
+    // --- CLOCK ---
     function updateClock() {
         const now = new Date();
-        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-        
-        const day = days[now.getDay()];
-        const date = now.getDate();
-        const month = months[now.getMonth()];
-        const year = now.getFullYear();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds}`;
-        document.getElementById('clockDate').textContent = `${day}, ${date} ${month} ${year}`;
+        document.getElementById('clockTime').textContent = now.toLocaleTimeString('id-ID');
     }
-    
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    // --- USERNAME HANDLER ---
-    function handleUsername() {
-        const savedUsername = localStorage.getItem('monika_username');
-        if (savedUsername) {
-            usernameInput.value = savedUsername;
-            showWelcomeMessage(savedUsername);
+    // --- AUTH ---
+    function loadUser() {
+        const u = localStorage.getItem('monika_user');
+        if(u) {
+            currentUser = JSON.parse(u);
+            updateUserUI();
         }
     }
-
-    function showWelcomeMessage(name) {
-        if (name && name.trim()) {
-            const greetings = ['Selamat Datang', 'Halo', 'Salam Sehat'];
-            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-            welcomeMessage.textContent = `${randomGreeting}, ${name}!`;
-            welcomeMessage.classList.add('show');
+    
+    function handleUserButtonClick() {
+        if(currentUser) {
+            if(confirm(`Logout sebagai ${currentUser.name}?`)) logout();
         } else {
-            welcomeMessage.classList.remove('show');
+            openModal('loginModal');
         }
     }
 
-    usernameInput.addEventListener('input', function() {
-        const name = this.value.trim();
-        localStorage.setItem('monika_username', name);
-        showWelcomeMessage(name);
-    });
-
-    usernameInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            this.blur();
-        }
-    });
-
-    // --- ANIMATED COUNTER ---
-    function animateValue(id, start, end, duration) {
-        const obj = document.getElementById(id);
-        if (!obj) return;
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min(timestamp - startTimestamp, duration) / duration;
-            const current = Math.floor(progress * (end - start) + start);
-            obj.textContent = current.toLocaleString();
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
+    function performLogin() {
+        const name = document.getElementById('loginNameInput').value.trim();
+        if(!name) return alert('Nama kosong!');
+        currentUser = { name: name };
+        localStorage.setItem('monika_user', JSON.stringify(currentUser));
+        updateUserUI();
+        closeModal('loginModal');
+        if(document.getElementById('discussionModal').classList.contains('active')) renderDiscussion();
     }
 
-    // --- CREATE REPORT BUTTONS ---
-    function createReportButtons(patientId, statusText, type) {
-        const text = `Laporan ${type}%0AID: ${patientId}%0AStatus: ${statusText}`;
-        let html = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border-subtle); text-align: center;">
-                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">Hubungi Admin untuk melaporkan:</p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">`;
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('monika_user');
+        updateUserUI();
+        if(document.getElementById('discussionModal').classList.contains('active')) renderDiscussion();
+    }
+
+    function updateUserUI() {
+        const btn = document.getElementById('userLoginBtn');
+        const txt = document.getElementById('userBtnText');
+        const av = document.getElementById('userAvatar');
+        if(currentUser) {
+            btn.classList.add('logged-in');
+            txt.textContent = currentUser.name;
+            av.style.display = 'flex';
+            av.textContent = currentUser.name.charAt(0).toUpperCase();
+        } else {
+            btn.classList.remove('logged-in');
+            txt.textContent = 'Login / Masuk';
+            av.style.display = 'none';
+        }
+    }
+
+    // --- DISCUSSION ---
+    function openDiscussion() {
+        openModal('discussionModal');
+        renderDiscussion();
+    }
+
+    async function renderDiscussion() {
+        const list = document.getElementById('commentsList');
+        const inputArea = document.getElementById('commentInputArea');
         
-        assessmentContacts.forEach(c => {
-            html += `<a href="https://wa.me/${c.phone}?text=${text}" target="_blank" class="btn btn-secondary" style="font-size: 11px; padding: 8px; text-decoration: none;">
-                        ${c.name}
-                     </a>`;
-        });
+        list.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">Memuat komentar...</div>';
 
-        html += `   </div>
-                   </div>`;
-        return html;
-    }
+        // Fetch comments from API
+        try {
+            const res = await fetch(`${API_URL}?action=getComments`);
+            const data = await res.json();
+            const comments = data.comments || [];
+            
+            document.getElementById('commentCount').textContent = comments.length;
 
-    // --- MODAL FUNCTIONS ---
-    function openModal(id) { 
-        document.getElementById(id).classList.add('active'); 
-    }
-    
-    function closeModal(id) { 
-        document.getElementById(id).classList.remove('active'); 
-    }
-
-    function confirmWA(phone, name) { 
-        const text = `Halo ${name}, saya ingin bertanya.`; 
-        const linkBtn = document.getElementById('confirmWaBtn'); 
-        linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; 
-        openModal('waModal'); 
-    }
-
-    // Close modal on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
+            if(comments.length === 0) {
+                list.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-muted);">Belum ada komentar.<br>Jadilah yang pertama!</div>';
+            } else {
+                list.innerHTML = comments.map(c => `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-avatar">${c.author.charAt(0)}</div>
+                            <div style="font-weight:600; font-size:0.9rem;">${escapeHtml(c.author)}</div>
+                            <div style="font-size:0.7rem; color:var(--text-muted); margin-left:auto;">${formatTime(c.timestamp)}</div>
+                        </div>
+                        <div class="comment-text">${escapeHtml(c.text)}</div>
+                    </div>
+                `).join('');
             }
-        });
-    });
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-                modal.classList.remove('active');
-            });
+        } catch (e) {
+            list.innerHTML = '<div style="text-align:center; padding:20px; color:red;">Gagal memuat data. Pastikan API_URL sudah benar.</div>';
         }
-    });
 
-    // --- EVENT LOGIC (API) ---
-    const PASSWORD = "1111";
-    
-    function checkPassword() { 
-        if (document.getElementById('passwordInput').value === PASSWORD) {
-            closeModal('passwordModal'); 
-            openModal('eventModal'); 
-            document.getElementById('passwordInput').value = ""; 
-        } else { 
-            alert("Kode salah!"); 
-        } 
+        // Render Input
+        if(currentUser) {
+            inputArea.innerHTML = `
+                <textarea id="newComment" placeholder="Tulis komentar..."></textarea>
+                <button class="btn btn-teal" style="margin-top:10px; padding:10px 20px;" onclick="postComment()">Kirim</button>
+            `;
+        } else {
+            inputArea.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">Anda harus <a href="#" onclick="closeModal('discussionModal'); openModal('loginModal'); return false;" style="color:var(--accent-purple); font-weight:700;">login</a> untuk berkomentar.</div>`;
+        }
     }
 
-    function makeLinksClickable(text) {
-        if (!text) return '';
-        const urlRegex = /(https?:\/\/[^\s<]+)/g;
-        const escapedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-        return escapedText.replace(urlRegex, function(url) {
-            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple); text-decoration: underline;">' + url + '</a>';
-        });
-    }
-
-    function convertToDirectLink(url) {
-        if (!url) return '';
-        let match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-        if (match && match[1]) {
-            return `https://drive.google.com/uc?export=view&id=${match[1]}`;
-        }
-        match = url.match(/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/);
-        if (match && match[1]) {
-            return `https://drive.google.com/uc?export=view&id=${match[1]}`;
-        }
-        if (url.includes('drive.google.com/uc?')) {
-            return url;
-        }
-        return url;
-    }
-    
-    function saveEvent() {
-        const title = document.getElementById('evTitle').value;
-        const date = document.getElementById('evDate').value;
-        const img = document.getElementById('evImg').value;
-        const link = document.getElementById('evLink').value;
-        const desc = document.getElementById('evDesc').value;
-        
-        if (!title || !date) { alert("Judul & Tanggal wajib diisi!"); return; }
+    async function postComment() {
+        const text = document.getElementById('newComment').value.trim();
+        if(!text) return alert("Komentar kosong!");
         
         openModal('loadingModal');
-
-        const data = {
-            password: PASSWORD,
-            title: title,
-            date: date,
-            img: img,
-            link: link,
-            desc: desc
-        };
-
-        fetch(API_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(() => {
+        
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Google Script membutuhkan no-cors
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    action: 'addComment',
+                    author: currentUser.name,
+                    text: text
+                })
+            });
+            
+            // Karena no-cors, kita tidak bisa baca response, kita asumsikan sukses
             closeModal('loadingModal');
-            closeModal('eventModal');
-            alert("Acara berhasil ditambahkan!");
-            ['evTitle', 'evDate', 'evImg', 'evLink', 'evDesc'].forEach(id => document.getElementById(id).value = '');
-        })
-        .catch(err => {
+            document.getElementById('newComment').value = '';
+            
+            // Tambahkan manual ke UI agar terlihat instan
+            // Atau render ulang dari server (tapi butuh waktu beberapa detik)
+            alert("Komentar terkirim!");
+            renderDiscussion(); // Refresh dari server
+            
+        } catch(e) {
             closeModal('loadingModal');
-            console.error(err);
-            alert("Gagal menyimpan acara.");
-        });
-    }
-
-    // --- HOLOGRAM FUNCTIONS ---
-    function showHoloMessageSimple(title, text) {
-        tooltipTitle.innerText = title;
-        tooltipDesc.innerText = text;
-        holoContainer.classList.add('show');
-        tourTooltip.classList.add('active');
-        
-        setTimeout(() => {
-            holoContainer.classList.remove('show');
-            tourTooltip.classList.remove('active');
-        }, 4000);
-    }
-
-    // --- TOUR LOGIC ---
-    const tourSteps = [
-        { element: '#tour-step-0', title: 'Selamat Datang di MONIKA!', desc: 'Monitoring Kesehatan Akses Dialysis - Platform untuk memantau kesehatan akses vaskular Anda.', },
-        { element: '#tour-step-info', title: 'Perkenalan Aplikasi', desc: 'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.', },
-        { element: '#tour-step-1', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', }
-    ];
-    let currentTourStep = -1;
-    
-    function startTour() { 
-        currentTourStep = -1; 
-        tourOverlay.classList.add('active'); 
-        tourHighlight.classList.remove('animate'); 
-        
-        showHoloMessageSimple("Memulai Tur", "Saya akan memandu Anda melihat fitur-fitur menarik di sini.");
-        setTimeout(() => { 
-            tourHighlight.classList.add('animate'); 
-            nextTourStep(); 
-        }, 3000);
-    }
-
-    function nextTourStep() {
-        currentTourStep++;
-        if (currentTourStep >= tourSteps.length) { endTour(); return; }
-        
-        const step = tourSteps[currentTourStep];
-        const targetEl = document.querySelector(step.element);
-        
-        setTimeout(() => {
-            if (targetEl) {
-                const rect = targetEl.getBoundingClientRect();
-                tourHighlight.style.top = rect.top + 'px'; 
-                tourHighlight.style.left = rect.left + 'px'; 
-                tourHighlight.style.width = rect.width + 'px'; 
-                tourHighlight.style.height = rect.height + 'px';
-                
-                showHoloMessageSimple(step.title, step.desc);
-                setTimeout(nextTourStep, 4500);
-            }
-        }, 300);
-    }
-    
-    function endTour() { 
-        tourOverlay.classList.remove('active'); 
-        tourHighlight.classList.remove('animate'); 
-        
-        showHoloMessageSimple("Sampai Jumpa", "Terima kasih telah mengikuti tur!");
-        setTimeout(() => { startCredits(); }, 3000);
-    }
-
-    // --- CREDITS LOGIC ---
-    function createStars() { 
-        starContainer.innerHTML = ''; 
-        for(let i=0; i<50; i++) { 
-            const star = document.createElement('div'); 
-            star.classList.add('star'); 
-            star.style.left = Math.random() * 100 + '%'; 
-            star.style.width = Math.random() * 3 + 1 + 'px'; 
-            star.style.height = star.style.width; 
-            star.style.animationDuration = Math.random() * 3 + 2 + 's'; 
-            star.style.animationDelay = Math.random() * 5 + 's'; 
-            starContainer.appendChild(star); 
-        } 
-    }
-    
-    function startCredits() { 
-        createStars(); 
-        creditsOverlay.classList.add('active'); 
-        creditsContent.style.animation = 'none'; 
-        creditsContent.offsetHeight; 
-        creditsContent.style.animation = 'scrollDown 150s linear forwards'; 
-        if (bgMusic) { 
-            bgMusic.currentTime = 0; 
-            bgMusic.volume = 0.6; 
-            bgMusic.play().catch(e => {}); 
-        } 
-        creditsContent.addEventListener('animationend', handleCreditsEnd); 
-    }
-    
-    function handleCreditsEnd() { 
-        creditsOverlay.classList.remove('active'); 
-        if(bgMusic) bgMusic.pause(); 
-        creditsContent.removeEventListener('animationend', handleCreditsEnd); 
-    }
-
-    // --- CALCULATORS ---
-    function calculateCVC() {
-        let symptomCount = 0; let hasCriticalSign = false; 
-        if (document.getElementById('q1')?.checked) symptomCount++; 
-        if (document.getElementById('q2')?.checked) symptomCount++; 
-        if (document.getElementById('q3')?.checked) symptomCount++; 
-        if (document.getElementById('q4')?.checked) { symptomCount++; hasCriticalSign = true; }
-        if (document.getElementById('q5')?.checked) { symptomCount++; hasCriticalSign = true; }
-
-        let level = "", msg = "", bc = ""; 
-        const scoreCircle = document.getElementById('cvc-score-circle');
-        scoreCircle.classList.remove('low', 'medium', 'high');
-
-        if (hasCriticalSign || symptomCount >= 4) { level = "TINGGI"; msg = "DARURAT! Segera ke RS."; bc = "badge-danger"; scoreCircle.classList.add('high'); }
-        else if (symptomCount >= 2) { level = "SEDANG"; msg = "SEGERA LAPOR."; bc = "badge-warning"; scoreCircle.classList.add('medium'); }
-        else if (symptomCount === 1) { level = "RENDAH"; msg = "Perlu Perhatian."; bc = "badge-warning"; scoreCircle.classList.add('medium'); }
-        else { level = "AMAN"; msg = "Kondisi Aman."; bc = "badge-success"; scoreCircle.classList.add('low'); }
-
-        document.getElementById('cvc-form').style.display = 'none';
-        document.getElementById('cvc-result').style.display = 'block';
-        document.getElementById('score-val').innerText = symptomCount; 
-        document.getElementById('risk-msg').innerText = msg;
-        const badge = document.getElementById('risk-badge');
-        badge.innerText = level; badge.className = 'badge ' + bc;
-        
-        const criticalDiv = document.getElementById('cvc-critical-action');
-        const patientId = document.getElementById('cvc_id').value || 'Pasien CVC';
-        
-        let actionHTML = '';
-        if (level !== "AMAN") {
-            actionHTML = createReportButtons(patientId, level, 'CVC');
+            alert("Gagal mengirim komentar.");
         }
-        
-        criticalDiv.innerHTML = actionHTML;
-        criticalDiv.style.display = actionHTML ? 'block' : 'none';
-    }
-    
-    function resetCVC() { 
-        document.getElementById('cvc-form').style.display = 'block'; 
-        document.getElementById('cvc-result').style.display = 'none'; 
-        document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); 
     }
 
-    function calculateAV() {
-        const patientId = document.getElementById('av_id').value || 'Pasien';
-        
-        const c_vis_red = document.getElementById('av_vis_red').checked;
-        const c_vis_pus = document.getElementById('av_vis_pus').checked;
-        const c_vis_bleed = document.getElementById('av_vis_bleed').checked;
-        const c_palp_pain = document.getElementById('av_palp_pain').checked;
-        const c_other_cold = document.getElementById('av_other_cold').checked;
-        const c_other_fever = document.getElementById('av_other_fever').checked;
-
-        const thrillVal = document.querySelector('input[name="av_thrill"]:checked')?.value;
-        
-        let status = "BAIK";
-        let msg = "Kondisi fistula baik.";
-        let recom = "Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.";
-        let isCritical = false;
-        let isWarning = false;
-
-        if (c_vis_pus || c_vis_bleed || c_other_cold || c_other_fever || thrillVal === 'gone') {
-            status = "DARURAT";
-            msg = "Kondisi Kritis!";
-            recom = "Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";
-            isCritical = true;
-        } else if (c_vis_red || c_palp_pain || thrillVal === 'weak') {
-            status = "PERHATIAN";
-            msg = "Ada tanda yang perlu diwaspadai.";
-            recom = "Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin untuk pemeriksaan lebih lanjut.";
-            isWarning = true;
-        }
-
-        document.getElementById('av-form').style.display = 'none';
-        document.getElementById('av-result').style.display = 'block';
-        
-        const badge = document.getElementById('av-badge');
-        badge.innerText = status;
-        badge.className = 'badge ' + (isCritical ? 'badge-danger' : isWarning ? 'badge-warning' : 'badge-success');
-        
-        document.getElementById('av-msg').innerText = msg;
-        document.getElementById('av-recom').innerText = recom;
-
-        const criticalDiv = document.getElementById('av-critical-action');
-        let actionHTML = '';
-
-        if (isCritical || isWarning) {
-            actionHTML = createReportButtons(patientId, status, 'AV Shunt');
-        }
-
-        criticalDiv.innerHTML = actionHTML;
-        criticalDiv.style.display = actionHTML ? 'block' : 'none';
+    // --- HELPER ---
+    function escapeHtml(text) {
+        if (!text) return text;
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
-    function resetAV() { 
-        document.getElementById('av-form').style.display = 'block'; 
-        document.getElementById('av-result').style.display = 'none'; 
-        document.querySelectorAll('#av-form input[type="checkbox"]').forEach(c => c.checked = false);
-        const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
-        if(normalRadio) normalRadio.checked = true;
+    function formatTime(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     }
 
-    // --- INIT ON LOAD ---
-    window.addEventListener('load', () => {
-        animateValue('statCount', 0, 1247, 2000);
-        handleUsername();
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    // Close modal on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(o => {
+        o.addEventListener('click', function(e) { if(e.target === this) closeModal(this.id); });
     });
 
     </script>
