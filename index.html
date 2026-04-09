@@ -1637,6 +1637,23 @@
         </div>
     </div>
 
+<!-- Cek List Modal -->
+<div class="modal-overlay" id="ceklistModal">
+    <div class="modal-box" style="width: 95vw; max-width: 720px; padding: 20px;">
+        <button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button>
+        <h2 class="modal-title" style="margin-bottom: 16px;">Cek List Keselamatan Hemodialisis</h2>
+        <div style="border-radius: 14px; overflow: hidden; border: 2px solid var(--border-subtle); background: var(--bg-elevated);">
+            <img src="ceklist.png" alt="Cek List Keselamatan Hemodialisis" 
+                 style="width: 100%; height: auto; display: block;"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px;\'>Gambar ceklist.png belum tersedia.<br>Pastikan file ceklist.png ada di folder yang sama dengan index.html.</div>';">
+        </div>
+        <div class="modal-btns" style="margin-top: 16px;">
+            <button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button>
+            <a href="ceklist.png" download="ceklist-keselamatan-hemodialisis.png" class="modal-btn yes" style="text-decoration: none;">Unduh Gambar</a>
+        </div>
+    </div>
+</div>
+    
     <!-- TOUR ELEMENTS -->
     <div class="tour-overlay" id="tourOverlay"></div>
     <div class="tour-highlight" id="tourHighlight"></div>
@@ -1898,7 +1915,53 @@
                     </a>
                 </div>
             </div>
-   
+
+            <!-- Panel 4: Cek List Keselamatan Hemodialisis -->
+            <div class="panel-card">
+                <div class="panel-icon-wrapper purple">
+                    <img src="ceklist.png" alt="Cek List" class="icon-custom" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2230%22 x2=%2226%22 y2=%2230%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><polyline points=%2216 13 18 15 22 11%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'">
+                </div>
+                <h2 class="panel-title">CEK LIST KESELAMATAN HEMODIALISIS</h2>
+                <p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman, terstandar, dan sesuai protokol klinis.</p>
+                
+                <div class="literature-box">
+                    <div class="literature-title">
+                        <svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Referensi Standar Keselamatan
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>ISQua - International Society for Quality in Health Care: Safety Checklist for Dialysis</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>WHO Surgical Safety Checklist adaptasi untuk Prosedur Hemodialisis</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Permenkes RI No. 25 Tahun 2014 tentang Upaya Kesehatan Kerja</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Standar Akreditasi Hospital Joint Commission International (JCI)</span>
+                    </div>
+                </div>
+                
+                <div class="panel-actions">
+                    <button class="btn btn-teal" onclick="openModal('ceklistModal')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Lihat Cek List
+                    </button>
+                </div>
+            </div>
+            
         <!-- Panel Footer -->
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info">
