@@ -80,7 +80,7 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            min-height: 500px;
+            min-height: 1500px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -255,8 +255,8 @@
         }
 
         .header-logo {
-            width: 200px;
-            height: 670px;
+            width: 600px;
+            height: 2010px;
             object-fit: contain;
             background: transparent;
             filter: drop-shadow(3px 6px 12px rgba(0, 0, 0, 0.12));
@@ -512,15 +512,15 @@
             .footer-stats { display: none; }
             .header-top-row { flex-direction: column; align-items: flex-start; }
             .header-left-group { width: 100%; justify-content: space-between; }
-            .header-logo { width: 140px; height: 610px; }
-            .panel-header { min-height: 420px; }
+            .header-logo { width: 420px; height: 1830px; }
+            .panel-header { min-height: 1200px; }
         }
 
         @media (max-width: 670px) {
             .main-container { padding: 12px; }
-            .panel-header { min-height: 340px; }
+            .panel-header { min-height: 800px; }
             .header-content { padding: 16px; }
-            .header-logo { width: 100px; height: 300px; }
+            .header-logo { width: 300px; height: 900px; }
             .header-logo-wrap { margin: 8px 0 20px 0; }
             .panel-card { padding: 20px; }
             .panel-title { font-size: 1.4rem; }
@@ -747,7 +747,7 @@
                 <div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none;"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div>
             </div>
             <div class="panel-card">
-                <div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2230%22 x2=%2226%22 y2=%2230%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><polyline points=%2216 13 18 15 22 11%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'"></div>
+                <div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%2224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2230%22 x2=%2226%22 y2=%2230%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><polyline points=%2216 13 18 15 22 11%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'"></div>
                 <h2 class="panel-title">CEK LIST KESELAMATAN HEMODIALISIS</h2>
                 <p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman, terstandar, dan sesuai protokol klinis.</p>
                 <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Referensi Standar Keselamatan</div>
@@ -758,7 +758,8 @@
                 </div>
                 <div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div>
             </div>
-            
+        </div>
+
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info">
                 <div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div>
