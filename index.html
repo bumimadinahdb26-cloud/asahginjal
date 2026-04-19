@@ -138,6 +138,57 @@
             flex-wrap: wrap;
         }
 
+        /* ===== LOGO + BRAND TEXT (tanpa frame, transparan) ===== */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .brand-logo {
+            height: 62px;
+            width: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.08);
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .brand-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.7rem;
+            letter-spacing: 3px;
+            color: var(--text-white);
+            line-height: 1;
+        }
+
+        .brand-tagline {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+            max-width: 210px;
+            font-weight: 500;
+        }
+
         .digital-clock {
             display: flex;
             align-items: center;
@@ -197,38 +248,6 @@
         @keyframes clockPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        /* ===== MONA IMAGE - sama baris & ukuran jam ===== */
-        .header-mona-img {
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(8px);
-            padding: 8px 10px;
-            border-radius: 16px;
-            border: 2px solid rgba(124, 58, 237, 0.35);
-            box-shadow: 0 0 12px rgba(124, 58, 237, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            overflow: hidden;
-            height: 62px;
-            width: 62px;
-            transition: all 0.3s ease;
-        }
-
-        .header-mona-img:hover {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
-            transform: scale(1.05);
-        }
-
-        .header-mona-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: transparent;
-            display: block;
         }
 
         .login-container {
@@ -476,14 +495,17 @@
             .panel-grid { grid-template-columns: 1fr; }
             .footer-stats { display: none; }
             .header-top-row { flex-direction: column; align-items: flex-start; }
-            .header-left-group { width: 100%; justify-content: space-between; }
+            .header-left-group { width: 100%; justify-content: flex-start; }
+            .brand-tagline { max-width: 160px; }
         }
 
         @media (max-width: 600px) {
             .main-container { padding: 12px; }
             .panel-header { min-height: 280px; }
             .header-content { padding: 16px; }
-            .header-mona-img { height: 50px; width: 50px; padding: 6px 7px; }
+            .brand-logo { height: 48px; width: 48px; }
+            .brand-name { font-size: 1.3rem; letter-spacing: 2px; }
+            .brand-tagline { font-size: 0.55rem; max-width: 130px; }
             .panel-card { padding: 20px; }
             .panel-title { font-size: 1.4rem; }
             .footer-info { flex-direction: column; text-align: center; }
@@ -549,9 +571,15 @@
             <div class="header-content">
                 <div class="header-top-row">
                     <div class="header-left-group">
-                        <!-- Mona image - sejajar jam -->
-                        <div class="header-mona-img" title="Mona - Monitoring Akses untuk Cuci Darah">
-                            <img src="mona.png" alt="Mona">
+                        <!-- Logo + Brand Text (tanpa frame, transparan, sejajar jam) -->
+                        <div class="header-brand">
+                            <div class="brand-logo">
+                                <img src="logo.png" alt="Mona Logo">
+                            </div>
+                            <div class="brand-text">
+                                <span class="brand-name">Mona</span>
+                                <span class="brand-tagline">Monitoring Akses Pembuluh Darah untuk Cuci Darah</span>
+                            </div>
                         </div>
                         <div class="digital-clock">
                             <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -623,7 +651,8 @@
                 <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Referensi Standar Keselamatan</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>ISQua - International Society for Quality in Health Care: Safety Checklist for Dialysis</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>WHO Surgical Safety Checklist adaptasi untuk Prosedur Hemodialisis</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Permenkes RI No. 25 Tahun 2014 tentang Upaya Kesehatan Kerja</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Standar Akreditasi Hospital Joint Commission International (JCI)</span></div></div>
                 <div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div>
             </div>
-            
+        </div>
+
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info">
                 <div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div>
