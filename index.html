@@ -80,7 +80,7 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            min-height: 340px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -108,12 +108,11 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(255, 255, 255, 0.7) 30%,
-                rgba(255, 255, 255, 0.25) 55%,
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.85) 40%,
+                rgba(255, 255, 255, 0.5) 70%,
                 transparent 100%
             );
-            pointer-events: none;
         }
 
         .header-content {
@@ -126,7 +125,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
             gap: 12px;
         }
@@ -134,80 +133,29 @@
         .header-left-group {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             flex-wrap: wrap;
-        }
-
-        /* ===== LOGO + BRAND TEXT (tanpa frame, transparan) ===== */
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .brand-logo {
-            height: 62px;
-            width: 62px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .brand-logo:hover {
-            transform: scale(1.08);
-        }
-
-        .brand-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-        }
-
-        .brand-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.7rem;
-            letter-spacing: 3px;
-            color: var(--text-white);
-            line-height: 1;
-        }
-
-        .brand-tagline {
-            font-size: 0.62rem;
-            color: var(--text-muted);
-            line-height: 1.3;
-            max-width: 210px;
-            font-weight: 500;
         }
 
         .digital-clock {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(8px);
+            background: transparent;
             padding: 12px 20px;
             border-radius: 16px;
             border: 2px solid var(--accent-cyan);
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
         .digital-clock::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent-cyan-light), transparent);
         }
@@ -227,6 +175,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
         }
 
         .clock-date {
@@ -254,8 +203,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(8px);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.05));
             padding: 10px 16px;
             border-radius: 14px;
             border: 2px solid rgba(124, 58, 237, 0.3);
@@ -263,249 +211,1194 @@
             cursor: pointer;
         }
 
-        .login-container:hover { border-color: var(--accent-purple); box-shadow: 0 0 15px rgba(124, 58, 237, 0.2); }
-        .login-container.logged-in { border-color: rgba(20, 184, 166, 0.4); }
-        .login-container.logged-in:hover { border-color: var(--accent-teal); box-shadow: 0 0 15px rgba(20, 184, 166, 0.2); }
+        .login-container:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
+        }
 
-        .login-icon { width: 22px; height: 22px; opacity: 0.7; }
+        .login-container.logged-in {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(45, 212, 191, 0.05));
+            border-color: rgba(20, 184, 166, 0.4);
+        }
+
+        .login-container.logged-in:hover {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+        }
+
+        .login-icon {
+            width: 22px;
+            height: 22px;
+            opacity: 0.7;
+        }
 
         .login-text {
-            background: transparent; border: none; outline: none;
-            font-size: 0.9rem; font-weight: 600; color: var(--text-white);
-            font-family: 'DM Sans', sans-serif; cursor: pointer; padding: 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-white);
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            padding: 0;
         }
 
         .user-avatar {
-            width: 32px; height: 32px; border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal));
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: 700; font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
         }
 
         .guide-btn {
-            display: flex; align-items: center; gap: 8px;
-            background: rgba(255,255,255,0.88); backdrop-filter: blur(8px);
-            color: var(--accent-purple-dark); padding: 12px 22px; border-radius: 14px;
-            font-weight: 600; font-size: 0.85rem; text-decoration: none;
-            transition: all 0.3s ease; border: 2px solid var(--accent-purple); cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--accent-purple-dark);
+            padding: 12px 22px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-purple);
+            cursor: pointer;
         }
 
-        .guide-btn:hover { transform: translateY(-2px); background: rgba(124, 58, 237, 0.1); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2); }
-        .guide-icon { width: 20px; height: 20px; }
+        .guide-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(124, 58, 237, 0.1);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2);
+        }
+
+        .guide-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            line-height: 1;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--accent-purple-dark), var(--accent-red-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-purple-dark);
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .marquee-container {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
+            padding: 14px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 60px;
+            padding-right: 60px;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .marquee-separator {
+            color: #ffffff;
+            opacity: 0.6;
+            font-size: 0.8rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .discussion-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .discussion-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(20, 184, 166, 0.4);
+        }
+
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex: 1;
+        }
+
+        .panel-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px solid var(--border-subtle);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .panel-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .panel-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+        }
+
+        .panel-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .panel-card:hover .panel-icon-wrapper {
+            transform: scale(1.05);
+        }
+
+        .panel-icon-wrapper.red {
+            background: linear-gradient(145deg, #fff5f5, #ffe0e0);
+            box-shadow: 8px 8px 20px rgba(220, 38, 38, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .panel-icon-wrapper.gold {
+            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
+            box-shadow: 8px 8px 20px rgba(124, 58, 237, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .panel-icon-wrapper.teal {
+            background: linear-gradient(145deg, #f0fdfa, #ccfbf1);
+            box-shadow: 8px 8px 20px rgba(20, 184, 166, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .panel-icon-wrapper.purple {
+            background: linear-gradient(145deg, #faf5ff, #f3e8ff);
+            box-shadow: 8px 8px 20px rgba(139, 92, 246, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .icon-custom {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .panel-card:hover .icon-custom {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .panel-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--text-white);
+            margin-bottom: 8px;
+        }
+
+        .panel-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .literature-box {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .literature-title {
+            font-size: 0.7rem;
+            color: var(--accent-purple-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .literature-title-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .literature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .literature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .literature-bullet {
+            color: var(--accent-purple);
+            flex-shrink: 0;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple-dark);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-teal {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
+        }
+
+        .btn-teal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.35);
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .panel-footer {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px solid var(--border-subtle);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .panel-footer:hover {
+            border-color: var(--border-gold);
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 6px 6px 15px rgba(124, 58, 237, 0.15), -3px -3px 10px rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+        }
+
+        .footer-icon img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .footer-text h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .footer-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border: 2px solid var(--border-gold);
+            padding: 30px;
+            border-radius: 20px;
+            width: 380px;
+            max-width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-white);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-red);
+            color: #ffffff;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .modal-btn.yes {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: #ffffff;
+        }
+
+        .modal-btn.no {
+            background: var(--bg-elevated);
+            color: var(--text-muted);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        
+        .input-field {
+            width: 100%;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border-subtle);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-white);
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-muted);
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--accent-purple-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .check-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+
+        .check-label:hover {
+            border-color: var(--accent-purple);
+        }
+
+        .check-label input {
+            display: none;
+        }
+
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--text-muted);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            background: var(--bg-card);
+        }
+
+        .check-box.radio-style {
+            border-radius: 50%;
+        }
+
+        .check-label input:checked + .check-box {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .check-label input:checked + .check-box::after {
+            content: '✓';
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .check-label span {
+            font-size: 13px;
+            color: var(--text-cream);
+        }
+
+        .section-title-sm {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-purple-dark);
+            margin: 16px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 20px 0;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--border-subtle);
+            position: relative;
+            background: var(--bg-card);
+        }
+
+        .score-circle.low {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 30px rgba(20, 184, 166, 0.2);
+        }
+
+        .score-circle.medium {
+            border-color: var(--color-warning);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .score-circle.high {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.2);
+        }
+
+        .score-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--text-white);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-success {
+            background: rgba(20, 184, 166, 0.15);
+            color: #0d9488;
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #b45309;
+        }
+
+        .badge-danger {
+            background: rgba(220, 38, 38, 0.15);
+            color: #dc2626;
+        }
+
+        .spinner {
+            border: 3px solid var(--border-subtle);
+            border-top: 3px solid var(--accent-purple);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .discussion-modal {
+            width: 95vw;
+            max-width: 600px;
+            height: 80vh;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--border-subtle);
+            padding-bottom: 12px;
+        }
+
+        .discussion-count {
+            background: var(--accent-teal);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .comments-list {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 16px;
+            padding-right: 8px;
+        }
+
+        .comment-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .comment-author {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .comment-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        .comment-text {
+            font-size: 0.85rem;
+            color: var(--text-cream);
+            line-height: 1.5;
+        }
+
+        .comment-input-area textarea {
+            width: 100%;
+            min-height: 80px;
+            resize: vertical;
+            background: var(--bg-elevated);
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.9rem;
+            color: var(--text-white);
+            font-family: inherit;
+        }
+
+        .comment-input-area textarea:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+        }
+
+        .login-prompt {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+        }
+
+        .login-prompt a {
+            color: var(--accent-purple);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .holo-container {
+            position: fixed;
+            bottom: 20px;
+            right: 15px;
+            width: 140px;
+            height: 220px;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s;
+            perspective: 1000px;
+        }
+
+        .holo-container.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .holo-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.6) 0%, rgba(124, 58, 237, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .holo-container.show .holo-base {
+            animation: basePulse 3s infinite ease-in-out;
+        }
+
+        .holo-beam {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 180px;
+            background: linear-gradient(to bottom, rgba(124, 58, 237, 0.15), transparent);
+            clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .holo-container.show .holo-beam {
+            opacity: 1;
+        }
+
+        .holo-body {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 180px;
+            transform-style: preserve-3d;
+            z-index: 2;
+        }
+
+        .holo-container.show .holo-body {
+            animation: holoFloat 6s infinite ease-in-out;
+        }
+
+        .holo-avatar {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9)) brightness(1.1) contrast(1.1);
+            mix-blend-mode: multiply;
+            opacity: 0.9;
+        }
+
+        .tour-tooltip {
+            position: fixed;
+            bottom: 130px;
+            right: 165px;
+            background: var(--bg-card);
+            padding: 18px 22px;
+            border-radius: 16px 16px 0 16px;
+            width: 260px;
+            max-width: calc(100% - 180px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-gold);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px) scale(0.95);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .tour-tooltip.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .tour-tooltip h4 {
+            color: var(--accent-purple-dark);
+            margin-bottom: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .tour-tooltip p {
+            font-size: 13px;
+            margin-bottom: 0;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        .tour-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .tour-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tour-highlight {
+            position: fixed;
+            background: transparent;
+            border: 3px solid var(--accent-purple);
+            border-radius: 16px;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .tour-highlight.animate {
+            animation: pulseRing 2s infinite;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0), 0 0 0 9999px rgba(0, 0, 0, 0.5); }
+        }
+
+        @keyframes holoFloat {
+            0% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
+            25% { transform: translateX(-50%) translateY(-10px) rotateY(5deg); }
+            50% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
+            75% { transform: translateX(-50%) translateY(-10px) rotateY(-5deg); }
+            100% { transform: translateX(-50%) translateY(0) rotateY(0deg); }
+        }
+
+        @keyframes basePulse {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .credits-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            z-index: 10010;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+        }
+
+        .credits-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .credits-content {
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            padding: 0 24px;
+            padding-top: 100vh;
+            padding-bottom: 50px;
+            animation: scrollDown 150s linear forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .credits-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+            color: var(--accent-purple-light);
+        }
+
+        .credits-section {
+            margin-bottom: 100px;
+        }
+
+        .credits-section h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 24px;
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        .credits-section p {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.7;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .credits-section .role {
+            font-size: 16px;
+            opacity: 0.7;
+            margin-bottom: 12px;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .credits-footer {
+            margin-top: 120px;
+            opacity: 0.5;
+            font-size: 14px;
+        }
+
+        .audio-hidden {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .star-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fallingStar linear infinite;
+        }
+
+        @keyframes fallingStar {
+            0% { transform: translateY(-10px) translateX(0) scale(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; }
+        }
 
         .welcome-message {
-            font-size: 0.9rem; color: var(--accent-teal-dark);
-            font-weight: 600; margin-bottom: 8px; display: none; text-align: center;
+            font-size: 0.9rem;
+            color: var(--accent-teal-dark);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: none;
         }
 
-        .welcome-message.show { display: block; animation: fadeInUp 0.5s ease; }
+        .welcome-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .marquee-container {
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
-            padding: 14px 0; border-radius: 12px; overflow: hidden;
-            margin-bottom: 14px; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
-        }
-
-        .marquee-track { display: flex; animation: marquee 20s linear infinite; }
-        .marquee-content { display: flex; gap: 60px; padding-right: 60px; white-space: nowrap; }
-        .marquee-item { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
-        .marquee-separator { color: #ffffff; opacity: 0.6; font-size: 0.8rem; }
-
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .discussion-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
-            color: #ffffff; padding: 14px 28px; border-radius: 12px;
-            font-weight: 700; font-size: 0.95rem; text-decoration: none;
-            transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(20, 184, 166, 0.3);
-            border: none; cursor: pointer; align-self: flex-start;
-        }
-
-        .discussion-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(20, 184, 166, 0.4); }
-
-        .panel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; flex: 1; }
-
-        .panel-card {
-            background: var(--bg-card); border-radius: 20px; border: 2px solid var(--border-subtle);
-            padding: 24px; position: relative; overflow: hidden; transition: all 0.4s ease;
-            display: flex; flex-direction: column; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .panel-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
-            transform: scaleX(0); transition: transform 0.4s ease;
-        }
-
-        .panel-card:hover::before { transform: scaleX(1); }
-        .panel-card:hover { border-color: var(--border-gold); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15); }
-
-        .panel-icon-wrapper { width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; transition: all 0.3s ease; overflow: hidden; }
-        .panel-card:hover .panel-icon-wrapper { transform: scale(1.05); }
-        .panel-icon-wrapper.red { background: linear-gradient(145deg, #fff5f5, #ffe0e0); box-shadow: 8px 8px 20px rgba(220, 38, 38, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8); }
-        .panel-icon-wrapper.gold { background: linear-gradient(145deg, #f5f3ff, #ede9fe); box-shadow: 8px 8px 20px rgba(124, 58, 237, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8); }
-        .panel-icon-wrapper.teal { background: linear-gradient(145deg, #f0fdfa, #ccfbf1); box-shadow: 8px 8px 20px rgba(20, 184, 166, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8); }
-        .panel-icon-wrapper.purple { background: linear-gradient(145deg, #faf5ff, #f3e8ff); box-shadow: 8px 8px 20px rgba(139, 92, 246, 0.15), -4px -4px 15px rgba(255, 255, 255, 0.8); }
-
-        .icon-custom { width: 50px; height: 50px; object-fit: contain; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15)); transition: transform 0.3s ease; }
-        .panel-card:hover .icon-custom { transform: scale(1.1) rotate(3deg); }
-
-        .panel-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; color: var(--text-white); margin-bottom: 8px; }
-        .panel-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
-
-        .literature-box { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
-        .literature-title { font-size: 0.7rem; color: var(--accent-purple-dark); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .literature-title-icon { width: 14px; height: 14px; }
-        .literature-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
-        .literature-item:last-child { margin-bottom: 0; }
-        .literature-bullet { color: var(--accent-purple); flex-shrink: 0; }
-
-        .panel-actions { display: flex; gap: 10px; margin-top: auto; }
-
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-decoration: none; border: none; transition: all 0.3s ease; flex: 1; }
-        .btn-primary { background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark)); color: #ffffff; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.25); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.35); }
-        .btn-secondary { background: transparent; border: 2px solid var(--accent-purple); color: var(--accent-purple-dark); }
-        .btn-secondary:hover { background: rgba(124, 58, 237, 0.1); }
-        .btn-gold { background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark)); color: #ffffff; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25); }
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35); }
-        .btn-teal { background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark)); color: #ffffff; box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25); }
-        .btn-teal:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(20, 184, 166, 0.35); }
-        .btn-icon { width: 16px; height: 16px; }
-
-        .panel-footer { background: var(--bg-card); border-radius: 20px; border: 2px solid var(--border-subtle); padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); }
-        .panel-footer:hover { border-color: var(--border-gold); }
-        .footer-info { display: flex; align-items: center; gap: 20px; }
-        .footer-icon { width: 60px; height: 60px; border-radius: 14px; background: linear-gradient(145deg, #f5f3ff, #ede9fe); display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 15px rgba(124, 58, 237, 0.15), -3px -3px 10px rgba(255, 255, 255, 0.8); overflow: hidden; }
-        .footer-icon img { width: 35px; height: 35px; object-fit: contain; }
-        .footer-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; color: var(--text-white); margin-bottom: 4px; }
-        .footer-text p { font-size: 0.8rem; color: var(--text-muted); }
-        .footer-stats { display: flex; gap: 30px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent-purple); line-height: 1; }
-        .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .footer-actions { display: flex; gap: 12px; }
-
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s; }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box { background: var(--bg-card); border: 2px solid var(--border-gold); padding: 30px; border-radius: 20px; width: 380px; max-width: 90vw; max-height: 85vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s; position: relative; }
-        .modal-overlay.active .modal-box { transform: scale(1); }
-        .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 20px; text-align: center; color: var(--text-white); }
-        .modal-close { position: absolute; top: 15px; right: 15px; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-elevated); border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
-        .modal-close:hover { background: var(--accent-red); color: #ffffff; }
-        .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
-        .modal-btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; border: none; font-size: 13px; text-decoration: none; transition: all 0.2s; text-align: center; }
-        .modal-btn.yes { background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark)); color: #ffffff; }
-        .modal-btn.no { background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border-subtle); }
-
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .input-field { width: 100%; background: var(--bg-elevated); border: 2px solid var(--border-subtle); padding: 14px 16px; border-radius: 12px; font-size: 14px; color: var(--text-white); font-family: inherit; transition: all 0.2s; }
-        .input-field:focus { outline: none; border-color: var(--accent-purple); }
-        .input-field::placeholder { color: var(--text-muted); }
-        .input-group { margin-bottom: 16px; text-align: left; }
-        .input-group label { display: block; font-size: 0.75rem; color: var(--accent-purple-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-
-        .check-label { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-elevated); border: 2px solid var(--border-subtle); border-radius: 12px; cursor: pointer; margin-bottom: 10px; transition: all 0.2s; }
-        .check-label:hover { border-color: var(--accent-purple); }
-        .check-label input { display: none; }
-        .check-box { width: 22px; height: 22px; border: 2px solid var(--text-muted); border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; background: var(--bg-card); }
-        .check-box.radio-style { border-radius: 50%; }
-        .check-label input:checked + .check-box { background: var(--accent-purple); border-color: var(--accent-purple); }
-        .check-label input:checked + .check-box::after { content: '✓'; font-size: 12px; color: #ffffff; font-weight: bold; }
-        .check-label span { font-size: 13px; color: var(--text-cream); }
-        .section-title-sm { font-size: 12px; font-weight: 700; color: var(--accent-purple-dark); margin: 16px 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-        .section-divider { height: 1px; background: var(--border-subtle); margin: 20px 0; }
-
-        .score-display { text-align: center; padding: 20px 0; }
-        .score-circle { width: 120px; height: 120px; margin: 0 auto 16px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 4px solid var(--border-subtle); background: var(--bg-card); }
-        .score-circle.low { border-color: var(--accent-teal); box-shadow: 0 0 30px rgba(20, 184, 166, 0.2); }
-        .score-circle.medium { border-color: var(--color-warning); box-shadow: 0 0 30px rgba(245, 158, 11, 0.2); }
-        .score-circle.high { border-color: var(--accent-red); box-shadow: 0 0 30px rgba(220, 38, 38, 0.2); }
-        .score-value { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--text-white); line-height: 1; }
-        .score-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
-
-        .badge { display: inline-block; padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .badge-success { background: rgba(20, 184, 166, 0.15); color: #0d9488; }
-        .badge-warning { background: rgba(245, 158, 11, 0.15); color: #b45309; }
-        .badge-danger { background: rgba(220, 38, 38, 0.15); color: #dc2626; }
-
-        .spinner { border: 3px solid var(--border-subtle); border-top: 3px solid var(--accent-purple); border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .discussion-modal { width: 95vw; max-width: 600px; height: 80vh; max-height: 700px; display: flex; flex-direction: column; }
-        .discussion-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 2px solid var(--border-subtle); padding-bottom: 12px; }
-        .discussion-count { background: var(--accent-teal); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-        .comments-list { flex: 1; overflow-y: auto; margin-bottom: 16px; padding-right: 8px; }
-        .comment-item { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
-        .comment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; }
-        .comment-author { font-weight: 700; font-size: 0.9rem; color: var(--text-dark); }
-        .comment-time { font-size: 0.7rem; color: var(--text-muted); margin-left: auto; }
-        .comment-text { font-size: 0.85rem; color: var(--text-cream); line-height: 1.5; }
-        .comment-input-area textarea { width: 100%; min-height: 80px; resize: vertical; background: var(--bg-elevated); border: 2px solid var(--border-subtle); border-radius: 12px; padding: 12px; font-size: 0.9rem; color: var(--text-white); font-family: inherit; }
-        .comment-input-area textarea:focus { outline: none; border-color: var(--accent-teal); }
-        .login-prompt { text-align: center; padding: 30px 20px; color: var(--text-muted); }
-        .login-prompt a { color: var(--accent-purple); font-weight: 700; cursor: pointer; text-decoration: underline; }
-        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); opacity: 0.7; }
-
-        .holo-container { position: fixed; bottom: 20px; right: 15px; width: 140px; height: 220px; z-index: 9999; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.5s; perspective: 1000px; }
-        .holo-container.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-        .holo-base { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.6) 0%, rgba(124, 58, 237, 0) 70%); border-radius: 50%; z-index: 1; }
-        .holo-container.show .holo-base { animation: basePulse 3s infinite ease-in-out; }
-        .holo-beam { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 180px; background: linear-gradient(to bottom, rgba(124, 58, 237, 0.15), transparent); clip-path: polygon(30% 0, 70% 0, 100% 100%, 0% 100%); z-index: 0; opacity: 0; transition: opacity 0.5s; }
-        .holo-container.show .holo-beam { opacity: 1; }
-        .holo-body { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 100px; height: 180px; transform-style: preserve-3d; z-index: 2; }
-        .holo-container.show .holo-body { animation: holoFloat 6s infinite ease-in-out; }
-        .holo-avatar { width: 100%; height: auto; filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9)) brightness(1.1) contrast(1.1); mix-blend-mode: multiply; opacity: 0.9; }
-
-        .tour-tooltip { position: fixed; bottom: 130px; right: 165px; background: var(--bg-card); padding: 18px 22px; border-radius: 16px 16px 0 16px; width: 260px; max-width: calc(100% - 180px); box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid var(--border-gold); z-index: 10000; opacity: 0; visibility: hidden; transform: translateY(10px) scale(0.95); transition: all 0.3s ease; text-align: left; }
-        .tour-tooltip.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-        .tour-tooltip h4 { color: var(--accent-purple-dark); margin-bottom: 6px; font-size: 1rem; font-weight: 700; }
-        .tour-tooltip p { font-size: 13px; margin-bottom: 0; line-height: 1.5; color: var(--text-muted); }
-        .tour-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 9998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; }
-        .tour-overlay.active { opacity: 1; visibility: visible; }
-        .tour-highlight { position: fixed; background: transparent; border: 3px solid var(--accent-purple); border-radius: 16px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.5); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; z-index: 9999; opacity: 0; visibility: hidden; }
-        .tour-highlight.animate { animation: pulseRing 2s infinite; opacity: 1; visibility: visible; }
-        @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(124,58,237,0.4), 0 0 0 9999px rgba(0,0,0,0.5); } 70% { box-shadow: 0 0 0 15px rgba(124,58,237,0), 0 0 0 9999px rgba(0,0,0,0.5); } 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0), 0 0 0 9999px rgba(0,0,0,0.5); } }
-        @keyframes holoFloat { 0% { transform: translateX(-50%) translateY(0) rotateY(0deg); } 25% { transform: translateX(-50%) translateY(-10px) rotateY(5deg); } 50% { transform: translateX(-50%) translateY(0) rotateY(0deg); } 75% { transform: translateX(-50%) translateY(-10px) rotateY(-5deg); } 100% { transform: translateX(-50%) translateY(0) rotateY(0deg); } }
-        @keyframes basePulse { 0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
-
-        .credits-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1f2937 0%, #374151 100%); z-index: 10010; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity 1.5s ease; }
-        .credits-overlay.active { opacity: 1; visibility: visible; }
-        .credits-content { width: 100%; text-align: center; color: white; font-family: 'Outfit', sans-serif; padding: 0 24px; padding-top: 100vh; padding-bottom: 50px; animation: scrollDown 150s linear forwards; position: relative; z-index: 2; }
-        @keyframes scrollDown { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
-        .credits-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: 5px; margin-bottom: 80px; text-transform: uppercase; color: var(--accent-purple-light); }
-        .credits-section { margin-bottom: 100px; }
-        .credits-section h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px; opacity: 0.6; font-weight: 400; }
-        .credits-section p { font-size: 26px; font-weight: 700; line-height: 1.7; color: white; margin-bottom: 20px; }
-        .credits-section .role { font-size: 16px; opacity: 0.7; margin-bottom: 12px; font-weight: 400; font-style: italic; }
-        .credits-footer { margin-top: 120px; opacity: 0.5; font-size: 14px; }
-        .audio-hidden { position: absolute; top: -9999px; left: -9999px; }
-        .star-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: fallingStar linear infinite; }
-        @keyframes fallingStar { 0% { transform: translateY(-10px) translateX(0) scale(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(100vh) translateX(20px) scale(1); opacity: 0; } }
-
         @media (max-width: 900px) {
             .panel-grid { grid-template-columns: 1fr; }
+            .header-title { font-size: 2.8rem; }
             .footer-stats { display: none; }
             .header-top-row { flex-direction: column; align-items: flex-start; }
-            .header-left-group { width: 100%; justify-content: flex-start; }
-            .brand-tagline { max-width: 160px; }
+            .header-left-group { width: 100%; justify-content: space-between; }
         }
 
         @media (max-width: 600px) {
             .main-container { padding: 12px; }
-            .panel-header { min-height: 280px; }
-            .header-content { padding: 16px; }
-            .brand-logo { height: 48px; width: 48px; }
-            .brand-name { font-size: 1.3rem; letter-spacing: 2px; }
-            .brand-tagline { font-size: 0.55rem; max-width: 130px; }
+            .panel-header { min-height: 240px; }
+            .header-content { padding: 20px; }
+            .header-title { font-size: 2.2rem; }
             .panel-card { padding: 20px; }
             .panel-title { font-size: 1.4rem; }
             .footer-info { flex-direction: column; text-align: center; }
@@ -517,7 +1410,11 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -526,26 +1423,165 @@
     <div class="bg-pattern"></div>
     <div class="noise-overlay"></div>
 
-    <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center;">Masukkan nama Anda untuk login dan bisa berpartisipasi dalam diskusi.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
-
-    <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0;">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
-
-    <div class="modal-overlay" id="waModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('waModal')">&times;</button><h3 class="modal-title">Hubungi Kami</h3><p style="font-size:14px;color:var(--text-muted);margin-top:6px;text-align:center;">Adakah yang bisa kami bantu?</p><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('waModal')">Batal</button><a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a></div></div></div>
+    <!-- MODALS -->
     
-    <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px;"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center;">Memproses...</p></div></div>
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h3 class="modal-title">Masuk ke Akun</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; text-align: center;">Masukkan nama Anda untuk login dan bisa berpartisipasi dalam diskusi.</p>
+            <div class="input-group">
+                <label>Nama Lengkap</label>
+                <input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50">
+            </div>
+            <div class="modal-btns">
+                <button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button>
+                <button class="modal-btn yes" onclick="performLogin()">Masuk</button>
+            </div>
+        </div>
+    </div>
 
-    <div class="modal-overlay" id="cvcModal"><div class="modal-box" style="position:relative;"><button class="modal-close" onclick="closeModal('cvcModal')">&times;</button><h2 class="modal-title">Monitoring & Screening CVC</h2><div id="cvc-form"><div class="grid-2"><div class="input-group"><label>ID Pasien</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: RM-001"></div><div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div></div><div class="section-divider"></div><label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label><label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label><label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label><label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label><button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="calculateCVC()">Hitung Risiko</button></div><div id="cvc-result" style="display:none;"><div class="score-display"><div class="score-circle" id="cvc-score-circle"><span class="score-value" id="score-val">0</span><span class="score-label">Gejala</span></div><span id="risk-badge" class="badge badge-success">Aman</span><p style="margin-top:12px;font-size:14px;color:var(--text-cream);" id="risk-msg">Tidak ada tanda masalah.</p></div><div id="cvc-critical-action" style="margin-top:14px;"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px;" onclick="resetCVC()">Ulangi Pengecekan</button></div></div></div>
+    <!-- Discussion Modal -->
+    <div class="modal-overlay" id="discussionModal">
+        <div class="modal-box discussion-modal">
+            <button class="modal-close" onclick="closeModal('discussionModal')">&times;</button>
+            
+            <div class="discussion-header">
+                <h3 class="modal-title" style="text-align: left; margin-bottom: 0;">Komentar & Diskusi</h3>
+                <span class="discussion-count" id="commentCount">0 Komentar</span>
+            </div>
 
-    <div class="modal-overlay" id="avModal"><div class="modal-box" style="position:relative;"><button class="modal-close" onclick="closeModal('avModal')">&times;</button><h2 class="modal-title">Monitoring & Screening AV-Shunt</h2><div id="av-form"><div class="input-group"><label>ID Pasien (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div><div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div><label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label><label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label><div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div><p style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Rasakan getaran (thrill) di area shunt:</p><label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label><label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label><label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label><label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label><div class="section-title-sm">3. Tanda Peringatan Lain</div><label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label><button class="btn btn-gold" style="width:100%;margin-top:20px;" onclick="calculateAV()">Cek Kondisi</button></div><div id="av-result" style="display:none;"><div class="score-display"><span id="av-badge" class="badge badge-success" style="font-size:1rem;padding:10px 24px;">BAIK</span><p style="margin-top:14px;font-weight:600;color:var(--text-cream);font-size:15px;" id="av-msg">Kondisi fistula baik.</p><p style="font-size:13px;color:var(--text-muted);margin-top:4px;line-height:1.5;" id="av-recom">Rekomendasi.</p></div><div id="av-critical-action" style="margin-top:16px;"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px;" onclick="resetAV()">Cek Ulang</button></div></div></div>
+            <div class="comments-list" id="commentsList"></div>
 
-    <div class="modal-overlay" id="ceklistModal"><div class="modal-box" style="width:95vw;max-width:720px;padding:20px;"><button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button><h2 class="modal-title" style="margin-bottom:16px;">Cek List Keselamatan Hemodialisis</h2><div style="border-radius:14px;overflow:hidden;border:2px solid var(--border-subtle);background:var(--bg-elevated);"><img src="ceklist.png" alt="Cek List" style="width:100%;height:auto;display:block;" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px;\'>Gambar ceklist.png belum tersedia.</div>';"></div><div class="modal-btns" style="margin-top:16px;"><button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button><a href="ceklist.png" download="ceklist.png" class="modal-btn yes" style="text-decoration:none;">Unduh Gambar</a></div></div></div>
+            <div class="comment-input-area" id="commentInputArea"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="waModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('waModal')">&times;</button>
+            <h3 class="modal-title">Hubungi Kami</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px; text-align: center;">Adakah yang bisa kami bantu?</p>
+            <div class="modal-btns">
+                <button class="modal-btn no" onclick="closeModal('waModal')">Batal</button>
+                <a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a>
+            </div>
+        </div>
+    </div>
     
+    <div class="modal-overlay" id="loadingModal">
+         <div class="modal-box" style="padding: 20px;">
+             <div class="spinner"></div>
+             <p style="margin-top: 10px; font-size: 13px; color: var(--text-muted); text-align: center;">Memproses...</p>
+         </div>
+    </div>
+
+    <!-- CVC Modal -->
+    <div class="modal-overlay" id="cvcModal">
+        <div class="modal-box" style="position: relative;">
+            <button class="modal-close" onclick="closeModal('cvcModal')">&times;</button>
+            <h2 class="modal-title">Monitoring & Screening CVC</h2>
+            <div id="cvc-form">
+                <div class="grid-2">
+                    <div class="input-group"><label>ID Pasien</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: RM-001"></div>
+                    <div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div>
+                </div>
+                <div class="section-divider"></div>
+                <label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label>
+                <label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label>
+                <label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label>
+                <label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label>
+                <label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 16px;" onclick="calculateCVC()">Hitung Risiko</button>
+            </div>
+            <div id="cvc-result" style="display: none;">
+                <div class="score-display">
+                    <div class="score-circle" id="cvc-score-circle">
+                        <span class="score-value" id="score-val">0</span>
+                        <span class="score-label">Gejala</span>
+                    </div>
+                    <span id="risk-badge" class="badge badge-success">Aman</span>
+                    <p style="margin-top: 12px; font-size: 14px; color: var(--text-cream);" id="risk-msg">Tidak ada tanda masalah.</p>
+                </div>
+                <div id="cvc-critical-action" style="margin-top:14px;"></div>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 16px;" onclick="resetCVC()">Ulangi Pengecekan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AV Modal -->
+    <div class="modal-overlay" id="avModal">
+        <div class="modal-box" style="position: relative;">
+            <button class="modal-close" onclick="closeModal('avModal')">&times;</button>
+            <h2 class="modal-title">Monitoring & Screening AV-Shunt</h2>
+            <div id="av-form">
+                <div class="input-group">
+                    <label>ID Pasien (Opsional)</label>
+                    <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
+                </div>
+                <div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div>
+                <label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label>
+                <label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label>
+                <label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label>
+
+                <div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div>
+                <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Rasakan getaran (thrill) di area shunt:</p>
+                <label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label>
+                <label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label>
+                <label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label>
+                
+                <label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label>
+
+                <div class="section-title-sm">3. Tanda Peringatan Lain</div>
+                <label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label>
+                <label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label>
+
+                <button class="btn btn-gold" style="width: 100%; margin-top: 20px;" onclick="calculateAV()">Cek Kondisi</button>
+            </div>
+            
+            <div id="av-result" style="display: none;">
+                <div class="score-display">
+                    <span id="av-badge" class="badge badge-success" style="font-size: 1rem; padding: 10px 24px;">BAIK</span>
+                    <p style="margin-top: 14px; font-weight: 600; color: var(--text-cream); font-size: 15px;" id="av-msg">Kondisi fistula baik.</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;" id="av-recom">Rekomendasi.</p>
+                </div>
+                <div id="av-critical-action" style="margin-top:16px;"></div>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 16px;" onclick="resetAV()">Cek Ulang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cek List Modal -->
+    <div class="modal-overlay" id="ceklistModal">
+        <div class="modal-box" style="width: 95vw; max-width: 720px; padding: 20px;">
+            <button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button>
+            <h2 class="modal-title" style="margin-bottom: 16px;">Cek List Keselamatan Hemodialisis</h2>
+            <div style="border-radius: 14px; overflow: hidden; border: 2px solid var(--border-subtle); background: var(--bg-elevated);">
+                <img src="ceklist.png" alt="Cek List Keselamatan Hemodialisis" 
+                     style="width: 100%; height: auto; display: block;"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px;\'>Gambar ceklist.png belum tersedia.<br>Pastikan file ceklist.png ada di folder yang sama dengan index.html.</div>';">
+            </div>
+            <div class="modal-btns" style="margin-top: 16px;">
+                <button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button>
+                <a href="ceklist.png" download="ceklist-keselamatan-hemodialisis.png" class="modal-btn yes" style="text-decoration: none;">Unduh Gambar</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TOUR ELEMENTS -->
     <div class="tour-overlay" id="tourOverlay"></div>
     <div class="tour-highlight" id="tourHighlight"></div>
-    <div class="tour-tooltip" id="tourTooltip"><h4 id="tooltipTitle">Judul</h4><p id="tooltipDesc">Deskripsi</p></div>
+    <div class="tour-tooltip" id="tourTooltip">
+        <h4 id="tooltipTitle">Judul</h4>
+        <p id="tooltipDesc">Deskripsi</p>
+    </div>
 
+    <!-- CREDITS OVERLAY -->
     <div class="credits-overlay" id="creditsOverlay">
-        <audio id="bgMusic" class="audio-hidden" loop><source src="music.mp4" type="audio/mp4"></audio>
+        <audio id="bgMusic" class="audio-hidden" loop>
+            <source src="music.mp4" type="audio/mp4">
+        </audio>
         <div class="star-container" id="starContainer"></div>
         <div class="credits-content" id="creditsContent">
             <div class="credits-title">TIM INOCA RSSA PROV. JATIM</div>
@@ -556,158 +1592,861 @@
             <div class="credits-section"><div class="role">Ketua</div><p>Riza Arum A., S.Kep.Ners</p></div>
             <div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div>
             <div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div>
-            <div class="credits-section"><p style="font-size:36px;font-weight:800;letter-spacing:4px;">TERIMA KASIH</p></div>
+            <div class="credits-section"><p style="font-size: 36px; font-weight: 800; letter-spacing: 4px;">TERIMA KASIH</p></div>
             <div class="credits-footer"><p>&copy; 2026 Mona - Monitoring Akses untuk Cuci Darah</p></div>
-            <div style="height:200px;"></div>
+            <div style="height: 200px;"></div>
         </div>
     </div>
 
-    <div class="holo-container" id="holoContainer"><div class="holo-beam"></div><div class="holo-base"></div><div class="holo-body"><img src="dokter.gif" alt="AI Doctor" class="holo-avatar"></div></div>
+    <!-- HOLOGRAM ELEMENT -->
+    <div class="holo-container" id="holoContainer">
+        <div class="holo-beam"></div>
+        <div class="holo-base"></div>
+        <div class="holo-body">
+            <img src="dokter.gif" alt="AI Doctor" class="holo-avatar">
+        </div>
+    </div>
 
+    <!-- Main Container -->
     <div class="main-container">
+        
+        <!-- Panel Header -->
         <div class="panel-header" id="tour-step-0">
-            <div class="header-bg" style="background-image:url('banner-saya.png');"></div>
+            <div class="header-bg" style="background-image: url('banner-saya.png');"></div>
             <div class="header-overlay"></div>
             <div class="header-content">
                 <div class="header-top-row">
                     <div class="header-left-group">
-                        <!-- Logo + Brand Text (tanpa frame, transparan, sejajar jam) -->
-                        <div class="header-brand">
-                            <div class="brand-logo">
-                                <img src="mona.png" alt="Mona Logo">
-                            </div>
-                            <div class="brand-text">
-                                <span class="brand-name">Mona</span>
-                                <span class="brand-tagline">Monitoring Akses Pembuluh Darah untuk Cuci Darah</span>
-                            </div>
-                        </div>
                         <div class="digital-clock">
-                            <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            <div><div class="clock-display" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">--, -- --- ----</div></div>
+                            <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div>
+                                <div class="clock-display" id="clockTime">--:--:--</div>
+                                <div class="clock-date" id="clockDate">--, -- --- ----</div>
+                            </div>
                             <div class="clock-pulse"></div>
                         </div>
+                        
                         <div class="login-container" id="loginContainer" onclick="handleLoginClick()">
-                            <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="loginIconSvg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                            <div class="user-avatar" id="userAvatar" style="display:none;"></div>
+                            <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="loginIconSvg">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <div class="user-avatar" id="userAvatar" style="display: none;"></div>
                             <span class="login-text" id="loginText">Login / Masuk</span>
                         </div>
                     </div>
-                    <button class="guide-btn" onclick="startTour()"><svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Panduan</button>
+                    
+                    <button class="guide-btn" onclick="startTour()">
+                        <svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Panduan
+                    </button>
                 </div>
+
                 <div class="welcome-message" id="welcomeMessage"></div>
+
+                <h1 class="header-title">Mona</h1>
+                <p class="header-subtitle">Monitoring Akses untuk Cuci Darah</p>
+                
                 <div class="marquee-container">
                     <div class="marquee-track">
                         <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span><span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
+                            <span class="marquee-separator">&#9670;</span>
                         </div>
                         <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span><span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span><span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
+                            <span class="marquee-separator">&#9670;</span>
+                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
+                            <span class="marquee-separator">&#9670;</span>
                         </div>
                     </div>
                 </div>
+                
                 <button class="discussion-btn" onclick="openDiscussion()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
                     Komentar dan Diskusi
                 </button>
             </div>
         </div>
 
+        <!-- Panel Grid -->
         <div class="panel-grid">
+            
+            <!-- Panel 1: CVC -->
             <div class="panel-card" id="tour-step-1">
-                <div class="panel-icon-wrapper red"><img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'"></div>
+                <div class="panel-icon-wrapper red">
+                    <img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'">
+                </div>
                 <h2 class="panel-title">MONITORING CVC</h2>
                 <p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p>
-                <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Centers for Disease Control and Prevention (CDC) - Guidelines for the Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Kidney Disease Outcomes Quality Initiative (KDOQI) - Vascular Access Guidelines (2019 Update)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Perdiali - Pedoman Perawatan Kateter HD, Perdosri (2021)</span></div></div>
-                <div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div>
+                
+                <div class="literature-box">
+                    <div class="literature-title">
+                        <svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Sumber Literatur Terpercaya
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Centers for Disease Control and Prevention (CDC) - Guidelines for the Prevention of Intravascular Catheter-Related Infection (2023)</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Kidney Disease Outcomes Quality Initiative (KDOQI) - Vascular Access Guidelines (2019 Update)</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Perdiali - Pedoman Perawatan Kateter HD, Perdosri (2021)</span>
+                    </div>
+                </div>
+                
+                <div class="panel-actions">
+                    <button class="btn btn-primary" onclick="openModal('cvcModal')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        Mulai Screening
+                    </button>
+                </div>
             </div>
+
+            <!-- Panel 2: AV-Shunt -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper gold"><img src="icon-avshunt.png" alt="AV-Shunt" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%237c3aed%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%235b21b6%22 font-size=%2212%22 font-weight=%22bold%22>AV</text></svg>'"></div>
+                <div class="panel-icon-wrapper gold">
+                    <img src="icon-avshunt.png" alt="AV-Shunt" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%237c3aed%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%235b21b6%22 font-size=%2212%22 font-weight=%22bold%22>AV</text></svg>'">
+                </div>
                 <h2 class="panel-title">MONITORING AV-SHUNT</h2>
                 <p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p>
-                <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>National Kidney Foundation (NKF) - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>European Renal Best Practice (ERBP) - Vascular Access Guidelines (2018)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Perdosri - Panduan Praktik Klinis Akses Vaskular di Indonesia (2020)</span></div></div>
-                <div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div>
+                
+                <div class="literature-box">
+                    <div class="literature-title">
+                        <svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Sumber Literatur Terpercaya
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>National Kidney Foundation (NKF) - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>European Renal Best Practice (ERBP) - Vascular Access Guidelines (2018)</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Perdosri - Panduan Praktik Klinis Akses Vaskular di Indonesia (2020)</span>
+                    </div>
+                </div>
+                
+                <div class="panel-actions">
+                    <button class="btn btn-gold" onclick="openModal('avModal')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        Mulai Screening
+                    </button>
+                </div>
             </div>
+
+            <!-- Panel 3: Edukasi -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper teal"><img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'"></div>
+                <div class="panel-icon-wrapper teal">
+                    <img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'">
+                </div>
                 <h2 class="panel-title">EDUKASI</h2>
                 <p class="panel-subtitle">Di sini tersedia materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p>
-                <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>Konten Edukasi Tersedia</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Video Edukasi Monitoring Akses Vaskuler</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Infografis & Quick Guide (Poster Edukasi)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Materi Presentasi (PPT): Monitoring & EWS Akses Dialisis</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Dan banyak lagi</span></div></div>
-                <div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none;"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div>
+                
+                <div class="literature-box">
+                    <div class="literature-title">
+                        <svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                        </svg>
+                        Konten Edukasi Tersedia
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Video Edukasi Monitoring Akses Vaskuler</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Infografis & Quick Guide (Poster Edukasi)</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Materi Presentasi (PPT): Monitoring & EWS Akses Dialisis</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Dan banyak lagi</span>
+                    </div>
+                </div>
+                
+                <div class="panel-actions">
+                    <a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration: none;">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Video Perawatan CVC
+                    </a>
+                </div>
             </div>
+
+            <!-- Panel 4: Cek List Keselamatan Hemodialisis -->
             <div class="panel-card">
-                <div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2230%22 x2=%2226%22 y2=%2230%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><polyline points=%2216 13 18 15 22 11%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'"></div>
+                <div class="panel-icon-wrapper purple">
+                    <img src="ceklist.png" alt="Cek List" class="icon-custom" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><line x1=%2216%22 y1=%2230%22 x2=%2226%22 y2=%2230%22 stroke=%22%237c3aed%22 stroke-width=%222%22 stroke-linecap=%22round%22/><polyline points=%2216 13 18 15 22 11%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'">
+                </div>
                 <h2 class="panel-title">CEK LIST KESELAMATAN HEMODIALISIS</h2>
                 <p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman, terstandar, dan sesuai protokol klinis.</p>
-                <div class="literature-box"><div class="literature-title"><svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Referensi Standar Keselamatan</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>ISQua - International Society for Quality in Health Care: Safety Checklist for Dialysis</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>WHO Surgical Safety Checklist adaptasi untuk Prosedur Hemodialisis</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Permenkes RI No. 25 Tahun 2014 tentang Upaya Kesehatan Kerja</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>Standar Akreditasi Hospital Joint Commission International (JCI)</span></div></div>
-                <div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div>
+                
+                <div class="literature-box">
+                    <div class="literature-title">
+                        <svg class="literature-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Referensi Standar Keselamatan
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>ISQua - International Society for Quality in Health Care: Safety Checklist for Dialysis</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>WHO Surgical Safety Checklist adaptasi untuk Prosedur Hemodialisis</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Permenkes RI No. 25 Tahun 2014 tentang Upaya Kesehatan Kerja</span>
+                    </div>
+                    <div class="literature-item">
+                        <span class="literature-bullet">&#9679;</span>
+                        <span>Standar Akreditasi Hospital Joint Commission International (JCI)</span>
+                    </div>
+                </div>
+                
+                <div class="panel-actions">
+                    <button class="btn btn-teal" onclick="openModal('ceklistModal')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Lihat Cek List
+                    </button>
+                </div>
             </div>
-        </div>
-
+            
+        <!-- Panel Footer -->
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info">
-                <div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div>
-                <div class="footer-text"><h3>INFO APLIKASI</h3><p>Mona - Monitoring Akses untuk Cuci Darah oleh TIM INOCA RSSA</p></div>
+                <div class="footer-icon">
+                    <img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'">
+                </div>
+                <div class="footer-text">
+                    <h3>INFO APLIKASI</h3>
+                    <p>Mona - Monitoring Akses untuk Cuci Darah oleh TIM INOCA RSSA</p>
+                </div>
             </div>
-            <div class="footer-stats"><div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div><div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div></div>
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="statCount">0</div>
+                    <div class="stat-label">Pengguna</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">86%</div>
+                    <div class="stat-label">Kepuasan</div>
+                </div>
+            </div>
             <div class="footer-actions">
-                <button class="btn btn-secondary" onclick="startTour()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Panduan</button>
-                <button class="btn btn-gold" onclick="startCredits()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info Lengkap</button>
+                <button class="btn btn-secondary" onclick="startTour()">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Panduan
+                </button>
+                <button class="btn btn-gold" onclick="startCredits()">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Info Lengkap
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-    const API_URL='https://script.google.com/macros/s/AKfycbwkklSohZuevQaERjnA-xQkdYmbRF1zg3Q_kE-XcjkThRyIzrexd3WFgQzried3TR6R/exec';
-    let currentUser=null,comments=[];
-    const holoContainer=document.getElementById('holoContainer'),tourTooltip=document.getElementById('tourTooltip'),tooltipTitle=document.getElementById('tooltipTitle'),tooltipDesc=document.getElementById('tooltipDesc'),tourOverlay=document.getElementById('tourOverlay'),tourHighlight=document.getElementById('tourHighlight'),creditsOverlay=document.getElementById('creditsOverlay'),creditsContent=document.getElementById('creditsContent'),bgMusic=document.getElementById('bgMusic'),starContainer=document.getElementById('starContainer'),welcomeMessage=document.getElementById('welcomeMessage');
-    const assessmentContacts=[{name:'Riza A',phone:'6282227707573'},{name:'Pembayun Y',phone:'6283831217784'},{name:'Hesty',phone:'6282124700093'},{name:'Rinda',phone:'6285210622568'}];
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwkklSohZuevQaERjnA-xQkdYmbRF1zg3Q_kE-XcjkThRyIzrexd3WFgQzried3TR6R/exec';
 
-    function updateClock(){const n=new Date(),d=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],m=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];document.getElementById('clockTime').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}`;document.getElementById('clockDate').textContent=`${d[n.getDay()]}, ${n.getDate()} ${m[n.getMonth()]} ${n.getFullYear()}`;}
-    setInterval(updateClock,1000);updateClock();
+    let currentUser = null;
+    let comments = [];
+    
+    const holoContainer = document.getElementById('holoContainer');
+    const tourTooltip = document.getElementById('tourTooltip');
+    const tooltipTitle = document.getElementById('tooltipTitle');
+    const tooltipDesc = document.getElementById('tooltipDesc');
+    const tourOverlay = document.getElementById('tourOverlay');
+    const tourHighlight = document.getElementById('tourHighlight');
+    const creditsOverlay = document.getElementById('creditsOverlay');
+    const creditsContent = document.getElementById('creditsContent');
+    const bgMusic = document.getElementById('bgMusic');
+    const starContainer = document.getElementById('starContainer');
+    const welcomeMessage = document.getElementById('welcomeMessage');
 
-    function initLogin(){const s=localStorage.getItem('mona_user');if(s){currentUser=JSON.parse(s);updateLoginUI();}}
-    function handleLoginClick(){if(currentUser){if(confirm(`Anda login sebagai "${currentUser.name}". Klik OK untuk logout.`))logout();}else openModal('loginModal');}
-    function performLogin(){const i=document.getElementById('loginName'),n=i.value.trim();if(!n){alert('Silakan masukkan nama Anda!');return;}currentUser={name:n,id:Date.now().toString(),joinedAt:new Date().toISOString()};localStorage.setItem('mona_user',JSON.stringify(currentUser));updateLoginUI();closeModal('loginModal');i.value='';updateCommentInputArea();}
-    function logout(){currentUser=null;localStorage.removeItem('mona_user');updateLoginUI();updateCommentInputArea();}
-    function updateLoginUI(){const c=document.getElementById('loginContainer'),t=document.getElementById('loginText'),s=document.getElementById('loginIconSvg'),a=document.getElementById('userAvatar');if(currentUser){c.classList.add('logged-in');t.textContent=currentUser.name;s.style.display='none';a.style.display='flex';a.textContent=currentUser.name.charAt(0).toUpperCase();const g=['Selamat Datang','Halo','Salam Sehat'];welcomeMessage.textContent=`${g[Math.floor(Math.random()*g.length)]}, ${currentUser.name}!`;welcomeMessage.classList.add('show');}else{c.classList.remove('logged-in');t.textContent='Login / Masuk';s.style.display='block';a.style.display='none';welcomeMessage.classList.remove('show');}}
-    function openDiscussion(){openModal('discussionModal');loadComments();updateCommentInputArea();}
-    function updateCommentInputArea(){const a=document.getElementById('commentInputArea');if(currentUser){a.innerHTML=`<textarea id="commentText" placeholder="Tulis komentar atau pertanyaan Anda di sini..."></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px;"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>Kirim Komentar</button></div>`;}else{a.innerHTML=`<div class="login-prompt"><p>Anda harus <a onclick="closeModal('discussionModal');openModal('loginModal');return false;">login terlebih dahulu</a> untuk dapat mengirim komentar.</p></div>`;}}
-    async function loadComments(){try{const r=await fetch(`${API_URL}?action=getComments`),d=await r.json();comments=(d.success&&d.comments)?d.comments:[];}catch(e){comments=[];}renderComments();}
-    function renderComments(){const l=document.getElementById('commentsList');document.getElementById('commentCount').textContent=`${comments.length} Komentar`;if(!comments.length){l.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return;}const s=[...comments].sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));l.innerHTML=s.map(c=>`<div class="comment-item"><div class="comment-header"><div class="comment-avatar">${c.author.charAt(0).toUpperCase()}</div><div><div class="comment-author">${escapeHtml(c.author)}</div><div class="comment-time">${formatTimeAgo(c.timestamp)}</div></div></div><div class="comment-text">${escapeHtml(c.text)}</div></div>`).join('');}
-    async function submitComment(){if(!currentUser){alert('Anda harus login terlebih dahulu!');return;}const t=document.getElementById('commentText'),x=t.value.trim();if(!x){alert('Silakan tulis komentar Anda!');return;}if(x.length>1000){alert('Komentar terlalu panjang! Maksimal 1000 karakter.');return;}openModal('loadingModal');const d={action:'addComment',author:currentUser.name,authorId:currentUser.id,text:x,timestamp:new Date().toISOString()};try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});closeModal('loadingModal');comments.push(d);renderComments();t.value='';alert('Komentar berhasil dikirim!');}catch(e){closeModal('loadingModal');alert('Gagal mengirim komentar. Silakan coba lagi.');}}
-    function formatTimeAgo(ts){const d=Date.now()-new Date(ts),m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000);if(m<1)return'Baru saja';if(m<60)return`${m} menit yang lalu`;if(h<24)return`${h} jam yang lalu`;if(dy<7)return`${dy} hari yang lalu`;return new Date(ts).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});}
-    function escapeHtml(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML;}
-    function animateValue(id,s,e,dur){const o=document.getElementById(id);if(!o)return;let st=null;const step=ts=>{if(!st)st=ts;const p=Math.min(ts-st,dur)/dur;o.textContent=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);}
-    function createReportButtons(pid,status,type){const t=`Laporan ${type}%0AID: ${pid}%0AStatus: ${status}`;return `<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border-subtle);text-align:center;"><p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600;">Hubungi Admin untuk melaporkan:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">${assessmentContacts.map(c=>`<a href="https://wa.me/${c.phone}?text=${t}" target="_blank" class="btn btn-secondary" style="font-size:11px;padding:8px;text-decoration:none;">${c.name}</a>`).join('')}</div></div>`;}
-    function openModal(id){document.getElementById(id).classList.add('active');}
-    function closeModal(id){document.getElementById(id).classList.remove('active');}
-    function confirmWA(p,n){document.getElementById('confirmWaBtn').href=`https://wa.me/${p}?text=${encodeURIComponent(`Halo ${n}, saya ingin bertanya.`)}`;openModal('waModal');}
-    document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));});
-    function showHoloMessageSimple(t,d){tooltipTitle.innerText=t;tooltipDesc.innerText=d;holoContainer.classList.add('show');tourTooltip.classList.add('active');setTimeout(()=>{holoContainer.classList.remove('show');tourTooltip.classList.remove('active');},4000);}
-    const tourSteps=[{element:'#tour-step-0',title:'Selamat Datang di Mona!',desc:'Monitoring Akses untuk Cuci Darah - Platform untuk memantau kesehatan akses vaskular Anda.'},{element:'#tour-step-info',title:'Perkenalan Aplikasi',desc:'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.'},{element:'#tour-step-1',title:'Assessment CVC',desc:'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.'}];
-    let currentTourStep=-1;
-    function startTour(){currentTourStep=-1;tourOverlay.classList.add('active');tourHighlight.classList.remove('animate');showHoloMessageSimple("Memulai Tur","Saya akan memandu Anda melihat fitur-fitur menarik di sini.");setTimeout(()=>{tourHighlight.classList.add('animate');nextTourStep();},3000);}
-    function nextTourStep(){currentTourStep++;if(currentTourStep>=tourSteps.length){endTour();return;}const s=tourSteps[currentTourStep],el=document.querySelector(s.element);setTimeout(()=>{if(el){const r=el.getBoundingClientRect();tourHighlight.style.top=r.top+'px';tourHighlight.style.left=r.left+'px';tourHighlight.style.width=r.width+'px';tourHighlight.style.height=r.height+'px';showHoloMessageSimple(s.title,s.desc);setTimeout(nextTourStep,4500);}},300);}
-    function endTour(){tourOverlay.classList.remove('active');tourHighlight.classList.remove('animate');showHoloMessageSimple("Sampai Jumpa","Terima kasih telah mengikuti tur!");setTimeout(()=>startCredits(),3000);}
-    function createStars(){starContainer.innerHTML='';for(let i=0;i<50;i++){const s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.width=s.style.height=Math.random()*3+1+'px';s.style.animationDuration=Math.random()*3+2+'s';s.style.animationDelay=Math.random()*5+'s';starContainer.appendChild(s);}}
-    function startCredits(){createStars();creditsOverlay.classList.add('active');creditsContent.style.animation='none';creditsContent.offsetHeight;creditsContent.style.animation='scrollDown 150s linear forwards';if(bgMusic){bgMusic.currentTime=0;bgMusic.volume=0.6;bgMusic.play().catch(()=>{});}creditsContent.addEventListener('animationend',handleCreditsEnd);}
-    function handleCreditsEnd(){creditsOverlay.classList.remove('active');if(bgMusic)bgMusic.pause();creditsContent.removeEventListener('animationend',handleCreditsEnd);}
-    function calculateCVC(){let sc=0,cr=false;if(document.getElementById('q1')?.checked)sc++;if(document.getElementById('q2')?.checked)sc++;if(document.getElementById('q3')?.checked)sc++;if(document.getElementById('q4')?.checked){sc++;cr=true;}if(document.getElementById('q5')?.checked){sc++;cr=true;}let lv="",ms="",bc="";const ci=document.getElementById('cvc-score-circle');ci.classList.remove('low','medium','high');if(cr||sc>=4){lv="TINGGI";ms="DARURAT! Segera ke RS.";bc="badge-danger";ci.classList.add('high');}else if(sc>=2){lv="SEDANG";ms="SEGERA LAPOR.";bc="badge-warning";ci.classList.add('medium');}else if(sc===1){lv="RENDAH";ms="Perlu Perhatian.";bc="badge-warning";ci.classList.add('medium');}else{lv="AMAN";ms="Kondisi Aman.";bc="badge-success";ci.classList.add('low');}document.getElementById('cvc-form').style.display='none';document.getElementById('cvc-result').style.display='block';document.getElementById('score-val').innerText=sc;document.getElementById('risk-msg').innerText=ms;const b=document.getElementById('risk-badge');b.innerText=lv;b.className='badge '+bc;const cd=document.getElementById('cvc-critical-action'),pid=document.getElementById('cvc_id').value||'Pasien CVC';const ah=lv!=="AMAN"?createReportButtons(pid,lv,'CVC'):'';cd.innerHTML=ah;cd.style.display=ah?'block':'none';}
-    function resetCVC(){document.getElementById('cvc-form').style.display='block';document.getElementById('cvc-result').style.display='none';document.querySelectorAll('#cvc-form input').forEach(c=>c.checked=false);}
-    function calculateAV(){const pid=document.getElementById('av_id').value||'Pasien';const vr=document.getElementById('av_vis_red').checked,vp=document.getElementById('av_vis_pus').checked,vb=document.getElementById('av_vis_bleed').checked,pp=document.getElementById('av_palp_pain').checked,oc=document.getElementById('av_other_cold').checked,of=document.getElementById('av_other_fever').checked;const tv=document.querySelector('input[name="av_thrill"]:checked')?.value;let st="BAIK",ms="Kondisi fistula baik.",rc="Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.",ic=false,iw=false;if(vp||vb||oc||of||tv==='gone'){st="DARURAT";ms="Kondisi Kritis!";rc="Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";ic=true;}else if(vr||pp||tv==='weak'){st="PERHATIAN";ms="Ada tanda yang perlu diwaspadai.";rc="Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin untuk pemeriksaan lebih lanjut.";iw=true;}document.getElementById('av-form').style.display='none';document.getElementById('av-result').style.display='block';const b=document.getElementById('av-badge');b.innerText=st;b.className='badge '+(ic?'badge-danger':iw?'badge-warning':'badge-success');document.getElementById('av-msg').innerText=ms;document.getElementById('av-recom').innerText=rc;const cd=document.getElementById('av-critical-action'),ah=(ic||iw)?createReportButtons(pid,st,'AV Shunt'):'';cd.innerHTML=ah;cd.style.display=ah?'block':'none';}
-    function resetAV(){document.getElementById('av-form').style.display='block';document.getElementById('av-result').style.display='none';document.querySelectorAll('#av-form input[type="checkbox"]').forEach(c=>c.checked=false);const nr=document.querySelector('input[name="av_thrill"][value="normal"]');if(nr)nr.checked=true;}
-    window.addEventListener('load',()=>{animateValue('statCount',0,1247,2000);initLogin();});
+    const assessmentContacts = [
+        { name: 'Riza A', phone: '6282227707573' },
+        { name: 'Pembayun Y', phone: '6283831217784' },
+        { name: 'Hesty', phone: '6282124700093' },
+        { name: 'Rinda', phone: '6285210622568' }
+    ];
+
+    function updateClock() {
+        const now = new Date();
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        
+        const day = days[now.getDay()];
+        const date = now.getDate();
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds}`;
+        document.getElementById('clockDate').textContent = `${day}, ${date} ${month} ${year}`;
+    }
+    
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function initLogin() {
+        const savedUser = localStorage.getItem('mona_user');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            updateLoginUI();
+        }
+    }
+
+    function handleLoginClick() {
+        if (currentUser) {
+            if (confirm(`Anda login sebagai "${currentUser.name}". Klik OK untuk logout.`)) {
+                logout();
+            }
+        } else {
+            openModal('loginModal');
+        }
+    }
+
+    function performLogin() {
+        const nameInput = document.getElementById('loginName');
+        const name = nameInput.value.trim();
+        
+        if (!name) {
+            alert('Silakan masukkan nama Anda!');
+            return;
+        }
+        
+        currentUser = {
+            name: name,
+            id: Date.now().toString(),
+            joinedAt: new Date().toISOString()
+        };
+        
+        localStorage.setItem('mona_user', JSON.stringify(currentUser));
+        updateLoginUI();
+        closeModal('loginModal');
+        nameInput.value = '';
+        updateCommentInputArea();
+    }
+
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('mona_user');
+        updateLoginUI();
+        updateCommentInputArea();
+    }
+
+    function updateLoginUI() {
+        const loginContainer = document.getElementById('loginContainer');
+        const loginText = document.getElementById('loginText');
+        const loginIconSvg = document.getElementById('loginIconSvg');
+        const userAvatar = document.getElementById('userAvatar');
+        
+        if (currentUser) {
+            loginContainer.classList.add('logged-in');
+            loginText.textContent = currentUser.name;
+            loginIconSvg.style.display = 'none';
+            userAvatar.style.display = 'flex';
+            userAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+            
+            const greetings = ['Selamat Datang', 'Halo', 'Salam Sehat'];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            welcomeMessage.textContent = `${randomGreeting}, ${currentUser.name}!`;
+            welcomeMessage.classList.add('show');
+        } else {
+            loginContainer.classList.remove('logged-in');
+            loginText.textContent = 'Login / Masuk';
+            loginIconSvg.style.display = 'block';
+            userAvatar.style.display = 'none';
+            welcomeMessage.classList.remove('show');
+        }
+    }
+
+    function openDiscussion() {
+        openModal('discussionModal');
+        loadComments();
+        updateCommentInputArea();
+    }
+
+    function updateCommentInputArea() {
+        const inputArea = document.getElementById('commentInputArea');
+        
+        if (currentUser) {
+            inputArea.innerHTML = `
+                <textarea id="commentText" placeholder="Tulis komentar atau pertanyaan Anda di sini..."></textarea>
+                <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                    <button class="btn btn-teal" onclick="submitComment()" style="flex: 0 0 auto; padding: 12px 24px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        Kirim Komentar
+                    </button>
+                </div>
+            `;
+        } else {
+            inputArea.innerHTML = `
+                <div class="login-prompt">
+                    <p>Anda harus <a onclick="closeModal('discussionModal'); openModal('loginModal'); return false;">login terlebih dahulu</a> untuk dapat mengirim komentar.</p>
+                </div>
+            `;
+        }
+    }
+
+    async function loadComments() {
+        try {
+            const response = await fetch(`${API_URL}?action=getComments`);
+            const data = await response.json();
+            
+            if (data.success && data.comments) {
+                comments = data.comments;
+            } else {
+                comments = [];
+            }
+        } catch (error) {
+            console.error('Error loading comments:', error);
+            comments = [];
+        }
+        
+        renderComments();
+    }
+
+    function renderComments() {
+        const listContainer = document.getElementById('commentsList');
+        const countBadge = document.getElementById('commentCount');
+        
+        countBadge.textContent = `${comments.length} Komentar`;
+        
+        if (comments.length === 0) {
+            listContainer.innerHTML = `<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>`;
+            return;
+        }
+        
+        const sortedComments = [...comments].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        let html = '';
+        sortedComments.forEach(comment => {
+            const initials = comment.author.charAt(0).toUpperCase();
+            const timeAgo = formatTimeAgo(comment.timestamp);
+            
+            html += `
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-avatar">${initials}</div>
+                        <div>
+                            <div class="comment-author">${escapeHtml(comment.author)}</div>
+                            <div class="comment-time">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                </div>
+            `;
+        });
+        
+        listContainer.innerHTML = html;
+    }
+
+    async function submitComment() {
+        if (!currentUser) {
+            alert('Anda harus login terlebih dahulu!');
+            return;
+        }
+        
+        const textArea = document.getElementById('commentText');
+        const text = textArea.value.trim();
+        
+        if (!text) {
+            alert('Silakan tulis komentar Anda!');
+            return;
+        }
+        
+        if (text.length > 1000) {
+            alert('Komentar terlalu panjang! Maksimal 1000 karakter.');
+            return;
+        }
+        
+        openModal('loadingModal');
+        
+        const commentData = {
+            action: 'addComment',
+            author: currentUser.name,
+            authorId: currentUser.id,
+            text: text,
+            timestamp: new Date().toISOString()
+        };
+        
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(commentData)
+            });
+            
+            closeModal('loadingModal');
+            comments.push(commentData);
+            renderComments();
+            textArea.value = '';
+            alert('Komentar berhasil dikirim!');
+            
+        } catch (error) {
+            closeModal('loadingModal');
+            console.error('Error submitting comment:', error);
+            alert('Gagal mengirim komentar. Silakan coba lagi.');
+        }
+    }
+
+    function formatTimeAgo(timestamp) {
+        const now = new Date();
+        const past = new Date(timestamp);
+        const diffMs = now - past;
+        
+        const minutes = Math.floor(diffMs / 60000);
+        const hours = Math.floor(diffMs / 3600000);
+        const days = Math.floor(diffMs / 86400000);
+        
+        if (minutes < 1) return 'Baru saja';
+        if (minutes < 60) return `${minutes} menit yang lalu`;
+        if (hours < 24) return `${hours} jam yang lalu`;
+        if (days < 7) return `${days} hari yang lalu`;
+        
+        const options = { day: 'numeric', month: 'short', year: 'numeric' };
+        return past.toLocaleDateString('id-ID', options);
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        if (!obj) return;
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(timestamp - startTimestamp, duration) / duration;
+            const current = Math.floor(progress * (end - start) + start);
+            obj.textContent = current.toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function createReportButtons(patientId, statusText, type) {
+        const text = `Laporan ${type}%0AID: ${patientId}%0AStatus: ${statusText}`;
+        let html = `<div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--border-subtle); text-align: center;">
+                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">Hubungi Admin untuk melaporkan:</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">`;
+        
+        assessmentContacts.forEach(c => {
+            html += `<a href="https://wa.me/${c.phone}?text=${text}" target="_blank" class="btn btn-secondary" style="font-size: 11px; padding: 8px; text-decoration: none;">
+                        ${c.name}
+                     </a>`;
+        });
+
+        html += `   </div>
+                   </div>`;
+        return html;
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function confirmWA(phone, name) { 
+        const text = `Halo ${name}, saya ingin bertanya.`; 
+        const linkBtn = document.getElementById('confirmWaBtn'); 
+        linkBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`; 
+        openModal('waModal'); 
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+    });
+
+    function showHoloMessageSimple(title, text) {
+        tooltipTitle.innerText = title;
+        tooltipDesc.innerText = text;
+        holoContainer.classList.add('show');
+        tourTooltip.classList.add('active');
+        
+        setTimeout(() => {
+            holoContainer.classList.remove('show');
+            tourTooltip.classList.remove('active');
+        }, 4000);
+    }
+
+    const tourSteps = [
+        { element: '#tour-step-0', title: 'Selamat Datang di Mona!', desc: 'Monitoring Akses untuk Cuci Darah - Platform untuk memantau kesehatan akses vaskular Anda.', },
+        { element: '#tour-step-info', title: 'Perkenalan Aplikasi', desc: 'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.', },
+        { element: '#tour-step-1', title: 'Assessment CVC', desc: 'Khawatir dengan kondisi kateter? Cek risiko infeksi secara mandiri di sini.', }
+    ];
+    let currentTourStep = -1;
+    
+    function startTour() { 
+        currentTourStep = -1; 
+        tourOverlay.classList.add('active'); 
+        tourHighlight.classList.remove('animate'); 
+        
+        showHoloMessageSimple("Memulai Tur", "Saya akan memandu Anda melihat fitur-fitur menarik di sini.");
+        setTimeout(() => { 
+            tourHighlight.classList.add('animate'); 
+            nextTourStep(); 
+        }, 3000);
+    }
+
+    function nextTourStep() {
+        currentTourStep++;
+        if (currentTourStep >= tourSteps.length) { endTour(); return; }
+        
+        const step = tourSteps[currentTourStep];
+        const targetEl = document.querySelector(step.element);
+        
+        setTimeout(() => {
+            if (targetEl) {
+                const rect = targetEl.getBoundingClientRect();
+                tourHighlight.style.top = rect.top + 'px'; 
+                tourHighlight.style.left = rect.left + 'px'; 
+                tourHighlight.style.width = rect.width + 'px'; 
+                tourHighlight.style.height = rect.height + 'px';
+                
+                showHoloMessageSimple(step.title, step.desc);
+                setTimeout(nextTourStep, 4500);
+            }
+        }, 300);
+    }
+    
+    function endTour() { 
+        tourOverlay.classList.remove('active'); 
+        tourHighlight.classList.remove('animate'); 
+        
+        showHoloMessageSimple("Sampai Jumpa", "Terima kasih telah mengikuti tur!");
+        setTimeout(() => { startCredits(); }, 3000);
+    }
+
+    function createStars() { 
+        starContainer.innerHTML = ''; 
+        for(let i=0; i<50; i++) { 
+            const star = document.createElement('div'); 
+            star.classList.add('star'); 
+            star.style.left = Math.random() * 100 + '%'; 
+            star.style.width = Math.random() * 3 + 1 + 'px'; 
+            star.style.height = star.style.width; 
+            star.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+            star.style.animationDelay = Math.random() * 5 + 's'; 
+            starContainer.appendChild(star); 
+        } 
+    }
+    
+    function startCredits() { 
+        createStars(); 
+        creditsOverlay.classList.add('active'); 
+        creditsContent.style.animation = 'none'; 
+        creditsContent.offsetHeight; 
+        creditsContent.style.animation = 'scrollDown 150s linear forwards'; 
+        if (bgMusic) { 
+            bgMusic.currentTime = 0; 
+            bgMusic.volume = 0.6; 
+            bgMusic.play().catch(e => {}); 
+        } 
+        creditsContent.addEventListener('animationend', handleCreditsEnd); 
+    }
+    
+    function handleCreditsEnd() { 
+        creditsOverlay.classList.remove('active'); 
+        if(bgMusic) bgMusic.pause(); 
+        creditsContent.removeEventListener('animationend', handleCreditsEnd); 
+    }
+
+    function calculateCVC() {
+        let symptomCount = 0; let hasCriticalSign = false; 
+        if (document.getElementById('q1')?.checked) symptomCount++; 
+        if (document.getElementById('q2')?.checked) symptomCount++; 
+        if (document.getElementById('q3')?.checked) symptomCount++; 
+        if (document.getElementById('q4')?.checked) { symptomCount++; hasCriticalSign = true; }
+        if (document.getElementById('q5')?.checked) { symptomCount++; hasCriticalSign = true; }
+
+        let level = "", msg = "", bc = ""; 
+        const scoreCircle = document.getElementById('cvc-score-circle');
+        scoreCircle.classList.remove('low', 'medium', 'high');
+
+        if (hasCriticalSign || symptomCount >= 4) { level = "TINGGI"; msg = "DARURAT! Segera ke RS."; bc = "badge-danger"; scoreCircle.classList.add('high'); }
+        else if (symptomCount >= 2) { level = "SEDANG"; msg = "SEGERA LAPOR."; bc = "badge-warning"; scoreCircle.classList.add('medium'); }
+        else if (symptomCount === 1) { level = "RENDAH"; msg = "Perlu Perhatian."; bc = "badge-warning"; scoreCircle.classList.add('medium'); }
+        else { level = "AMAN"; msg = "Kondisi Aman."; bc = "badge-success"; scoreCircle.classList.add('low'); }
+
+        document.getElementById('cvc-form').style.display = 'none';
+        document.getElementById('cvc-result').style.display = 'block';
+        document.getElementById('score-val').innerText = symptomCount; 
+        document.getElementById('risk-msg').innerText = msg;
+        const badge = document.getElementById('risk-badge');
+        badge.innerText = level; badge.className = 'badge ' + bc;
+        
+        const criticalDiv = document.getElementById('cvc-critical-action');
+        const patientId = document.getElementById('cvc_id').value || 'Pasien CVC';
+        
+        let actionHTML = '';
+        if (level !== "AMAN") {
+            actionHTML = createReportButtons(patientId, level, 'CVC');
+        }
+        
+        criticalDiv.innerHTML = actionHTML;
+        criticalDiv.style.display = actionHTML ? 'block' : 'none';
+    }
+    
+    function resetCVC() { 
+        document.getElementById('cvc-form').style.display = 'block'; 
+        document.getElementById('cvc-result').style.display = 'none'; 
+        document.querySelectorAll('#cvc-form input').forEach(c => c.checked = false); 
+    }
+
+    function calculateAV() {
+        const patientId = document.getElementById('av_id').value || 'Pasien';
+        
+        const c_vis_red = document.getElementById('av_vis_red').checked;
+        const c_vis_pus = document.getElementById('av_vis_pus').checked;
+        const c_vis_bleed = document.getElementById('av_vis_bleed').checked;
+        const c_palp_pain = document.getElementById('av_palp_pain').checked;
+        const c_other_cold = document.getElementById('av_other_cold').checked;
+        const c_other_fever = document.getElementById('av_other_fever').checked;
+
+        const thrillVal = document.querySelector('input[name="av_thrill"]:checked')?.value;
+        
+        let status = "BAIK";
+        let msg = "Kondisi fistula baik.";
+        let recom = "Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.";
+        let isCritical = false;
+        let isWarning = false;
+
+        if (c_vis_pus || c_vis_bleed || c_other_cold || c_other_fever || thrillVal === 'gone') {
+            status = "DARURAT";
+            msg = "Kondisi Kritis!";
+            recom = "Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";
+            isCritical = true;
+        } else if (c_vis_red || c_palp_pain || thrillVal === 'weak') {
+            status = "PERHATIAN";
+            msg = "Ada tanda yang perlu diwaspadai.";
+            recom = "Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin untuk pemeriksaan lebih lanjut.";
+            isWarning = true;
+        }
+
+        document.getElementById('av-form').style.display = 'none';
+        document.getElementById('av-result').style.display = 'block';
+        
+        const badge = document.getElementById('av-badge');
+        badge.innerText = status;
+        badge.className = 'badge ' + (isCritical ? 'badge-danger' : isWarning ? 'badge-warning' : 'badge-success');
+        
+        document.getElementById('av-msg').innerText = msg;
+        document.getElementById('av-recom').innerText = recom;
+
+        const criticalDiv = document.getElementById('av-critical-action');
+        let actionHTML = '';
+
+        if (isCritical || isWarning) {
+            actionHTML = createReportButtons(patientId, status, 'AV Shunt');
+        }
+
+        criticalDiv.innerHTML = actionHTML;
+        criticalDiv.style.display = actionHTML ? 'block' : 'none';
+    }
+
+    function resetAV() { 
+        document.getElementById('av-form').style.display = 'block'; 
+        document.getElementById('av-result').style.display = 'none'; 
+        document.querySelectorAll('#av-form input[type="checkbox"]').forEach(c => c.checked = false);
+        const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
+        if(normalRadio) normalRadio.checked = true;
+    }
+
+    window.addEventListener('load', () => {
+        animateValue('statCount', 0, 1247, 2000);
+        initLogin();
+    });
+
     </script>
 </body>
 </html>
