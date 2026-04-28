@@ -304,46 +304,163 @@
             letter-spacing: 1px;
         }
 
-        .marquee-container {
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red), var(--accent-purple));
-            padding: 14px 0;
-            border-radius: 12px;
+        /* --- START: LIVE CHAT CSS REPLACEMENT --- */
+        .inline-chat-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
             overflow: hidden;
             margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
-        }
-
-        .marquee-track {
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
             display: flex;
-            animation: marquee 20s linear infinite;
+            flex-direction: column;
+            max-height: 350px;
         }
 
-        .marquee-content {
+        .chat-header-bar {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
+            padding: 10px 20px;
             display: flex;
-            gap: 60px;
-            padding-right: 60px;
-            white-space: nowrap;
-        }
-
-        .marquee-item {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
         }
 
-        .marquee-separator {
-            color: #ffffff;
-            opacity: 0.6;
+        .chat-status {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .chat-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        .chat-messages-area {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 120px;
+            max-height: 200px;
+            background: var(--bg-elevated);
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            position: relative;
+            word-wrap: break-word;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .chat-bubble.incoming {
+            background: #ffffff;
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-bubble.outgoing {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-bubble .meta {
+            font-size: 0.65rem;
+            opacity: 0.7;
+            margin-top: 4px;
+            display: block;
+            text-align: right;
+        }
+        
+        .chat-bubble.incoming .meta { text-align: left; }
+
+        .chat-input-bar {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid var(--border-subtle);
+            background: #ffffff;
+        }
+
+        .chat-input-bar input {
+            flex: 1;
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .chat-input-bar input:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .chat-send-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-teal-dark));
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
+        
+        .chat-login-prompt {
+            padding: 16px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
+            background: #ffffff;
+        }
+        
+        .chat-login-prompt a {
+            color: var(--accent-purple);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .empty-chat {
+            text-align: center;
+            color: var(--text-muted);
             font-size: 0.8rem;
+            margin: auto;
+            opacity: 0.7;
         }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        /* --- END: LIVE CHAT CSS REPLACEMENT --- */
 
         .discussion-btn {
             display: inline-flex;
@@ -1653,44 +1770,26 @@
                 <h1 class="header-title">Mona</h1>
                 <p class="header-subtitle">Monitoring Akses Pembuluh Darah  untuk Cuci Darah</p>
                 
-                <div class="marquee-container">
-                    <div class="marquee-track">
-                        <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
-                            <span class="marquee-separator">&#9670;</span>
-                        </div>
-                        <div class="marquee-content">
-                            <span class="marquee-item">Jaga Kebersihan Akses Vaskular Anda Setiap Hari</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Cek Kondisi Fistula Secara Rutin - Deteksi Dini Menyelamatkan Nyawa</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Rasakan Thrill Setiap Pagi - Tanda Fistula Sehat</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Hindari Tekanan pada Lengan Shunt - Lindungi Akses Darah Anda</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Laporkan Tanda Infeksi Segera - Kemerahan, Bengkak, atau Demam</span>
-                            <span class="marquee-separator">&#9670;</span>
-                            <span class="marquee-item">Akses Vaskular adalah Harapan Hidup - Rawat dengan Sepenuh Hati</span>
-                            <span class="marquee-separator">&#9670;</span>
-                        </div>
+                <!-- --- MODIFICATION START: LIVE CHAT HTML --- -->
+                <div class="inline-chat-container" id="inlineChatContainer">
+                    <div class="chat-header-bar">
+                        <span>Live Chat Konsultasi</span>
+                        <span class="chat-status">Online</span>
+                    </div>
+                    <div class="chat-messages-area" id="inlineChatMessages">
+                        <div class="empty-chat">Memuat pesan...</div>
+                    </div>
+                    <div id="chatInputWrapper">
+                         <!-- Input will be rendered by JS based on login status -->
                     </div>
                 </div>
+                <!-- --- MODIFICATION END: LIVE CHAT HTML --- -->
                 
                 <button class="discussion-btn" onclick="openDiscussion()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    Komentar dan Diskusi
+                    Lihat Semua Diskusi
                 </button>
             </div>
         </div>
@@ -1963,6 +2062,8 @@
             currentUser = JSON.parse(savedUser);
             updateLoginUI();
         }
+        // Render input for inline chat on load
+        renderInlineChatInput();
     }
 
     function handleLoginClick() {
@@ -1995,6 +2096,7 @@
         closeModal('loginModal');
         nameInput.value = '';
         updateCommentInputArea();
+        renderInlineChatInput(); // Update chat input after login
     }
 
     function logout() {
@@ -2002,6 +2104,7 @@
         localStorage.removeItem('mona_user');
         updateLoginUI();
         updateCommentInputArea();
+        renderInlineChatInput(); // Update chat input after logout
     }
 
     function updateLoginUI() {
@@ -2077,6 +2180,7 @@
         }
         
         renderComments();
+        renderInlineChatMessages(); // Render inline chat as well
     }
 
     function renderComments() {
@@ -2114,6 +2218,125 @@
         listContainer.innerHTML = html;
     }
 
+    // --- NEW FUNCTIONS FOR INLINE CHAT ---
+    
+    function renderInlineChatInput() {
+        const wrapper = document.getElementById('chatInputWrapper');
+        if (!wrapper) return;
+
+        if (currentUser) {
+            wrapper.innerHTML = `
+                <div class="chat-input-bar">
+                    <input type="text" id="inlineCommentText" placeholder="Tulis pesan..." maxlength="500">
+                    <button class="chat-send-btn" onclick="sendInlineChat()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            // Add event listener for Enter key
+            const input = document.getElementById('inlineCommentText');
+            if(input) {
+                input.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') sendInlineChat();
+                });
+            }
+        } else {
+            wrapper.innerHTML = `
+                <div class="chat-login-prompt">
+                    Silakan <a onclick="openModal('loginModal')">Login</a> untuk mengirim pesan.
+                </div>
+            `;
+        }
+    }
+
+    function renderInlineChatMessages() {
+        const container = document.getElementById('inlineChatMessages');
+        if (!container) return;
+
+        if (comments.length === 0) {
+            container.innerHTML = `<div class="empty-chat">Belum ada percakapan.</div>`;
+            return;
+        }
+
+        // Sort ascending for chat view (oldest at top)
+        const sortedComments = [...comments].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        
+        let html = '';
+        sortedComments.forEach(comment => {
+            // Check if this comment is from the current user
+            const isMine = currentUser && comment.authorId === currentUser.id;
+            const bubbleClass = isMine ? 'outgoing' : 'incoming';
+            const timeAgo = formatTimeAgo(comment.timestamp);
+            
+            html += `
+                <div class="chat-bubble ${bubbleClass}">
+                    <div style="font-size:0.7rem; opacity:0.8; margin-bottom:2px; font-weight:600;">
+                        ${isMine ? 'Anda' : escapeHtml(comment.author)}
+                    </div>
+                    ${escapeHtml(comment.text)}
+                    <span class="meta">${timeAgo}</span>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        // Auto scroll to bottom
+        container.scrollTop = container.scrollHeight;
+    }
+
+    async function sendInlineChat() {
+        if (!currentUser) {
+            openModal('loginModal');
+            return;
+        }
+        
+        const input = document.getElementById('inlineCommentText');
+        if (!input) return;
+        
+        const text = input.value.trim();
+        if (!text) return;
+
+        // Optimistic UI update (add immediately)
+        const tempComment = {
+            id: Date.now(),
+            author: currentUser.name,
+            authorId: currentUser.id,
+            text: text,
+            timestamp: new Date().toISOString()
+        };
+        
+        // Add to local array and render immediately for responsiveness
+        comments.push(tempComment);
+        renderInlineChatMessages();
+        input.value = '';
+
+        // Send to server
+        await postCommentToServer(tempComment);
+    }
+
+    async function postCommentToServer(commentData) {
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'addComment', ...commentData })
+            });
+            
+            // Since no-corps mode returns opaque response, we assume success 
+            // but we reload data to ensure consistency
+            loadComments(); 
+            
+        } catch (error) {
+            console.error('Error sending chat:', error);
+            alert('Gagal mengirim pesan. Periksa koneksi internet.');
+        }
+    }
+
+    // Override submitComment for the Modal to reuse logic
     async function submitComment() {
         if (!currentUser) {
             alert('Anda harus login terlebih dahulu!');
@@ -2136,33 +2359,19 @@
         openModal('loadingModal');
         
         const commentData = {
-            action: 'addComment',
             author: currentUser.name,
             authorId: currentUser.id,
             text: text,
             timestamp: new Date().toISOString()
         };
         
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(commentData)
-            });
-            
-            closeModal('loadingModal');
-            comments.push(commentData);
-            renderComments();
-            textArea.value = '';
-            alert('Komentar berhasil dikirim!');
-            
-        } catch (error) {
-            closeModal('loadingModal');
-            console.error('Error submitting comment:', error);
-            alert('Gagal mengirim komentar. Silakan coba lagi.');
-        }
+        await postCommentToServer(commentData);
+        
+        closeModal('loadingModal');
+        textArea.value = '';
     }
+
+    // ------------------------------
 
     function formatTimeAgo(timestamp) {
         const now = new Date();
@@ -2174,9 +2383,9 @@
         const days = Math.floor(diffMs / 86400000);
         
         if (minutes < 1) return 'Baru saja';
-        if (minutes < 60) return `${minutes} menit yang lalu`;
-        if (hours < 24) return `${hours} jam yang lalu`;
-        if (days < 7) return `${days} hari yang lalu`;
+        if (minutes < 60) return `${minutes} menit lalu`;
+        if (hours < 24) return `${hours} jam lalu`;
+        if (days < 7) return `${days} hari lalu`;
         
         const options = { day: 'numeric', month: 'short', year: 'numeric' };
         return past.toLocaleDateString('id-ID', options);
@@ -2445,6 +2654,7 @@
     window.addEventListener('load', () => {
         animateValue('statCount', 0, 1247, 2000);
         initLogin();
+        loadComments(); // Load chat messages on startup
     });
 
     </script>
