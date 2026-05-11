@@ -291,6 +291,13 @@
         .star-container{position:absolute;inset:0;overflow:hidden;z-index:1}
         .star{position:absolute;background:white;border-radius:50%;opacity:0;animation:fallingStar linear infinite}
         @keyframes fallingStar{0%{transform:translateY(-10px) translateX(0) scale(0);opacity:0}20%{opacity:1}100%{transform:translateY(100vh) translateX(20px) scale(1);opacity:0}}
+        .reset-flash{position:fixed;inset:0;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;opacity:0;visibility:hidden;transition:opacity 0.4s ease}
+        .reset-flash.active{opacity:1;visibility:visible}
+        .reset-flash .rf-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));display:flex;align-items:center;justify-content:center;animation:scaleIn 0.5s ease 0.2s both}
+        .reset-flash .rf-icon svg{width:32px;height:32px;color:white}
+        .reset-flash .rf-text{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);animation:scaleIn 0.5s ease 0.4s both}
+        .reset-flash .rf-sub{font-size:0.85rem;color:var(--text-muted);animation:scaleIn 0.5s ease 0.6s both}
+        @keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
         @media(max-width:900px){.panel-grid{grid-template-columns:1fr}.header-title{font-size:2.8rem}.footer-stats{display:none}.header-top-row{flex-direction:column;align-items:flex-start}.header-left-group{width:100%;justify-content:space-between}}
         @media(max-width:600px){.main-container{padding:12px}.panel-header{min-height:240px}.header-content{padding:20px}.header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column}.digital-clock{padding:10px 14px}.clock-display{font-size:0.95rem}.panel-icon-wrapper{width:65px;height:65px}.icon-custom{width:40px;height:40px}.inline-chat-container{max-height:360px}.chat-messages-area{max-height:200px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}}
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
@@ -299,6 +306,13 @@
 <body>
     <div class="bg-pattern"></div><div class="noise-overlay"></div>
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Flash overlay saat reset -->
+    <div class="reset-flash" id="resetFlash">
+        <div class="rf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="rf-text">Semua Data Telah Dihapus</div>
+        <div class="rf-sub">Storage bersih — halaman akan dimuat ulang...</div>
+    </div>
 
     <!-- ===== MODAL LOGIN ===== -->
     <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center;">Masukkan nama Anda untuk login dan berpartisipasi dalam diskusi.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
@@ -353,7 +367,6 @@
             </div>
         </div>
 
-        <!-- ===== 4 KARTU UTAMA — SEMUA FUNGSI AKTIF ===== -->
         <div class="panel-grid">
             <div class="panel-card" id="tour-step-1"><div class="panel-icon-wrapper red"><img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'"></div><h2 class="panel-title">MONITORING CVC</h2><p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>CDC - Guidelines for Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>KDOQI - Vascular Access Guidelines (2019 Update)</span></div></div><div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
 
@@ -361,10 +374,9 @@
 
             <div class="panel-card"><div class="panel-icon-wrapper teal"><img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'"></div><h2 class="panel-title">EDUKASI</h2><p class="panel-subtitle">Materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p><div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none;"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div></div>
 
-            <div class="panel-card"><div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22/></svg>'"></div><h2 class="panel-title">CEK LIST KESELAMATAN HD</h2><p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman.</p><div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div></div>
+            <div class="panel-card"><div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%2224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22/></svg>'"></div><h2 class="panel-title">CEK LIST KESELAMATAN HD</h2><p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman.</p><div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div></div>
         </div>
 
-        <!-- ===== FOOTER ===== -->
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info"><div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div><div class="footer-text"><h3>INFO APLIKASI</h3><p>Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah oleh TIM INOCA RSSA</p></div></div>
             <div class="footer-stats"><div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div><div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div></div>
@@ -381,6 +393,23 @@
 
     /* ===== API ===== */
     var API_URL='https://script.google.com/macros/s/AKfycbzjED-J262dM98RbjNvr4PeOloOpWg9WL08XogyXs3pEC5VFI4miopDnhqTTynxBrUq/exec';
+
+    /* ==========================================================
+       BERSIHKAN SEMUA DATA STORAGE SAAT PERTAMA KALI LOAD
+       ========================================================== */
+    (function wipeAllStorage(){
+        /* Hapus semua key yang dimiliki Mona dari localStorage */
+        var keysToRemove=[];
+        for(var i=0;i<localStorage.length;i++){
+            var k=localStorage.key(i);
+            if(k&&k.indexOf('mona_')===0) keysToRemove.push(k);
+        }
+        keysToRemove.forEach(function(k){ localStorage.removeItem(k); });
+        /* Jika ada sisa key lain yang terkait (backup), hapus juga */
+        ['mona_comments','mona_user','mona_deleted_blacklist','mona_settings'].forEach(function(k){
+            localStorage.removeItem(k);
+        });
+    })();
 
     /* ===== STATE ===== */
     var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null,modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null,activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
