@@ -13,179 +13,193 @@
         .bg-pattern{position:fixed;inset:0;background:radial-gradient(circle at 20% 50%,rgba(124,58,237,0.08) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(220,38,38,0.06) 0%,transparent 50%),linear-gradient(180deg,#f3f4f6 0%,#e5e7eb 100%);z-index:-2}
         .noise-overlay{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.02;z-index:-1;pointer-events:none}
         .main-container{max-width:1400px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;gap:16px}
-        .panel-header{position:relative;border-radius:20px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 20px 60px rgba(0,0,0,0.1);border:2px solid var(--border-gold)}
-        .header-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 10s ease;filter:brightness(0.9)}
-        .panel-header:hover .header-bg{transform:scale(1.05)}
-        .header-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.85) 40%,rgba(255,255,255,0.5) 70%,transparent 100%)}
-        .header-content{position:relative;z-index:2;padding:30px}
-        .header-top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px}
-        .header-left-group{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-        .digital-clock{display:flex;align-items:center;gap:12px;padding:12px 20px;border-radius:16px;border:2px solid var(--accent-cyan);box-shadow:0 0 15px rgba(6,182,212,0.3)}
-        .clock-icon{width:28px;height:28px;filter:drop-shadow(0 0 8px var(--accent-cyan-light))}
-        .clock-display{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,var(--accent-cyan),#0891b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px}
-        .clock-date{font-size:0.75rem;color:var(--accent-teal-dark);font-weight:600}
-        .clock-pulse{width:8px;height:8px;background:var(--accent-cyan-light);border-radius:50%;animation:clockPulse 1s ease-in-out infinite;box-shadow:0 0 10px var(--accent-cyan-light)}
-        @keyframes clockPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-        .login-container{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(139,92,246,0.05));padding:10px 16px;border-radius:14px;border:2px solid rgba(124,58,237,0.3);transition:all 0.3s ease;cursor:pointer}
-        .login-container:hover{border-color:var(--accent-purple);box-shadow:0 0 15px rgba(124,58,237,0.2)}
-        .login-container.logged-in{background:linear-gradient(135deg,rgba(20,184,166,0.1),rgba(45,212,191,0.05));border-color:rgba(20,184,166,0.4)}
-        .login-icon{width:22px;height:22px;opacity:0.7}
-        .login-text{background:transparent;border:none;outline:none;font-size:0.9rem;font-weight:600;color:var(--text-white);font-family:'DM Sans',sans-serif;cursor:pointer;padding:0}
-        .user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:none;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.85rem}
-        .guide-btn{display:flex;align-items:center;gap:8px;background:transparent;color:var(--accent-purple-dark);padding:12px 22px;border-radius:14px;font-weight:600;font-size:0.85rem;text-decoration:none;transition:all 0.3s ease;border:2px solid var(--accent-purple);cursor:pointer}
-        .guide-btn:hover{transform:translateY(-2px);background:rgba(124,58,237,0.1);box-shadow:0 8px 25px rgba(124,58,237,0.2)}
-        .guide-icon{width:20px;height:20px}
-        .header-title{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;letter-spacing:4px;background:linear-gradient(135deg,var(--accent-purple-dark),var(--accent-red-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
-        .header-subtitle{font-size:1.1rem;color:var(--accent-purple-dark);margin-bottom:16px;font-weight:600;letter-spacing:1px}
-        .welcome-message{font-size:0.9rem;color:var(--accent-teal-dark);font-weight:600;margin-bottom:12px;display:none}
-        .welcome-message.show{display:block;animation:fadeInUp 0.5s ease}
+        .header-area{display:flex;gap:16px;min-height:400px}
+        .banner-section{flex:1;border-radius:20px;overflow:hidden;position:relative;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:2px solid var(--border-gold);transition:border-color .3s}
+        .banner-section:hover{border-color:var(--accent-purple)}
+        .banner-section .header-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 12s ease}
+        .banner-section:hover .header-bg{transform:scale(1.03)}
+        .banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.35) 30%,rgba(0,0,0,0.1) 55%,transparent 70%)}
+        .banner-content{position:relative;z-index:2;padding:28px 30px;color:#fff}
+        .banner-content .header-top-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+        .banner-content .header-left-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .banner-content .digital-clock{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;border:2px solid rgba(6,182,212,0.7);box-shadow:0 0 15px rgba(6,182,212,0.25);background:rgba(0,0,0,0.45);backdrop-filter:blur(8px)}
+        .banner-content .clock-icon{width:24px;height:24px;filter:drop-shadow(0 0 6px var(--accent-cyan-light))}
+        .banner-content .clock-display{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--accent-cyan-light);letter-spacing:2px}
+        .banner-content .clock-date{font-size:0.7rem;color:rgba(255,255,255,0.7);font-weight:600}
+        .banner-content .clock-pulse{width:7px;height:7px;background:var(--accent-cyan-light);border-radius:50%;animation:clockPulse 1s ease-in-out infinite;box-shadow:0 0 8px var(--accent-cyan-light)}
+        @keyframes clockPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+        .banner-content .login-container{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);padding:8px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.25);transition:all .3s;cursor:pointer}
+        .banner-content .login-container:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.5)}
+        .banner-content .login-container.logged-in{background:rgba(20,184,166,0.2);border-color:rgba(45,212,191,0.5)}
+        .banner-content .login-icon{width:18px;height:18px;opacity:.85}
+        .banner-content .login-text{background:transparent;border:none;outline:none;font-size:.82rem;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0}
+        .banner-content .user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:none;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.8rem}
+        .banner-content .guide-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:#fff;padding:10px 18px;border-radius:12px;font-weight:600;font-size:.8rem;text-decoration:none;transition:all .3s;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer}
+        .banner-content .guide-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+        .banner-content .guide-icon{width:16px;height:16px}
+        .banner-content .header-title{font-family:'Bebas Neue',sans-serif;font-size:3.6rem;line-height:1;letter-spacing:4px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:4px}
+        .banner-content .header-subtitle{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:10px;font-weight:500;letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
+        .banner-content .welcome-message{font-size:.85rem;color:var(--accent-teal-light);font-weight:600;margin-bottom:8px;display:none;text-shadow:0 2px 6px rgba(0,0,0,0.3)}
+        .banner-content .welcome-message.show{display:block;animation:fadeInUp .5s ease}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .inline-chat-container{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:16px;border:1px solid var(--border-subtle);overflow:hidden;margin-bottom:16px;box-shadow:0 8px 32px rgba(124,58,237,0.15);display:flex;flex-direction:column;max-height:420px}
-        .chat-header-bar{background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));padding:10px 20px;display:flex;justify-content:space-between;align-items:center;color:white;font-weight:600;font-size:0.9rem;flex-shrink:0}
-        .chat-status{font-size:0.75rem;opacity:0.9;display:flex;align-items:center;gap:6px}
-        .chat-status::before{content:'';width:8px;height:8px;border-radius:50%;animation:blink 2s infinite}
+        .visitor-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);margin-bottom:10px}
+        .visitor-eye-icon{width:16px;height:16px;opacity:.8}
+        .visitor-live-dot{width:6px;height:6px;background:#ef4444;border-radius:50%;animation:liveDotPulse 1.5s ease-in-out infinite;box-shadow:0 0 6px rgba(239,68,68,0.6)}
+        @keyframes liveDotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+        .visitor-number{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:#fff;letter-spacing:1px}
+        .visitor-label{font-size:.7rem;color:rgba(255,255,255,0.65);font-weight:500}
+        .visitor-badge-footer{display:flex;align-items:center;gap:8px;padding:6px 14px;background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(239,68,68,0.03));border:1.5px solid rgba(239,68,68,0.2);border-radius:12px}
+        .visitor-badge-footer .visitor-number{font-size:.8rem;color:var(--accent-red-dark)}
+        .visitor-badge-footer .visitor-label{color:var(--text-muted);font-size:.68rem}
+        .chat-sidebar{width:330px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
+        .inline-chat-container{background:var(--bg-card);border-radius:16px;border:2px solid var(--border-subtle);overflow:hidden;box-shadow:0 8px 32px rgba(124,58,237,0.1);display:flex;flex-direction:column;flex:1;min-height:0}
+        .inline-chat-container:hover{border-color:var(--border-gold)}
+        .chat-header-bar{background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));padding:8px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:600;font-size:.8rem;flex-shrink:0}
+        .chat-status{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
+        .chat-status::before{content:'';width:6px;height:6px;border-radius:50%;animation:blink 2s infinite}
         .chat-status.online::before{background:#4ade80}
         .chat-status.offline::before{background:#fbbf24}
-        @keyframes blink{50%{opacity:0.5}}
-        .chat-sync-badge{font-size:0.65rem;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:10px;margin-left:6px;display:none}
+        @keyframes blink{50%{opacity:.5}}
+        .chat-sync-badge{font-size:.6rem;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:8px;margin-left:4px;display:none}
         .chat-sync-badge.show{display:inline-block}
-        .chat-messages-area{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:100px;max-height:240px;background:var(--bg-elevated)}
-        .chat-bubble-wrap{max-width:85%;display:flex;flex-direction:column;position:relative;transition:border-color 0.25s,box-shadow 0.25s;border-radius:14px}
+        .chat-messages-area{flex:1;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;min-height:60px;background:var(--bg-elevated)}
+        .chat-bubble-wrap{max-width:88%;display:flex;flex-direction:column;position:relative;transition:border-color .25s,box-shadow .25s;border-radius:12px}
         .chat-bubble-wrap.outgoing-wrap{align-self:flex-end}
         .chat-bubble-wrap.incoming-wrap{align-self:flex-start}
-        .chat-bubble-wrap.delete-target-inline{border:2px solid var(--accent-red)!important;box-shadow:0 0 18px rgba(220,38,38,0.3)!important;animation:deleteBubblePulse 0.9s ease infinite;border-radius:14px}
-        @keyframes deleteBubblePulse{0%,100%{box-shadow:0 0 8px rgba(220,38,38,0.2)}50%{box-shadow:0 0 22px rgba(220,38,38,0.45)}}
-        .chat-bubble-wrap.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 15px rgba(124,58,237,0.15)!important;border-radius:14px}
-        .chat-bubble{padding:10px 14px;border-radius:12px;font-size:0.85rem;line-height:1.45;word-wrap:break-word;box-shadow:0 2px 5px rgba(0,0,0,0.05);position:relative}
-        .chat-bubble.incoming{background:#ffffff;color:var(--text-dark);border-bottom-left-radius:4px}
-        .chat-bubble.outgoing{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:white;border-bottom-right-radius:4px}
-        .chat-bubble .bubble-author{font-size:0.7rem;opacity:0.75;margin-bottom:2px;font-weight:700}
-        .chat-bubble .bubble-meta{font-size:0.6rem;opacity:0.6;margin-top:4px;display:block;text-align:right}
-        .reply-quote{background:rgba(124,58,237,0.08);border-left:3px solid var(--accent-purple);border-radius:4px;padding:6px 10px;margin-bottom:6px;font-size:0.75rem;line-height:1.35}
-        .chat-bubble.outgoing .reply-quote{background:rgba(255,255,255,0.15);border-left-color:rgba(255,255,255,0.5)}
-        .reply-quote-author{font-weight:700;color:var(--accent-purple-dark);display:block;margin-bottom:1px;font-size:0.68rem}
-        .chat-bubble.outgoing .reply-quote-author{color:rgba(255,255,255,0.85)}
+        .chat-bubble-wrap.delete-target-inline{border:2px solid var(--accent-red)!important;box-shadow:0 0 14px rgba(220,38,38,0.25)!important;animation:deleteBubblePulse .9s ease infinite;border-radius:12px}
+        @keyframes deleteBubblePulse{0%,100%{box-shadow:0 0 6px rgba(220,38,38,0.15)}50%{box-shadow:0 0 18px rgba(220,38,38,0.4)}}
+        .chat-bubble-wrap.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 12px rgba(124,58,237,0.12)!important;border-radius:12px}
+        .chat-bubble{padding:8px 11px;border-radius:10px;font-size:.78rem;line-height:1.4;word-wrap:break-word;box-shadow:0 1px 4px rgba(0,0,0,0.04);position:relative}
+        .chat-bubble.incoming{background:#fff;color:var(--text-dark);border-bottom-left-radius:3px}
+        .chat-bubble.outgoing{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;border-bottom-right-radius:3px}
+        .chat-bubble .bubble-author{font-size:.65rem;opacity:.7;margin-bottom:2px;font-weight:700}
+        .chat-bubble .bubble-meta{font-size:.55rem;opacity:.55;margin-top:3px;display:block;text-align:right}
+        .reply-quote{background:rgba(124,58,237,0.07);border-left:2px solid var(--accent-purple);border-radius:3px;padding:4px 8px;margin-bottom:5px;font-size:.68rem;line-height:1.3}
+        .chat-bubble.outgoing .reply-quote{background:rgba(255,255,255,0.13);border-left-color:rgba(255,255,255,0.45)}
+        .reply-quote-author{font-weight:700;color:var(--accent-purple-dark);display:block;margin-bottom:1px;font-size:.63rem}
+        .chat-bubble.outgoing .reply-quote-author{color:rgba(255,255,255,0.8)}
         .reply-quote-text{color:var(--text-muted);display:block;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-        .chat-bubble.outgoing .reply-quote-text{color:rgba(255,255,255,0.7)}
-        .forward-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(20,184,166,0.12);color:var(--accent-teal-dark);font-size:0.68rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px;text-transform:uppercase}
-        .chat-bubble.outgoing .forward-badge{background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.9)}
-        .chat-bubble-actions{display:flex;gap:10px;margin-top:6px;padding-top:5px}
-        .chat-bubble.incoming .chat-bubble-actions{border-top:1px solid rgba(0,0,0,0.06)}
-        .chat-bubble.outgoing .chat-bubble-actions{border-top:1px solid rgba(255,255,255,0.15)}
-        .chat-action-btn{background:none;border:none;font-size:0.65rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:3px;padding:3px 0;transition:opacity 0.15s,transform 0.1s;font-family:'DM Sans',sans-serif}
-        .chat-action-btn:hover{opacity:0.6}.chat-action-btn:active{transform:scale(0.95)}
+        .chat-bubble.outgoing .reply-quote-text{color:rgba(255,255,255,0.65)}
+        .forward-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(20,184,166,0.1);color:var(--accent-teal-dark);font-size:.63rem;font-weight:700;padding:2px 6px;border-radius:3px;margin-bottom:5px;text-transform:uppercase}
+        .chat-bubble.outgoing .forward-badge{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.85)}
+        .chat-bubble-actions{display:flex;gap:8px;margin-top:4px;padding-top:4px}
+        .chat-bubble.incoming .chat-bubble-actions{border-top:1px solid rgba(0,0,0,0.05)}
+        .chat-bubble.outgoing .chat-bubble-actions{border-top:1px solid rgba(255,255,255,0.12)}
+        .chat-action-btn{background:none;border:none;font-size:.6rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:2px 0;transition:opacity .15s,transform .1s;font-family:'DM Sans',sans-serif}
+        .chat-action-btn:hover{opacity:.6}.chat-action-btn:active{transform:scale(.95)}
         .chat-action-btn.reply-btn{color:var(--accent-purple)}
         .chat-action-btn.fwd-btn{color:var(--accent-teal-dark)}
         .chat-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
-        .chat-action-btn .ca-icon{width:12px;height:12px;flex-shrink:0}
-        .chat-bubble.outgoing .chat-action-btn.reply-btn{color:rgba(255,255,255,0.65)}
-        .chat-bubble.outgoing .chat-action-btn.fwd-btn{color:rgba(255,255,255,0.65)}
+        .chat-action-btn .ca-icon{width:11px;height:11px;flex-shrink:0}
+        .chat-bubble.outgoing .chat-action-btn.reply-btn{color:rgba(255,255,255,0.6)}
+        .chat-bubble.outgoing .chat-action-btn.fwd-btn{color:rgba(255,255,255,0.6)}
         .chat-bubble.outgoing .chat-action-btn.delete-btn{color:#fca5a5;font-weight:800}
         .chat-bubble.outgoing .chat-action-btn:hover{color:rgba(255,255,255,0.95)!important}
-        .reply-preview-bar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(124,58,237,0.06);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-purple);animation:slideDown 0.2s ease}
-        @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-        .reply-preview-bar .rp-indicator{width:3px;height:32px;background:var(--accent-purple);border-radius:2px;flex-shrink:0}
+        .reply-preview-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(124,58,237,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-purple);animation:slideDown .2s ease}
+        @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+        .reply-preview-bar .rp-indicator{width:3px;height:26px;background:var(--accent-purple);border-radius:2px;flex-shrink:0}
         .reply-preview-bar .rp-content{flex:1;min-width:0}
-        .reply-preview-bar .rp-label{font-size:0.7rem;font-weight:700;color:var(--accent-purple-dark)}
-        .reply-preview-bar .rp-text{font-size:0.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .reply-preview-bar .rp-cancel{width:24px;height:24px;border-radius:50%;border:none;background:rgba(0,0,0,0.06);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-        .reply-preview-bar .rp-cancel:hover{background:var(--accent-red);color:white}
-        .delete-confirm-bar{padding:10px 12px;background:rgba(220,38,38,0.06);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-red);animation:slideDown 0.2s ease}
-        .delete-confirm-bar .dc-title{font-size:0.78rem;font-weight:700;color:var(--accent-red-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-        .delete-confirm-bar .dc-msg{font-size:0.8rem;color:var(--text-muted);padding:8px 10px;background:var(--bg-elevated);border-radius:8px;border:1px solid var(--border-subtle);margin-bottom:10px;word-break:break-word}
-        .delete-confirm-bar .dc-actions{display:flex;gap:8px;justify-content:flex-end}
-        .dc-btn{padding:7px 16px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+        .reply-preview-bar .rp-label{font-size:.65rem;font-weight:700;color:var(--accent-purple-dark)}
+        .reply-preview-bar .rp-text{font-size:.68rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .reply-preview-bar .rp-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.05);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+        .reply-preview-bar .rp-cancel:hover{background:var(--accent-red);color:#fff}
+        .delete-confirm-bar{padding:8px 10px;background:rgba(220,38,38,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-red);animation:slideDown .2s ease}
+        .delete-confirm-bar .dc-title{font-size:.72rem;font-weight:700;color:var(--accent-red-dark);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+        .delete-confirm-bar .dc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
+        .delete-confirm-bar .dc-actions{display:flex;gap:6px;justify-content:flex-end}
+        .dc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
         .dc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
         .dc-btn-cancel:hover{background:#e5e7eb}
-        .dc-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:white}
-        .dc-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3);transform:translateY(-1px)}
-        .forward-confirm-bar{padding:12px;background:rgba(20,184,166,0.06);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-teal);animation:slideDown 0.2s ease}
-        .forward-confirm-bar .fc-title{font-size:0.78rem;font-weight:700;color:var(--accent-teal-dark);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-        .forward-confirm-bar .fc-msg{font-size:0.8rem;color:var(--text-muted);padding:8px 10px;background:var(--bg-elevated);border-radius:8px;border:1px solid var(--border-subtle);margin-bottom:10px;word-break:break-word}
-        .forward-confirm-bar .fc-actions{display:flex;gap:8px;justify-content:flex-end}
-        .fc-btn{padding:7px 16px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+        .dc-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
+        .dc-btn-confirm:hover{box-shadow:0 3px 10px rgba(220,38,38,0.3);transform:translateY(-1px)}
+        .forward-confirm-bar{padding:10px;background:rgba(20,184,166,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-teal);animation:slideDown .2s ease}
+        .forward-confirm-bar .fc-title{font-size:.72rem;font-weight:700;color:var(--accent-teal-dark);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+        .forward-confirm-bar .fc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
+        .forward-confirm-bar .fc-actions{display:flex;gap:6px;justify-content:flex-end}
+        .fc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
         .fc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
         .fc-btn-cancel:hover{background:#e5e7eb}
-        .fc-btn-confirm{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:white}
-        .fc-btn-confirm:hover{box-shadow:0 4px 12px rgba(20,184,166,0.3);transform:translateY(-1px)}
-        .chat-input-bar{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border-subtle);background:#fff}
-        .chat-input-bar input{flex:1;border:1px solid var(--border-subtle);border-radius:20px;padding:10px 16px;font-size:0.85rem;outline:none;transition:border-color 0.2s;font-family:'DM Sans',sans-serif}
+        .fc-btn-confirm{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff}
+        .fc-btn-confirm:hover{box-shadow:0 3px 10px rgba(20,184,166,0.3);transform:translateY(-1px)}
+        .chat-input-bar{display:flex;gap:6px;padding:8px 10px;border-top:1px solid var(--border-subtle);background:#fff}
+        .chat-input-bar input{flex:1;border:1px solid var(--border-subtle);border-radius:16px;padding:8px 14px;font-size:.8rem;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif}
         .chat-input-bar input:focus{border-color:var(--accent-purple)}
-        .chat-send-btn{width:42px;height:42px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;flex-shrink:0}
-        .chat-send-btn:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(20,184,166,0.3)}
-        .chat-login-prompt{padding:16px;text-align:center;font-size:0.85rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);background:#fff}
+        .chat-send-btn{width:36px;height:36px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;flex-shrink:0}
+        .chat-send-btn:hover{transform:scale(1.05);box-shadow:0 3px 10px rgba(20,184,166,0.3)}
+        .chat-login-prompt{padding:12px;text-align:center;font-size:.78rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);background:#fff}
         .chat-login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-chat{text-align:center;color:var(--text-muted);font-size:0.8rem;margin:auto;opacity:0.7}
-        .discussion-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:14px 28px;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.3s ease;box-shadow:0 8px 30px rgba(20,184,166,0.3);border:none;cursor:pointer}
-        .discussion-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(20,184,166,0.4)}
+        .empty-chat{text-align:center;color:var(--text-muted);font-size:.75rem;margin:auto;opacity:.7}
+        .discussion-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(20,184,166,0.25);border:none;cursor:pointer;flex-shrink:0}
+        .discussion-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,184,166,0.35)}
+        .discussion-btn svg{width:16px;height:16px;flex-shrink:0}
         .discussion-modal{width:95vw;max-width:600px;height:80vh;max-height:700px;display:flex;flex-direction:column}
         .discussion-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid var(--border-subtle);padding-bottom:12px}
-        .discussion-count{background:var(--accent-teal);color:white;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600}
+        .discussion-count{background:var(--accent-teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
         .comments-list{flex:1;overflow-y:auto;margin-bottom:16px;padding-right:8px}
-        .comment-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:10px;transition:all 0.15s ease}
+        .comment-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:10px;transition:all .15s}
         .comment-item:hover{border-color:rgba(124,58,237,0.25)}
         .comment-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-        .comment-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem}
-        .comment-author{font-weight:700;font-size:0.9rem;color:var(--text-dark)}
-        .comment-time{font-size:0.7rem;color:var(--text-muted);margin-left:auto}
-        .comment-text{font-size:0.85rem;color:var(--text-cream);line-height:1.5}
-        .comment-reply-quote{background:rgba(124,58,237,0.07);border-left:3px solid var(--accent-purple);border-radius:4px;padding:6px 10px;margin-bottom:8px;font-size:0.78rem}
-        .comment-reply-quote .crq-author{font-weight:700;color:var(--accent-purple-dark);font-size:0.7rem}
+        .comment-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem}
+        .comment-author{font-weight:700;font-size:.9rem;color:var(--text-dark)}
+        .comment-time{font-size:.7rem;color:var(--text-muted);margin-left:auto}
+        .comment-text{font-size:.85rem;color:var(--text-cream);line-height:1.5}
+        .comment-reply-quote{background:rgba(124,58,237,0.07);border-left:3px solid var(--accent-purple);border-radius:4px;padding:6px 10px;margin-bottom:8px;font-size:.78rem}
+        .comment-reply-quote .crq-author{font-weight:700;color:var(--accent-purple-dark);font-size:.7rem}
         .comment-reply-quote .crq-text{color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .comment-forward-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(20,184,166,0.12);color:var(--accent-teal-dark);font-size:0.7rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px}
+        .comment-forward-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(20,184,166,0.12);color:var(--accent-teal-dark);font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px}
         .comment-item.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 15px rgba(124,58,237,0.15)!important}
-        .comment-item.delete-target{border:2px solid var(--accent-red)!important;box-shadow:0 0 15px rgba(220,38,38,0.15)!important;animation:deletePulse 0.8s ease infinite}
+        .comment-item.delete-target{border:2px solid var(--accent-red)!important;box-shadow:0 0 15px rgba(220,38,38,0.15)!important;animation:deletePulse .8s ease infinite}
         @keyframes deletePulse{0%,100%{box-shadow:0 0 5px rgba(220,38,38,0.15)}50%{box-shadow:0 0 20px rgba(220,38,38,0.3)}}
         .comment-actions{display:flex;gap:14px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)}
-        .comment-action-btn{background:none;border:none;font-size:0.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:2px 0;transition:all 0.15s;font-family:'DM Sans',sans-serif}
-        .comment-action-btn:hover{opacity:0.6}.comment-action-btn:active{transform:scale(0.95)}
+        .comment-action-btn{background:none;border:none;font-size:.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:2px 0;transition:all .15s;font-family:'DM Sans',sans-serif}
+        .comment-action-btn:hover{opacity:.6}.comment-action-btn:active{transform:scale(.95)}
         .comment-action-btn.reply-btn{color:var(--accent-purple)}
         .comment-action-btn.fwd-btn{color:var(--accent-teal-dark)}
         .comment-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
         .comment-action-btn .cma-icon{width:13px;height:13px;flex-shrink:0}
-        .modal-delete-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(220,38,38,0.06);border:2px solid var(--accent-red);border-radius:10px;margin-bottom:10px;animation:slideDown 0.2s ease}
+        .modal-delete-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(220,38,38,0.06);border:2px solid var(--accent-red);border-radius:10px;margin-bottom:10px;animation:slideDown .2s ease}
         .modal-delete-bar .md-indicator{width:3px;height:36px;background:var(--accent-red);border-radius:2px;flex-shrink:0}
         .modal-delete-bar .md-content{flex:1;min-width:0}
-        .modal-delete-bar .md-label{font-size:0.75rem;font-weight:700;color:var(--accent-red-dark)}
-        .modal-delete-bar .md-text{font-size:0.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .modal-delete-bar .md-label{font-size:.75rem;font-weight:700;color:var(--accent-red-dark)}
+        .modal-delete-bar .md-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .modal-delete-bar .md-actions{display:flex;gap:6px;flex-shrink:0}
-        .md-btn{padding:6px 14px;border-radius:8px;font-size:0.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+        .md-btn{padding:6px 14px;border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
         .md-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
         .md-btn-cancel:hover{background:#e5e7eb}
-        .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:white}
+        .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
         .md-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3)}
-        .comment-input-area textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;padding:12px;font-size:0.9rem;color:var(--text-white);font-family:inherit}
+        .comment-input-area textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;padding:12px;font-size:.9rem;color:var(--text-white);font-family:inherit}
         .comment-input-area textarea:focus{outline:none;border-color:var(--accent-teal)}
-        .modal-reply-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(124,58,237,0.06);border:2px solid var(--accent-purple);border-radius:8px;margin-bottom:8px;animation:slideDown 0.2s ease}
+        .modal-reply-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(124,58,237,0.06);border:2px solid var(--accent-purple);border-radius:8px;margin-bottom:8px;animation:slideDown .2s ease}
         .modal-reply-bar .mr-content{flex:1;min-width:0}
-        .modal-reply-bar .mr-label{font-size:0.7rem;font-weight:700;color:var(--accent-purple-dark)}
-        .modal-reply-bar .mr-text{font-size:0.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .modal-reply-bar .mr-label{font-size:.7rem;font-weight:700;color:var(--accent-purple-dark)}
+        .modal-reply-bar .mr-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .modal-reply-bar .mr-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.06);color:var(--text-muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .modal-reply-bar .mr-cancel:hover{background:var(--accent-red);color:white}
+        .modal-reply-bar .mr-cancel:hover{background:var(--accent-red);color:#fff}
         .login-prompt{text-align:center;padding:30px 20px;color:var(--text-muted)}
         .login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);opacity:0.7}
+        .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);opacity:.7}
         .panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;flex:1}
-        .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all 0.4s ease;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
-        .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform 0.4s ease}
+        .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+        .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform .4s}
         .panel-card:hover::before{transform:scaleX(1)}
         .panel-card:hover{border-color:var(--border-gold);transform:translateY(-5px);box-shadow:0 20px 50px rgba(124,58,237,0.15)}
-        .panel-icon-wrapper{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all 0.3s ease;overflow:hidden}
+        .panel-icon-wrapper{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s;overflow:hidden}
         .panel-card:hover .panel-icon-wrapper{transform:scale(1.05)}
         .panel-icon-wrapper.red{background:linear-gradient(145deg,#fff5f5,#ffe0e0);box-shadow:8px 8px 20px rgba(220,38,38,0.15)}
         .panel-icon-wrapper.gold{background:linear-gradient(145deg,#f5f3ff,#ede9fe);box-shadow:8px 8px 20px rgba(124,58,237,0.15)}
         .panel-icon-wrapper.teal{background:linear-gradient(145deg,#f0fdfa,#ccfbf1);box-shadow:8px 8px 20px rgba(20,184,166,0.15)}
         .panel-icon-wrapper.purple{background:linear-gradient(145deg,#faf5ff,#f3e8ff);box-shadow:8px 8px 20px rgba(139,92,246,0.15)}
-        .icon-custom{width:50px;height:50px;object-fit:contain;filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.15));transition:transform 0.3s ease}
+        .icon-custom{width:50px;height:50px;object-fit:contain;filter:drop-shadow(2px 4px 6px rgba(0,0,0,0.15));transition:transform .3s}
         .panel-card:hover .icon-custom{transform:scale(1.1) rotate(3deg)}
         .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
-        .panel-subtitle{font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
+        .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
         .literature-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:16px}
-        .literature-title{font-size:0.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
-        .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:0.75rem;color:var(--text-muted);line-height:1.4}
+        .literature-title{font-size:.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
+        .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.75rem;color:var(--text-muted);line-height:1.4}
         .literature-bullet{color:var(--accent-purple);flex-shrink:0}
         .panel-actions{display:flex;gap:10px;margin-top:auto}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:0.85rem;cursor:pointer;text-decoration:none;border:none;transition:all 0.3s ease;flex:1}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:none;border:none;transition:all .3s;flex:1}
         .btn-primary{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff;box-shadow:0 4px 15px rgba(220,38,38,0.25)}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(220,38,38,0.35)}
         .btn-secondary{background:transparent;border:2px solid var(--accent-purple);color:var(--accent-purple-dark)}
@@ -195,44 +209,44 @@
         .btn-teal{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;box-shadow:0 4px 15px rgba(20,184,166,0.25)}
         .btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(20,184,166,0.35)}
         .btn-icon{width:16px;height:16px}
-        .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:all 0.3s ease;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+        .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
         .panel-footer:hover{border-color:var(--border-gold)}
         .footer-info{display:flex;align-items:center;gap:20px}
         .footer-icon{width:60px;height:60px;border-radius:14px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:6px 6px 15px rgba(124,58,237,0.15);overflow:hidden}
         .footer-icon img{width:35px;height:35px;object-fit:contain}
         .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text-white);margin-bottom:4px}
-        .footer-text p{font-size:0.8rem;color:var(--text-muted)}
-        .footer-stats{display:flex;gap:30px}
+        .footer-text p{font-size:.8rem;color:var(--text-muted)}
+        .footer-stats{display:flex;gap:24px;align-items:center}
         .stat-item{text-align:center}
         .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent-purple);line-height:1}
-        .stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+        .stat-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
         .footer-actions{display:flex;gap:12px}
-        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s}
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all .3s}
         .modal-overlay.active{opacity:1;visibility:visible}
-        .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:380px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(0.9);transition:transform 0.3s;position:relative}
+        .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:380px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .3s;position:relative}
         .modal-overlay.active .modal-box{transform:scale(1)}
         .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;margin-bottom:20px;text-align:center;color:var(--text-white)}
-        .modal-close{position:absolute;top:15px;right:15px;width:36px;height:36px;border-radius:50%;background:var(--bg-elevated);border:none;color:var(--text-muted);cursor:pointer;font-size:18px;transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+        .modal-close{position:absolute;top:15px;right:15px;width:36px;height:36px;border-radius:50%;background:var(--bg-elevated);border:none;color:var(--text-muted);cursor:pointer;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center}
         .modal-close:hover{background:var(--accent-red);color:#fff}
         .modal-btns{display:flex;gap:10px;margin-top:20px}
-        .modal-btn{flex:1;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;border:none;font-size:13px;text-decoration:none;transition:all 0.2s;text-align:center}
+        .modal-btn{flex:1;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;border:none;font-size:13px;text-decoration:none;transition:all .2s;text-align:center}
         .modal-btn.yes{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff}
         .modal-btn.no{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
         .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-        .input-field{width:100%;background:var(--bg-elevated);border:2px solid var(--border-subtle);padding:14px 16px;border-radius:12px;font-size:14px;color:var(--text-white);font-family:inherit;transition:all 0.2s}
+        .input-field{width:100%;background:var(--bg-elevated);border:2px solid var(--border-subtle);padding:14px 16px;border-radius:12px;font-size:14px;color:var(--text-white);font-family:inherit;transition:all .2s}
         .input-field:focus{outline:none;border-color:var(--accent-purple)}
         .input-field::placeholder{color:var(--text-muted)}
         .input-group{margin-bottom:16px;text-align:left}
-        .input-group label{display:block;font-size:0.75rem;color:var(--accent-purple-dark);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-        .check-label{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;cursor:pointer;margin-bottom:10px;transition:all 0.2s}
+        .input-group label{display:block;font-size:.75rem;color:var(--accent-purple-dark);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+        .check-label{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;cursor:pointer;margin-bottom:10px;transition:all .2s}
         .check-label:hover{border-color:var(--accent-purple)}
         .check-label input{display:none}
-        .check-box{width:22px;height:22px;border:2px solid var(--text-muted);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;background:var(--bg-card)}
+        .check-box{width:22px;height:22px;border:2px solid var(--text-muted);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;background:var(--bg-card)}
         .check-box.radio-style{border-radius:50%}
         .check-label input:checked+.check-box{background:var(--accent-purple);border-color:var(--accent-purple)}
         .check-label input:checked+.check-box::after{content:'\2713';font-size:12px;color:#fff;font-weight:bold}
         .check-label span{font-size:13px;color:var(--text-cream)}
-        .section-title-sm{font-size:12px;font-weight:700;color:var(--accent-purple-dark);margin:16px 0 8px 0;text-transform:uppercase;letter-spacing:0.5px}
+        .section-title-sm{font-size:12px;font-weight:700;color:var(--accent-purple-dark);margin:16px 0 8px 0;text-transform:uppercase;letter-spacing:.5px}
         .section-divider{height:1px;background:var(--border-subtle);margin:20px 0}
         .score-display{text-align:center;padding:20px 0}
         .score-circle{width:120px;height:120px;margin:0 auto 16px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--border-subtle);background:var(--bg-card)}
@@ -240,435 +254,352 @@
         .score-circle.medium{border-color:var(--color-warning);box-shadow:0 0 30px rgba(245,158,11,0.2)}
         .score-circle.high{border-color:var(--accent-red);box-shadow:0 0 30px rgba(220,38,38,0.2)}
         .score-value{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--text-white);line-height:1}
-        .score-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase}
-        .badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .score-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase}
+        .badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
         .badge-success{background:rgba(20,184,166,0.15);color:#0d9488}
         .badge-warning{background:rgba(245,158,11,0.15);color:#b45309}
         .badge-danger{background:rgba(220,38,38,0.15);color:#dc2626}
         .spinner{border:3px solid var(--border-subtle);border-top:3px solid var(--accent-purple);border-radius:50%;width:24px;height:24px;animation:spin 1s linear infinite;margin:20px auto}
         @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
         .toast-container{position:fixed;top:20px;right:20px;z-index:11000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-        .toast{padding:12px 20px;border-radius:12px;font-size:0.85rem;font-weight:600;color:white;box-shadow:0 8px 30px rgba(0,0,0,0.2);animation:toastIn 0.3s ease,toastOut 0.3s ease 2.7s forwards;max-width:320px;font-family:'DM Sans',sans-serif;pointer-events:auto}
+        .toast{padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:600;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.2);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:320px;font-family:'DM Sans',sans-serif;pointer-events:auto}
         .toast.success{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark))}
         .toast.error{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark))}
         .toast.info{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark))}
         @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
         @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
-        .comment-removing{animation:fadeSlideOut 0.35s ease forwards}
-        .chat-removing{animation:fadeSlideOut 0.35s ease forwards}
-        @keyframes fadeSlideOut{0%{opacity:1;transform:translateX(0) scale(1);max-height:200px;margin-bottom:10px}60%{opacity:0;transform:translateX(30px) scale(0.95)}100%{opacity:0;transform:translateX(30px) scale(0.9);max-height:0;margin-bottom:0;padding:0;overflow:hidden}}
-        .holo-container{position:fixed;bottom:20px;right:15px;width:140px;height:220px;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(20px) scale(0.95);transition:opacity 0.5s ease,transform 0.5s cubic-bezier(0.34,1.56,0.64,1),visibility 0.5s;perspective:1000px}
+        .comment-removing{animation:fadeSlideOut .35s ease forwards}
+        .chat-removing{animation:fadeSlideOut .35s ease forwards}
+        @keyframes fadeSlideOut{0%{opacity:1;transform:translateX(0) scale(1);max-height:200px;margin-bottom:10px}60%{opacity:0;transform:translateX(30px) scale(.95)}100%{opacity:0;transform:translateX(30px) scale(.9);max-height:0;margin-bottom:0;padding:0;overflow:hidden}}
+        .holo-container{position:fixed;bottom:20px;right:15px;width:140px;height:220px;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(20px) scale(.95);transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1),visibility .5s;perspective:1000px}
         .holo-container.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
         .holo-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:25px;background:radial-gradient(ellipse at center,rgba(124,58,237,0.6) 0%,rgba(124,58,237,0) 70%);border-radius:50%;z-index:1}
         .holo-container.show .holo-base{animation:basePulse 3s infinite ease-in-out}
-        .holo-beam{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:70px;height:180px;background:linear-gradient(to bottom,rgba(124,58,237,0.15),transparent);clip-path:polygon(30% 0,70% 0,100% 100%,0% 100%);z-index:0;opacity:0;transition:opacity 0.5s}
+        .holo-beam{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:70px;height:180px;background:linear-gradient(to bottom,rgba(124,58,237,0.15),transparent);clip-path:polygon(30% 0,70% 0,100% 100%,0% 100%);z-index:0;opacity:0;transition:opacity .5s}
         .holo-container.show .holo-beam{opacity:1}
         .holo-body{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);width:100px;height:180px;transform-style:preserve-3d;z-index:2}
         .holo-container.show .holo-body{animation:holoFloat 6s infinite ease-in-out}
-        .holo-avatar{width:100%;height:auto;filter:drop-shadow(0 0 15px rgba(124,58,237,0.9)) brightness(1.1) contrast(1.1);mix-blend-mode:multiply;opacity:0.9}
+        .holo-avatar{width:100%;height:auto;filter:drop-shadow(0 0 15px rgba(124,58,237,0.9)) brightness(1.1) contrast(1.1);mix-blend-mode:multiply;opacity:.9}
         @keyframes holoFloat{0%{transform:translateX(-50%) translateY(0) rotateY(0deg)}25%{transform:translateX(-50%) translateY(-10px) rotateY(5deg)}50%{transform:translateX(-50%) translateY(0) rotateY(0deg)}75%{transform:translateX(-50%) translateY(-10px) rotateY(-5deg)}100%{transform:translateX(-50%) translateY(0) rotateY(0deg)}}
-        @keyframes basePulse{0%,100%{opacity:0.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
-        .tour-tooltip{position:fixed;bottom:130px;right:165px;background:var(--bg-card);padding:18px 22px;border-radius:16px 16px 0 16px;width:260px;max-width:calc(100% - 180px);box-shadow:0 10px 40px rgba(0,0,0,0.15);border:1px solid var(--border-gold);z-index:10000;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.95);transition:all 0.3s ease;text-align:left}
+        @keyframes basePulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+        .tour-tooltip{position:fixed;bottom:130px;right:165px;background:var(--bg-card);padding:18px 22px;border-radius:16px 16px 0 16px;width:260px;max-width:calc(100% - 180px);box-shadow:0 10px 40px rgba(0,0,0,0.15);border:1px solid var(--border-gold);z-index:10000;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:all .3s;text-align:left}
         .tour-tooltip.active{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
         .tour-tooltip h4{color:var(--accent-purple-dark);margin-bottom:6px;font-size:1rem;font-weight:700}
         .tour-tooltip p{font-size:13px;margin-bottom:0;line-height:1.5;color:var(--text-muted)}
-        .tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;opacity:0;visibility:hidden;transition:opacity 0.3s ease}
+        .tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;opacity:0;visibility:hidden;transition:opacity .3s}
         .tour-overlay.active{opacity:1;visibility:visible}
-        .tour-highlight{position:fixed;background:transparent;border:3px solid var(--accent-purple);border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,0.5);transition:all 0.4s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:9999;opacity:0;visibility:hidden}
+        .tour-highlight{position:fixed;background:transparent;border:3px solid var(--accent-purple);border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,0.5);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:9999;opacity:0;visibility:hidden}
         .tour-highlight.animate{animation:pulseRing 2s infinite;opacity:1;visibility:visible}
         @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(124,58,237,0.4),0 0 0 9999px rgba(0,0,0,0.5)}70%{box-shadow:0 0 0 15px rgba(124,58,237,0),0 0 0 9999px rgba(0,0,0,0.5)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0),0 0 0 9999px rgba(0,0,0,0.5)}}
-        .credits-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#1f2937 0%,#374151 100%);z-index:10010;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;opacity:0;visibility:hidden;transition:opacity 1.5s ease}
+        .credits-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#1f2937 0%,#374151 100%);z-index:10010;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;opacity:0;visibility:hidden;transition:opacity 1.5s}
         .credits-overlay.active{opacity:1;visibility:visible}
-        .credits-content{width:100%;text-align:center;color:white;font-family:'Outfit',sans-serif;padding:0 24px;padding-top:100vh;padding-bottom:50px;animation:scrollDown 150s linear forwards;position:relative;z-index:2}
+        .credits-content{width:100%;text-align:center;color:#fff;font-family:'Outfit',sans-serif;padding:0 24px;padding-top:100vh;padding-bottom:50px;animation:scrollDown 150s linear forwards;position:relative;z-index:2}
         @keyframes scrollDown{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
         .credits-title{font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:800;letter-spacing:5px;margin-bottom:80px;text-transform:uppercase;color:var(--accent-purple-light)}
         .credits-section{margin-bottom:100px}
-        .credits-section h3{font-size:16px;text-transform:uppercase;letter-spacing:4px;margin-bottom:24px;opacity:0.6;font-weight:400}
-        .credits-section p{font-size:26px;font-weight:700;line-height:1.7;color:white;margin-bottom:20px}
-        .credits-section .role{font-size:16px;opacity:0.7;margin-bottom:12px;font-weight:400;font-style:italic}
-        .credits-footer{margin-top:120px;opacity:0.5;font-size:14px}
+        .credits-section h3{font-size:16px;text-transform:uppercase;letter-spacing:4px;margin-bottom:24px;opacity:.6;font-weight:400}
+        .credits-section p{font-size:26px;font-weight:700;line-height:1.7;color:#fff;margin-bottom:20px}
+        .credits-section .role{font-size:16px;opacity:.7;margin-bottom:12px;font-weight:400;font-style:italic}
+        .credits-footer{margin-top:120px;opacity:.5;font-size:14px}
         .audio-hidden{position:absolute;top:-9999px;left:-9999px}
         .star-container{position:absolute;inset:0;overflow:hidden;z-index:1}
-        .star{position:absolute;background:white;border-radius:50%;opacity:0;animation:fallingStar linear infinite}
+        .star{position:absolute;background:#fff;border-radius:50%;opacity:0;animation:fallingStar linear infinite}
         @keyframes fallingStar{0%{transform:translateY(-10px) translateX(0) scale(0);opacity:0}20%{opacity:1}100%{transform:translateY(100vh) translateX(20px) scale(1);opacity:0}}
-        .reset-flash{position:fixed;inset:0;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;opacity:0;visibility:hidden;transition:opacity 0.4s ease}
+        .reset-flash{position:fixed;inset:0;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;opacity:0;visibility:hidden;transition:opacity .4s}
         .reset-flash.active{opacity:1;visibility:visible}
-        .reset-flash .rf-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));display:flex;align-items:center;justify-content:center;animation:scaleIn 0.5s ease 0.2s both}
-        .reset-flash .rf-icon svg{width:32px;height:32px;color:white}
-        .reset-flash .rf-text{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);animation:scaleIn 0.5s ease 0.4s both}
-        .reset-flash .rf-sub{font-size:0.85rem;color:var(--text-muted);animation:scaleIn 0.5s ease 0.6s both}
-        @keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
-        @media(max-width:900px){.panel-grid{grid-template-columns:1fr}.header-title{font-size:2.8rem}.footer-stats{display:none}.header-top-row{flex-direction:column;align-items:flex-start}.header-left-group{width:100%;justify-content:space-between}}
-        @media(max-width:600px){.main-container{padding:12px}.panel-header{min-height:240px}.header-content{padding:20px}.header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column}.digital-clock{padding:10px 14px}.clock-display{font-size:0.95rem}.panel-icon-wrapper{width:65px;height:65px}.icon-custom{width:40px;height:40px}.inline-chat-container{max-height:360px}.chat-messages-area{max-height:200px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}}
-        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+        .reset-flash .rf-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));display:flex;align-items:center;justify-content:center;animation:scaleIn .5s ease .2s both}
+        .reset-flash .rf-icon svg{width:32px;height:32px;color:#fff}
+        .reset-flash .rf-text{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);animation:scaleIn .5s ease .4s both}
+        .reset-flash .rf-sub{font-size:.85rem;color:var(--text-muted);animation:scaleIn .5s ease .6s both}
+        @keyframes scaleIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.inline-chat-container{max-height:320px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.8rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}}
+        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.banner-content{padding:18px}.banner-content .header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column}.banner-content .digital-clock{padding:8px 12px}.banner-content .clock-display{font-size:.85rem}.panel-icon-wrapper{width:65px;height:65px}.icon-custom{width:40px;height:40px}.inline-chat-container{max-height:280px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}.visitor-badge{padding:6px 12px}.visitor-number{font-size:.8rem}.visitor-label{font-size:.63rem}}
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
     </style>
 </head>
 <body>
     <div class="bg-pattern"></div><div class="noise-overlay"></div>
     <div class="toast-container" id="toastContainer"></div>
+    <div class="reset-flash" id="resetFlash"><div class="rf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="rf-text">Semua Data Telah Dihapus</div><div class="rf-sub">Storage bersih.</div></div>
 
-    <!-- Flash overlay saat reset -->
-    <div class="reset-flash" id="resetFlash">
-        <div class="rf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-        <div class="rf-text">Semua Data Telah Dihapus</div>
-        <div class="rf-sub">Storage bersih — halaman akan dimuat ulang...</div>
-    </div>
+    <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Masukkan nama Anda untuk login.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
 
-    <!-- ===== MODAL LOGIN ===== -->
-    <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center;">Masukkan nama Anda untuk login dan berpartisipasi dalam diskusi.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
+    <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
 
-    <!-- ===== MODAL DISKUSI ===== -->
-    <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0;">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
+    <div class="modal-overlay" id="waModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('waModal')">&times;</button><h3 class="modal-title">Hubungi Kami</h3><p style="font-size:14px;color:var(--text-muted);margin-top:6px;text-align:center">Adakah yang bisa kami bantu?</p><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('waModal')">Batal</button><a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a></div></div></div>
 
-    <!-- ===== MODAL WA ===== -->
-    <div class="modal-overlay" id="waModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('waModal')">&times;</button><h3 class="modal-title">Hubungi Kami</h3><p style="font-size:14px;color:var(--text-muted);margin-top:6px;text-align:center;">Adakah yang bisa kami bantu?</p><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('waModal')">Batal</button><a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a></div></div></div>
+    <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center">Memproses...</p></div></div>
 
-    <!-- ===== MODAL LOADING ===== -->
-    <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px;"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center;">Memproses...</p></div></div>
+    <div class="modal-overlay" id="cvcModal"><div class="modal-box" style="position:relative"><button class="modal-close" onclick="closeModal('cvcModal')">&times;</button><h2 class="modal-title">Monitoring & Screening CVC</h2><div id="cvc-form"><div class="grid-2"><div class="input-group"><label>ID Pasien</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: RM-001"></div><div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div></div><div class="section-divider"></div><label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label><label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label><label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label><label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label><button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="calculateCVC()">Hitung Risiko</button></div><div id="cvc-result" style="display:none"><div class="score-display"><div class="score-circle" id="cvc-score-circle"><span class="score-value" id="score-val">0</span><span class="score-label">Gejala</span></div><span id="risk-badge" class="badge badge-success">Aman</span><p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="risk-msg">Tidak ada tanda masalah.</p></div><div id="cvc-critical-action" style="margin-top:14px"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetCVC()">Ulangi Pengecekan</button></div></div></div>
 
-    <!-- ===== MODAL CVC SCREENING ===== -->
-    <div class="modal-overlay" id="cvcModal"><div class="modal-box" style="position:relative;"><button class="modal-close" onclick="closeModal('cvcModal')">&times;</button><h2 class="modal-title">Monitoring & Screening CVC</h2><div id="cvc-form"><div class="grid-2"><div class="input-group"><label>ID Pasien</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: RM-001"></div><div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div></div><div class="section-divider"></div><label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label><label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label><label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label><label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label><button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="calculateCVC()">Hitung Risiko</button></div><div id="cvc-result" style="display:none;"><div class="score-display"><div class="score-circle" id="cvc-score-circle"><span class="score-value" id="score-val">0</span><span class="score-label">Gejala</span></div><span id="risk-badge" class="badge badge-success">Aman</span><p style="margin-top:12px;font-size:14px;color:var(--text-cream);" id="risk-msg">Tidak ada tanda masalah.</p></div><div id="cvc-critical-action" style="margin-top:14px;"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px;" onclick="resetCVC()">Ulangi Pengecekan</button></div></div></div>
+    <div class="modal-overlay" id="avModal"><div class="modal-box" style="position:relative"><button class="modal-close" onclick="closeModal('avModal')">&times;</button><h2 class="modal-title">Monitoring & Screening AV-Shunt</h2><div id="av-form"><div class="input-group"><label>ID Pasien (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div><div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div><label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label><label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label><div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div><p style="font-size:11px;color:var(--text-muted);margin-bottom:8px">Rasakan getaran (thrill) di area shunt:</p><label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label><label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label><label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label><label class="check-label" style="margin-top:8px"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label><div class="section-title-sm">3. Tanda Peringatan Lain</div><label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label><button class="btn btn-gold" style="width:100%;margin-top:20px" onclick="calculateAV()">Cek Kondisi</button></div><div id="av-result" style="display:none"><div class="score-display"><span id="av-badge" class="badge badge-success" style="font-size:1rem;padding:10px 24px">BAIK</span><p style="margin-top:14px;font-weight:600;color:var(--text-cream);font-size:15px" id="av-msg">Kondisi fistula baik.</p><p style="font-size:13px;color:var(--text-muted);margin-top:4px;line-height:1.5" id="av-recom">Rekomendasi.</p></div><div id="av-critical-action" style="margin-top:16px"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetAV()">Cek Ulang</button></div></div></div>
 
-    <!-- ===== MODAL AV-SHUNT SCREENING ===== -->
-    <div class="modal-overlay" id="avModal"><div class="modal-box" style="position:relative;"><button class="modal-close" onclick="closeModal('avModal')">&times;</button><h2 class="modal-title">Monitoring & Screening AV-Shunt</h2><div id="av-form"><div class="input-group"><label>ID Pasien (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div><div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div><label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label><label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label><div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div><p style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Rasakan getaran (thrill) di area shunt:</p><label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label><label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label><label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label><label class="check-label" style="margin-top:8px;"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label><div class="section-title-sm">3. Tanda Peringatan Lain</div><label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label><button class="btn btn-gold" style="width:100%;margin-top:20px;" onclick="calculateAV()">Cek Kondisi</button></div><div id="av-result" style="display:none;"><div class="score-display"><span id="av-badge" class="badge badge-success" style="font-size:1rem;padding:10px 24px;">BAIK</span><p style="margin-top:14px;font-weight:600;color:var(--text-cream);font-size:15px;" id="av-msg">Kondisi fistula baik.</p><p style="font-size:13px;color:var(--text-muted);margin-top:4px;line-height:1.5;" id="av-recom">Rekomendasi.</p></div><div id="av-critical-action" style="margin-top:16px;"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px;" onclick="resetAV()">Cek Ulang</button></div></div></div>
+    <div class="modal-overlay" id="ceklistModal"><div class="modal-box" style="width:95vw;max-width:720px;padding:20px"><button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button><h2 class="modal-title" style="margin-bottom:16px">Cek List Keselamatan Hemodialisis</h2><div style="border-radius:14px;overflow:hidden;border:2px solid var(--border-subtle);background:var(--bg-elevated)"><img src="ceklist.png" alt="Cek List" style="width:100%;height:auto;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px\'>Gambar ceklist.png belum tersedia.</div>'"></div><div class="modal-btns" style="margin-top:16px"><button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button><a href="ceklist.png" download="ceklist-keselamatan-hemodialisis.png" class="modal-btn yes" style="text-decoration:none">Unduh Gambar</a></div></div></div>
 
-    <!-- ===== MODAL CEK LIST ===== -->
-    <div class="modal-overlay" id="ceklistModal"><div class="modal-box" style="width:95vw;max-width:720px;padding:20px;"><button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button><h2 class="modal-title" style="margin-bottom:16px;">Cek List Keselamatan Hemodialisis</h2><div style="border-radius:14px;overflow:hidden;border:2px solid var(--border-subtle);background:var(--bg-elevated);"><img src="ceklist.png" alt="Cek List" style="width:100%;height:auto;display:block;" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px;\'>Gambar ceklist.png belum tersedia.</div>';"></div><div class="modal-btns" style="margin-top:16px;"><button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button><a href="ceklist.png" download="ceklist-keselamatan-hemodialisis.png" class="modal-btn yes" style="text-decoration:none;">Unduh Gambar</a></div></div></div>
-
-    <!-- ===== TOUR & CREDITS ===== -->
     <div class="tour-overlay" id="tourOverlay"></div>
     <div class="tour-highlight" id="tourHighlight"></div>
     <div class="tour-tooltip" id="tourTooltip"><h4 id="tooltipTitle">Judul</h4><p id="tooltipDesc">Deskripsi</p></div>
-    <div class="credits-overlay" id="creditsOverlay"><audio id="bgMusic" class="audio-hidden" loop><source src="music.mp4" type="audio/mp4"></audio><div class="star-container" id="starContainer"></div><div class="credits-content" id="creditsContent"><div class="credits-title">TIM INOCA RSSA PROV. JATIM</div><div class="credits-section"><p>Jl. Jaksa Agung Suprapto No. 2, Malang<br>Jawa Timur, Kode Pos 65111</p></div><div class="credits-section"><h3>INSTALASI DIALISIS RSSA PROV. JATIM</h3></div><div class="credits-section"><div class="role">Penasihat</div><p>dr. Achmad Rifai, SpPD, K-GH FINASIM</p></div><div class="credits-section"><div class="role">Penanggung Jawab</div><p>Rini Hadriani, S.Kep.Ners</p></div><div class="credits-section"><div class="role">Ketua</div><p>Riza Arum A., S.Kep.Ners</p></div><div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div><div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div><div class="credits-section"><p style="font-size:36px;font-weight:800;letter-spacing:4px;">TERIMA KASIH</p></div><div class="credits-footer"><p>&copy; 2026 Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah</p></div><div style="height:200px;"></div></div></div>
+    <div class="credits-overlay" id="creditsOverlay"><audio id="bgMusic" class="audio-hidden" loop><source src="music.mp4" type="audio/mp4"></audio><div class="star-container" id="starContainer"></div><div class="credits-content" id="creditsContent"><div class="credits-title">TIM INOCA RSSA PROV. JATIM</div><div class="credits-section"><p>Jl. Jaksa Agung Suprapto No. 2, Malang<br>Jawa Timur, Kode Pos 65111</p></div><div class="credits-section"><h3>INSTALASI DIALISIS RSSA PROV. JATIM</h3></div><div class="credits-section"><div class="role">Penasihat</div><p>dr. Achmad Rifai, SpPD, K-GH FINASIM</p></div><div class="credits-section"><div class="role">Penanggung Jawab</div><p>Rini Hadriani, S.Kep.Ners</p></div><div class="credits-section"><div class="role">Ketua</div><p>Riza Arum A., S.Kep.Ners</p></div><div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div><div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div><div class="credits-section"><p style="font-size:36px;font-weight:800;letter-spacing:4px">TERIMA KASIH</p></div><div class="credits-footer"><p>&copy; 2026 Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah</p></div><div style="height:200px"></div></div></div>
     <div class="holo-container" id="holoContainer"><div class="holo-beam"></div><div class="holo-base"></div><div class="holo-body"><img src="dokter.gif" alt="AI Doctor" class="holo-avatar"></div></div>
 
-    <!-- ===== KONTEN UTAMA ===== -->
     <div class="main-container">
-        <div class="panel-header" id="tour-step-0">
-            <div class="header-bg" style="background-image:url('banner-saya.png');"></div>
-            <div class="header-overlay"></div>
-            <div class="header-content">
-                <div class="header-top-row">
-                    <div class="header-left-group">
-                        <div class="digital-clock"><svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div><div class="clock-display" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">--, -- --- ----</div></div><div class="clock-pulse"></div></div>
-                        <div class="login-container" id="loginContainer" onclick="handleLoginClick()"><svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="loginIconSvg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div class="user-avatar" id="userAvatar"></div><span class="login-text" id="loginText">Login / Masuk</span></div>
+        <div class="header-area" id="tour-step-0">
+            <div class="banner-section">
+                <div class="header-bg" style="background-image:url('banner-saya.png')"></div>
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <div class="header-top-row">
+                        <div class="header-left-group">
+                            <div class="digital-clock"><svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div><div class="clock-display" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">--, -- --- ----</div></div><div class="clock-pulse"></div></div>
+                            <div class="login-container" id="loginContainer" onclick="handleLoginClick()"><svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="loginIconSvg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div class="user-avatar" id="userAvatar"></div><span class="login-text" id="loginText">Login / Masuk</span></div>
+                        </div>
+                        <button class="guide-btn" onclick="startTour()"><svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Panduan</button>
                     </div>
-                    <button class="guide-btn" onclick="startTour()"><svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Panduan</button>
+                    <div class="welcome-message" id="welcomeMessage"></div>
+                    <div class="visitor-badge"><svg class="visitor-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountBanner">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot"></div></div>
+                    <h1 class="header-title">Mona</h1>
+                    <p class="header-subtitle">Monitoring Akses Pembuluh Darah untuk Cuci Darah</p>
                 </div>
-                <div class="welcome-message" id="welcomeMessage"></div>
-                <h1 class="header-title">Mona</h1>
-                <p class="header-subtitle">Monitoring Akses Pembuluh Darah untuk Cuci Darah</p>
-                <div class="inline-chat-container" id="inlineChatContainer">
-                    <div class="chat-header-bar"><span>Live Chat Konsultasi</span><span class="chat-status online" id="chatStatusIndicator">Online<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span></span></div>
-                    <div class="chat-messages-area" id="inlineChatMessages"><div class="empty-chat">Memuat pesan...</div></div>
-                    <div id="chatInputWrapper"></div>
-                </div>
-                <button class="discussion-btn" onclick="openDiscussion()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Lihat Semua Diskusi</button>
+            </div>
+            <div class="chat-sidebar">
+                <div class="inline-chat-container" id="inlineChatContainer"><div class="chat-header-bar"><span>Live Chat</span><span class="chat-status online" id="chatStatusIndicator">Online<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span></span></div><div class="chat-messages-area" id="inlineChatMessages"><div class="empty-chat">Memuat pesan...</div></div><div id="chatInputWrapper"></div></div>
+                <button class="discussion-btn" onclick="openDiscussion()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Lihat Semua Diskusi</button>
             </div>
         </div>
 
         <div class="panel-grid">
             <div class="panel-card" id="tour-step-1"><div class="panel-icon-wrapper red"><img src="icon-cvc.png" alt="CVC" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%23dc2626%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%23991b1b%22 font-size=%2216%22 font-weight=%22bold%22>CVC</text></svg>'"></div><h2 class="panel-title">MONITORING CVC</h2><p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>CDC - Guidelines for Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>KDOQI - Vascular Access Guidelines (2019 Update)</span></div></div><div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
-
             <div class="panel-card"><div class="panel-icon-wrapper gold"><img src="icon-avshunt.png" alt="AV-Shunt" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%237c3aed%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%235b21b6%22 font-size=%2212%22 font-weight=%22bold%22>AV</text></svg>'"></div><h2 class="panel-title">MONITORING AV-SHUNT</h2><p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>NKF - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span></div></div><div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
-
-            <div class="panel-card"><div class="panel-icon-wrapper teal"><img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'"></div><h2 class="panel-title">EDUKASI</h2><p class="panel-subtitle">Materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p><div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none;"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div></div>
-
+            <div class="panel-card"><div class="panel-icon-wrapper teal"><img src="icon-education.png" alt="Edukasi" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22%2314b8a6%22 opacity=%220.3%22/><text x=%2224%22 y=%2230%22 text-anchor=%22middle%22 fill=%22%230d9488%22 font-size=%2214%22 font-weight=%22bold%22>EDU</text></svg>'"></div><h2 class="panel-title">EDUKASI</h2><p class="panel-subtitle">Materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p><div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div></div>
             <div class="panel-card"><div class="panel-icon-wrapper purple"><img src="ceklist.png" alt="Cek List" class="icon-custom" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><rect x=%228%22 y=%2224%22 width=%2232%22 height=%2240%22 rx=%224%22 fill=%22none%22 stroke=%22%237c3aed%22 stroke-width=%222.5%22/><line x1=%2216%22 y1=%2214%22 x2=%2232%22 y2=%2214%22 stroke=%22%237c3aed%22 stroke-width=%222%22/><line x1=%2216%22 y1=%2222%22 x2=%2232%22 y2=%2222%22 stroke=%22%237c3aed%22 stroke-width=%222%22/></svg>'"></div><h2 class="panel-title">CEK LIST KESELAMATAN HD</h2><p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman.</p><div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div></div>
         </div>
 
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info"><div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div><div class="footer-text"><h3>INFO APLIKASI</h3><p>Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah oleh TIM INOCA RSSA</p></div></div>
-            <div class="footer-stats"><div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div><div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div></div>
+            <div class="footer-stats">
+                <div class="visitor-badge-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountFooter">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot" style="width:5px;height:5px"></div></div>
+                <div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div>
+                <div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div>
+            </div>
             <div class="footer-actions"><button class="btn btn-secondary" onclick="startTour()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Panduan</button><button class="btn btn-gold" onclick="startCredits()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info Lengkap</button></div>
         </div>
     </div>
 
-    <script>
-    /* ===== SVG ICONS ===== */
-    var ICON_TRASH='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
-    var ICON_TRASH_M='<svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
-    var ICON_REPLY='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"></polyline><path d="M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>';
-    var ICON_FWD='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"></polyline><path d="M4 18v-2a4 4 0 0 1 4-4h12"></path></svg>';
+<script>
+/* === SVG ICONS === */
+var ICON_TRASH='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
+var ICON_TRASH_M='<svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
+var ICON_REPLY='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"></polyline><path d="M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>';
+var ICON_FWD='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"></polyline><path d="M4 18v-2a4 4 0 0 1 4-4h12"></path></svg>';
 
-    /* ===== API ===== */
-    var API_URL='https://script.google.com/macros/s/AKfycbzjED-J262dM98RbjNvr4PeOloOpWg9WL08XogyXs3pEC5VFI4miopDnhqTTynxBrUq/exec';
+/* === API === */
+var API_URL='https://script.google.com/macros/s/AKfycbzjED-J262dM98RbjNvr4PeOloOpWg9WL08XogyXs3pEC5VFI4miopDnhqTTynxBrUq/exec';
 
-    /* ==========================================================
-       BERSIHKAN SEMUA DATA STORAGE SAAT PERTAMA KALI LOAD
-       ========================================================== */
-    (function wipeAllStorage(){
-        /* Hapus semua key yang dimiliki Mona dari localStorage */
-        var keysToRemove=[];
-        for(var i=0;i<localStorage.length;i++){
-            var k=localStorage.key(i);
-            if(k&&k.indexOf('mona_')===0) keysToRemove.push(k);
-        }
-        keysToRemove.forEach(function(k){ localStorage.removeItem(k); });
-        /* Jika ada sisa key lain yang terkait (backup), hapus juga */
-        ['mona_comments','mona_user','mona_deleted_blacklist','mona_settings'].forEach(function(k){
-            localStorage.removeItem(k);
-        });
-    })();
+/* === BERSIHKAN STORAGE === */
+(function(){var kr=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('mona_')===0)kr.push(k)}kr.forEach(function(k){localStorage.removeItem(k)});['mona_comments','mona_user','mona_deleted_blacklist','mona_settings'].forEach(function(k){localStorage.removeItem(k)})})();
 
-    /* ===== STATE ===== */
-    var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null,modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null,activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
-    var assessmentContacts=[{name:'Riza A',phone:'6282227707573'},{name:'Pembayun Y',phone:'6283831217784'},{name:'Hesty',phone:'6282124700093'},{name:'Rinda',phone:'6285210622568'}];
+/* === STATE === */
+var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null,modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null,activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
+var assessmentContacts=[{name:'Riza A',phone:'6282227707573'},{name:'Pembayun Y',phone:'6283831217784'},{name:'Hesty',phone:'6282124700093'},{name:'Rinda',phone:'6285210622568'}];
 
-    /* ===== IDENTITAS KOMENTAR ===== */
-    function getCommentId(c){if(c.id)return String(c.id);if(c.localId)return String(c.localId);if(c.timestamp)return String(c.timestamp);return String(Math.random())}
-    function getStableId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return(c.authorId||'')+'_'+(c.timestamp||'')}
-    function getServerId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return null}
-    function isOwnComment(c){if(!currentUser)return false;return(c.authorId===currentUser.id)||(c.author===currentUser.name)}
-    function isOtherComment(c){if(!currentUser)return false;return!isOwnComment(c)}
-    function escapeHtml(t){if(!t)return '';var d=document.createElement('div');d.textContent=t;return d.innerHTML}
-    function truncateText(t,m){if(!t)return '';return t.length>m?t.substring(0,m)+'...':t}
-    function formatTimeAgo(ts){var n=new Date(),p=new Date(ts),d=n-p;if(isNaN(d))return'Lalu';var m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000);if(m<1)return'Baru saja';if(m<60)return m+' menit lalu';if(h<24)return h+' jam lalu';if(dy<7)return dy+' hari lalu';return p.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}
-    function safeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-    function showToast(msg,type){type=type||'info';var c=document.getElementById('toastContainer'),t=document.createElement('div');t.className='toast '+type;t.textContent=msg;c.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3200)}
+/* === UTILITAS === */
+function getCommentId(c){if(c.id)return String(c.id);if(c.localId)return String(c.localId);if(c.timestamp)return String(c.timestamp);return String(Math.random())}
+function getStableId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return(c.authorId||'')+'_'+(c.timestamp||'')}
+function getServerId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return null}
+function isOwnComment(c){if(!currentUser)return false;return(c.authorId===currentUser.id)||(c.author===currentUser.name)}
+function isOtherComment(c){if(!currentUser)return false;return!isOwnComment(c)}
+function escapeHtml(t){if(!t)return '';var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+function truncateText(t,m){if(!t)return '';return t.length>m?t.substring(0,m)+'...':t}
+function formatTimeAgo(ts){var n=new Date(),p=new Date(ts),d=n-p;if(isNaN(d))return'Lalu';var m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000);if(m<1)return'Baru saja';if(m<60)return m+' menit lalu';if(h<24)return h+' jam lalu';if(dy<7)return dy+' hari lalu';return p.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}
+function safeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function showToast(msg,type){type=type||'info';var c=document.getElementById('toastContainer'),t=document.createElement('div');t.className='toast '+type;t.textContent=msg;c.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3200)}
 
-    /* ===== BLACKLIST ===== */
-    function getDeletedBlacklist(){try{var s=localStorage.getItem('mona_deleted_blacklist');return s?JSON.parse(s):[];}catch(e){return [];}}
-    function addToDeletedBlacklist(c){var list=getDeletedBlacklist();var sid=getServerId(c);var fid=getStableId(c);if(sid&&list.indexOf(sid)===-1)list.push(sid);if(list.indexOf(fid)===-1)list.push(fid);localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list))}
-    function isCommentBlacklisted(c){var list=getDeletedBlacklist();if(c.id&&list.indexOf(String(c.id))!==-1)return true;if(list.indexOf(getStableId(c))!==-1)return true;return false}
-    function filterBlacklisted(arr){return arr.filter(function(c){return!isCommentBlacklisted(c)})}
-    function cleanOldBlacklist(){var list=getDeletedBlacklist();if(list.length>500){localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list.slice(-200)))}}
+/* === BLACKLIST === */
+function getDeletedBlacklist(){try{var s=localStorage.getItem('mona_deleted_blacklist');return s?JSON.parse(s):[]}catch(e){return[]}}
+function addToDeletedBlacklist(c){var list=getDeletedBlacklist();var sid=getServerId(c);var fid=getStableId(c);if(sid&&list.indexOf(sid)===-1)list.push(sid);if(list.indexOf(fid)===-1)list.push(fid);localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list))}
+function isCommentBlacklisted(c){var list=getDeletedBlacklist();if(c.id&&list.indexOf(String(c.id))!==-1)return true;if(list.indexOf(getStableId(c))!==-1)return true;return false}
+function filterBlacklisted(arr){return arr.filter(function(c){return!isCommentBlacklisted(c)})}
+function cleanOldBlacklist(){var list=getDeletedBlacklist();if(list.length>500){localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list.slice(-200)))}}
 
-    /* ===== LOCAL STORAGE ===== */
-    function saveCommentsToLocal(){try{localStorage.setItem('mona_comments',JSON.stringify(comments));}catch(e){}}
-    function loadCommentsFromLocal(){try{var s=localStorage.getItem('mona_comments');comments=s?JSON.parse(s):[];}catch(e){comments=[];}}
-    function dedupComments(arr){var seen={},result=[];arr.forEach(function(c){var sid=getStableId(c);if(!seen[sid]){seen[sid]=true;result.push(c);}});return result}
+/* === LOCAL STORAGE === */
+function saveCommentsToLocal(){try{localStorage.setItem('mona_comments',JSON.stringify(comments))}catch(e){}}
+function loadCommentsFromLocal(){try{var s=localStorage.getItem('mona_comments');comments=s?JSON.parse(s):[]}catch(e){comments=[]}}
+function dedupComments(arr){var seen={},result=[];arr.forEach(function(c){var sid=getStableId(c);if(!seen[sid]){seen[sid]=true;result.push(c)}});return result}
 
-    /* ===== LOAD ===== */
-    async function loadComments(){
-        loadCommentsFromLocal();comments=filterBlacklisted(comments);comments=dedupComments(comments);renderComments();renderInlineChatMessages();
-        showSyncBadge(true);
-        try{var r=await fetch(API_URL+'?action=getComments',{signal:AbortSignal.timeout(8000)});var d=await r.json();if(d.success&&d.comments){var sc=filterBlacklisted(d.comments);var lc=filterBlacklisted(comments);var ss={};sc.forEach(function(c){ss[getStableId(c)]=true});lc.forEach(function(c){if(!ss[getStableId(c)])sc.push(c)});comments=dedupComments(sc);saveCommentsToLocal();renderComments();renderInlineChatMessages();updateOnlineStatus(true)}}catch(e){console.log('Offline mode');updateOnlineStatus(false)}
-        showSyncBadge(false);cleanOldBlacklist();
-    }
-    async function postCommentToServer(cd){try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addComment',...cd})});}catch(e){}}
-    async function deleteCommentOnServer(uuid){if(!uuid)return;try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'deleteComment',commentId:uuid,authorId:currentUser?currentUser.id:''})});}catch(e){}}
-    function updateOnlineStatus(online){isOnline=online;var el=document.getElementById('chatStatusIndicator');if(el){el.className='chat-status '+(online?'online':'offline');el.innerHTML=(online?'Online':'Offline')+'<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span>';}}
-    function showSyncBadge(show){var el=document.getElementById('syncBadge');if(el)el.className='chat-sync-badge'+(show?' show':'');}
-    window.addEventListener('online',function(){updateOnlineStatus(true);loadComments();showToast('Kembali online.','success')});
-    window.addEventListener('offline',function(){updateOnlineStatus(false);showToast('Anda sedang offline.','info')});
+/* === LOAD === */
+async function loadComments(){
+    loadCommentsFromLocal();comments=filterBlacklisted(comments);comments=dedupComments(comments);renderComments();renderInlineChatMessages();
+    showSyncBadge(true);
+    try{var r=await fetch(API_URL+'?action=getComments',{signal:AbortSignal.timeout(8000)});var d=await r.json();if(d.success&&d.comments){var sc=filterBlacklisted(d.comments);var lc=filterBlacklisted(comments);var ss={};sc.forEach(function(c){ss[getStableId(c)]=true});lc.forEach(function(c){if(!ss[getStableId(c)])sc.push(c)});comments=dedupComments(sc);saveCommentsToLocal();renderComments();renderInlineChatMessages();updateOnlineStatus(true)}}catch(e){console.log('Offline mode');updateOnlineStatus(false)}
+    showSyncBadge(false);cleanOldBlacklist();
+}
+async function postCommentToServer(cd){try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addComment',...cd})})}catch(e){}}
+async function deleteCommentOnServer(uuid){if(!uuid)return;try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'deleteComment',commentId:uuid,authorId:currentUser?currentUser.id:''})})}catch(e){}}
+function updateOnlineStatus(online){isOnline=online;var el=document.getElementById('chatStatusIndicator');if(el){el.className='chat-status '+(online?'online':'offline');el.innerHTML=(online?'Online':'Offline')+'<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span>'}}
+function showSyncBadge(show){var el=document.getElementById('syncBadge');if(el)el.className='chat-sync-badge'+(show?' show':'')}
+window.addEventListener('online',function(){updateOnlineStatus(true);loadComments();showToast('Kembali online.','success')});
+window.addEventListener('offline',function(){updateOnlineStatus(false);showToast('Anda sedang offline.','info')});
 
-    /* ===== JAM ===== */
-    function updateClock(){var n=new Date(),ds=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],ms=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];document.getElementById('clockTime').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');document.getElementById('clockDate').textContent=ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear()}
-    setInterval(updateClock,1000);updateClock();
+/* === JAM === */
+function updateClock(){var n=new Date(),ds=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],ms=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];document.getElementById('clockTime').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');document.getElementById('clockDate').textContent=ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear()}
+setInterval(updateClock,1000);updateClock();
 
-    /* ===== LOGIN ===== */
-    function initLogin(){var s=localStorage.getItem('mona_user');if(s){currentUser=JSON.parse(s);updateLoginUI()}renderInlineChatInput()}
-    function handleLoginClick(){if(currentUser){if(confirm('Anda login sebagai "'+currentUser.name+'". Klik OK untuk logout.'))logout()}else openModal('loginModal')}
-    function performLogin(){var n=document.getElementById('loginName').value.trim();if(!n){alert('Silakan masukkan nama Anda!');return}currentUser={name:n,id:Date.now().toString(),joinedAt:new Date().toISOString()};localStorage.setItem('mona_user',JSON.stringify(currentUser));updateLoginUI();closeModal('loginModal');document.getElementById('loginName').value='';updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();showToast('Selamat datang, '+n+'!','success')}
-    function logout(){currentUser=null;localStorage.removeItem('mona_user');updateLoginUI();updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete();showToast('Anda telah logout.','info')}
-    function updateLoginUI(){var lc=document.getElementById('loginContainer'),lt=document.getElementById('loginText'),li=document.getElementById('loginIconSvg'),ua=document.getElementById('userAvatar');if(currentUser){lc.classList.add('logged-in');lt.textContent=currentUser.name;li.style.display='none';ua.style.display='flex';ua.textContent=currentUser.name.charAt(0).toUpperCase();var g=['Selamat Datang','Halo','Salam Sehat'];document.getElementById('welcomeMessage').textContent=g[Math.floor(Math.random()*g.length)]+', '+currentUser.name+'!';document.getElementById('welcomeMessage').classList.add('show')}else{lc.classList.remove('logged-in');lt.textContent='Login / Masuk';li.style.display='block';ua.style.display='none';document.getElementById('welcomeMessage').classList.remove('show')}}
+/* === LOGIN === */
+function initLogin(){var s=localStorage.getItem('mona_user');if(s){currentUser=JSON.parse(s);updateLoginUI()}renderInlineChatInput()}
+function handleLoginClick(){if(currentUser){if(confirm('Anda login sebagai "'+currentUser.name+'". Klik OK untuk logout.'))logout()}else openModal('loginModal')}
+function performLogin(){var n=document.getElementById('loginName').value.trim();if(!n){alert('Silakan masukkan nama Anda!');return}currentUser={name:n,id:Date.now().toString(),joinedAt:new Date().toISOString()};localStorage.setItem('mona_user',JSON.stringify(currentUser));updateLoginUI();closeModal('loginModal');document.getElementById('loginName').value='';updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();showToast('Selamat datang, '+n+'!','success')}
+function logout(){currentUser=null;localStorage.removeItem('mona_user');updateLoginUI();updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete();showToast('Anda telah logout.','info')}
+function updateLoginUI(){var lc=document.getElementById('loginContainer'),lt=document.getElementById('loginText'),li=document.getElementById('loginIconSvg'),ua=document.getElementById('userAvatar');if(currentUser){lc.classList.add('logged-in');lt.textContent=currentUser.name;li.style.display='none';ua.style.display='flex';ua.textContent=currentUser.name.charAt(0).toUpperCase();var g=['Selamat Datang','Halo','Salam Sehat'];document.getElementById('welcomeMessage').textContent=g[Math.floor(Math.random()*g.length)]+', '+currentUser.name+'!';document.getElementById('welcomeMessage').classList.add('show')}else{lc.classList.remove('logged-in');lt.textContent='Login / Masuk';li.style.display='block';ua.style.display='none';document.getElementById('welcomeMessage').classList.remove('show')}}
 
-    /* ===== MODAL ===== */
-    function openModal(id){document.getElementById(id).classList.add('active')}
-    function closeModal(id){document.getElementById(id).classList.remove('active')}
-    document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')})});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete()}});
+/* === MODAL === */
+function openModal(id){document.getElementById(id).classList.add('active')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete()}});
 
-    /* ===== INLINE CHAT RENDER ===== */
-    function renderInlineChatMessages(){
-        var c=document.getElementById('inlineChatMessages');if(!c)return;
-        if(comments.length===0){c.innerHTML='<div class="empty-chat">Belum ada percakapan.</div>';return}
-        var s=comments.slice().sort(function(a,b){return new Date(a.timestamp)-new Date(b.timestamp)}),il=!!currentUser,h='';
-        s.forEach(function(m){
-            var mi=isOwnComment(m),ot=isOtherComment(m),wc=mi?'outgoing-wrap':'incoming-wrap',bc=mi?'outgoing':'incoming';
-            var cid=getCommentId(m),ta=formatTimeAgo(m.timestamp),isF=m.isForwarded==='true'||m.isForwarded===true,hasR=m.replyToAuthor&&m.replyToText;
-            var isRT=(activeReplyTargetId===cid)?' reply-target':'',isDT=(activeDeleteTargetId===cid)?' delete-target-inline':'',tc=isRT||isDT?isDT+isRT:'';
-            h+='<div class="chat-bubble-wrap '+wc+tc+'" data-cid="'+safeAttr(cid)+'"><div class="chat-bubble '+bc+'">';
-            if(isF&&m.forwardedFromAuthor)h+='<div class="forward-badge">Diforward dari '+escapeHtml(m.forwardedFromAuthor)+'</div>';
-            if(hasR)h+='<div class="reply-quote"><span class="reply-quote-author">@'+escapeHtml(m.replyToAuthor)+'</span><span class="reply-quote-text">'+escapeHtml(m.replyToText)+'</span></div>';
-            if(!mi)h+='<div class="bubble-author">'+escapeHtml(m.author)+'</div>';
-            h+=escapeHtml(m.text)+'<span class="bubble-meta">'+ta+'</span>';
-            if(il&&!isDeletingInProgress){h+='<div class="chat-bubble-actions">';h+='<button class="chat-action-btn reply-btn" onclick="event.stopPropagation();clickToReply(\''+safeAttr(cid)+'\')">'+ICON_REPLY+' Balas</button>';if(ot)h+='<button class="chat-action-btn fwd-btn" onclick="event.stopPropagation();startForward(\''+safeAttr(cid)+'\')">'+ICON_FWD+' Forward</button>';if(mi)h+='<button class="chat-action-btn delete-btn" onclick="event.stopPropagation();startDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH+' Hapus</button>';h+='</div>';}
-            h+='</div></div>';
-        });
-        c.innerHTML=h;c.scrollTop=c.scrollHeight;
-    }
+/* === INLINE CHAT RENDER === */
+function renderInlineChatMessages(){
+    var c=document.getElementById('inlineChatMessages');if(!c)return;
+    if(comments.length===0){c.innerHTML='<div class="empty-chat">Belum ada percakapan.</div>';return}
+    var s=comments.slice().sort(function(a,b){return new Date(a.timestamp)-new Date(b.timestamp)}),il=!!currentUser,h='';
+    s.forEach(function(m){
+        var mi=isOwnComment(m),ot=isOtherComment(m),wc=mi?'outgoing-wrap':'incoming-wrap',bc=mi?'outgoing':'incoming';
+        var cid=getCommentId(m),ta=formatTimeAgo(m.timestamp),isF=m.isForwarded==='true'||m.isForwarded===true,hasR=m.replyToAuthor&&m.replyToText;
+        var isRT=(activeReplyTargetId===cid)?' reply-target':'',isDT=(activeDeleteTargetId===cid)?' delete-target-inline':'',tc=isRT||isDT?isDT+isRT:'';
+        h+='<div class="chat-bubble-wrap '+wc+tc+'" data-cid="'+safeAttr(cid)+'"><div class="chat-bubble '+bc+'">';
+        if(isF&&m.forwardedFromAuthor)h+='<div class="forward-badge">Diforward dari '+escapeHtml(m.forwardedFromAuthor)+'</div>';
+        if(hasR)h+='<div class="reply-quote"><span class="reply-quote-author">@'+escapeHtml(m.replyToAuthor)+'</span><span class="reply-quote-text">'+escapeHtml(m.replyToText)+'</span></div>';
+        if(!mi)h+='<div class="bubble-author">'+escapeHtml(m.author)+'</div>';
+        h+=escapeHtml(m.text)+'<span class="bubble-meta">'+ta+'</span>';
+        if(il&&!isDeletingInProgress){h+='<div class="chat-bubble-actions">';h+='<button class="chat-action-btn reply-btn" onclick="event.stopPropagation();clickToReply(\''+safeAttr(cid)+'\')">'+ICON_REPLY+' Balas</button>';if(ot)h+='<button class="chat-action-btn fwd-btn" onclick="event.stopPropagation();startForward(\''+safeAttr(cid)+'\')">'+ICON_FWD+' Forward</button>';if(mi)h+='<button class="chat-action-btn delete-btn" onclick="event.stopPropagation();startDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH+' Hapus</button>';h+='</div>'}
+        h+='</div></div>';
+    });
+    c.innerHTML=h;c.scrollTop=c.scrollHeight;
+}
 
-    /* ===== INLINE REPLY ===== */
-    function clickToReply(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;forwardingMsg=null;deletingMsg=null;activeDeleteTargetId=null;replyingTo={id:getCommentId(c),author:c.author,text:c.text};activeReplyTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
-    function cancelReply(){replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput()}
+/* === INLINE REPLY === */
+function clickToReply(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;forwardingMsg=null;deletingMsg=null;activeDeleteTargetId=null;replyingTo={id:getCommentId(c),author:c.author,text:c.text};activeReplyTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
+function cancelReply(){replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput()}
 
-    /* ===== INLINE FORWARD ===== */
-    function startForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;replyingTo=null;activeReplyTargetId=null;activeDeleteTargetId=null;deletingMsg=null;forwardingMsg={id:getCommentId(c),author:c.author,text:c.text};renderInlineChatMessages();renderInlineChatInput()}
-    function cancelForward(){forwardingMsg=null;renderInlineChatInput()}
-    function confirmForward(){if(!forwardingMsg||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:forwardingMsg.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:forwardingMsg.author,localId:Date.now().toString()};comments.push(cd);forwardingMsg=null;saveCommentsToLocal();renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);showToast('Pesan berhasil di-forward.','success')}
+/* === INLINE FORWARD === */
+function startForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;replyingTo=null;activeReplyTargetId=null;activeDeleteTargetId=null;deletingMsg=null;forwardingMsg={id:getCommentId(c),author:c.author,text:c.text};renderInlineChatMessages();renderInlineChatInput()}
+function cancelForward(){forwardingMsg=null;renderInlineChatInput()}
+function confirmForward(){if(!forwardingMsg||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:forwardingMsg.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:forwardingMsg.author,localId:Date.now().toString()};comments.push(cd);forwardingMsg=null;saveCommentsToLocal();renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);showToast('Pesan berhasil di-forward.','success')}
 
-    /* ===== INLINE HAPUS ===== */
-    function startDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;replyingTo=null;activeReplyTargetId=null;forwardingMsg=null;deletingMsg={id:cid,serverId:getServerId(c),commentObj:c,text:c.text};activeDeleteTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
-    function cancelDelete(){deletingMsg=null;activeDeleteTargetId=null;isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput()}
-    function confirmDelete(){
-        if(!deletingMsg||!currentUser)return;isDeletingInProgress=true;var did=deletingMsg.id,sid=deletingMsg.serverId,cObj=deletingMsg.commentObj;activeDeleteTargetId=null;deletingMsg=null;
-        if(cObj)addToDeletedBlacklist(cObj);comments=comments.filter(function(c){return getCommentId(c)!==did});saveCommentsToLocal();
-        var el=document.querySelector('.chat-bubble-wrap[data-cid="'+did+'"]');if(el)el.classList.add('chat-removing');
-        setTimeout(function(){isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput();renderComments()},400);
-        if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success');
-    }
+/* === INLINE HAPUS === */
+function startDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;replyingTo=null;activeReplyTargetId=null;forwardingMsg=null;deletingMsg={id:cid,serverId:getServerId(c),commentObj:c,text:c.text};activeDeleteTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
+function cancelDelete(){deletingMsg=null;activeDeleteTargetId=null;isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput()}
+function confirmDelete(){if(!deletingMsg||!currentUser)return;isDeletingInProgress=true;var did=deletingMsg.id,sid=deletingMsg.serverId,cObj=deletingMsg.commentObj;activeDeleteTargetId=null;deletingMsg=null;if(cObj)addToDeletedBlacklist(cObj);comments=comments.filter(function(c){return getCommentId(c)!==did});saveCommentsToLocal();var el=document.querySelector('.chat-bubble-wrap[data-cid="'+did+'"]');if(el)el.classList.add('chat-removing');setTimeout(function(){isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput();renderComments()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
 
-    /* ===== INLINE INPUT ===== */
-    function renderInlineChatInput(){
-        var w=document.getElementById('chatInputWrapper');if(!w)return;
-        if(deletingMsg){w.innerHTML='<div class="delete-confirm-bar"><div class="dc-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Hapus permanen?</div><div class="dc-msg">"'+escapeHtml(truncateText(deletingMsg.text,120))+'"</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" onclick="cancelDelete()">Batal</button><button class="dc-btn dc-btn-confirm" onclick="confirmDelete()">Hapus</button></div></div>';return}
-        if(forwardingMsg){w.innerHTML='<div class="forward-confirm-bar"><div class="fc-title">Forward pesan dari '+escapeHtml(forwardingMsg.author)+'?</div><div class="fc-msg">"'+escapeHtml(forwardingMsg.text)+'"</div><div class="fc-actions"><button class="fc-btn fc-btn-cancel" onclick="cancelForward()">Batal</button><button class="fc-btn fc-btn-confirm" onclick="confirmForward()">Forward</button></div></div>';return}
-        if(currentUser){
-            var rb='';if(replyingTo)rb='<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+escapeHtml(replyingTo.author)+'</div><div class="rp-text">"'+escapeHtml(truncateText(replyingTo.text,60))+'"</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>';
-            var ph=replyingTo?'Balas '+replyingTo.author+'...':'Tulis pesan...';
-            w.innerHTML=rb+'<div class="chat-input-bar"><input type="text" id="inlineCommentText" placeholder="'+ph+'" maxlength="500"><button class="chat-send-btn" onclick="sendInlineChat()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div>';
-            var inp=document.getElementById('inlineCommentText');if(inp){inp.addEventListener('keypress',function(e){if(e.key==='Enter')sendInlineChat()});if(replyingTo)setTimeout(function(){inp.focus()},100)}
-        }else{w.innerHTML='<div class="chat-login-prompt">Silakan <a onclick="openModal(\'loginModal\')">Login</a> untuk mengirim pesan.</div>'}
-    }
-    async function sendInlineChat(){
-        if(!currentUser){openModal('loginModal');return}var inp=document.getElementById('inlineCommentText');if(!inp)return;var text=inp.value.trim();if(!text)return;
-        var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};
-        if(replyingTo){cd.replyToId=replyingTo.id;cd.replyToAuthor=replyingTo.author;cd.replyToText=replyingTo.text}
-        comments.push(cd);saveCommentsToLocal();replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);setTimeout(function(){loadComments()},1500);
-    }
+/* === INLINE INPUT === */
+function renderInlineChatInput(){
+    var w=document.getElementById('chatInputWrapper');if(!w)return;
+    if(deletingMsg){w.innerHTML='<div class="delete-confirm-bar"><div class="dc-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Hapus permanen?</div><div class="dc-msg">"'+escapeHtml(truncateText(deletingMsg.text,100))+'"</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" onclick="cancelDelete()">Batal</button><button class="dc-btn dc-btn-confirm" onclick="confirmDelete()">Hapus</button></div></div>';return}
+    if(forwardingMsg){w.innerHTML='<div class="forward-confirm-bar"><div class="fc-title">Forward dari '+escapeHtml(forwardingMsg.author)+'?</div><div class="fc-msg">"'+escapeHtml(forwardingMsg.text)+'"</div><div class="fc-actions"><button class="fc-btn fc-btn-cancel" onclick="cancelForward()">Batal</button><button class="fc-btn fc-btn-confirm" onclick="confirmForward()">Forward</button></div></div>';return}
+    if(currentUser){
+        var rb='';if(replyingTo)rb='<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+escapeHtml(replyingTo.author)+'</div><div class="rp-text">"'+escapeHtml(truncateText(replyingTo.text,50))+'"</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>';
+        var ph=replyingTo?'Balas '+replyingTo.author+'...':'Tulis pesan...';
+        w.innerHTML=rb+'<div class="chat-input-bar"><input type="text" id="inlineCommentText" placeholder="'+ph+'" maxlength="500"><button class="chat-send-btn" onclick="sendInlineChat()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div>';
+        var inp=document.getElementById('inlineCommentText');if(inp){inp.addEventListener('keypress',function(e){if(e.key==='Enter')sendInlineChat()});if(replyingTo)setTimeout(function(){inp.focus()},100)}
+    }else{w.innerHTML='<div class="chat-login-prompt">Silakan <a onclick="openModal(\'loginModal\')">Login</a> untuk mengirim pesan.</div>'}
+}
+async function sendInlineChat(){if(!currentUser){openModal('loginModal');return}var inp=document.getElementById('inlineCommentText');if(!inp)return;var text=inp.value.trim();if(!text)return;var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(replyingTo){cd.replyToId=replyingTo.id;cd.replyToAuthor=replyingTo.author;cd.replyToText=replyingTo.text}comments.push(cd);saveCommentsToLocal();replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);setTimeout(function(){loadComments()},1500)}
 
-    /* ===== MODAL DISKUSI ===== */
-    function openDiscussion(){modalReplyingTo=null;modalDeletingId=null;modalDeletingServerId=null;openModal('discussionModal');renderComments();updateCommentInputArea()}
-    function updateCommentInputArea(){
-        var ia=document.getElementById('commentInputArea');if(!ia)return;
-        if(currentUser){
-            var rb='',db='';
-            if(modalReplyingTo)rb='<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">Membalas '+escapeHtml(modalReplyingTo.author)+'</div><div class="mr-text">"'+escapeHtml(truncateText(modalReplyingTo.text,80))+'"</div></div><button class="mr-cancel" onclick="cancelModalReply()">&times;</button></div>';
-            if(modalDeletingId){var dc=comments.find(function(x){return getCommentId(x)===modalDeletingId});if(dc)db='<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus permanen?</div><div class="md-text">"'+escapeHtml(truncateText(dc.text,80))+'"</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="cancelModalDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="confirmModalDelete()">Hapus</button></div></div>'}
-            var ph=modalReplyingTo?'Balas '+modalReplyingTo.author+'...':'Tulis komentar...';var dis=modalDeletingId?'disabled style="opacity:0.5;"':'';
-            ia.innerHTML=db+rb+'<textarea id="commentText" placeholder="'+ph+'" '+dis+'></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px;"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px;" '+dis+'>Kirim Komentar</button></div>';
-        }else{ia.innerHTML='<div class="login-prompt"><p>Anda harus <a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\');return false;">login terlebih dahulu</a> untuk mengirim atau menghapus komentar.</p></div>'}
-    }
-    function renderComments(){
-        var lc=document.getElementById('commentsList'),cb=document.getElementById('commentCount');if(!lc)return;cb.textContent=comments.length+' Komentar';
-        if(comments.length===0){lc.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return}
-        var sorted=comments.slice().sort(function(a,b){return new Date(b.timestamp)-new Date(a.timestamp)}),il=!!currentUser,h='';
-        sorted.forEach(function(c){
-            var ini=c.author?c.author.charAt(0).toUpperCase():'?',tA=formatTimeAgo(c.timestamp),cid=getCommentId(c),mi=isOwnComment(c),ot=isOtherComment(c);
-            var isF=c.isForwarded==='true'||c.isForwarded===true,hasR=c.replyToAuthor&&c.replyToText;
-            var isRT=(modalReplyingTo&&modalReplyingTo.id===cid)?' reply-target':'',isDT=(modalDeletingId===cid)?' delete-target':'';
-            h+='<div class="comment-item'+isRT+isDT+'" data-cid="'+safeAttr(cid)+'">';
-            h+='<div class="comment-header"><div class="comment-avatar">'+ini+'</div><div><div class="comment-author">'+escapeHtml(c.author)+'</div><div class="comment-time">'+tA+'</div></div></div>';
-            if(isF&&c.forwardedFromAuthor)h+='<div class="comment-forward-tag">Diforward dari '+escapeHtml(c.forwardedFromAuthor)+'</div>';
-            if(hasR)h+='<div class="comment-reply-quote"><div class="crq-author">@'+escapeHtml(c.replyToAuthor)+'</div><div class="crq-text">'+escapeHtml(c.replyToText)+'</div></div>';
-            h+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';
-            if(il){h+='<div class="comment-actions">';h+='<button class="comment-action-btn reply-btn" onclick="clickModalReply(\''+safeAttr(cid)+'\')">Balas</button>';if(ot)h+='<button class="comment-action-btn fwd-btn" onclick="clickModalForward(\''+safeAttr(cid)+'\')">Forward</button>';if(mi)h+='<button class="comment-action-btn delete-btn" onclick="clickModalDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH_M+' Hapus</button>';h+='</div>';}
-            h+='</div>';
-        });
-        lc.innerHTML=h;
-    }
+/* === MODAL DISKUSI === */
+function openDiscussion(){modalReplyingTo=null;modalDeletingId=null;modalDeletingServerId=null;openModal('discussionModal');renderComments();updateCommentInputArea()}
+function updateCommentInputArea(){
+    var ia=document.getElementById('commentInputArea');if(!ia)return;
+    if(currentUser){
+        var rb='',db='';
+        if(modalReplyingTo)rb='<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">Membalas '+escapeHtml(modalReplyingTo.author)+'</div><div class="mr-text">"'+escapeHtml(truncateText(modalReplyingTo.text,80))+'"</div></div><button class="mr-cancel" onclick="cancelModalReply()">&times;</button></div>';
+        if(modalDeletingId){var dc=comments.find(function(x){return getCommentId(x)===modalDeletingId});if(dc)db='<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus permanen?</div><div class="md-text">"'+escapeHtml(truncateText(dc.text,80))+'"</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="cancelModalDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="confirmModalDelete()">Hapus</button></div></div>'}
+        var ph=modalReplyingTo?'Balas '+modalReplyingTo.author+'...':'Tulis komentar...';var dis=modalDeletingId?'disabled style="opacity:0.5;"':'';
+        ia.innerHTML=db+rb+'<textarea id="commentText" placeholder="'+ph+'" '+dis+'></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px" '+dis+'>Kirim Komentar</button></div>';
+    }else{ia.innerHTML='<div class="login-prompt"><p>Anda harus <a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\');return false">login terlebih dahulu</a> untuk mengirim atau menghapus komentar.</p></div>'}
+}
+function renderComments(){
+    var lc=document.getElementById('commentsList'),cb=document.getElementById('commentCount');if(!lc)return;cb.textContent=comments.length+' Komentar';
+    if(comments.length===0){lc.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return}
+    var sorted=comments.slice().sort(function(a,b){return new Date(b.timestamp)-new Date(a.timestamp)}),il=!!currentUser,h='';
+    sorted.forEach(function(c){
+        var ini=c.author?c.author.charAt(0).toUpperCase():'?',tA=formatTimeAgo(c.timestamp),cid=getCommentId(c),mi=isOwnComment(c),ot=isOtherComment(c);
+        var isF=c.isForwarded==='true'||c.isForwarded===true,hasR=c.replyToAuthor&&c.replyToText;
+        var isRT=(modalReplyingTo&&modalReplyingTo.id===cid)?' reply-target':'',isDT=(modalDeletingId===cid)?' delete-target':'';
+        h+='<div class="comment-item'+isRT+isDT+'" data-cid="'+safeAttr(cid)+'">';
+        h+='<div class="comment-header"><div class="comment-avatar">'+ini+'</div><div><div class="comment-author">'+escapeHtml(c.author)+'</div><div class="comment-time">'+tA+'</div></div></div>';
+        if(isF&&c.forwardedFromAuthor)h+='<div class="comment-forward-tag">Diforward dari '+escapeHtml(c.forwardedFromAuthor)+'</div>';
+        if(hasR)h+='<div class="comment-reply-quote"><div class="crq-author">@'+escapeHtml(c.replyToAuthor)+'</div><div class="crq-text">'+escapeHtml(c.replyToText)+'</div></div>';
+        h+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';
+        if(il){h+='<div class="comment-actions">';h+='<button class="comment-action-btn reply-btn" onclick="clickModalReply(\''+safeAttr(cid)+'\')">Balas</button>';if(ot)h+='<button class="comment-action-btn fwd-btn" onclick="clickModalForward(\''+safeAttr(cid)+'\')">Forward</button>';if(mi)h+='<button class="comment-action-btn delete-btn" onclick="clickModalDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH_M+' Hapus</button>';h+='</div>'}
+        h+='</div>';
+    });
+    lc.innerHTML=h;
+}
 
-    /* ===== MODAL AKSI ===== */
-    function clickModalReply(cid){if(!currentUser){closeModal('discussionModal');openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;modalDeletingId=null;modalDeletingServerId=null;modalReplyingTo={id:getCommentId(c),author:c.author,text:c.text};document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('reply-target');updateCommentInputArea();renderComments();var ta=document.getElementById('commentText');if(ta)setTimeout(function(){ta.focus()},100)}
-    function clickModalForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:c.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:c.author,localId:Date.now().toString()};comments.push(cd);saveCommentsToLocal();openModal('loadingModal');postCommentToServer(cd).then(function(){closeModal('loadingModal')});showToast('Pesan di-forward ke chat.','success')}
-    function clickModalDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;modalReplyingTo=null;modalDeletingId=cid;modalDeletingServerId=getServerId(c);document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('delete-target');updateCommentInputArea();renderComments();if(te)te.scrollIntoView({behavior:'smooth',block:'center'})}
-    function cancelModalDelete(){modalDeletingId=null;modalDeletingServerId=null;document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});updateCommentInputArea();renderComments()}
-    function confirmModalDelete(){
-        if(!modalDeletingId||!currentUser)return;var did=modalDeletingId,sid=modalDeletingServerId,c=comments.find(function(x){return getCommentId(x)===did});if(!c)return;
-        addToDeletedBlacklist(c);var el=document.querySelector('.comment-item[data-cid="'+did+'"]');if(el)el.classList.add('comment-removing');
-        comments=comments.filter(function(x){return getCommentId(x)!==did});saveCommentsToLocal();modalDeletingId=null;modalDeletingServerId=null;
-        setTimeout(function(){renderComments();renderInlineChatMessages();updateCommentInputArea()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success');
-    }
-    function cancelModalReply(){modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments()}
-    async function submitComment(){if(!currentUser||modalDeletingId)return;var ta=document.getElementById('commentText'),text=ta.value.trim();if(!text){alert('Silakan tulis komentar!');return}if(text.length>1000){alert('Maks 1000 karakter!');return}openModal('loadingModal');var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(modalReplyingTo){cd.replyToId=modalReplyingTo.id;cd.replyToAuthor=modalReplyingTo.author;cd.replyToText=modalReplyingTo.text}comments.push(cd);saveCommentsToLocal();await postCommentToServer(cd);closeModal('loadingModal');ta.value='';modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments();renderInlineChatMessages();setTimeout(function(){loadComments()},1500)}
+/* === MODAL AKSI === */
+function clickModalReply(cid){if(!currentUser){closeModal('discussionModal');openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;modalDeletingId=null;modalDeletingServerId=null;modalReplyingTo={id:getCommentId(c),author:c.author,text:c.text};document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('reply-target');updateCommentInputArea();renderComments();var ta=document.getElementById('commentText');if(ta)setTimeout(function(){ta.focus()},100)}
+function clickModalForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:c.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:c.author,localId:Date.now().toString()};comments.push(cd);saveCommentsToLocal();openModal('loadingModal');postCommentToServer(cd).then(function(){closeModal('loadingModal')});showToast('Pesan di-forward ke chat.','success')}
+function clickModalDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;modalReplyingTo=null;modalDeletingId=cid;modalDeletingServerId=getServerId(c);document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('delete-target');updateCommentInputArea();renderComments();if(te)te.scrollIntoView({behavior:'smooth',block:'center'})}
+function cancelModalDelete(){modalDeletingId=null;modalDeletingServerId=null;document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});updateCommentInputArea();renderComments()}
+function confirmModalDelete(){if(!modalDeletingId||!currentUser)return;var did=modalDeletingId,sid=modalDeletingServerId,c=comments.find(function(x){return getCommentId(x)===did});if(!c)return;addToDeletedBlacklist(c);var el=document.querySelector('.comment-item[data-cid="'+did+'"]');if(el)el.classList.add('comment-removing');comments=comments.filter(function(x){return getCommentId(x)!==did});saveCommentsToLocal();modalDeletingId=null;modalDeletingServerId=null;setTimeout(function(){renderComments();renderInlineChatMessages();updateCommentInputArea()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
+function cancelModalReply(){modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments()}
+async function submitComment(){if(!currentUser||modalDeletingId)return;var ta=document.getElementById('commentText'),text=ta.value.trim();if(!text){alert('Silakan tulis komentar!');return}if(text.length>1000){alert('Maks 1000 karakter!');return}openModal('loadingModal');var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(modalReplyingTo){cd.replyToId=modalReplyingTo.id;cd.replyToAuthor=modalReplyingTo.author;cd.replyToText=modalReplyingTo.text}comments.push(cd);saveCommentsToLocal();await postCommentToServer(cd);closeModal('loadingModal');ta.value='';modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments();renderInlineChatMessages();setTimeout(function(){loadComments()},1500)}
 
-    /* ==========================================================
-       ASSESSMENT CVC — FUNGSI LENGKAP
-       ========================================================== */
-    function calculateCVC(){
-        var sc=0,hcs=false;
-        if(document.getElementById('q1').checked)sc++;
-        if(document.getElementById('q2').checked)sc++;
-        if(document.getElementById('q3').checked)sc++;
-        if(document.getElementById('q4').checked){sc++;hcs=true}
-        if(document.getElementById('q5').checked){sc++;hcs=true}
-        var l="",m="",b="",sC=document.getElementById('cvc-score-circle');
-        sC.classList.remove('low','medium','high');
-        if(hcs||sc>=4){l="TINGGI";m="DARURAT! Segera ke RS.";b="badge-danger";sC.classList.add('high')}
-        else if(sc>=2){l="SEDANG";m="SEGERA LAPOR.";b="badge-warning";sC.classList.add('medium')}
-        else if(sc===1){l="RENDAH";m="Perlu Perhatian.";b="badge-warning";sC.classList.add('medium')}
-        else{l="AMAN";m="Kondisi Aman.";b="badge-success";sC.classList.add('low')}
-        document.getElementById('cvc-form').style.display='none';
-        document.getElementById('cvc-result').style.display='block';
-        document.getElementById('score-val').innerText=sc;
-        document.getElementById('risk-msg').innerText=m;
-        var bd=document.getElementById('risk-badge');bd.innerText=l;bd.className='badge '+b;
-        var cd=document.getElementById('cvc-critical-action');
-        var pid=document.getElementById('cvc_id').value||'Pasien CVC';
-        var ah='';if(l!=="AMAN")ah=createReportButtons(pid,l,'CVC');
-        cd.innerHTML=ah;cd.style.display=ah?'block':'none';
-    }
-    function resetCVC(){
-        document.getElementById('cvc-form').style.display='block';
-        document.getElementById('cvc-result').style.display='none';
-        document.querySelectorAll('#cvc-form input').forEach(function(c){c.checked=false});
-    }
+/* === ASSESSMENT CVC === */
+function calculateCVC(){var sc=0,hcs=false;if(document.getElementById('q1').checked)sc++;if(document.getElementById('q2').checked)sc++;if(document.getElementById('q3').checked)sc++;if(document.getElementById('q4').checked){sc++;hcs=true}if(document.getElementById('q5').checked){sc++;hcs=true}var l="",m="",b="",sC=document.getElementById('cvc-score-circle');sC.classList.remove('low','medium','high');if(hcs||sc>=4){l="TINGGI";m="DARURAT! Segera ke RS.";b="badge-danger";sC.classList.add('high')}else if(sc>=2){l="SEDANG";m="SEGERA LAPOR.";b="badge-warning";sC.classList.add('medium')}else if(sc===1){l="RENDAH";m="Perlu Perhatian.";b="badge-warning";sC.classList.add('medium')}else{l="AMAN";m="Kondisi Aman.";b="badge-success";sC.classList.add('low')}document.getElementById('cvc-form').style.display='none';document.getElementById('cvc-result').style.display='block';document.getElementById('score-val').innerText=sc;document.getElementById('risk-msg').innerText=m;var bd=document.getElementById('risk-badge');bd.innerText=l;bd.className='badge '+b;var cd=document.getElementById('cvc-critical-action');var pid=document.getElementById('cvc_id').value||'Pasien CVC';var ah='';if(l!=="AMAN")ah=createReportButtons(pid,l,'CVC');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
+function resetCVC(){document.getElementById('cvc-form').style.display='block';document.getElementById('cvc-result').style.display='none';document.querySelectorAll('#cvc-form input').forEach(function(c){c.checked=false})}
 
-    /* ==========================================================
-       ASSESSMENT AV-SHUNT — FUNGSI LENGKAP
-       ========================================================== */
-    function calculateAV(){
-        var pid=document.getElementById('av_id').value||'Pasien';
-        var vr=document.getElementById('av_vis_red').checked;
-        var vp=document.getElementById('av_vis_pus').checked;
-        var vb=document.getElementById('av_vis_bleed').checked;
-        var pp=document.getElementById('av_palp_pain').checked;
-        var oc=document.getElementById('av_other_cold').checked;
-        var of2=document.getElementById('av_other_fever').checked;
-        var tv=document.querySelector('input[name="av_thrill"]:checked');
-        var tvVal=tv?tv.value:'normal';
-        var s="BAIK",m="Kondisi fistula baik.",r="Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.",ic=false,iw=false;
-        if(vp||vb||oc||of2||tvVal==='gone'){s="DARURAT";m="Kondisi Kritis!";r="Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";ic=true}
-        else if(vr||pp||tvVal==='weak'){s="PERHATIAN";m="Ada tanda yang perlu diwaspadai.";r="Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin.";iw=true}
-        document.getElementById('av-form').style.display='none';
-        document.getElementById('av-result').style.display='block';
-        var ab=document.getElementById('av-badge');ab.innerText=s;
-        ab.className='badge '+(ic?'badge-danger':iw?'badge-warning':'badge-success');
-        ab.style.fontSize='1rem';ab.style.padding='10px 24px';
-        document.getElementById('av-msg').innerText=m;
-        document.getElementById('av-recom').innerText=r;
-        var cd=document.getElementById('av-critical-action');
-        var ah='';if(ic||iw)ah=createReportButtons(pid,s,'AV Shunt');
-        cd.innerHTML=ah;cd.style.display=ah?'block':'none';
-    }
-    function resetAV(){
-        document.getElementById('av-form').style.display='block';
-        document.getElementById('av-result').style.display='none';
-        document.querySelectorAll('#av-form input[type="checkbox"]').forEach(function(c){c.checked=false});
-        var nr=document.querySelector('input[name="av_thrill"][value="normal"]');if(nr)nr.checked=true;
-    }
+/* === ASSESSMENT AV-SHUNT === */
+function calculateAV(){var pid=document.getElementById('av_id').value||'Pasien';var vr=document.getElementById('av_vis_red').checked,vp=document.getElementById('av_vis_pus').checked,vb=document.getElementById('av_vis_bleed').checked;var pp=document.getElementById('av_palp_pain').checked,oc=document.getElementById('av_other_cold').checked,of2=document.getElementById('av_other_fever').checked;var tv=document.querySelector('input[name="av_thrill"]:checked');var tvVal=tv?tv.value:'normal';var s="BAIK",m="Kondisi fistula baik.",r="Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.",ic=false,iw=false;if(vp||vb||oc||of2||tvVal==='gone'){s="DARURAT";m="Kondisi Kritis!";r="Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";ic=true}else if(vr||pp||tvVal==='weak'){s="PERHATIAN";m="Ada tanda yang perlu diwaspadai.";r="Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin.";iw=true}document.getElementById('av-form').style.display='none';document.getElementById('av-result').style.display='block';var ab=document.getElementById('av-badge');ab.innerText=s;ab.className='badge '+(ic?'badge-danger':iw?'badge-warning':'badge-success');ab.style.fontSize='1rem';ab.style.padding='10px 24px';document.getElementById('av-msg').innerText=m;document.getElementById('av-recom').innerText=r;var cd=document.getElementById('av-critical-action');var ah='';if(ic||iw)ah=createReportButtons(pid,s,'AV Shunt');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
+function resetAV(){document.getElementById('av-form').style.display='block';document.getElementById('av-result').style.display='none';document.querySelectorAll('#av-form input[type="checkbox"]').forEach(function(c){c.checked=false});var nr=document.querySelector('input[name="av_thrill"][value="normal"]');if(nr)nr.checked=true}
 
-    /* ===== WA REPORT ===== */
-    function createReportButtons(pid,st,tp){var t='Laporan '+tp+'%0AID: '+pid+'%0AStatus: '+st;var h='<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border-subtle);text-align:center;"><p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600;">Hubungi Admin untuk melaporkan:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">';assessmentContacts.forEach(function(c){h+='<a href="https://wa.me/'+c.phone+'?text='+t+'" target="_blank" class="btn btn-secondary" style="font-size:11px;padding:8px;text-decoration:none;">'+c.name+'</a>'});h+='</div></div>';return h}
+/* === WA REPORT === */
+function createReportButtons(pid,st,tp){var t='Laporan '+tp+'%0AID: '+pid+'%0AStatus: '+st;var h='<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border-subtle);text-align:center"><p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600">Hubungi Admin untuk melaporkan:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';assessmentContacts.forEach(function(c){h+='<a href="https://wa.me/'+c.phone+'?text='+t+'" target="_blank" class="btn btn-secondary" style="font-size:11px;padding:8px;text-decoration:none">'+c.name+'</a>'});h+='</div></div>';return h}
 
-    /* ===== ANIMASI ANGKA ===== */
-    function animateValue(id,s,e,d){var o=document.getElementById(id);if(!o)return;var st=null;var step=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1);o.textContent=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)window.requestAnimationFrame(step)};window.requestAnimationFrame(step)}
+/* === ANIMASI ANGKA === */
+function animateValue(id,s,e,d){var o=document.getElementById(id);if(!o)return;var st=null;var step=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1);o.textContent=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)window.requestAnimationFrame(step)};window.requestAnimationFrame(step)}
 
-    /* ===== HOLOGRAM & TOUR ===== */
-    function showHoloMessageSimple(t,x){document.getElementById('tooltipTitle').innerText=t;document.getElementById('tooltipDesc').innerText=x;document.getElementById('holoContainer').classList.add('show');document.getElementById('tourTooltip').classList.add('active');setTimeout(function(){document.getElementById('holoContainer').classList.remove('show');document.getElementById('tourTooltip').classList.remove('active')},4000)}
-    var tourSteps=[{element:'#tour-step-0',title:'Selamat Datang di Mona!',desc:'Monitoring Akses Pembuluh Darah untuk Cuci Darah.'},{element:'#tour-step-info',title:'Perkenalan Aplikasi',desc:'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.'},{element:'#tour-step-1',title:'Assessment CVC',desc:'Cek risiko infeksi secara mandiri di sini.'}];
-    var currentTourStep=-1;
-    function startTour(){currentTourStep=-1;document.getElementById('tourOverlay').classList.add('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Memulai Tur","Saya akan memandu Anda melihat fitur-fitur menarik di sini.");setTimeout(function(){document.getElementById('tourHighlight').classList.add('animate');nextTourStep()},3000)}
-    function nextTourStep(){currentTourStep++;if(currentTourStep>=tourSteps.length){endTour();return}var s=tourSteps[currentTourStep],te=document.querySelector(s.element);setTimeout(function(){if(te){var r=te.getBoundingClientRect();var hl=document.getElementById('tourHighlight');hl.style.top=r.top+'px';hl.style.left=r.left+'px';hl.style.width=r.width+'px';hl.style.height=r.height+'px';showHoloMessageSimple(s.title,s.desc);setTimeout(nextTourStep,4500)}},300)}
-    function endTour(){document.getElementById('tourOverlay').classList.remove('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Sampai Jumpa","Terima kasih telah mengikuti tur!");setTimeout(function(){startCredits()},3000)}
+/* === VISITOR COUNTER (YOUTUBE-STYLE) === */
+var VISITOR_STORAGE_KEY='mona_visitor_count';
+var VISITOR_SESSION_KEY='mona_visitor_session';
+function initVisitorCounter(){
+    var count=getVisitorCount();count++;saveVisitorCount(count);updateVisitorDisplay(count);
+}
+function getVisitorCount(){try{var s=localStorage.getItem(VISITOR_STORAGE_KEY);return s?parseInt(s,10):0}catch(e){return 0}}
+function saveVisitorCount(c){try{localStorage.setItem(VISITOR_STORAGE_KEY,String(c))}catch(e){}}
+function updateVisitorDisplay(c){
+    var formatted=formatVisitorNumber(c);
+    var bannerEl=document.getElementById('visitorCountBanner');
+    var footerEl=document.getElementById('visitorCountFooter');
+    if(bannerEl)bannerEl.textContent=formatted;
+    if(footerEl)footerEl.textContent=formatted;
+}
+function formatVisitorNumber(n){if(n>=1000000)return(n/1000000).toFixed(1).replace(/\.0$/,'')+' jt';if(n>=1000)return(n/1000).toFixed(1).replace(/\.0$/,'')+' rb';return String(n)}
 
-    /* ===== CREDITS ===== */
-    function createStars(){var sc=document.getElementById('starContainer');sc.innerHTML='';for(var i=0;i<50;i++){var s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDuration=Math.random()*3+2+'s';s.style.animationDelay=Math.random()*5+'s';sc.appendChild(s)}}
-    function startCredits(){createStars();document.getElementById('creditsOverlay').classList.add('active');var cc=document.getElementById('creditsContent');cc.style.animation='none';void cc.offsetHeight;cc.style.animation='';try{var bg=document.getElementById('bgMusic');bg.currentTime=0;bg.play().catch(function(){})}catch(e){}}
-    function endCredits(){document.getElementById('creditsOverlay').classList.remove('active');try{document.getElementById('bgMusic').pause()}catch(e){}}
-    document.getElementById('creditsOverlay').addEventListener('click',function(e){if(e.target===this)endCredits()});
+/* === HOLOGRAM & TOUR === */
+function showHoloMessageSimple(t,x){document.getElementById('tooltipTitle').innerText=t;document.getElementById('tooltipDesc').innerText=x;document.getElementById('holoContainer').classList.add('show');document.getElementById('tourTooltip').classList.add('active');setTimeout(function(){document.getElementById('holoContainer').classList.remove('show');document.getElementById('tourTooltip').classList.remove('active')},4000)}
+var tourSteps=[{element:'#tour-step-0',title:'Selamat Datang di Mona!',desc:'Monitoring Akses Pembuluh Darah untuk Cuci Darah.'},{element:'#tour-step-info',title:'Perkenalan Aplikasi',desc:'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.'},{element:'#tour-step-1',title:'Assessment CVC',desc:'Cek risiko infeksi secara mandiri di sini.'}];
+var currentTourStep=-1;
+function startTour(){currentTourStep=-1;document.getElementById('tourOverlay').classList.add('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Memulai Tur","Saya akan memandu Anda melihat fitur-fitur menarik di sini.");setTimeout(function(){document.getElementById('tourHighlight').classList.add('animate');nextTourStep()},3000)}
+function nextTourStep(){currentTourStep++;if(currentTourStep>=tourSteps.length){endTour();return}var s=tourSteps[currentTourStep],te=document.querySelector(s.element);setTimeout(function(){if(te){var r=te.getBoundingClientRect();var hl=document.getElementById('tourHighlight');hl.style.top=r.top+'px';hl.style.left=r.left+'px';hl.style.width=r.width+'px';hl.style.height=r.height+'px';showHoloMessageSimple(s.title,s.desc);setTimeout(nextTourStep,4500)}},300)}
+function endTour(){document.getElementById('tourOverlay').classList.remove('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Sampai Jumpa","Terima kasih telah mengikuti tur!");setTimeout(function(){startCredits()},3000)}
 
-    /* ===== INIT ===== */
-    function init(){
-        initLogin();
-        loadComments();
-        animateValue('statCount',0,1284,2000);
-        setTimeout(function(){showHoloMessageSimple('Halo!','Selamat datang di Mona. Data tersimpan lokal & bisa dihapus permanen!')},2000);
-        setInterval(function(){loadComments()},20000);
-    }
-    init();
-    </script>
+/* === CREDITS === */
+function createStars(){var sc=document.getElementById('starContainer');sc.innerHTML='';for(var i=0;i<50;i++){var s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDuration=Math.random()*3+2+'s';s.style.animationDelay=Math.random()*5+'s';sc.appendChild(s)}}
+function startCredits(){createStars();document.getElementById('creditsOverlay').classList.add('active');var cc=document.getElementById('creditsContent');cc.style.animation='none';void cc.offsetHeight;cc.style.animation='';try{var bg=document.getElementById('bgMusic');bg.currentTime=0;bg.play().catch(function(){})}catch(e){}}
+function endCredits(){document.getElementById('creditsOverlay').classList.remove('active');try{document.getElementById('bgMusic').pause()}catch(e){}}
+document.getElementById('creditsOverlay').addEventListener('click',function(e){if(e.target===this)endCredits()});
+
+/* === INIT === */
+function init(){
+    initLogin();
+    initVisitorCounter();
+    loadComments();
+    animateValue('statCount',0,1284,2000);
+    setTimeout(function(){showHoloMessageSimple('Halo!','Selamat datang di Mona. Data tersimpan lokal dan bisa dihapus permanen!')},2000);
+    setInterval(function(){loadComments()},20000);
+}
+init();
+</script>
 </body>
 </html>
