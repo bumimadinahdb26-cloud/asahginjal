@@ -6,7 +6,7 @@
     <title>Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root{--bg-dark:#f3f4f6;--bg-darker:#e5e7eb;--bg-card:#ffffff;--bg-elevated:#f9fafb;--accent-red:#dc2626;--accent-red-dark:#991b1b;--accent-red-light:#fca5a5;--accent-purple:#7c3aed;--accent-purple-dark:#5b21b6;--accent-purple-light:#a78bfa;--accent-gold:#7c3aed;--accent-gold-light:#a78bfa;--text-cream:#1f2937;--text-white:#111827;--text-muted:#6b7280;--text-dark:#1e293b;--border-gold:rgba(124,58,237,0.3);--border-subtle:rgba(0,0,0,0.08);--accent-teal:#14b8a6;--accent-teal-light:#2dd4bf;--accent-teal-dark:#0d9488;--color-danger:#dc2626;--color-warning:#f59e0b;--color-success:#10b981;--accent-cyan:#06b6d4;--accent-cyan-light:#22d3ee}
+        :root{--bg-dark:#f3f4f6;--bg-darker:#e5e7eb;--bg-card:#ffffff;--bg-elevated:#f9fafb;--accent-red:#dc2626;--accent-red-dark:#991b1b;--accent-red-light:#fca5a5;--accent-purple:#7c3aed;--accent-purple-dark:#5b21b6;--accent-purple-light:#a78bfa;--accent-gold:#7c3aed;--accent-gold-light:#a78bfa;--text-cream:#1f2937;--text-white:#111827;--text-muted:#6b7280;--text-dark:#1e293b;--border-gold:rgba(124,58,237,0.3);--border-subtle:rgba(0,0,0,0.08);--accent-teal:#14b8a6;--accent-teal-light:#2dd4bf;--accent-teal-dark:#0d9488;--color-danger:#dc2626;--color-warning:#f59e0b;--color-success:#10b981;--accent-cyan:#06b6d4;--accent-cyan-light:#22d3ee;--accent-blue:#3b82f6;--accent-blue-dark:#1d4ed8}
         *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
         body{font-family:'DM Sans',sans-serif;background:var(--bg-dark);min-height:100vh;overflow-x:hidden;color:var(--text-cream)}
         h1,h2,h3,h4{font-family:'Outfit',sans-serif}
@@ -179,14 +179,10 @@
         .login-prompt{text-align:center;padding:30px 20px;color:var(--text-muted)}
         .login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
         .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);opacity:.7}
-
-        /* === PANEL GRID DENGAN BACKGROUND GAMBAR === */
         .panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;flex:1}
         .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
-        /* Garis gradient atas (sudah ada ::before) */
         .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform .4s;z-index:3}
         .panel-card:hover::before{transform:scaleX(1)}
-        /* === BACKGROUND GAMBAR via ::after === */
         .panel-card::after{content:'';position:absolute;bottom:-15px;right:-15px;width:58%;height:58%;background-size:contain;background-repeat:no-repeat;background-position:bottom right;opacity:0;transition:opacity .6s ease,transform .6s ease;transform:scale(0.9) translate(10px,10px);z-index:0;pointer-events:none}
         .panel-card:hover::after{opacity:1;transform:scale(1) translate(0,0)}
         .panel-card.has-bg::after{opacity:.12}
@@ -194,28 +190,24 @@
         .panel-card.bg-cvc::after{background-image:url('icon-cvc.png')}
         .panel-card.bg-avshunt::after{background-image:url('icon-avshunt.png')}
         .panel-card.bg-education::after{background-image:url('icon-education.png')}
-        .panel-card.bg-ceklist::after{background-image:url('ceklist.png')}
-        /* Z-index untuk konten di atas background */
-        .panel-card>.panel-icon-wrapper,
-        .panel-card>.panel-title,
-        .panel-card>.panel-subtitle,
-        .panel-card>.literature-box,
-        .panel-card>.panel-actions{position:relative;z-index:1}
-
+        .panel-card.bg-consultation::after{background-image:url('icon-consultation.png')}
+        .panel-card>.panel-icon-wrapper,.panel-card>.panel-title,.panel-card>.panel-subtitle,.panel-card>.literature-box,.panel-card>.panel-actions,.panel-card>.consult-features{position:relative;z-index:1}
         .panel-card:hover{border-color:var(--border-gold);transform:translateY(-5px);box-shadow:0 20px 50px rgba(124,58,237,0.15)}
-
-        /* Ikon kecil (pengganti img) */
         .panel-icon-wrapper{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all .3s;flex-shrink:0}
         .panel-card:hover .panel-icon-wrapper{transform:scale(1.08) rotate(-2deg)}
         .panel-icon-wrapper.red{background:linear-gradient(145deg,#fff5f5,#ffe0e0);box-shadow:6px 6px 16px rgba(220,38,38,0.12)}
         .panel-icon-wrapper.gold{background:linear-gradient(145deg,#f5f3ff,#ede9fe);box-shadow:6px 6px 16px rgba(124,58,237,0.12)}
         .panel-icon-wrapper.teal{background:linear-gradient(145deg,#f0fdfa,#ccfbf1);box-shadow:6px 6px 16px rgba(20,184,166,0.12)}
-        .panel-icon-wrapper.purple{background:linear-gradient(145deg,#faf5ff,#f3e8ff);box-shadow:6px 6px 16px rgba(139,92,246,0.12)}
+        .panel-icon-wrapper.blue{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:6px 6px 16px rgba(59,130,246,0.12)}
         .panel-icon-wrapper svg{width:28px;height:28px;transition:transform .3s}
         .panel-card:hover .panel-icon-wrapper svg{transform:scale(1.1)}
-
         .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
         .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
+        .consult-features{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+        .consult-feature-item{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-muted);padding:8px 12px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle);transition:all .2s}
+        .consult-feature-item:hover{border-color:rgba(59,130,246,0.3);background:#eff6ff}
+        .consult-feature-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent-blue)}
+        .consult-feature-item strong{color:var(--text-dark);font-weight:600}
         .literature-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:16px}
         .literature-title{font-size:.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
         .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.75rem;color:var(--text-muted);line-height:1.4}
@@ -230,19 +222,23 @@
         .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(124,58,237,0.35)}
         .btn-teal{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;box-shadow:0 4px 15px rgba(20,184,166,0.25)}
         .btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(20,184,166,0.35)}
+        .btn-consult{background:linear-gradient(135deg,var(--accent-blue),var(--accent-blue-dark));color:#fff;box-shadow:0 4px 15px rgba(59,130,246,0.25)}
+        .btn-consult:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.35)}
         .btn-icon{width:16px;height:16px}
-        .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+        .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04);flex-wrap:wrap}
         .panel-footer:hover{border-color:var(--border-gold)}
-        .footer-info{display:flex;align-items:center;gap:20px}
-        .footer-icon{width:60px;height:60px;border-radius:14px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:6px 6px 15px rgba(124,58,237,0.15);overflow:hidden}
-        .footer-icon img{width:35px;height:35px;object-fit:contain}
-        .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text-white);margin-bottom:4px}
-        .footer-text p{font-size:.8rem;color:var(--text-muted)}
-        .footer-stats{display:flex;gap:24px;align-items:center}
+        .footer-info{display:flex;align-items:center;gap:16px;min-width:0;flex:1}
+        .footer-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 12px rgba(124,58,237,0.12);overflow:hidden;flex-shrink:0}
+        .footer-icon img{width:28px;height:28px;object-fit:contain}
+        .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;color:var(--text-white);margin-bottom:2px;white-space:nowrap}
+        .footer-text p{font-size:.75rem;color:var(--text-muted);line-height:1.3}
+        .footer-stats{display:flex;gap:20px;align-items:center;flex-shrink:0}
         .stat-item{text-align:center}
-        .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent-purple);line-height:1}
-        .stat-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-        .footer-actions{display:flex;gap:12px}
+        .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--accent-purple);line-height:1}
+        .stat-label{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+        .footer-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+        .footer-actions .btn{padding:10px 14px;font-size:.78rem;flex:0 0 auto;white-space:nowrap}
+        .footer-actions .btn svg{width:14px;height:14px}
         .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all .3s}
         .modal-overlay.active{opacity:1;visibility:visible}
         .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:380px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .3s;position:relative}
@@ -334,21 +330,18 @@
         .reset-flash .rf-text{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);animation:scaleIn .5s ease .4s both}
         .reset-flash .rf-sub{font-size:.85rem;color:var(--text-muted);animation:scaleIn .5s ease .6s both}
         @keyframes scaleIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.inline-chat-container{max-height:320px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.8rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}}
-        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.banner-content{padding:18px}.banner-content .header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column}.banner-content .digital-clock{padding:8px 12px}.banner-content .clock-display{font-size:.85rem}.panel-icon-wrapper{width:48px;height:48px}.panel-icon-wrapper svg{width:24px;height:24px}.inline-chat-container{max-height:280px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}.visitor-badge{padding:6px 12px}.visitor-number{font-size:.8rem}.visitor-label{font-size:.63rem}.panel-card::after{width:45%;height:45%;bottom:-10px;right:-10px}}
+        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.inline-chat-container{max-height:320px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.8rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
+        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.banner-content{padding:18px}.banner-content .header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 12px}.banner-content .clock-display{font-size:.85rem}.panel-icon-wrapper{width:48px;height:48px}.panel-icon-wrapper svg{width:24px;height:24px}.inline-chat-container{max-height:280px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}.visitor-badge{padding:6px 12px}.visitor-number{font-size:.8rem}.visitor-label{font-size:.63rem}.panel-card::after{width:45%;height:45%;bottom:-10px;right:-10px}}
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
     </style>
 </head>
 <body>
     <div class="bg-pattern"></div><div class="noise-overlay"></div>
     <div class="toast-container" id="toastContainer"></div>
-    <div class="reset-flash" id="resetFlash"><div class="rf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="rf-text">Semua Data Telah Dihapus</div><div class="rf-sub">Storage bersih.</div></div>
 
     <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Masukkan nama Anda untuk login.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
 
     <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
-
-    <div class="modal-overlay" id="waModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('waModal')">&times;</button><h3 class="modal-title">Hubungi Kami</h3><p style="font-size:14px;color:var(--text-muted);margin-top:6px;text-align:center">Adakah yang bisa kami bantu?</p><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('waModal')">Batal</button><a href="#" id="confirmWaBtn" class="modal-btn yes" target="_blank">Ya, Kirim</a></div></div></div>
 
     <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center">Memproses...</p></div></div>
 
@@ -388,68 +381,40 @@
                 <button class="discussion-btn" onclick="openDiscussion()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Lihat Semua Diskusi</button>
             </div>
         </div>
-
         <div class="panel-grid">
-            <!-- KARTU 1: CVC -->
-            <div class="panel-card has-bg bg-cvc" id="tour-step-1">
-                <div class="panel-icon-wrapper red">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-                </div>
-                <h2 class="panel-title">MONITORING CVC</h2>
-                <p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p>
-                <div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>CDC - Guidelines for Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>KDOQI - Vascular Access Guidelines (2019 Update)</span></div></div>
-                <div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div>
-            </div>
-            <!-- KARTU 2: AV-SHUNT -->
-            <div class="panel-card has-bg bg-avshunt">
-                <div class="panel-icon-wrapper gold">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                </div>
-                <h2 class="panel-title">MONITORING AV-SHUNT</h2>
-                <p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p>
-                <div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>NKF - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span></div></div>
-                <div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div>
-            </div>
-            <!-- KARTU 3: EDUKASI -->
-            <div class="panel-card has-bg bg-education">
-                <div class="panel-icon-wrapper teal">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </div>
-                <h2 class="panel-title">EDUKASI</h2>
-                <p class="panel-subtitle">Materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p>
-                <div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div>
-            </div>
-            <!-- KARTU 4: CEK LIST -->
-            <div class="panel-card has-bg bg-ceklist">
-                <div class="panel-icon-wrapper purple">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                </div>
-                <h2 class="panel-title">CEK LIST KESELAMATAN HD</h2>
-                <p class="panel-subtitle">Panduan checklist keselamatan untuk memastikan setiap prosedur hemodialisis berjalan aman.</p>
-                <div class="panel-actions"><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Lihat Cek List</button></div>
-            </div>
+            <div class="panel-card has-bg bg-cvc" id="tour-step-1"><div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><h2 class="panel-title">MONITORING CVC</h2><p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>CDC - Guidelines for Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>KDOQI - Vascular Access Guidelines (2019 Update)</span></div></div><div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
+            <div class="panel-card has-bg bg-avshunt"><div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div><h2 class="panel-title">MONITORING AV-SHUNT</h2><p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>NKF - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span></div></div><div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
+            <div class="panel-card has-bg bg-education"><div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div><h2 class="panel-title">EDUKASI</h2><p class="panel-subtitle">Materi edukasi untuk membantu memantau akses dialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p><div class="panel-actions"><a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div></div>
+            <div class="panel-card has-bg bg-consultation"><div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><circle cx="9" cy="10" r="1" fill="#3b82f6"></circle><circle cx="12" cy="10" r="1" fill="#3b82f6"></circle><circle cx="15" cy="10" r="1" fill="#3b82f6"></circle></svg></div><h2 class="panel-title">KONSULTASI AI</h2><p class="panel-subtitle">Tanyakan langsung ke AI tentang kesehatan akses pembuluh darah, perawatan dialisis, dan konsultasi medis lainnya.</p><div class="consult-features"><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg><span><strong>Tanya Gejala</strong> &mdash; Cek tanda bahaya akses vaskular</span></div><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><span><strong>Edukasi Interaktif</strong> &mdash; Penjelasan tentang prosedur HD</span></div><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><strong>Rahasia & Aman</strong> &mdash; Tanpa identitas, kapan saja</span></div></div><div class="panel-actions"><a href="https://www.perplexity.ai/search/Saya+ingin+konsultasi+kesehatan+tentang+akses+pembuluh+darah+untuk+hemodialisis+(cuci+darah).+Tolong+bantu+jawab+pertanyaan+saya:" target="_blank" class="btn btn-consult" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Mulai Konsultasi</a></div></div>
         </div>
-
         <div class="panel-footer" id="tour-step-info">
             <div class="footer-info"><div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div><div class="footer-text"><h3>INFO APLIKASI</h3><p>Mona - Monitoring Akses Pembuluh Darah untuk Cuci Darah oleh TIM INOCA RSSA</p></div></div>
-            <div class="footer-stats">
-                <div class="visitor-badge-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountFooter">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot" style="width:5px;height:5px"></div></div>
-                <div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div>
-                <div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div>
-            </div>
-            <div class="footer-actions"><button class="btn btn-secondary" onclick="startTour()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Panduan</button><button class="btn btn-gold" onclick="startCredits()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info Lengkap</button></div>
+            <div class="footer-stats"><div class="visitor-badge-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountFooter">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot" style="width:5px;height:5px"></div></div><div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div><div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div></div>
+            <div class="footer-actions"><button class="btn btn-secondary" onclick="startTour()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Panduan</button><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Cek List HD</button><button class="btn btn-gold" onclick="startCredits()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info Lengkap</button></div>
         </div>
     </div>
 
 <script>
+/* === SVG ICONS === */
 var ICON_TRASH='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
 var ICON_TRASH_M='<svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
 var ICON_REPLY='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"></polyline><path d="M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>';
 var ICON_FWD='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"></polyline><path d="M4 18v-2a4 4 0 0 1 4-4h12"></path></svg>';
+
+/* === KONFIGURASI API === */
 var API_URL='https://script.google.com/macros/s/AKfycbzjED-J262dM98RbjNvr4PeOloOpWg9WL08XogyXs3pEC5VFI4miopDnhqTTynxBrUq/exec';
-(function(){var kr=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('mona_')===0)kr.push(k)}kr.forEach(function(k){localStorage.removeItem(k)});['mona_comments','mona_user','mona_deleted_blacklist','mona_settings'].forEach(function(k){localStorage.removeItem(k)})})();
-var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null,modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null,activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
+var COUNTER_API='https://api.counterapi.dev/v1/mona-rssa-dialysis-v2/visits';
+
+/* === BERSIHKAN STORAGE LAMA === */
+(function(){var kr=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('mona_')===0)kr.push(k)}kr.forEach(function(k){localStorage.removeItem(k)})})();
+
+/* === STATE === */
+var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null;
+var modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null;
+var activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
 var assessmentContacts=[{name:'Riza A',phone:'6282227707573'},{name:'Pembayun Y',phone:'6283831217784'},{name:'Hesty',phone:'6282124700093'},{name:'Rinda',phone:'6285210622568'}];
+
+/* === UTILITAS === */
 function getCommentId(c){if(c.id)return String(c.id);if(c.localId)return String(c.localId);if(c.timestamp)return String(c.timestamp);return String(Math.random())}
 function getStableId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return(c.authorId||'')+'_'+(c.timestamp||'')}
 function getServerId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return null}
@@ -460,18 +425,23 @@ function truncateText(t,m){if(!t)return '';return t.length>m?t.substring(0,m)+'.
 function formatTimeAgo(ts){var n=new Date(),p=new Date(ts),d=n-p;if(isNaN(d))return'Lalu';var m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000);if(m<1)return'Baru saja';if(m<60)return m+' menit lalu';if(h<24)return h+' jam lalu';if(dy<7)return dy+' hari lalu';return p.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}
 function safeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function showToast(msg,type){type=type||'info';var c=document.getElementById('toastContainer'),t=document.createElement('div');t.className='toast '+type;t.textContent=msg;c.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3200)}
+
+/* === BLACKLIST === */
 function getDeletedBlacklist(){try{var s=localStorage.getItem('mona_deleted_blacklist');return s?JSON.parse(s):[]}catch(e){return[]}}
-function addToDeletedBlacklist(c){var list=getDeletedBlacklist();var sid=getServerId(c);var fid=getStableId(c);if(sid&&list.indexOf(sid)===-1)list.push(sid);if(list.indexOf(fid)===-1)list.push(fid);localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list))}
+function addToDeletedBlacklist(c){var list=getDeletedBlacklist();var sid=getServerId(c),fid=getStableId(c);if(sid&&list.indexOf(sid)===-1)list.push(sid);if(list.indexOf(fid)===-1)list.push(fid);localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list))}
 function isCommentBlacklisted(c){var list=getDeletedBlacklist();if(c.id&&list.indexOf(String(c.id))!==-1)return true;if(list.indexOf(getStableId(c))!==-1)return true;return false}
 function filterBlacklisted(arr){return arr.filter(function(c){return!isCommentBlacklisted(c)})}
-function cleanOldBlacklist(){var list=getDeletedBlacklist();if(list.length>500){localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list.slice(-200)))}}
+function cleanOldBlacklist(){var list=getDeletedBlacklist();if(list.length>500)localStorage.setItem('mona_deleted_blacklist',JSON.stringify(list.slice(-200)))}
+
+/* === LOCAL STORAGE === */
 function saveCommentsToLocal(){try{localStorage.setItem('mona_comments',JSON.stringify(comments))}catch(e){}}
 function loadCommentsFromLocal(){try{var s=localStorage.getItem('mona_comments');comments=s?JSON.parse(s):[]}catch(e){comments=[]}}
 function dedupComments(arr){var seen={},result=[];arr.forEach(function(c){var sid=getStableId(c);if(!seen[sid]){seen[sid]=true;result.push(c)}});return result}
+
+/* === LOAD KOMENTAR === */
 async function loadComments(){
-    loadCommentsFromLocal();comments=filterBlacklisted(comments);comments=dedupComments(comments);renderComments();renderInlineChatMessages();
-    showSyncBadge(true);
-    try{var r=await fetch(API_URL+'?action=getComments',{signal:AbortSignal.timeout(8000)});var d=await r.json();if(d.success&&d.comments){var sc=filterBlacklisted(d.comments);var lc=filterBlacklisted(comments);var ss={};sc.forEach(function(c){ss[getStableId(c)]=true});lc.forEach(function(c){if(!ss[getStableId(c)])sc.push(c)});comments=dedupComments(sc);saveCommentsToLocal();renderComments();renderInlineChatMessages();updateOnlineStatus(true)}}catch(e){console.log('Offline mode');updateOnlineStatus(false)}
+    loadCommentsFromLocal();comments=filterBlacklisted(comments);comments=dedupComments(comments);renderComments();renderInlineChatMessages();showSyncBadge(true);
+    try{var r=await fetch(API_URL+'?action=getComments',{signal:AbortSignal.timeout(8000)});var d=await r.json();if(d.success&&d.comments){var sc=filterBlacklisted(d.comments),lc=filterBlacklisted(comments),ss={};sc.forEach(function(c){ss[getStableId(c)]=true});lc.forEach(function(c){if(!ss[getStableId(c)])sc.push(c)});comments=dedupComments(sc);saveCommentsToLocal();renderComments();renderInlineChatMessages();updateOnlineStatus(true)}}catch(e){updateOnlineStatus(false)}
     showSyncBadge(false);cleanOldBlacklist();
 }
 async function postCommentToServer(cd){try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addComment',...cd})})}catch(e){}}
@@ -480,84 +450,63 @@ function updateOnlineStatus(online){isOnline=online;var el=document.getElementBy
 function showSyncBadge(show){var el=document.getElementById('syncBadge');if(el)el.className='chat-sync-badge'+(show?' show':'')}
 window.addEventListener('online',function(){updateOnlineStatus(true);loadComments();showToast('Kembali online.','success')});
 window.addEventListener('offline',function(){updateOnlineStatus(false);showToast('Anda sedang offline.','info')});
+
+/* === JAM DIGITAL === */
 function updateClock(){var n=new Date(),ds=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],ms=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];document.getElementById('clockTime').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');document.getElementById('clockDate').textContent=ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear()}
 setInterval(updateClock,1000);updateClock();
+
+/* === LOGIN === */
 function initLogin(){var s=localStorage.getItem('mona_user');if(s){currentUser=JSON.parse(s);updateLoginUI()}renderInlineChatInput()}
 function handleLoginClick(){if(currentUser){if(confirm('Anda login sebagai "'+currentUser.name+'". Klik OK untuk logout.'))logout()}else openModal('loginModal')}
 function performLogin(){var n=document.getElementById('loginName').value.trim();if(!n){alert('Silakan masukkan nama Anda!');return}currentUser={name:n,id:Date.now().toString(),joinedAt:new Date().toISOString()};localStorage.setItem('mona_user',JSON.stringify(currentUser));updateLoginUI();closeModal('loginModal');document.getElementById('loginName').value='';updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();showToast('Selamat datang, '+n+'!','success')}
 function logout(){currentUser=null;localStorage.removeItem('mona_user');updateLoginUI();updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete();showToast('Anda telah logout.','info')}
 function updateLoginUI(){var lc=document.getElementById('loginContainer'),lt=document.getElementById('loginText'),li=document.getElementById('loginIconSvg'),ua=document.getElementById('userAvatar');if(currentUser){lc.classList.add('logged-in');lt.textContent=currentUser.name;li.style.display='none';ua.style.display='flex';ua.textContent=currentUser.name.charAt(0).toUpperCase();var g=['Selamat Datang','Halo','Salam Sehat'];document.getElementById('welcomeMessage').textContent=g[Math.floor(Math.random()*g.length)]+', '+currentUser.name+'!';document.getElementById('welcomeMessage').classList.add('show')}else{lc.classList.remove('logged-in');lt.textContent='Login / Masuk';li.style.display='block';ua.style.display='none';document.getElementById('welcomeMessage').classList.remove('show')}}
+
+/* === MODAL === */
 function openModal(id){document.getElementById(id).classList.add('active')}
 function closeModal(id){document.getElementById(id).classList.remove('active')}
 document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')})});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete()}});
+
+/* === INLINE CHAT RENDER === */
 function renderInlineChatMessages(){
     var c=document.getElementById('inlineChatMessages');if(!c)return;
     if(comments.length===0){c.innerHTML='<div class="empty-chat">Belum ada percakapan.</div>';return}
     var s=comments.slice().sort(function(a,b){return new Date(a.timestamp)-new Date(b.timestamp)}),il=!!currentUser,h='';
-    s.forEach(function(m){
-        var mi=isOwnComment(m),ot=isOtherComment(m),wc=mi?'outgoing-wrap':'incoming-wrap',bc=mi?'outgoing':'incoming';
-        var cid=getCommentId(m),ta=formatTimeAgo(m.timestamp),isF=m.isForwarded==='true'||m.isForwarded===true,hasR=m.replyToAuthor&&m.replyToText;
-        var isRT=(activeReplyTargetId===cid)?' reply-target':'',isDT=(activeDeleteTargetId===cid)?' delete-target-inline':'',tc=isRT||isDT?isDT+isRT:'';
-        h+='<div class="chat-bubble-wrap '+wc+tc+'" data-cid="'+safeAttr(cid)+'"><div class="chat-bubble '+bc+'">';
-        if(isF&&m.forwardedFromAuthor)h+='<div class="forward-badge">Diforward dari '+escapeHtml(m.forwardedFromAuthor)+'</div>';
-        if(hasR)h+='<div class="reply-quote"><span class="reply-quote-author">@'+escapeHtml(m.replyToAuthor)+'</span><span class="reply-quote-text">'+escapeHtml(m.replyToText)+'</span></div>';
-        if(!mi)h+='<div class="bubble-author">'+escapeHtml(m.author)+'</div>';
-        h+=escapeHtml(m.text)+'<span class="bubble-meta">'+ta+'</span>';
-        if(il&&!isDeletingInProgress){h+='<div class="chat-bubble-actions">';h+='<button class="chat-action-btn reply-btn" onclick="event.stopPropagation();clickToReply(\''+safeAttr(cid)+'\')">'+ICON_REPLY+' Balas</button>';if(ot)h+='<button class="chat-action-btn fwd-btn" onclick="event.stopPropagation();startForward(\''+safeAttr(cid)+'\')">'+ICON_FWD+' Forward</button>';if(mi)h+='<button class="chat-action-btn delete-btn" onclick="event.stopPropagation();startDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH+' Hapus</button>';h+='</div>'}
-        h+='</div></div>';
-    });
+    s.forEach(function(m){var mi=isOwnComment(m),ot=isOtherComment(m),wc=mi?'outgoing-wrap':'incoming-wrap',bc=mi?'outgoing':'incoming';var cid=getCommentId(m),ta=formatTimeAgo(m.timestamp),isF=m.isForwarded==='true'||m.isForwarded===true,hasR=m.replyToAuthor&&m.replyToText;var isRT=(activeReplyTargetId===cid)?' reply-target':'',isDT=(activeDeleteTargetId===cid)?' delete-target-inline':'',tc=isRT||isDT?isDT+isRT:'';
+    h+='<div class="chat-bubble-wrap '+wc+tc+'" data-cid="'+safeAttr(cid)+'"><div class="chat-bubble '+bc+'">';if(isF&&m.forwardedFromAuthor)h+='<div class="forward-badge">Diforward dari '+escapeHtml(m.forwardedFromAuthor)+'</div>';if(hasR)h+='<div class="reply-quote"><span class="reply-quote-author">@'+escapeHtml(m.replyToAuthor)+'</span><span class="reply-quote-text">'+escapeHtml(m.replyToText)+'</span></div>';if(!mi)h+='<div class="bubble-author">'+escapeHtml(m.author)+'</div>';h+=escapeHtml(m.text)+'<span class="bubble-meta">'+ta+'</span>';if(il&&!isDeletingInProgress){h+='<div class="chat-bubble-actions">';h+='<button class="chat-action-btn reply-btn" onclick="event.stopPropagation();clickToReply(\''+safeAttr(cid)+'\')">'+ICON_REPLY+' Balas</button>';if(ot)h+='<button class="chat-action-btn fwd-btn" onclick="event.stopPropagation();startForward(\''+safeAttr(cid)+'\')">'+ICON_FWD+' Forward</button>';if(mi)h+='<button class="chat-action-btn delete-btn" onclick="event.stopPropagation();startDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH+' Hapus</button>';h+='</div>'}h+='</div></div>'});
     c.innerHTML=h;c.scrollTop=c.scrollHeight;
 }
+
+/* === INLINE REPLY === */
 function clickToReply(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;forwardingMsg=null;deletingMsg=null;activeDeleteTargetId=null;replyingTo={id:getCommentId(c),author:c.author,text:c.text};activeReplyTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
 function cancelReply(){replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput()}
+
+/* === INLINE FORWARD === */
 function startForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;replyingTo=null;activeReplyTargetId=null;activeDeleteTargetId=null;deletingMsg=null;forwardingMsg={id:getCommentId(c),author:c.author,text:c.text};renderInlineChatMessages();renderInlineChatInput()}
 function cancelForward(){forwardingMsg=null;renderInlineChatInput()}
 function confirmForward(){if(!forwardingMsg||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:forwardingMsg.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:forwardingMsg.author,localId:Date.now().toString()};comments.push(cd);forwardingMsg=null;saveCommentsToLocal();renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);showToast('Pesan berhasil di-forward.','success')}
+
+/* === INLINE HAPUS === */
 function startDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;replyingTo=null;activeReplyTargetId=null;forwardingMsg=null;deletingMsg={id:cid,serverId:getServerId(c),commentObj:c,text:c.text};activeDeleteTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
 function cancelDelete(){deletingMsg=null;activeDeleteTargetId=null;isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput()}
 function confirmDelete(){if(!deletingMsg||!currentUser)return;isDeletingInProgress=true;var did=deletingMsg.id,sid=deletingMsg.serverId,cObj=deletingMsg.commentObj;activeDeleteTargetId=null;deletingMsg=null;if(cObj)addToDeletedBlacklist(cObj);comments=comments.filter(function(c){return getCommentId(c)!==did});saveCommentsToLocal();var el=document.querySelector('.chat-bubble-wrap[data-cid="'+did+'"]');if(el)el.classList.add('chat-removing');setTimeout(function(){isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput();renderComments()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
+
+/* === INLINE INPUT === */
 function renderInlineChatInput(){
     var w=document.getElementById('chatInputWrapper');if(!w)return;
     if(deletingMsg){w.innerHTML='<div class="delete-confirm-bar"><div class="dc-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Hapus permanen?</div><div class="dc-msg">"'+escapeHtml(truncateText(deletingMsg.text,100))+'"</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" onclick="cancelDelete()">Batal</button><button class="dc-btn dc-btn-confirm" onclick="confirmDelete()">Hapus</button></div></div>';return}
     if(forwardingMsg){w.innerHTML='<div class="forward-confirm-bar"><div class="fc-title">Forward dari '+escapeHtml(forwardingMsg.author)+'?</div><div class="fc-msg">"'+escapeHtml(forwardingMsg.text)+'"</div><div class="fc-actions"><button class="fc-btn fc-btn-cancel" onclick="cancelForward()">Batal</button><button class="fc-btn fc-btn-confirm" onclick="confirmForward()">Forward</button></div></div>';return}
-    if(currentUser){
-        var rb='';if(replyingTo)rb='<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+escapeHtml(replyingTo.author)+'</div><div class="rp-text">"'+escapeHtml(truncateText(replyingTo.text,50))+'"</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>';
-        var ph=replyingTo?'Balas '+replyingTo.author+'...':'Tulis pesan...';
-        w.innerHTML=rb+'<div class="chat-input-bar"><input type="text" id="inlineCommentText" placeholder="'+ph+'" maxlength="500"><button class="chat-send-btn" onclick="sendInlineChat()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div>';
-        var inp=document.getElementById('inlineCommentText');if(inp){inp.addEventListener('keypress',function(e){if(e.key==='Enter')sendInlineChat()});if(replyingTo)setTimeout(function(){inp.focus()},100)}
-    }else{w.innerHTML='<div class="chat-login-prompt">Silakan <a onclick="openModal(\'loginModal\')">Login</a> untuk mengirim pesan.</div>'}
+    if(currentUser){var rb='';if(replyingTo)rb='<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+escapeHtml(replyingTo.author)+'</div><div class="rp-text">"'+escapeHtml(truncateText(replyingTo.text,50))+'"</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>';var ph=replyingTo?'Balas '+replyingTo.author+'...':'Tulis pesan...';w.innerHTML=rb+'<div class="chat-input-bar"><input type="text" id="inlineCommentText" placeholder="'+ph+'" maxlength="500"><button class="chat-send-btn" onclick="sendInlineChat()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div>';var inp=document.getElementById('inlineCommentText');if(inp){inp.addEventListener('keypress',function(e){if(e.key==='Enter')sendInlineChat()});if(replyingTo)setTimeout(function(){inp.focus()},100)}}else{w.innerHTML='<div class="chat-login-prompt">Silakan <a onclick="openModal(\'loginModal\')">Login</a> untuk mengirim pesan.</div>'}
 }
 async function sendInlineChat(){if(!currentUser){openModal('loginModal');return}var inp=document.getElementById('inlineCommentText');if(!inp)return;var text=inp.value.trim();if(!text)return;var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(replyingTo){cd.replyToId=replyingTo.id;cd.replyToAuthor=replyingTo.author;cd.replyToText=replyingTo.text}comments.push(cd);saveCommentsToLocal();replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);setTimeout(function(){loadComments()},1500)}
+
+/* === MODAL DISKUSI === */
 function openDiscussion(){modalReplyingTo=null;modalDeletingId=null;modalDeletingServerId=null;openModal('discussionModal');renderComments();updateCommentInputArea()}
-function updateCommentInputArea(){
-    var ia=document.getElementById('commentInputArea');if(!ia)return;
-    if(currentUser){
-        var rb='',db='';
-        if(modalReplyingTo)rb='<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">Membalas '+escapeHtml(modalReplyingTo.author)+'</div><div class="mr-text">"'+escapeHtml(truncateText(modalReplyingTo.text,80))+'"</div></div><button class="mr-cancel" onclick="cancelModalReply()">&times;</button></div>';
-        if(modalDeletingId){var dc=comments.find(function(x){return getCommentId(x)===modalDeletingId});if(dc)db='<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus permanen?</div><div class="md-text">"'+escapeHtml(truncateText(dc.text,80))+'"</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="cancelModalDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="confirmModalDelete()">Hapus</button></div></div>'}
-        var ph=modalReplyingTo?'Balas '+modalReplyingTo.author+'...':'Tulis komentar...';var dis=modalDeletingId?'disabled style="opacity:0.5;"':'';
-        ia.innerHTML=db+rb+'<textarea id="commentText" placeholder="'+ph+'" '+dis+'></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px" '+dis+'>Kirim Komentar</button></div>';
-    }else{ia.innerHTML='<div class="login-prompt"><p>Anda harus <a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\');return false">login terlebih dahulu</a> untuk mengirim atau menghapus komentar.</p></div>'}
-}
-function renderComments(){
-    var lc=document.getElementById('commentsList'),cb=document.getElementById('commentCount');if(!lc)return;cb.textContent=comments.length+' Komentar';
-    if(comments.length===0){lc.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return}
-    var sorted=comments.slice().sort(function(a,b){return new Date(b.timestamp)-new Date(a.timestamp)}),il=!!currentUser,h='';
-    sorted.forEach(function(c){
-        var ini=c.author?c.author.charAt(0).toUpperCase():'?',tA=formatTimeAgo(c.timestamp),cid=getCommentId(c),mi=isOwnComment(c),ot=isOtherComment(c);
-        var isF=c.isForwarded==='true'||c.isForwarded===true,hasR=c.replyToAuthor&&c.replyToText;
-        var isRT=(modalReplyingTo&&modalReplyingTo.id===cid)?' reply-target':'',isDT=(modalDeletingId===cid)?' delete-target':'';
-        h+='<div class="comment-item'+isRT+isDT+'" data-cid="'+safeAttr(cid)+'">';
-        h+='<div class="comment-header"><div class="comment-avatar">'+ini+'</div><div><div class="comment-author">'+escapeHtml(c.author)+'</div><div class="comment-time">'+tA+'</div></div></div>';
-        if(isF&&c.forwardedFromAuthor)h+='<div class="comment-forward-tag">Diforward dari '+escapeHtml(c.forwardedFromAuthor)+'</div>';
-        if(hasR)h+='<div class="comment-reply-quote"><div class="crq-author">@'+escapeHtml(c.replyToAuthor)+'</div><div class="crq-text">'+escapeHtml(c.replyToText)+'</div></div>';
-        h+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';
-        if(il){h+='<div class="comment-actions">';h+='<button class="comment-action-btn reply-btn" onclick="clickModalReply(\''+safeAttr(cid)+'\')">Balas</button>';if(ot)h+='<button class="comment-action-btn fwd-btn" onclick="clickModalForward(\''+safeAttr(cid)+'\')">Forward</button>';if(mi)h+='<button class="comment-action-btn delete-btn" onclick="clickModalDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH_M+' Hapus</button>';h+='</div>'}
-        h+='</div>';
-    });
-    lc.innerHTML=h;
-}
+function updateCommentInputArea(){var ia=document.getElementById('commentInputArea');if(!ia)return;if(currentUser){var rb='',db='';if(modalReplyingTo)rb='<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">Membalas '+escapeHtml(modalReplyingTo.author)+'</div><div class="mr-text">"'+escapeHtml(truncateText(modalReplyingTo.text,80))+'"</div></div><button class="mr-cancel" onclick="cancelModalReply()">&times;</button></div>';if(modalDeletingId){var dc=comments.find(function(x){return getCommentId(x)===modalDeletingId});if(dc)db='<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus permanen?</div><div class="md-text">"'+escapeHtml(truncateText(dc.text,80))+'"</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="cancelModalDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="confirmModalDelete()">Hapus</button></div></div>'}var ph=modalReplyingTo?'Balas '+modalReplyingTo.author+'...':'Tulis komentar...';var dis=modalDeletingId?'disabled style="opacity:0.5;"':'';ia.innerHTML=db+rb+'<textarea id="commentText" placeholder="'+ph+'" '+dis+'></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px" '+dis+'>Kirim Komentar</button></div>'}else{ia.innerHTML='<div class="login-prompt"><p>Anda harus <a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\');return false">login terlebih dahulu</a> untuk mengirim atau menghapus komentar.</p></div>'}}
+function renderComments(){var lc=document.getElementById('commentsList'),cb=document.getElementById('commentCount');if(!lc)return;cb.textContent=comments.length+' Komentar';if(comments.length===0){lc.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return}var sorted=comments.slice().sort(function(a,b){return new Date(b.timestamp)-new Date(a.timestamp)}),il=!!currentUser,h='';sorted.forEach(function(c){var ini=c.author?c.author.charAt(0).toUpperCase():'?',tA=formatTimeAgo(c.timestamp),cid=getCommentId(c),mi=isOwnComment(c),ot=isOtherComment(c);var isF=c.isForwarded==='true'||c.isForwarded===true,hasR=c.replyToAuthor&&c.replyToText;var isRT=(modalReplyingTo&&modalReplyingTo.id===cid)?' reply-target':'',isDT=(modalDeletingId===cid)?' delete-target':'';h+='<div class="comment-item'+isRT+isDT+'" data-cid="'+safeAttr(cid)+'"><div class="comment-header"><div class="comment-avatar">'+ini+'</div><div><div class="comment-author">'+escapeHtml(c.author)+'</div><div class="comment-time">'+tA+'</div></div></div>';if(isF&&c.forwardedFromAuthor)h+='<div class="comment-forward-tag">Diforward dari '+escapeHtml(c.forwardedFromAuthor)+'</div>';if(hasR)h+='<div class="comment-reply-quote"><div class="crq-author">@'+escapeHtml(c.replyToAuthor)+'</div><div class="crq-text">'+escapeHtml(c.replyToText)+'</div></div>';h+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';if(il){h+='<div class="comment-actions">';h+='<button class="comment-action-btn reply-btn" onclick="clickModalReply(\''+safeAttr(cid)+'\')">Balas</button>';if(ot)h+='<button class="comment-action-btn fwd-btn" onclick="clickModalForward(\''+safeAttr(cid)+'\')">Forward</button>';if(mi)h+='<button class="comment-action-btn delete-btn" onclick="clickModalDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH_M+' Hapus</button>';h+='</div>'}h+='</div>'});lc.innerHTML=h}
+
+/* === MODAL AKSI === */
 function clickModalReply(cid){if(!currentUser){closeModal('discussionModal');openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;modalDeletingId=null;modalDeletingServerId=null;modalReplyingTo={id:getCommentId(c),author:c.author,text:c.text};document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('reply-target');updateCommentInputArea();renderComments();var ta=document.getElementById('commentText');if(ta)setTimeout(function(){ta.focus()},100)}
 function clickModalForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:c.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:c.author,localId:Date.now().toString()};comments.push(cd);saveCommentsToLocal();openModal('loadingModal');postCommentToServer(cd).then(function(){closeModal('loadingModal')});showToast('Pesan di-forward ke chat.','success')}
 function clickModalDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;modalReplyingTo=null;modalDeletingId=cid;modalDeletingServerId=getServerId(c);document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('delete-target');updateCommentInputArea();renderComments();if(te)te.scrollIntoView({behavior:'smooth',block:'center'})}
@@ -565,31 +514,48 @@ function cancelModalDelete(){modalDeletingId=null;modalDeletingServerId=null;doc
 function confirmModalDelete(){if(!modalDeletingId||!currentUser)return;var did=modalDeletingId,sid=modalDeletingServerId,c=comments.find(function(x){return getCommentId(x)===did});if(!c)return;addToDeletedBlacklist(c);var el=document.querySelector('.comment-item[data-cid="'+did+'"]');if(el)el.classList.add('comment-removing');comments=comments.filter(function(x){return getCommentId(x)!==did});saveCommentsToLocal();modalDeletingId=null;modalDeletingServerId=null;setTimeout(function(){renderComments();renderInlineChatMessages();updateCommentInputArea()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
 function cancelModalReply(){modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments()}
 async function submitComment(){if(!currentUser||modalDeletingId)return;var ta=document.getElementById('commentText'),text=ta.value.trim();if(!text){alert('Silakan tulis komentar!');return}if(text.length>1000){alert('Maks 1000 karakter!');return}openModal('loadingModal');var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(modalReplyingTo){cd.replyToId=modalReplyingTo.id;cd.replyToAuthor=modalReplyingTo.author;cd.replyToText=modalReplyingTo.text}comments.push(cd);saveCommentsToLocal();await postCommentToServer(cd);closeModal('loadingModal');ta.value='';modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments();renderInlineChatMessages();setTimeout(function(){loadComments()},1500)}
+
+/* === ASSESSMENT CVC === */
 function calculateCVC(){var sc=0,hcs=false;if(document.getElementById('q1').checked)sc++;if(document.getElementById('q2').checked)sc++;if(document.getElementById('q3').checked)sc++;if(document.getElementById('q4').checked){sc++;hcs=true}if(document.getElementById('q5').checked){sc++;hcs=true}var l="",m="",b="",sC=document.getElementById('cvc-score-circle');sC.classList.remove('low','medium','high');if(hcs||sc>=4){l="TINGGI";m="DARURAT! Segera ke RS.";b="badge-danger";sC.classList.add('high')}else if(sc>=2){l="SEDANG";m="SEGERA LAPOR.";b="badge-warning";sC.classList.add('medium')}else if(sc===1){l="RENDAH";m="Perlu Perhatian.";b="badge-warning";sC.classList.add('medium')}else{l="AMAN";m="Kondisi Aman.";b="badge-success";sC.classList.add('low')}document.getElementById('cvc-form').style.display='none';document.getElementById('cvc-result').style.display='block';document.getElementById('score-val').innerText=sc;document.getElementById('risk-msg').innerText=m;var bd=document.getElementById('risk-badge');bd.innerText=l;bd.className='badge '+b;var cd=document.getElementById('cvc-critical-action');var pid=document.getElementById('cvc_id').value||'Pasien CVC';var ah='';if(l!=="AMAN")ah=createReportButtons(pid,l,'CVC');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
 function resetCVC(){document.getElementById('cvc-form').style.display='block';document.getElementById('cvc-result').style.display='none';document.querySelectorAll('#cvc-form input').forEach(function(c){c.checked=false})}
+
+/* === ASSESSMENT AV-SHUNT === */
 function calculateAV(){var pid=document.getElementById('av_id').value||'Pasien';var vr=document.getElementById('av_vis_red').checked,vp=document.getElementById('av_vis_pus').checked,vb=document.getElementById('av_vis_bleed').checked;var pp=document.getElementById('av_palp_pain').checked,oc=document.getElementById('av_other_cold').checked,of2=document.getElementById('av_other_fever').checked;var tv=document.querySelector('input[name="av_thrill"]:checked');var tvVal=tv?tv.value:'normal';var s="BAIK",m="Kondisi fistula baik.",r="Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.",ic=false,iw=false;if(vp||vb||oc||of2||tvVal==='gone'){s="DARURAT";m="Kondisi Kritis!";r="Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";ic=true}else if(vr||pp||tvVal==='weak'){s="PERHATIAN";m="Ada tanda yang perlu diwaspadai.";r="Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin.";iw=true}document.getElementById('av-form').style.display='none';document.getElementById('av-result').style.display='block';var ab=document.getElementById('av-badge');ab.innerText=s;ab.className='badge '+(ic?'badge-danger':iw?'badge-warning':'badge-success');ab.style.fontSize='1rem';ab.style.padding='10px 24px';document.getElementById('av-msg').innerText=m;document.getElementById('av-recom').innerText=r;var cd=document.getElementById('av-critical-action');var ah='';if(ic||iw)ah=createReportButtons(pid,s,'AV Shunt');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
 function resetAV(){document.getElementById('av-form').style.display='block';document.getElementById('av-result').style.display='none';document.querySelectorAll('#av-form input[type="checkbox"]').forEach(function(c){c.checked=false});var nr=document.querySelector('input[name="av_thrill"][value="normal"]');if(nr)nr.checked=true}
+
+/* === WA REPORT === */
 function createReportButtons(pid,st,tp){var t='Laporan '+tp+'%0AID: '+pid+'%0AStatus: '+st;var h='<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border-subtle);text-align:center"><p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600">Hubungi Admin untuk melaporkan:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';assessmentContacts.forEach(function(c){h+='<a href="https://wa.me/'+c.phone+'?text='+t+'" target="_blank" class="btn btn-secondary" style="font-size:11px;padding:8px;text-decoration:none">'+c.name+'</a>'});h+='</div></div>';return h}
+
+/* === ANIMASI ANGKA === */
 function animateValue(id,s,e,d){var o=document.getElementById(id);if(!o)return;var st=null;var step=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1);o.textContent=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)window.requestAnimationFrame(step)};window.requestAnimationFrame(step)}
-var VISITOR_STORAGE_KEY='mona_visitor_count';
-function initVisitorCounter(){var count=getVisitorCount();count++;saveVisitorCount(count);updateVisitorDisplay(count)}
-function getVisitorCount(){try{var s=localStorage.getItem(VISITOR_STORAGE_KEY);return s?parseInt(s,10):0}catch(e){return 0}}
-function saveVisitorCount(c){try{localStorage.setItem(VISITOR_STORAGE_KEY,String(c))}catch(e){}}
-function updateVisitorDisplay(c){var formatted=formatVisitorNumber(c);var bannerEl=document.getElementById('visitorCountBanner');var footerEl=document.getElementById('visitorCountFooter');if(bannerEl)bannerEl.textContent=formatted;if(footerEl)footerEl.textContent=formatted}
+
+/* === PENGUNJUNG REAL via CounterAPI === */
+var currentVisitorCount=0;
 function formatVisitorNumber(n){if(n>=1000000)return(n/1000000).toFixed(1).replace(/\.0$/,'')+' jt';if(n>=1000)return(n/1000).toFixed(1).replace(/\.0$/,'')+' rb';return String(n)}
+function updateVisitorDisplay(c){var f=formatVisitorNumber(c);var b=document.getElementById('visitorCountBanner');var ft=document.getElementById('visitorCountFooter');if(b)b.textContent=f;if(ft)ft.textContent=f}
+async function fetchVisitorCount(){
+    try{var r=await fetch(COUNTER_API+'/up',{signal:AbortSignal.timeout(5000)});var d=await r.json();if(d&&typeof d.count==='number'){currentVisitorCount=d.count;updateVisitorDisplay(currentVisitorCount)}}catch(e){try{var r2=await fetch(COUNTER_API,{signal:AbortSignal.timeout(5000)});var d2=await r2.json();if(d2&&typeof d2.count==='number'){currentVisitorCount=d2.count;updateVisitorDisplay(currentVisitorCount)}}catch(e2){currentVisitorCount=0;updateVisitorDisplay(0)}}
+}
+
+/* === HOLOGRAM & TOUR === */
 function showHoloMessageSimple(t,x){document.getElementById('tooltipTitle').innerText=t;document.getElementById('tooltipDesc').innerText=x;document.getElementById('holoContainer').classList.add('show');document.getElementById('tourTooltip').classList.add('active');setTimeout(function(){document.getElementById('holoContainer').classList.remove('show');document.getElementById('tourTooltip').classList.remove('active')},4000)}
 var tourSteps=[{element:'#tour-step-0',title:'Selamat Datang di Mona!',desc:'Monitoring Akses Pembuluh Darah untuk Cuci Darah.'},{element:'#tour-step-info',title:'Perkenalan Aplikasi',desc:'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.'},{element:'#tour-step-1',title:'Assessment CVC',desc:'Cek risiko infeksi secara mandiri di sini.'}];
 var currentTourStep=-1;
 function startTour(){currentTourStep=-1;document.getElementById('tourOverlay').classList.add('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Memulai Tur","Saya akan memandu Anda melihat fitur-fitur menarik di sini.");setTimeout(function(){document.getElementById('tourHighlight').classList.add('animate');nextTourStep()},3000)}
 function nextTourStep(){currentTourStep++;if(currentTourStep>=tourSteps.length){endTour();return}var s=tourSteps[currentTourStep],te=document.querySelector(s.element);setTimeout(function(){if(te){var r=te.getBoundingClientRect();var hl=document.getElementById('tourHighlight');hl.style.top=r.top+'px';hl.style.left=r.left+'px';hl.style.width=r.width+'px';hl.style.height=r.height+'px';showHoloMessageSimple(s.title,s.desc);setTimeout(nextTourStep,4500)}},300)}
 function endTour(){document.getElementById('tourOverlay').classList.remove('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Sampai Jumpa","Terima kasih telah mengikuti tur!");setTimeout(function(){startCredits()},3000)}
+
+/* === CREDITS === */
 function createStars(){var sc=document.getElementById('starContainer');sc.innerHTML='';for(var i=0;i<50;i++){var s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDuration=Math.random()*3+2+'s';s.style.animationDelay=Math.random()*5+'s';sc.appendChild(s)}}
 function startCredits(){createStars();document.getElementById('creditsOverlay').classList.add('active');var cc=document.getElementById('creditsContent');cc.style.animation='none';void cc.offsetHeight;cc.style.animation='';try{var bg=document.getElementById('bgMusic');bg.currentTime=0;bg.play().catch(function(){})}catch(e){}}
 function endCredits(){document.getElementById('creditsOverlay').classList.remove('active');try{document.getElementById('bgMusic').pause()}catch(e){}}
 document.getElementById('creditsOverlay').addEventListener('click',function(e){if(e.target===this)endCredits()});
+
+/* === INIT === */
 function init(){
     initLogin();
-    initVisitorCounter();
+    updateVisitorDisplay(0);
+    fetchVisitorCount();
     loadComments();
     animateValue('statCount',0,1284,2000);
     setTimeout(function(){showHoloMessageSimple('Halo!','Selamat datang di Mona. Data tersimpan lokal dan bisa dihapus permanen!')},2000);
