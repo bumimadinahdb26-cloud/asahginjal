@@ -34,11 +34,6 @@
         .banner-content .login-icon{width:18px;height:18px;opacity:.85}
         .banner-content .login-text{background:transparent;border:none;outline:none;font-size:.82rem;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0}
         .banner-content .user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:none;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.8rem}
-        .banner-content .guide-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:#fff;padding:10px 18px;border-radius:12px;font-weight:600;font-size:.8rem;text-decoration:none;transition:all .3s;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer}
-        .banner-content .guide-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
-        .banner-content .guide-icon{width:16px;height:16px}
-        .banner-content .header-title{font-family:'Bebas Neue',sans-serif;font-size:3.6rem;line-height:1;letter-spacing:4px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:4px}
-        .banner-content .header-subtitle{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:10px;font-weight:500;letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
         .banner-content .welcome-message{font-size:.85rem;color:var(--accent-teal-light);font-weight:600;margin-bottom:8px;display:none;text-shadow:0 2px 6px rgba(0,0,0,0.3)}
         .banner-content .welcome-message.show{display:block;animation:fadeInUp .5s ease}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -48,197 +43,34 @@
         @keyframes liveDotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
         .visitor-number{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:#fff;letter-spacing:1px}
         .visitor-label{font-size:.7rem;color:rgba(255,255,255,0.65);font-weight:500}
-        .visitor-badge-footer{display:flex;align-items:center;gap:8px;padding:6px 14px;background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(239,68,68,0.03));border:1.5px solid rgba(239,68,68,0.2);border-radius:12px}
-        .visitor-badge-footer .visitor-number{font-size:.8rem;color:var(--accent-red-dark)}
-        .visitor-badge-footer .visitor-label{color:var(--text-muted);font-size:.68rem}
         .chat-sidebar{width:330px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
         .inline-chat-container{background:var(--bg-card);border-radius:16px;border:2px solid var(--border-subtle);overflow:hidden;box-shadow:0 8px 32px rgba(124,58,237,0.1);display:flex;flex-direction:column;flex:1;min-height:0}
         .inline-chat-container:hover{border-color:var(--border-gold)}
         .chat-header-bar{background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));padding:8px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:600;font-size:.8rem;flex-shrink:0}
-        .chat-status{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
-        .chat-status::before{content:'';width:6px;height:6px;border-radius:50%;animation:blink 2s infinite}
-        .chat-status.online::before{background:#4ade80}
-        .chat-status.offline::before{background:#fbbf24}
-        @keyframes blink{50%{opacity:.5}}
-        .chat-sync-badge{font-size:.6rem;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:8px;margin-left:4px;display:none}
-        .chat-sync-badge.show{display:inline-block}
         .chat-messages-area{flex:1;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;min-height:60px;background:var(--bg-elevated)}
-        .chat-bubble-wrap{max-width:88%;display:flex;flex-direction:column;position:relative;transition:border-color .25s,box-shadow .25s;border-radius:12px}
+        .chat-bubble-wrap{max-width:88%;display:flex;flex-direction:column;position:relative;border-radius:12px}
         .chat-bubble-wrap.outgoing-wrap{align-self:flex-end}
         .chat-bubble-wrap.incoming-wrap{align-self:flex-start}
-        .chat-bubble-wrap.delete-target-inline{border:2px solid var(--accent-red)!important;box-shadow:0 0 14px rgba(220,38,38,0.25)!important;animation:deleteBubblePulse .9s ease infinite;border-radius:12px}
-        @keyframes deleteBubblePulse{0%,100%{box-shadow:0 0 6px rgba(220,38,38,0.15)}50%{box-shadow:0 0 18px rgba(220,38,38,0.4)}}
-        .chat-bubble-wrap.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 12px rgba(124,58,237,0.12)!important;border-radius:12px}
         .chat-bubble{padding:8px 11px;border-radius:10px;font-size:.78rem;line-height:1.4;word-wrap:break-word;box-shadow:0 1px 4px rgba(0,0,0,0.04);position:relative}
         .chat-bubble.incoming{background:#fff;color:var(--text-dark);border-bottom-left-radius:3px}
         .chat-bubble.outgoing{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;border-bottom-right-radius:3px}
-        .chat-bubble .bubble-author{font-size:.65rem;opacity:.7;margin-bottom:2px;font-weight:700}
-        .chat-bubble .bubble-meta{font-size:.55rem;opacity:.55;margin-top:3px;display:block;text-align:right}
-        .reply-quote{background:rgba(124,58,237,0.07);border-left:2px solid var(--accent-purple);border-radius:3px;padding:4px 8px;margin-bottom:5px;font-size:.68rem;line-height:1.3}
-        .chat-bubble.outgoing .reply-quote{background:rgba(255,255,255,0.13);border-left-color:rgba(255,255,255,0.45)}
-        .reply-quote-author{font-weight:700;color:var(--accent-purple-dark);display:block;margin-bottom:1px;font-size:.63rem}
-        .chat-bubble.outgoing .reply-quote-author{color:rgba(255,255,255,0.8)}
-        .reply-quote-text{color:var(--text-muted);display:block;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-        .chat-bubble.outgoing .reply-quote-text{color:rgba(255,255,255,0.65)}
-        .forward-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(20,184,166,0.1);color:var(--accent-teal-dark);font-size:.63rem;font-weight:700;padding:2px 6px;border-radius:3px;margin-bottom:5px;text-transform:uppercase}
-        .chat-bubble.outgoing .forward-badge{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.85)}
-        .chat-bubble-actions{display:flex;gap:8px;margin-top:4px;padding-top:4px}
-        .chat-bubble.incoming .chat-bubble-actions{border-top:1px solid rgba(0,0,0,0.05)}
-        .chat-bubble.outgoing .chat-bubble-actions{border-top:1px solid rgba(255,255,255,0.12)}
-        .chat-action-btn{background:none;border:none;font-size:.6rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:2px 0;transition:opacity .15s,transform .1s;font-family:'DM Sans',sans-serif}
-        .chat-action-btn:hover{opacity:.6}.chat-action-btn:active{transform:scale(.95)}
-        .chat-action-btn.reply-btn{color:var(--accent-purple)}
-        .chat-action-btn.fwd-btn{color:var(--accent-teal-dark)}
-        .chat-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
-        .chat-action-btn .ca-icon{width:11px;height:11px;flex-shrink:0}
-        .chat-bubble.outgoing .chat-action-btn.reply-btn{color:rgba(255,255,255,0.6)}
-        .chat-bubble.outgoing .chat-action-btn.fwd-btn{color:rgba(255,255,255,0.6)}
-        .chat-bubble.outgoing .chat-action-btn.delete-btn{color:#fca5a5;font-weight:800}
-        .chat-bubble.outgoing .chat-action-btn:hover{color:rgba(255,255,255,0.95)!important}
-        .reply-preview-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(124,58,237,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-purple);animation:slideDown .2s ease}
-        @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-        .reply-preview-bar .rp-indicator{width:3px;height:26px;background:var(--accent-purple);border-radius:2px;flex-shrink:0}
-        .reply-preview-bar .rp-content{flex:1;min-width:0}
-        .reply-preview-bar .rp-label{font-size:.65rem;font-weight:700;color:var(--accent-purple-dark)}
-        .reply-preview-bar .rp-text{font-size:.68rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .reply-preview-bar .rp-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.05);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-        .reply-preview-bar .rp-cancel:hover{background:var(--accent-red);color:#fff}
-        .delete-confirm-bar{padding:8px 10px;background:rgba(220,38,38,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-red);animation:slideDown .2s ease}
-        .delete-confirm-bar .dc-title{font-size:.72rem;font-weight:700;color:var(--accent-red-dark);margin-bottom:6px;display:flex;align-items:center;gap:5px}
-        .delete-confirm-bar .dc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
-        .delete-confirm-bar .dc-actions{display:flex;gap:6px;justify-content:flex-end}
-        .dc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .dc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .dc-btn-cancel:hover{background:#e5e7eb}
-        .dc-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
-        .dc-btn-confirm:hover{box-shadow:0 3px 10px rgba(220,38,38,0.3);transform:translateY(-1px)}
-        .forward-confirm-bar{padding:10px;background:rgba(20,184,166,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-teal);animation:slideDown .2s ease}
-        .forward-confirm-bar .fc-title{font-size:.72rem;font-weight:700;color:var(--accent-teal-dark);margin-bottom:5px;display:flex;align-items:center;gap:5px}
-        .forward-confirm-bar .fc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
-        .forward-confirm-bar .fc-actions{display:flex;gap:6px;justify-content:flex-end}
-        .fc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .fc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .fc-btn-cancel:hover{background:#e5e7eb}
-        .fc-btn-confirm{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff}
-        .fc-btn-confirm:hover{box-shadow:0 3px 10px rgba(20,184,166,0.3);transform:translateY(-1px)}
-        .chat-input-bar{display:flex;gap:6px;padding:8px 10px;border-top:1px solid var(--border-subtle);background:#fff}
-        .chat-input-bar input{flex:1;border:1px solid var(--border-subtle);border-radius:16px;padding:8px 14px;font-size:.8rem;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif}
-        .chat-input-bar input:focus{border-color:var(--accent-purple)}
-        .chat-send-btn{width:36px;height:36px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;flex-shrink:0}
-        .chat-send-btn:hover{transform:scale(1.05);box-shadow:0 3px 10px rgba(20,184,166,0.3)}
-        .chat-login-prompt{padding:12px;text-align:center;font-size:.78rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);background:#fff}
-        .chat-login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-chat{text-align:center;color:var(--text-muted);font-size:.75rem;margin:auto;opacity:.7}
-        .discussion-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(20,184,166,0.25);border:none;cursor:pointer;flex-shrink:0}
-        .discussion-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,184,166,0.35)}
-        .discussion-btn svg{width:16px;height:16px;flex-shrink:0}
-        .discussion-modal{width:95vw;max-width:600px;height:80vh;max-height:700px;display:flex;flex-direction:column}
-        .discussion-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid var(--border-subtle);padding-bottom:12px}
-        .discussion-count{background:var(--accent-teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
-        .comments-list{flex:1;overflow-y:auto;margin-bottom:16px;padding-right:8px}
-        .comment-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:10px;transition:all .15s}
-        .comment-item:hover{border-color:rgba(124,58,237,0.25)}
-        .comment-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-        .comment-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem}
-        .comment-author{font-weight:700;font-size:.9rem;color:var(--text-dark)}
-        .comment-time{font-size:.7rem;color:var(--text-muted);margin-left:auto}
-        .comment-text{font-size:.85rem;color:var(--text-cream);line-height:1.5}
-        .comment-reply-quote{background:rgba(124,58,237,0.07);border-left:3px solid var(--accent-purple);border-radius:4px;padding:6px 10px;margin-bottom:8px;font-size:.78rem}
-        .comment-reply-quote .crq-author{font-weight:700;color:var(--accent-purple-dark);font-size:.7rem}
-        .comment-reply-quote .crq-text{color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .comment-forward-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(20,184,166,0.12);color:var(--accent-teal-dark);font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px}
-        .comment-item.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 15px rgba(124,58,237,0.15)!important}
-        .comment-item.delete-target{border:2px solid var(--accent-red)!important;box-shadow:0 0 15px rgba(220,38,38,0.15)!important;animation:deletePulse .8s ease infinite}
-        @keyframes deletePulse{0%,100%{box-shadow:0 0 5px rgba(220,38,38,0.15)}50%{box-shadow:0 0 20px rgba(220,38,38,0.3)}}
-        .comment-actions{display:flex;gap:14px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)}
-        .comment-action-btn{background:none;border:none;font-size:.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:2px 0;transition:all .15s;font-family:'DM Sans',sans-serif}
-        .comment-action-btn:hover{opacity:.6}.comment-action-btn:active{transform:scale(.95)}
-        .comment-action-btn.reply-btn{color:var(--accent-purple)}
-        .comment-action-btn.fwd-btn{color:var(--accent-teal-dark)}
-        .comment-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
-        .comment-action-btn .cma-icon{width:13px;height:13px;flex-shrink:0}
-        .modal-delete-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(220,38,38,0.06);border:2px solid var(--accent-red);border-radius:10px;margin-bottom:10px;animation:slideDown .2s ease}
-        .modal-delete-bar .md-indicator{width:3px;height:36px;background:var(--accent-red);border-radius:2px;flex-shrink:0}
-        .modal-delete-bar .md-content{flex:1;min-width:0}
-        .modal-delete-bar .md-label{font-size:.75rem;font-weight:700;color:var(--accent-red-dark)}
-        .modal-delete-bar .md-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .modal-delete-bar .md-actions{display:flex;gap:6px;flex-shrink:0}
-        .md-btn{padding:6px 14px;border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .md-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .md-btn-cancel:hover{background:#e5e7eb}
-        .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
-        .md-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3)}
-        .comment-input-area textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;padding:12px;font-size:.9rem;color:var(--text-white);font-family:inherit}
-        .comment-input-area textarea:focus{outline:none;border-color:var(--accent-teal)}
-        .modal-reply-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(124,58,237,0.06);border:2px solid var(--accent-purple);border-radius:8px;margin-bottom:8px;animation:slideDown .2s ease}
-        .modal-reply-bar .mr-content{flex:1;min-width:0}
-        .modal-reply-bar .mr-label{font-size:.7rem;font-weight:700;color:var(--accent-purple-dark)}
-        .modal-reply-bar .mr-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .modal-reply-bar .mr-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.06);color:var(--text-muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .modal-reply-bar .mr-cancel:hover{background:var(--accent-red);color:#fff}
-        .login-prompt{text-align:center;padding:30px 20px;color:var(--text-muted)}
-        .login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);opacity:.7}
         .panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;flex:1}
         .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
-        .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform .4s;z-index:3}
-        .panel-card:hover::before{transform:scaleX(1)}
-        .panel-card::after{content:'';position:absolute;bottom:-15px;right:-15px;width:58%;height:58%;background-size:contain;background-repeat:no-repeat;background-position:bottom right;opacity:0;transition:opacity .6s ease,transform .6s ease;transform:scale(0.9) translate(10px,10px);z-index:0;pointer-events:none}
-        .panel-card:hover::after{opacity:1;transform:scale(1) translate(0,0)}
-        .panel-card.has-bg::after{opacity:.12}
-        .panel-card.has-bg:hover::after{opacity:.2}
-        .panel-card.bg-cvc::after{background-image:url('icon-cvc.png')}
-        .panel-card.bg-avshunt::after{background-image:url('icon-avshunt.png')}
-        .panel-card.bg-education::after{background-image:url('icon-education.png')}
-        .panel-card.bg-consultation::after{background-image:url('icon-consultation.png')}
-        .panel-card>.panel-icon-wrapper,.panel-card>.panel-title,.panel-card>.panel-subtitle,.panel-card>.literature-box,.panel-card>.panel-actions,.panel-card>.consult-features{position:relative;z-index:1}
         .panel-card:hover{border-color:var(--border-gold);transform:translateY(-5px);box-shadow:0 20px 50px rgba(124,58,237,0.15)}
         .panel-icon-wrapper{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all .3s;flex-shrink:0}
-        .panel-card:hover .panel-icon-wrapper{transform:scale(1.08) rotate(-2deg)}
         .panel-icon-wrapper.red{background:linear-gradient(145deg,#fff5f5,#ffe0e0);box-shadow:6px 6px 16px rgba(220,38,38,0.12)}
         .panel-icon-wrapper.gold{background:linear-gradient(145deg,#f5f3ff,#ede9fe);box-shadow:6px 6px 16px rgba(124,58,237,0.12)}
-        .panel-icon-wrapper.teal{background:linear-gradient(145deg,#f0fdfa,#ccfbf1);box-shadow:6px 6px 16px rgba(20,184,166,0.12)}
-        .panel-icon-wrapper.blue{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:6px 6px 16px rgba(59,130,246,0.12)}
-        .panel-icon-wrapper svg{width:28px;height:28px;transition:transform .3s}
-        .panel-card:hover .panel-icon-wrapper svg{transform:scale(1.1)}
         .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
         .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
-        .consult-features{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
-        .consult-feature-item{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-muted);padding:8px 12px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle);transition:all .2s}
-        .consult-feature-item:hover{border-color:rgba(59,130,246,0.3);background:#eff6ff}
-        .consult-feature-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent-blue)}
-        .consult-feature-item strong{color:var(--text-dark);font-weight:600}
-        .literature-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:16px}
-        .literature-title{font-size:.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
-        .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.75rem;color:var(--text-muted);line-height:1.4}
-        .literature-bullet{color:var(--accent-purple);flex-shrink:0}
         .panel-actions{display:flex;gap:10px;margin-top:auto}
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:none;border:none;transition:all .3s;flex:1}
         .btn-primary{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff;box-shadow:0 4px 15px rgba(220,38,38,0.25)}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(220,38,38,0.35)}
         .btn-secondary{background:transparent;border:2px solid var(--accent-purple);color:var(--accent-purple-dark)}
-        .btn-secondary:hover{background:rgba(124,58,237,0.1)}
         .btn-gold{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;box-shadow:0 4px 15px rgba(124,58,237,0.25)}
         .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(124,58,237,0.35)}
         .btn-teal{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;box-shadow:0 4px 15px rgba(20,184,166,0.25)}
         .btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(20,184,166,0.35)}
-        .btn-consult{background:linear-gradient(135deg,var(--accent-blue),var(--accent-blue-dark));color:#fff;box-shadow:0 4px 15px rgba(59,130,246,0.25)}
-        .btn-consult:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.35)}
-        .btn-icon{width:16px;height:16px}
-        .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04);flex-wrap:wrap}
-        .panel-footer:hover{border-color:var(--border-gold)}
-        .footer-info{display:flex;align-items:center;gap:16px;min-width:0;flex:1}
-        .footer-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 12px rgba(124,58,237,0.12);overflow:hidden;flex-shrink:0}
-        .footer-icon img{width:28px;height:28px;object-fit:contain}
-        .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;color:var(--text-white);margin-bottom:2px;white-space:nowrap}
-        .footer-text p{font-size:.75rem;color:var(--text-muted);line-height:1.3}
-        .footer-stats{display:flex;gap:20px;align-items:center;flex-shrink:0}
-        .stat-item{text-align:center}
-        .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--accent-purple);line-height:1}
-        .stat-label{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-        .footer-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
-        .footer-actions .btn{padding:10px 14px;font-size:.78rem;flex:0 0 auto;white-space:nowrap}
-        .footer-actions .btn svg{width:14px;height:14px}
         .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all .3s}
         .modal-overlay.active{opacity:1;visibility:visible}
         .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:380px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .3s;position:relative}
@@ -253,7 +85,7 @@
         .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .input-field{width:100%;background:var(--bg-elevated);border:2px solid var(--border-subtle);padding:14px 16px;border-radius:12px;font-size:14px;color:var(--text-white);font-family:inherit;transition:all .2s}
         .input-field:focus{outline:none;border-color:var(--accent-purple)}
-        .input-field::placeholder{color:var(--text-muted)}
+        .input-field:disabled{background-color:#e5e7eb;cursor:not-allowed;color:#9ca3af}
         .input-group{margin-bottom:16px;text-align:left}
         .input-group label{display:block;font-size:.75rem;color:var(--accent-purple-dark);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
         .check-label{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;cursor:pointer;margin-bottom:10px;transition:all .2s}
@@ -277,8 +109,6 @@
         .badge-success{background:rgba(20,184,166,0.15);color:#0d9488}
         .badge-warning{background:rgba(245,158,11,0.15);color:#b45309}
         .badge-danger{background:rgba(220,38,38,0.15);color:#dc2626}
-        .spinner{border:3px solid var(--border-subtle);border-top:3px solid var(--accent-purple);border-radius:50%;width:24px;height:24px;animation:spin 1s linear infinite;margin:20px auto}
-        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
         .toast-container{position:fixed;top:20px;right:20px;z-index:11000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
         .toast{padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:600;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.2);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:320px;font-family:'DM Sans',sans-serif;pointer-events:auto}
         .toast.success{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark))}
@@ -286,282 +116,695 @@
         .toast.info{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark))}
         @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
         @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
-        .comment-removing{animation:fadeSlideOut .35s ease forwards}
-        .chat-removing{animation:fadeSlideOut .35s ease forwards}
-        @keyframes fadeSlideOut{0%{opacity:1;transform:translateX(0) scale(1);max-height:200px;margin-bottom:10px}60%{opacity:0;transform:translateX(30px) scale(.95)}100%{opacity:0;transform:translateX(30px) scale(.9);max-height:0;margin-bottom:0;padding:0;overflow:hidden}}
-        .holo-container{position:fixed;bottom:20px;right:15px;width:140px;height:220px;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(20px) scale(.95);transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1),visibility .5s;perspective:1000px}
-        .holo-container.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-        .holo-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:25px;background:radial-gradient(ellipse at center,rgba(124,58,237,0.6) 0%,rgba(124,58,237,0) 70%);border-radius:50%;z-index:1}
-        .holo-container.show .holo-base{animation:basePulse 3s infinite ease-in-out}
-        .holo-beam{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:70px;height:180px;background:linear-gradient(to bottom,rgba(124,58,237,0.15),transparent);clip-path:polygon(30% 0,70% 0,100% 100%,0% 100%);z-index:0;opacity:0;transition:opacity .5s}
-        .holo-container.show .holo-beam{opacity:1}
-        .holo-body{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);width:100px;height:180px;transform-style:preserve-3d;z-index:2}
-        .holo-container.show .holo-body{animation:holoFloat 6s infinite ease-in-out}
-        .holo-avatar{width:100%;height:auto;filter:drop-shadow(0 0 15px rgba(124,58,237,0.9)) brightness(1.1) contrast(1.1);mix-blend-mode:multiply;opacity:.9}
-        @keyframes holoFloat{0%{transform:translateX(-50%) translateY(0) rotateY(0deg)}25%{transform:translateX(-50%) translateY(-10px) rotateY(5deg)}50%{transform:translateX(-50%) translateY(0) rotateY(0deg)}75%{transform:translateX(-50%) translateY(-10px) rotateY(-5deg)}100%{transform:translateX(-50%) translateY(0) rotateY(0deg)}}
-        @keyframes basePulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
-        .tour-tooltip{position:fixed;bottom:130px;right:165px;background:var(--bg-card);padding:18px 22px;border-radius:16px 16px 0 16px;width:260px;max-width:calc(100% - 180px);box-shadow:0 10px 40px rgba(0,0,0,0.15);border:1px solid var(--border-gold);z-index:10000;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:all .3s;text-align:left}
-        .tour-tooltip.active{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-        .tour-tooltip h4{color:var(--accent-purple-dark);margin-bottom:6px;font-size:1rem;font-weight:700}
-        .tour-tooltip p{font-size:13px;margin-bottom:0;line-height:1.5;color:var(--text-muted)}
-        .tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;opacity:0;visibility:hidden;transition:opacity .3s}
-        .tour-overlay.active{opacity:1;visibility:visible}
-        .tour-highlight{position:fixed;background:transparent;border:3px solid var(--accent-purple);border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,0.5);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:9999;opacity:0;visibility:hidden}
-        .tour-highlight.animate{animation:pulseRing 2s infinite;opacity:1;visibility:visible}
-        @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(124,58,237,0.4),0 0 0 9999px rgba(0,0,0,0.5)}70%{box-shadow:0 0 0 15px rgba(124,58,237,0),0 0 0 9999px rgba(0,0,0,0.5)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0),0 0 0 9999px rgba(0,0,0,0.5)}}
-        .credits-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#1f2937 0%,#374151 100%);z-index:10010;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;opacity:0;visibility:hidden;transition:opacity 1.5s}
-        .credits-overlay.active{opacity:1;visibility:visible}
-        .credits-content{width:100%;text-align:center;color:#fff;font-family:'Outfit',sans-serif;padding:0 24px;padding-top:100vh;padding-bottom:50px;animation:scrollDown 150s linear forwards;position:relative;z-index:2}
-        @keyframes scrollDown{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
-        .credits-title{font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:800;letter-spacing:5px;margin-bottom:80px;text-transform:uppercase;color:var(--accent-purple-light)}
-        .credits-section{margin-bottom:100px}
-        .credits-section h3{font-size:16px;text-transform:uppercase;letter-spacing:4px;margin-bottom:24px;opacity:.6;font-weight:400}
-        .credits-section p{font-size:26px;font-weight:700;line-height:1.7;color:#fff;margin-bottom:20px}
-        .credits-section .role{font-size:16px;opacity:.7;margin-bottom:12px;font-weight:400;font-style:italic}
-        .credits-footer{margin-top:120px;opacity:.5;font-size:14px}
-        .audio-hidden{position:absolute;top:-9999px;left:-9999px}
-        .star-container{position:absolute;inset:0;overflow:hidden;z-index:1}
-        .star{position:absolute;background:#fff;border-radius:50%;opacity:0;animation:fallingStar linear infinite}
-        @keyframes fallingStar{0%{transform:translateY(-10px) translateX(0) scale(0);opacity:0}20%{opacity:1}100%{transform:translateY(100vh) translateX(20px) scale(1);opacity:0}}
-        .reset-flash{position:fixed;inset:0;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;opacity:0;visibility:hidden;transition:opacity .4s}
-        .reset-flash.active{opacity:1;visibility:visible}
-        .reset-flash .rf-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));display:flex;align-items:center;justify-content:center;animation:scaleIn .5s ease .2s both}
-        .reset-flash .rf-icon svg{width:32px;height:32px;color:#fff}
-        .reset-flash .rf-text{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);animation:scaleIn .5s ease .4s both}
-        .reset-flash .rf-sub{font-size:.85rem;color:var(--text-muted);animation:scaleIn .5s ease .6s both}
-        @keyframes scaleIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.inline-chat-container{max-height:320px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.8rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
-        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.banner-content{padding:18px}.banner-content .header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 12px}.banner-content .clock-display{font-size:.85rem}.panel-icon-wrapper{width:48px;height:48px}.panel-icon-wrapper svg{width:24px;height:24px}.inline-chat-container{max-height:280px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}.visitor-badge{padding:6px 12px}.visitor-number{font-size:.8rem}.visitor-label{font-size:.63rem}.panel-card::after{width:45%;height:45%;bottom:-10px;right:-10px}}
-        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+        .no-complaints-box{border-color:var(--accent-teal);background:rgba(20,184,166,0.05)}
+        .no-complaints-box input:checked+.check-box{background:var(--accent-teal);border-color:var(--accent-teal)}
+        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.panel-grid{grid-template-columns:1fr}}
+        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.modal-box{width:95vw;padding:20px}}
     </style>
 </head>
 <body>
     <div class="bg-pattern"></div><div class="noise-overlay"></div>
     <div class="toast-container" id="toastContainer"></div>
 
-    <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Masukkan nama Anda untuk login.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
+    <!-- AUTH / LOGIN MODAL -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h3 class="modal-title" id="authTitle">Masuk ke Akun</h3>
+            
+            <!-- Login Form -->
+            <div id="loginFormSection">
+                <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Masukkan nama pengguna Anda.</p>
+                <div class="input-group">
+                    <label>Nama Pengguna (Username)</label>
+                    <input type="text" id="loginUsername" class="input-field" placeholder="Masukkan username..." maxlength="20">
+                </div>
+                <div class="modal-btns">
+                    <button class="modal-btn no" onclick="toggleAuthMode('register')">Buat Akun Baru</button>
+                    <button class="modal-btn yes" onclick="performLogin()">Masuk</button>
+                </div>
+            </div>
 
-    <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
+            <!-- Register Form -->
+            <div id="registerFormSection" style="display:none">
+                <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Buat akun khusus untuk aplikasi ini.</p>
+                <div class="input-group">
+                    <label>Nama Pengguna Baru</label>
+                    <input type="text" id="regUsername" class="input-field" placeholder="Pilih username unik..." maxlength="20">
+                </div>
+                <div class="input-group">
+                    <label>Konfirmasi Nama Pengguna</label>
+                    <input type="text" id="regConfirm" class="input-field" placeholder="Ketik ulang username..." maxlength="20">
+                </div>
+                <div class="modal-btns">
+                    <button class="modal-btn no" onclick="toggleAuthMode('login')">Batal</button>
+                    <button class="modal-btn yes" onclick="performRegister()">Daftar & Masuk</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center">Memproses...</p></div></div>
+    <!-- CVC MODAL -->
+    <div class="modal-overlay" id="cvcModal">
+        <div class="modal-box" style="position:relative;max-width:450px">
+            <button class="modal-close" onclick="closeModal('cvcModal')">&times;</button>
+            <h2 class="modal-title">Monitoring & Screening CVC</h2>
+            
+            <!-- Input Form -->
+            <div id="cvc-form">
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label>NAMA PASIEN</label>
+                        <input type="text" class="input-field" id="cvc_id" placeholder="Nama / No RM">
+                    </div>
+                    <div class="input-group">
+                        <label>Hari Terpasang</label>
+                        <input type="number" class="input-field" id="cvc_days" placeholder="Jml Hari">
+                    </div>
+                </div>
 
-    <div class="modal-overlay" id="cvcModal"><div class="modal-box" style="position:relative"><button class="modal-close" onclick="closeModal('cvcModal')">&times;</button><h2 class="modal-title">Monitoring & Screening CVC</h2><div id="cvc-form"><div class="grid-2"><div class="input-group"><label>NAMA PASIEN</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: Sidaraja"></div><div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div></div><div class="section-divider"></div><label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label><label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label><label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label><label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label><button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="calculateCVC()">Hitung Risiko</button></div><div id="cvc-result" style="display:none"><div class="score-display"><div class="score-circle" id="cvc-score-circle"><span class="score-value" id="score-val">0</span><span class="score-label">Gejala</span></div><span id="risk-badge" class="badge badge-success">Aman</span><p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="risk-msg">Tidak ada tanda masalah.</p></div><div id="cvc-critical-action" style="margin-top:14px"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetCVC()">Ulangi Pengecekan</button></div></div></div>
+                <!-- Opsi Tambahan: Tidak Ada Keluhan -->
+                <label class="check-label no-complaints-box" style="margin-top:20px; border-color:var(--accent-teal)">
+                    <input type="checkbox" id="cvc_none" onchange="toggleCvcOptions(this)">
+                    <span class="check-box" style="border-color:var(--accent-teal)"></span>
+                    <span style="font-weight:700; color:var(--accent-teal-dark)">TIDAK ADA KELUHAN</span>
+                </label>
+                <p style="font-size:11px;color:var(--text-muted);margin:-5px 0 15px 44px">Centang jika kondisi pasien stabil & tanpa gejala.</p>
 
-    <div class="modal-overlay" id="avModal"><div class="modal-box" style="position:relative"><button class="modal-close" onclick="closeModal('avModal')">&times;</button><h2 class="modal-title">Monitoring & Screening AV-Shunt</h2><div id="av-form"><div class="input-group"><label>NAMA PASIEN (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div><div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div><label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label><label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label><div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div><p style="font-size:11px;color:var(--text-muted);margin-bottom:8px">Rasakan getaran (thrill) di area shunt:</p><label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label><label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label><label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label><label class="check-label" style="margin-top:8px"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label><div class="section-title-sm">3. Tanda Peringatan Lain</div><label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin, atau mati rasa (Kritis)</span></label><label class="check-label"><input type="checkbox" id="av_other_fever"><span class="check-box"></span><span>Demam, Menggigil, atau Sesak berat (Kritis)</span></label><button class="btn btn-gold" style="width:100%;margin-top:20px" onclick="calculateAV()">Cek Kondisi</button></div><div id="av-result" style="display:none"><div class="score-display"><span id="av-badge" class="badge badge-success" style="font-size:1rem;padding:10px 24px">BAIK</span><p style="margin-top:14px;font-weight:600;color:var(--text-cream);font-size:15px" id="av-msg">Kondisi fistula baik.</p><p style="font-size:13px;color:var(--text-muted);margin-top:4px;line-height:1.5" id="av-recom">Rekomendasi.</p></div><div id="av-critical-action" style="margin-top:16px"></div><button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetAV()">Cek Ulang</button></div></div></div>
+                <div id="cvc_symptoms_container">
+                    <div class="section-title-sm" style="color:var(--accent-red)">Gejala & Tanda Bahaya</div>
+                    <label class="check-label"><input type="checkbox" id="q1"><span class="check-box"></span><span>Kemerahan di area kateter</span></label>
+                    <label class="check-label"><input type="checkbox" id="q2"><span class="check-box"></span><span>Bengkak di area kateter</span></label>
+                    <label class="check-label"><input type="checkbox" id="q3"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label>
+                    <label class="check-label"><input type="checkbox" id="q4"><span class="check-box"></span><span>Keluar nanah atau cairan (Kritis)</span></label>
+                    <label class="check-label"><input type="checkbox" id="q5"><span class="check-box"></span><span>Demam atau Menggigil (Kritis)</span></label>
+                </div>
 
-    <div class="modal-overlay" id="ceklistModal"><div class="modal-box" style="width:95vw;max-width:720px;padding:20px"><button class="modal-close" onclick="closeModal('ceklistModal')">&times;</button><h2 class="modal-title" style="margin-bottom:16px">Cek List Keselamatan HemoHemodialisis</h2><div style="border-radius:14px;overflow:hidden;border:2px solid var(--border-subtle);background:var(--bg-elevated)"><img src="ceklist.png" alt="Cek List" style="width:100%;height:auto;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:var(--text-muted);font-size:14px\'>Gambar ceklist.png belum tersedia.</div>'"></div><div class="modal-btns" style="margin-top:16px"><button class="modal-btn no" onclick="closeModal('ceklistModal')">Tutup</button><a href="ceklist.png" download="ceklist-keselamatan-hemoHemodialisis.png" class="modal-btn yes" style="text-decoration:none">Unduh Gambar</a></div></div></div>
+                <button class="btn btn-primary" style="width:100%;margin-top:20px" onclick="calculateCVC()">Simpan & Hitung Risiko</button>
+            </div>
 
-    <div class="tour-overlay" id="tourOverlay"></div>
-    <div class="tour-highlight" id="tourHighlight"></div>
-    <div class="tour-tooltip" id="tourTooltip"><h4 id="tooltipTitle">Judul</h4><p id="tooltipDesc">Deskripsi</p></div>
-    <div class="credits-overlay" id="creditsOverlay"><audio id="bgMusic" class="audio-hidden" loop><source src="music.mp4" type="audio/mp4"></audio><div class="star-container" id="starContainer"></div><div class="credits-content" id="creditsContent"><div class="credits-title">TIM INOCA RSSA PROV. JATIM</div><div class="credits-section"><p>Jl. Jaksa Agung Suprapto No. 2, Malang<br>Jawa Timur, Kode Pos 65111</p></div><div class="credits-section"><h3>INSTALASI Hemodialisis RSSA PROV. JATIM</h3></div><div class="credits-section"><div class="role">Penasihat</div><p>dr. Achmad Rifai, SpPD, K-GH FINASIM</p></div><div class="credits-section"><div class="role">Penanggung Jawab</div><p>Rini Hadriani, S.Kep.Ners</p></div><div class="credits-section"><div class="role">Ketua</div><p>Riza Arum A., S.Kep.Ners</p></div><div class="credits-section"><div class="role">Admin Pendamping</div><p>Pembayun Y</p><p>Hesty</p><p>Rinda</p></div><div class="credits-section"><div class="role">Engineer</div><p>Iman Waluyo</p></div><div class="credits-section"><p style="font-size:36px;font-weight:800;letter-spacing:4px">TERIMA KASIH</p></div><div class="credits-footer"><p>&copy; 2026 Monalisa - Monitoring dan Analisa  Akses Hemodialisis Anda</p></div><div style="height:200px"></div></div></div>
-    <div class="holo-container" id="holoContainer"><div class="holo-beam"></div><div class="holo-base"></div><div class="holo-body"><img src="dokter.gif" alt="AI Doctor" class="holo-avatar"></div></div>
+            <!-- Result Display -->
+            <div id="cvc-result" style="display:none">
+                <div class="score-display">
+                    <div class="score-circle" id="cvc-score-circle">
+                        <span class="score-value" id="score-val">0</span>
+                        <span class="score-label">Gejala</span>
+                    </div>
+                    <span id="risk-badge" class="badge badge-success">Aman</span>
+                    <p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="risk-msg"></p>
+                </div>
+                <div id="cvc-critical-action" style="margin-top:14px"></div>
+                <button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetCVC()">Tutup & Selesai</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- AV-SHUNT MODAL -->
+    <div class="modal-overlay" id="avModal">
+        <div class="modal-box" style="position:relative;max-width:480px">
+            <button class="modal-close" onclick="closeModal('avModal')">&times;</button>
+            <h2 class="modal-title">Monitoring & Screening AV-Shunt</h2>
+            
+            <!-- Input Form -->
+            <div id="av-form">
+                <div class="input-group">
+                    <label>NAMA PASIEN (Opsional)</label>
+                    <input type="text" class="input-field" id="av_id" placeholder="Nama / No RM">
+                </div>
+
+                <!-- Opsi Tambahan: Tidak Ada Keluhan -->
+                <label class="check-label no-complaints-box" style="margin-top:15px; border-color:var(--accent-teal)">
+                    <input type="checkbox" id="av_none" onchange="toggleAvOptions(this)">
+                    <span class="check-box" style="border-color:var(--accent-teal)"></span>
+                    <span style="font-weight:700; color:var(--accent-teal-dark)">TIDAK ADA KELUHAN</span>
+                </label>
+                <p style="font-size:11px;color:var(--text-muted);margin:-5px 0 15px 44px">Centang jika kondisi shunt baik & tidak ada kelainan.</p>
+
+                <div id="av_symptoms_container">
+                    <div class="section-title-sm">1. Pemeriksaan Visual (Lihat)</div>
+                    <label class="check-label"><input type="checkbox" id="av_vis_red"><span class="check-box"></span><span>Kemerahan, Bengkak, atau Lepuhan</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_vis_pus"><span class="check-box"></span><span>Keluar Nanah atau Cairan (Kritis)</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_vis_bleed"><span class="check-box"></span><span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span></label>
+
+                    <div class="section-title-sm">2. Pemeriksaan Raba (Feel)</div>
+                    <p style="font-size:11px;color:var(--text-muted);margin-bottom:8px">Rasakan getaran (thrill) di area shunt:</p>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="normal" checked><span class="check-box radio-style"></span><span>Normal (Terasa getaran terus-menerus)</span></label>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="weak"><span class="check-box radio-style"></span><span>Berkurang / Lemah</span></label>
+                    <label class="check-label"><input type="radio" name="av_thrill" value="gone"><span class="check-box radio-style"></span><span>Hilang / Tidak Terasa (Kritis)</span></label>
+                    <label class="check-label" style="margin-top:8px"><input type="checkbox" id="av_palp_pain"><span class="check-box"></span><span>Nyeri hebat saat disentuh</span></label>
+
+                    <div class="section-title-sm">3. Tanda Peringatan Lain</div>
+                    <label class="check-label"><input type="checkbox" id="av_other_cold"><span class="check-box"></span><span>Tangan pucat, dingin & lemah (Steal Syndrome)</span></label>
+                    <label class="check-label"><input type="checkbox" id="av_other_swollen"><span class="check-box"></span><span>Bengkak seluruh lengan</span></label>
+                </div>
+
+                <button class="btn btn-primary" style="width:100%;margin-top:20px" onclick="calculateAV()">Simpan & Hitung Risiko</button>
+            </div>
+
+            <!-- Result Display -->
+            <div id="av-result" style="display:none">
+                <div class="score-display">
+                    <div class="score-circle" id="av-score-circle">
+                        <span class="score-value" id="av-score-val">0</span>
+                        <span class="score-label">Risiko</span>
+                    </div>
+                    <span id="av-risk-badge" class="badge badge-success">Stabil</span>
+                    <p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="av-risk-msg"></p>
+                </div>
+                <div id="av-critical-action" style="margin-top:14px"></div>
+                <button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetAV()">Tutup & Selesai</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN LAYOUT -->
     <div class="main-container">
-        <div class="header-area" id="tour-step-0">
+        <!-- Header Section -->
+        <header class="header-area">
             <div class="banner-section">
-                <div class="header-bg" style="background-image:url('banner-saya.png')"></div>
+                <div class="header-bg" style="background-image: url('https://picsum.photos/seed/medical/1200/600'); opacity: 0.6;"></div>
                 <div class="banner-overlay"></div>
                 <div class="banner-content">
                     <div class="header-top-row">
                         <div class="header-left-group">
-                            <div class="digital-clock"><svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><div><div class="clock-display" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">--, -- --- ----</div></div><div class="clock-pulse"></div></div>
-                            <div class="login-container" id="loginContainer" onclick="handleLoginClick()"><svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="loginIconSvg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div class="user-avatar" id="userAvatar"></div><span class="login-text" id="loginText">Login / Masuk</span></div>
+                            <div class="digital-clock">
+                                <svg class="clock-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div>
+                                    <div class="clock-display" id="clockTime">00:00:00</div>
+                                    <div class="clock-date" id="clockDate">Senin, 1 Jan</div>
+                                </div>
+                                <div class="clock-pulse"></div>
+                            </div>
+                            <div class="visitor-badge">
+                                <svg class="visitor-eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                <div class="visitor-live-dot"></div>
+                                <div style="display:flex;flex-direction:column;line-height:1.1">
+                                    <span class="visitor-number">LIVE</span>
+                                    <span class="visitor-label">SYSTEM READY</span>
+                                </div>
+                            </div>
                         </div>
-                        <button class="guide-btn" onclick="startTour()"><svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Panduan</button>
+                        <div class="login-container" id="loginTrigger" onclick="openLoginModal()">
+                            <svg class="login-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                            <span class="login-text" id="loginText">MASUK AKUN</span>
+                            <div class="user-avatar" id="userAvatar">U</div>
+                        </div>
                     </div>
-                    <div class="welcome-message" id="welcomeMessage"></div>
-                    <div class="visitor-badge"><svg class="visitor-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountBanner">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot"></div></div>
-                    <h1 class="header-title">Monalisa</h1>
-                    <p class="header-subtitle">Monitoring dan Analisa  Akses Hemodialisis Anda</p>
+                    <div class="welcome-message" id="welcomeMsg">Selamat Datang kembali, User!</div>
+                    <h1 class="header-title">MONALISA</h1>
+                    <p class="header-subtitle">Monitoring dan Analisa Akses Hemodialisis Terintegrasi</p>
                 </div>
             </div>
-            <div class="chat-sidebar">
-                <div class="inline-chat-container" id="inlineChatContainer"><div class="chat-header-bar"><span>Live Chat</span><span class="chat-status online" id="chatStatusIndicator">Online<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span></span></div><div class="chat-messages-area" id="inlineChatMessages"><div class="empty-chat">Memuat pesan...</div></div><div id="chatInputWrapper"></div></div>
-                <button class="discussion-btn" onclick="openDiscussion()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Lihat Semua Diskusi</button>
-            </div>
-        </div>
-        <div class="panel-grid">
-            <div class="panel-card has-bg bg-cvc" id="tour-step-1"><div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><h2 class="panel-title">MONITORING CVC</h2><p class="panel-subtitle">Central Venous Catheter - Lakukan penilaian risiko infeksi kateter vena sentral secara mandiri dan akurat.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>CDC - Guidelines for Prevention of Intravascular Catheter-Related Infection (2023)</span></div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>KDOQI - Vascular Access Guidelines (2019 Update)</span></div></div><div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
-            <div class="panel-card has-bg bg-avshunt"><div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div><h2 class="panel-title">MONITORING AV-SHUNT</h2><p class="panel-subtitle">Arteriovenous Fistula/Cimino - Periksa kondisi fistula atau jalan darah Anda secara berkala.</p><div class="literature-box"><div class="literature-title">Sumber Literatur Terpercaya</div><div class="literature-item"><span class="literature-bullet">&#9679;</span><span>NKF - KDOQI Clinical Practice Guidelines for Vascular Access (2019)</span></div></div><div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>Mulai Screening</button></div></div>
-            <div class="panel-card has-bg bg-education"><div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div><h2 class="panel-title">EDUKASI</h2><p class="panel-subtitle">Materi edukasi untuk membantu memantau akses Hemodialisis dan mengenali tanda bahaya sejak dini dengan sistem EWS.</p><div class="panel-actions"><a href="https://sites.google.com/view/Hemodialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-secondary" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Video Perawatan CVC</a></div></div>
-            <div class="panel-card has-bg bg-consultation"><div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><circle cx="9" cy="10" r="1" fill="#3b82f6"></circle><circle cx="12" cy="10" r="1" fill="#3b82f6"></circle><circle cx="15" cy="10" r="1" fill="#3b82f6"></circle></svg></div><h2 class="panel-title">KONSULTASI AI</h2><p class="panel-subtitle">Tanyakan langsung ke AI tentang kesehatan akses pembuluh darah, perawatan Hemodialisis, dan konsultasi medis lainnya.</p><div class="consult-features"><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg><span><strong>Tanya Gejala</strong> &mdash; Cek tanda bahaya akses vaskular</span></div><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><span><strong>Edukasi Interaktif</strong> &mdash; Penjelasan tentang prosedur HD</span></div><div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><strong>Rahasia & Aman</strong> &mdash; Tanpa identitas, kapan saja</span></div></div><div class="panel-actions"><a href="https://www.perplexity.ai/search/Saya+ingin+konsultasi+kesehatan+tentang+akses+pembuluh+darah+untuk+hemoHemodialisis+(cuci+darah).+Tolong+bantu+jawab+pertanyaan+saya:" target="_blank" class="btn btn-consult" style="text-decoration:none"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Mulai Konsultasi</a></div></div>
-        </div>
-        <div class="panel-footer" id="tour-step-info">
-            <div class="footer-info"><div class="footer-icon"><img src="icon-info.png" alt="Info" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%237c3aed%22/><text x=%2212%22 y=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2212%22 font-weight=%22bold%22>i</text></svg>'"></div><div class="footer-text"><h3>INFO APLIKASI</h3><p>Monalisa - Monitoring dan Analisa  Akses Hemodialisis Anda oleh TIM INOCA RSSA</p></div></div>
-            <div class="footer-stats"><div class="visitor-badge-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="visitor-number" id="visitorCountFooter">0</span><span class="visitor-label">pengunjung</span><div class="visitor-live-dot" style="width:5px;height:5px"></div></div><div class="stat-item"><div class="stat-value" id="statCount">0</div><div class="stat-label">Pengguna</div></div><div class="stat-item"><div class="stat-value">86%</div><div class="stat-label">Kepuasan</div></div></div>
-            <div class="footer-actions"><button class="btn btn-secondary" onclick="startTour()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Panduan</button><button class="btn btn-teal" onclick="openModal('ceklistModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Cek List HD</button><button class="btn btn-gold" onclick="startCredits()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info Lengkap</button></div>
-        </div>
+            
+            <!-- Chat / Info Sidebar -->
+            <aside class="chat-sidebar">
+                <div class="inline-chat-container">
+                    <div class="chat-header-bar">
+                        <span>PROTOKOL CEPAT</span>
+                        <span class="chat-status online">TERHUBUNG</span>
+                    </div>
+                    <div class="chat-messages-area">
+                        <div class="chat-bubble-wrap incoming-wrap">
+                            <div class="chat-bubble incoming">
+                                <div class="bubble-author">SISTEM</div>
+                                Pastikan pasien login sebelum melakukan screening. Data akan tersimpan otomatis.
+                            </div>
+                        </div>
+                        <div class="chat-bubble-wrap incoming-wrap">
+                            <div class="chat-bubble incoming">
+                                <div class="bubble-author">INFO SHEET</div>
+                                Data dikirim ke Sheet "kunjungan" pada Spreadsheet Monalisa.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </header>
+
+        <!-- Main Tools Grid -->
+        <main class="panel-grid">
+            <!-- CVC Card -->
+            <article class="panel-card">
+                <div class="panel-icon-wrapper red">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="panel-title">SCREENING CVC</h3>
+                <p class="panel-subtitle">Evaluasi risiko infeksi kateter vena sentral. Pilih "Tidak ada keluhan" jika kondisi pasien stabil.</p>
+                <div class="panel-actions">
+                    <button class="btn btn-primary" onclick="checkAuthAndOpen('cvcModal')">Mulai Screening</button>
+                </div>
+            </article>
+
+            <!-- AV-Shunt Card -->
+            <article class="panel-card">
+                <div class="panel-icon-wrapper gold">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </div>
+                <h3 class="panel-title">SCREENING AV-SHUNT</h3>
+                <p class="panel-subtitle">Pemeriksaan visual dan palpasi akses fistula. Pilih "Tidak ada keluhan" jika hasil pemeriksaan normal.</p>
+                <div class="panel-actions">
+                    <button class="btn btn-gold" onclick="checkAuthAndOpen('avModal')">Mulai Screening</button>
+                </div>
+            </article>
+        </main>
     </div>
 
-<script>
-/* === SVG ICONS === */
-var ICON_TRASH='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
-var ICON_TRASH_M='<svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
-var ICON_REPLY='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"></polyline><path d="M20 18v-2a4 4 0 0 0-4-4H4"></path></svg>';
-var ICON_FWD='<svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"></polyline><path d="M4 18v-2a4 4 0 0 1 4-4h12"></path></svg>';
+    <script>
+        // --- CONFIGURATION ---
+        // Spreadsheet ID from request
+        const SPREADSHEET_ID = '1JE4-GjRJ-mccOskIykAqfUOR6ySAkaIUrxiy_oTi9Mg';
+        
+        // IMPORTANT: To enable Google Sheets saving, you must deploy a Google Apps Script as a Web App
+        // and paste the URL below. If empty, data is saved ONLY to LocalStorage (App works fine).
+        const GOOGLE_SCRIPT_URL = ""; 
 
-/* === KONFIGURASI API === */
-var API_URL='https://script.google.com/macros/s/AKfycbzjED-J262dM98RbjNvr4PeOloOpWg9WL08XogyXs3pEC5VFI4miopDnhqTTynxBrUq/exec';
-var COUNTER_API='https://api.counterapi.dev/v1/Monalisa-rssa-dialysis-v2/visits';
+        // --- AUTH & STORAGE STATE ---
+        let currentUser = null;
+        const STORAGE_KEY_USERS = 'monalisa_users_v2';
+        const STORAGE_KEY_SESSION = 'monalisa_session_v2';
+        const STORAGE_KEY_RECORDS = 'monalisa_records_v2';
 
-/* === BERSIHKAN STORAGE LAMA === */
-(function(){var kr=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('Monalisa_')===0)kr.push(k)}kr.forEach(function(k){localStorage.removeItem(k)})})();
+        // --- INIT ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initClock();
+            checkSession();
+        });
 
-/* === STATE === */
-var currentUser=null,comments=[],replyingTo=null,forwardingMsg=null,deletingMsg=null;
-var modalReplyingTo=null,modalDeletingId=null,modalDeletingServerId=null;
-var activeReplyTargetId=null,activeDeleteTargetId=null,isDeletingInProgress=false,isOnline=true;
-var assessmentContacts=[{name:'Riza A',phone:'6282227707573'},{name:'Pembayun Y',phone:'6283831217784'},{name:'Hesty',phone:'6282124700093'},{name:'Rinda',phone:'6285210622568'}];
+        // --- CLOCK ---
+        function initClock() {
+            const timeEl = document.getElementById('clockTime');
+            const dateEl = document.getElementById('clockDate');
+            setInterval(() => {
+                const now = new Date();
+                timeEl.textContent = now.toLocaleTimeString('id-ID');
+                dateEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' });
+            }, 1000);
+        }
 
-/* === UTILITAS === */
-function getCommentId(c){if(c.id)return String(c.id);if(c.localId)return String(c.localId);if(c.timestamp)return String(c.timestamp);return String(Math.random())}
-function getStableId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return(c.authorId||'')+'_'+(c.timestamp||'')}
-function getServerId(c){if(c.id&&String(c.id).indexOf('temp_')!==0)return String(c.id);return null}
-function isOwnComment(c){if(!currentUser)return false;return(c.authorId===currentUser.id)||(c.author===currentUser.name)}
-function isOtherComment(c){if(!currentUser)return false;return!isOwnComment(c)}
-function escapeHtml(t){if(!t)return '';var d=document.createElement('div');d.textContent=t;return d.innerHTML}
-function truncateText(t,m){if(!t)return '';return t.length>m?t.substring(0,m)+'...':t}
-function formatTimeAgo(ts){var n=new Date(),p=new Date(ts),d=n-p;if(isNaN(d))return'Lalu';var m=Math.floor(d/60000),h=Math.floor(d/3600000),dy=Math.floor(d/86400000);if(m<1)return'Baru saja';if(m<60)return m+' menit lalu';if(h<24)return h+' jam lalu';if(dy<7)return dy+' hari lalu';return p.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}
-function safeAttr(s){return String(s).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function showToast(msg,type){type=type||'info';var c=document.getElementById('toastContainer'),t=document.createElement('div');t.className='toast '+type;t.textContent=msg;c.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3200)}
+        // --- AUTH LOGIC ---
+        function getUsers() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
+        }
 
-/* === BLACKLIST === */
-function getDeletedBlacklist(){try{var s=localStorage.getItem('Monalisa_deleted_blacklist');return s?JSON.parse(s):[]}catch(e){return[]}}
-function addToDeletedBlacklist(c){var list=getDeletedBlacklist();var sid=getServerId(c),fid=getStableId(c);if(sid&&list.indexOf(sid)===-1)list.push(sid);if(list.indexOf(fid)===-1)list.push(fid);localStorage.setItem('Monalisa_deleted_blacklist',JSON.stringify(list))}
-function isCommentBlacklisted(c){var list=getDeletedBlacklist();if(c.id&&list.indexOf(String(c.id))!==-1)return true;if(list.indexOf(getStableId(c))!==-1)return true;return false}
-function filterBlacklisted(arr){return arr.filter(function(c){return!isCommentBlacklisted(c)})}
-function cleanOldBlacklist(){var list=getDeletedBlacklist();if(list.length>500)localStorage.setItem('Monalisa_deleted_blacklist',JSON.stringify(list.slice(-200)))}
+        function saveUser(userObj) {
+            const users = getUsers();
+            users.push(userObj);
+            localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
+        }
 
-/* === LOCAL STORAGE === */
-function saveCommentsToLocal(){try{localStorage.setItem('Monalisa_comments',JSON.stringify(comments))}catch(e){}}
-function loadCommentsFromLocal(){try{var s=localStorage.getItem('Monalisa_comments');comments=s?JSON.parse(s):[]}catch(e){comments=[]}}
-function dedupComments(arr){var seen={},result=[];arr.forEach(function(c){var sid=getStableId(c);if(!seen[sid]){seen[sid]=true;result.push(c)}});return result}
+        function toggleAuthMode(mode) {
+            const loginSec = document.getElementById('loginFormSection');
+            const regSec = document.getElementById('registerFormSection');
+            const title = document.getElementById('authTitle');
+            
+            if (mode === 'register') {
+                loginSec.style.display = 'none';
+                regSec.style.display = 'block';
+                title.textContent = 'Buat Akun Baru';
+            } else {
+                loginSec.style.display = 'block';
+                regSec.style.display = 'none';
+                title.textContent = 'Masuk ke Akun';
+            }
+        }
 
-/* === LOAD KOMENTAR === */
-async function loadComments(){
-    loadCommentsFromLocal();comments=filterBlacklisted(comments);comments=dedupComments(comments);renderComments();renderInlineChatMessages();showSyncBadge(true);
-    try{var r=await fetch(API_URL+'?action=getComments',{signal:AbortSignal.timeout(8000)});var d=await r.json();if(d.success&&d.comments){var sc=filterBlacklisted(d.comments),lc=filterBlacklisted(comments),ss={};sc.forEach(function(c){ss[getStableId(c)]=true});lc.forEach(function(c){if(!ss[getStableId(c)])sc.push(c)});comments=dedupComments(sc);saveCommentsToLocal();renderComments();renderInlineChatMessages();updateOnlineStatus(true)}}catch(e){updateOnlineStatus(false)}
-    showSyncBadge(false);cleanOldBlacklist();
-}
-async function postCommentToServer(cd){try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addComment',...cd})})}catch(e){}}
-async function deleteCommentOnServer(uuid){if(!uuid)return;try{await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'deleteComment',commentId:uuid,authorId:currentUser?currentUser.id:''})})}catch(e){}}
-function updateOnlineStatus(online){isOnline=online;var el=document.getElementById('chatStatusIndicator');if(el){el.className='chat-status '+(online?'online':'offline');el.innerHTML=(online?'Online':'Offline')+'<span class="chat-sync-badge" id="syncBadge">Sinkronisasi...</span>'}}
-function showSyncBadge(show){var el=document.getElementById('syncBadge');if(el)el.className='chat-sync-badge'+(show?' show':'')}
-window.addEventListener('online',function(){updateOnlineStatus(true);loadComments();showToast('Kembali online.','success')});
-window.addEventListener('offline',function(){updateOnlineStatus(false);showToast('Anda sedang offline.','info')});
+        function performRegister() {
+            const username = document.getElementById('regUsername').value.trim();
+            const confirm = document.getElementById('regConfirm').value.trim();
 
-/* === JAM DIGITAL === */
-function updateClock(){var n=new Date(),ds=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],ms=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];document.getElementById('clockTime').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');document.getElementById('clockDate').textContent=ds[n.getDay()]+', '+n.getDate()+' '+ms[n.getMonth()]+' '+n.getFullYear()}
-setInterval(updateClock,1000);updateClock();
+            if (!username || username.length < 3) {
+                showToast('Username minimal 3 karakter', 'error');
+                return;
+            }
+            if (username !== confirm) {
+                showToast('Konfirmasi username tidak cocok', 'error');
+                return;
+            }
 
-/* === LOGIN === */
-function initLogin(){var s=localStorage.getItem('Monalisa_user');if(s){currentUser=JSON.parse(s);updateLoginUI()}renderInlineChatInput()}
-function handleLoginClick(){if(currentUser){if(confirm('Anda login sebagai "'+currentUser.name+'". Klik OK untuk logout.'))logout()}else openModal('loginModal')}
-function performLogin(){var n=document.getElementById('loginName').value.trim();if(!n){alert('Silakan masukkan nama Anda!');return}currentUser={name:n,id:Date.now().toString(),joinedAt:new Date().toISOString()};localStorage.setItem('Monalisa_user',JSON.stringify(currentUser));updateLoginUI();closeModal('loginModal');document.getElementById('loginName').value='';updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();showToast('Selamat datang, '+n+'!','success')}
-function logout(){currentUser=null;localStorage.removeItem('Monalisa_user');updateLoginUI();updateCommentInputArea();renderInlineChatInput();renderInlineChatMessages();cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete();showToast('Anda telah logout.','info')}
-function updateLoginUI(){var lc=document.getElementById('loginContainer'),lt=document.getElementById('loginText'),li=document.getElementById('loginIconSvg'),ua=document.getElementById('userAvatar');if(currentUser){lc.classList.add('logged-in');lt.textContent=currentUser.name;li.style.display='none';ua.style.display='flex';ua.textContent=currentUser.name.charAt(0).toUpperCase();var g=['Selamat Datang','Halo','Salam Sehat'];document.getElementById('welcomeMessage').textContent=g[Math.floor(Math.random()*g.length)]+', '+currentUser.name+'!';document.getElementById('welcomeMessage').classList.add('show')}else{lc.classList.remove('logged-in');lt.textContent='Login / Masuk';li.style.display='block';ua.style.display='none';document.getElementById('welcomeMessage').classList.remove('show')}}
+            const users = getUsers();
+            // Logic: tidak boleh sama username dengan user lain
+            if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+                showToast('Username sudah digunakan akun lain!', 'error');
+                return;
+            }
 
-/* === MODAL === */
-function openModal(id){document.getElementById(id).classList.add('active')}
-function closeModal(id){document.getElementById(id).classList.remove('active')}
-document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')})});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active')});cancelReply();cancelForward();cancelDelete();cancelModalReply();cancelModalDelete()}});
+            // Create Account
+            const newUser = { 
+                username: username, 
+                createdAt: new Date().toISOString() 
+            };
+            saveUser(newUser);
+            
+            // Auto Login
+            loginUser(newUser);
+            closeModal('loginModal');
+            showToast('Akun berhasil dibuat!', 'success');
+        }
 
-/* === INLINE CHAT RENDER === */
-function renderInlineChatMessages(){
-    var c=document.getElementById('inlineChatMessages');if(!c)return;
-    if(comments.length===0){c.innerHTML='<div class="empty-chat">Belum ada percakapan.</div>';return}
-    var s=comments.slice().sort(function(a,b){return new Date(a.timestamp)-new Date(b.timestamp)}),il=!!currentUser,h='';
-    s.forEach(function(m){var mi=isOwnComment(m),ot=isOtherComment(m),wc=mi?'outgoing-wrap':'incoming-wrap',bc=mi?'outgoing':'incoming';var cid=getCommentId(m),ta=formatTimeAgo(m.timestamp),isF=m.isForwarded==='true'||m.isForwarded===true,hasR=m.replyToAuthor&&m.replyToText;var isRT=(activeReplyTargetId===cid)?' reply-target':'',isDT=(activeDeleteTargetId===cid)?' delete-target-inline':'',tc=isRT||isDT?isDT+isRT:'';
-    h+='<div class="chat-bubble-wrap '+wc+tc+'" data-cid="'+safeAttr(cid)+'"><div class="chat-bubble '+bc+'">';if(isF&&m.forwardedFromAuthor)h+='<div class="forward-badge">Diforward dari '+escapeHtml(m.forwardedFromAuthor)+'</div>';if(hasR)h+='<div class="reply-quote"><span class="reply-quote-author">@'+escapeHtml(m.replyToAuthor)+'</span><span class="reply-quote-text">'+escapeHtml(m.replyToText)+'</span></div>';if(!mi)h+='<div class="bubble-author">'+escapeHtml(m.author)+'</div>';h+=escapeHtml(m.text)+'<span class="bubble-meta">'+ta+'</span>';if(il&&!isDeletingInProgress){h+='<div class="chat-bubble-actions">';h+='<button class="chat-action-btn reply-btn" onclick="event.stopPropagation();clickToReply(\''+safeAttr(cid)+'\')">'+ICON_REPLY+' Balas</button>';if(ot)h+='<button class="chat-action-btn fwd-btn" onclick="event.stopPropagation();startForward(\''+safeAttr(cid)+'\')">'+ICON_FWD+' Forward</button>';if(mi)h+='<button class="chat-action-btn delete-btn" onclick="event.stopPropagation();startDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH+' Hapus</button>';h+='</div>'}h+='</div></div>'});
-    c.innerHTML=h;c.scrollTop=c.scrollHeight;
-}
+        function performLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            if (!username) {
+                showToast('Masukkan username', 'error');
+                return;
+            }
 
-/* === INLINE REPLY === */
-function clickToReply(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;forwardingMsg=null;deletingMsg=null;activeDeleteTargetId=null;replyingTo={id:getCommentId(c),author:c.author,text:c.text};activeReplyTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
-function cancelReply(){replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput()}
+            const users = getUsers();
+            // Find user (case insensitive check logic)
+            const user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
 
-/* === INLINE FORWARD === */
-function startForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;replyingTo=null;activeReplyTargetId=null;activeDeleteTargetId=null;deletingMsg=null;forwardingMsg={id:getCommentId(c),author:c.author,text:c.text};renderInlineChatMessages();renderInlineChatInput()}
-function cancelForward(){forwardingMsg=null;renderInlineChatInput()}
-function confirmForward(){if(!forwardingMsg||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:forwardingMsg.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:forwardingMsg.author,localId:Date.now().toString()};comments.push(cd);forwardingMsg=null;saveCommentsToLocal();renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);showToast('Pesan berhasil di-forward.','success')}
+            if (user) {
+                loginUser(user);
+                closeModal('loginModal');
+                showToast(`Selamat datang, ${user.username}!`, 'success');
+            } else {
+                showToast('Username tidak ditemukan. Silakan daftar.', 'error');
+            }
+        }
 
-/* === INLINE HAPUS === */
-function startDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;replyingTo=null;activeReplyTargetId=null;forwardingMsg=null;deletingMsg={id:cid,serverId:getServerId(c),commentObj:c,text:c.text};activeDeleteTargetId=cid;renderInlineChatMessages();renderInlineChatInput()}
-function cancelDelete(){deletingMsg=null;activeDeleteTargetId=null;isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput()}
-function confirmDelete(){if(!deletingMsg||!currentUser)return;isDeletingInProgress=true;var did=deletingMsg.id,sid=deletingMsg.serverId,cObj=deletingMsg.commentObj;activeDeleteTargetId=null;deletingMsg=null;if(cObj)addToDeletedBlacklist(cObj);comments=comments.filter(function(c){return getCommentId(c)!==did});saveCommentsToLocal();var el=document.querySelector('.chat-bubble-wrap[data-cid="'+did+'"]');if(el)el.classList.add('chat-removing');setTimeout(function(){isDeletingInProgress=false;renderInlineChatMessages();renderInlineChatInput();renderComments()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
+        function loginUser(user) {
+            currentUser = user;
+            localStorage.setItem(STORAGE_KEY_SESSION, JSON.stringify(user));
+            updateAuthUI();
+        }
 
-/* === INLINE INPUT === */
-function renderInlineChatInput(){
-    var w=document.getElementById('chatInputWrapper');if(!w)return;
-    if(deletingMsg){w.innerHTML='<div class="delete-confirm-bar"><div class="dc-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Hapus permanen?</div><div class="dc-msg">"'+escapeHtml(truncateText(deletingMsg.text,100))+'"</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" onclick="cancelDelete()">Batal</button><button class="dc-btn dc-btn-confirm" onclick="confirmDelete()">Hapus</button></div></div>';return}
-    if(forwardingMsg){w.innerHTML='<div class="forward-confirm-bar"><div class="fc-title">Forward dari '+escapeHtml(forwardingMsg.author)+'?</div><div class="fc-msg">"'+escapeHtml(forwardingMsg.text)+'"</div><div class="fc-actions"><button class="fc-btn fc-btn-cancel" onclick="cancelForward()">Batal</button><button class="fc-btn fc-btn-confirm" onclick="confirmForward()">Forward</button></div></div>';return}
-    if(currentUser){var rb='';if(replyingTo)rb='<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+escapeHtml(replyingTo.author)+'</div><div class="rp-text">"'+escapeHtml(truncateText(replyingTo.text,50))+'"</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>';var ph=replyingTo?'Balas '+replyingTo.author+'...':'Tulis pesan...';w.innerHTML=rb+'<div class="chat-input-bar"><input type="text" id="inlineCommentText" placeholder="'+ph+'" maxlength="500"><button class="chat-send-btn" onclick="sendInlineChat()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div>';var inp=document.getElementById('inlineCommentText');if(inp){inp.addEventListener('keypress',function(e){if(e.key==='Enter')sendInlineChat()});if(replyingTo)setTimeout(function(){inp.focus()},100)}}else{w.innerHTML='<div class="chat-login-prompt">Silakan <a onclick="openModal(\'loginModal\')">Login</a> untuk mengirim pesan.</div>'}
-}
-async function sendInlineChat(){if(!currentUser){openModal('loginModal');return}var inp=document.getElementById('inlineCommentText');if(!inp)return;var text=inp.value.trim();if(!text)return;var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(replyingTo){cd.replyToId=replyingTo.id;cd.replyToAuthor=replyingTo.author;cd.replyToText=replyingTo.text}comments.push(cd);saveCommentsToLocal();replyingTo=null;activeReplyTargetId=null;renderInlineChatMessages();renderInlineChatInput();postCommentToServer(cd);setTimeout(function(){loadComments()},1500)}
+        function logout() {
+            if(confirm("Keluar dari akun?")) {
+                currentUser = null;
+                localStorage.removeItem(STORAGE_KEY_SESSION);
+                updateAuthUI();
+                showToast('Berhasil keluar', 'info');
+            }
+        }
 
-/* === MODAL DISKUSI === */
-function openDiscussion(){modalReplyingTo=null;modalDeletingId=null;modalDeletingServerId=null;openModal('discussionModal');renderComments();updateCommentInputArea()}
-function updateCommentInputArea(){var ia=document.getElementById('commentInputArea');if(!ia)return;if(currentUser){var rb='',db='';if(modalReplyingTo)rb='<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">Membalas '+escapeHtml(modalReplyingTo.author)+'</div><div class="mr-text">"'+escapeHtml(truncateText(modalReplyingTo.text,80))+'"</div></div><button class="mr-cancel" onclick="cancelModalReply()">&times;</button></div>';if(modalDeletingId){var dc=comments.find(function(x){return getCommentId(x)===modalDeletingId});if(dc)db='<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus permanen?</div><div class="md-text">"'+escapeHtml(truncateText(dc.text,80))+'"</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="cancelModalDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="confirmModalDelete()">Hapus</button></div></div>'}var ph=modalReplyingTo?'Balas '+modalReplyingTo.author+'...':'Tulis komentar...';var dis=modalDeletingId?'disabled style="opacity:0.5;"':'';ia.innerHTML=db+rb+'<textarea id="commentText" placeholder="'+ph+'" '+dis+'></textarea><div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn btn-teal" onclick="submitComment()" style="flex:0 0 auto;padding:12px 24px" '+dis+'>Kirim Komentar</button></div>'}else{ia.innerHTML='<div class="login-prompt"><p>Anda harus <a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\');return false">login terlebih dahulu</a> untuk mengirim atau menghapus komentar.</p></div>'}}
-function renderComments(){var lc=document.getElementById('commentsList'),cb=document.getElementById('commentCount');if(!lc)return;cb.textContent=comments.length+' Komentar';if(comments.length===0){lc.innerHTML='<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>';return}var sorted=comments.slice().sort(function(a,b){return new Date(b.timestamp)-new Date(a.timestamp)}),il=!!currentUser,h='';sorted.forEach(function(c){var ini=c.author?c.author.charAt(0).toUpperCase():'?',tA=formatTimeAgo(c.timestamp),cid=getCommentId(c),mi=isOwnComment(c),ot=isOtherComment(c);var isF=c.isForwarded==='true'||c.isForwarded===true,hasR=c.replyToAuthor&&c.replyToText;var isRT=(modalReplyingTo&&modalReplyingTo.id===cid)?' reply-target':'',isDT=(modalDeletingId===cid)?' delete-target':'';h+='<div class="comment-item'+isRT+isDT+'" data-cid="'+safeAttr(cid)+'"><div class="comment-header"><div class="comment-avatar">'+ini+'</div><div><div class="comment-author">'+escapeHtml(c.author)+'</div><div class="comment-time">'+tA+'</div></div></div>';if(isF&&c.forwardedFromAuthor)h+='<div class="comment-forward-tag">Diforward dari '+escapeHtml(c.forwardedFromAuthor)+'</div>';if(hasR)h+='<div class="comment-reply-quote"><div class="crq-author">@'+escapeHtml(c.replyToAuthor)+'</div><div class="crq-text">'+escapeHtml(c.replyToText)+'</div></div>';h+='<div class="comment-text">'+escapeHtml(c.text)+'</div>';if(il){h+='<div class="comment-actions">';h+='<button class="comment-action-btn reply-btn" onclick="clickModalReply(\''+safeAttr(cid)+'\')">Balas</button>';if(ot)h+='<button class="comment-action-btn fwd-btn" onclick="clickModalForward(\''+safeAttr(cid)+'\')">Forward</button>';if(mi)h+='<button class="comment-action-btn delete-btn" onclick="clickModalDelete(\''+safeAttr(cid)+'\')">'+ICON_TRASH_M+' Hapus</button>';h+='</div>'}h+='</div>'});lc.innerHTML=h}
+        function checkSession() {
+            const session = localStorage.getItem(STORAGE_KEY_SESSION);
+            if (session) {
+                currentUser = JSON.parse(session);
+                updateAuthUI();
+            }
+        }
 
-/* === MODAL AKSI === */
-function clickModalReply(cid){if(!currentUser){closeModal('discussionModal');openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c)return;modalDeletingId=null;modalDeletingServerId=null;modalReplyingTo={id:getCommentId(c),author:c.author,text:c.text};document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('reply-target');updateCommentInputArea();renderComments();var ta=document.getElementById('commentText');if(ta)setTimeout(function(){ta.focus()},100)}
-function clickModalForward(cid){var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||isOwnComment(c)||!currentUser)return;var cd={author:currentUser.name,authorId:currentUser.id,text:c.text,timestamp:new Date().toISOString(),isForwarded:'true',forwardedFromAuthor:c.author,localId:Date.now().toString()};comments.push(cd);saveCommentsToLocal();openModal('loadingModal');postCommentToServer(cd).then(function(){closeModal('loadingModal')});showToast('Pesan di-forward ke chat.','success')}
-function clickModalDelete(cid){if(!currentUser){openModal('loginModal');return}var c=comments.find(function(x){return getCommentId(x)===cid});if(!c||!isOwnComment(c))return;modalReplyingTo=null;modalDeletingId=cid;modalDeletingServerId=getServerId(c);document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});var te=document.querySelector('.comment-item[data-cid="'+cid+'"]');if(te)te.classList.add('delete-target');updateCommentInputArea();renderComments();if(te)te.scrollIntoView({behavior:'smooth',block:'center'})}
-function cancelModalDelete(){modalDeletingId=null;modalDeletingServerId=null;document.querySelectorAll('.comment-item.delete-target').forEach(function(el){el.classList.remove('delete-target')});updateCommentInputArea();renderComments()}
-function confirmModalDelete(){if(!modalDeletingId||!currentUser)return;var did=modalDeletingId,sid=modalDeletingServerId,c=comments.find(function(x){return getCommentId(x)===did});if(!c)return;addToDeletedBlacklist(c);var el=document.querySelector('.comment-item[data-cid="'+did+'"]');if(el)el.classList.add('comment-removing');comments=comments.filter(function(x){return getCommentId(x)!==did});saveCommentsToLocal();modalDeletingId=null;modalDeletingServerId=null;setTimeout(function(){renderComments();renderInlineChatMessages();updateCommentInputArea()},400);if(sid)deleteCommentOnServer(sid);showToast('Komentar dihapus permanen.','success')}
-function cancelModalReply(){modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments()}
-async function submitComment(){if(!currentUser||modalDeletingId)return;var ta=document.getElementById('commentText'),text=ta.value.trim();if(!text){alert('Silakan tulis komentar!');return}if(text.length>1000){alert('Maks 1000 karakter!');return}openModal('loadingModal');var cd={author:currentUser.name,authorId:currentUser.id,text:text,timestamp:new Date().toISOString(),localId:Date.now().toString()};if(modalReplyingTo){cd.replyToId=modalReplyingTo.id;cd.replyToAuthor=modalReplyingTo.author;cd.replyToText=modalReplyingTo.text}comments.push(cd);saveCommentsToLocal();await postCommentToServer(cd);closeModal('loadingModal');ta.value='';modalReplyingTo=null;document.querySelectorAll('.comment-item.reply-target').forEach(function(el){el.classList.remove('reply-target')});updateCommentInputArea();renderComments();renderInlineChatMessages();setTimeout(function(){loadComments()},1500)}
+        function updateAuthUI() {
+            const loginText = document.getElementById('loginText');
+            const avatar = document.getElementById('userAvatar');
+            const container = document.getElementById('loginTrigger');
+            const welcome = document.getElementById('welcomeMsg');
+            const loginBtn = document.getElementById('loginTrigger'); // reused
 
-/* === ASSESSMENT CVC === */
-function calculateCVC(){var sc=0,hcs=false;if(document.getElementById('q1').checked)sc++;if(document.getElementById('q2').checked)sc++;if(document.getElementById('q3').checked)sc++;if(document.getElementById('q4').checked){sc++;hcs=true}if(document.getElementById('q5').checked){sc++;hcs=true}var l="",m="",b="",sC=document.getElementById('cvc-score-circle');sC.classList.remove('low','medium','high');if(hcs||sc>=4){l="TINGGI";m="DARURAT! Segera ke RS.";b="badge-danger";sC.classList.add('high')}else if(sc>=2){l="SEDANG";m="SEGERA LAPOR.";b="badge-warning";sC.classList.add('medium')}else if(sc===1){l="RENDAH";m="Perlu Perhatian.";b="badge-warning";sC.classList.add('medium')}else{l="AMAN";m="Kondisi Aman.";b="badge-success";sC.classList.add('low')}document.getElementById('cvc-form').style.display='none';document.getElementById('cvc-result').style.display='block';document.getElementById('score-val').innerText=sc;document.getElementById('risk-msg').innerText=m;var bd=document.getElementById('risk-badge');bd.innerText=l;bd.className='badge '+b;var cd=document.getElementById('cvc-critical-action');var pid=document.getElementById('cvc_id').value||'Pasien CVC';var ah='';if(l!=="AMAN")ah=createReportButtons(pid,l,'CVC');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
-function resetCVC(){document.getElementById('cvc-form').style.display='block';document.getElementById('cvc-result').style.display='none';document.querySelectorAll('#cvc-form input').forEach(function(c){c.checked=false})}
+            if (currentUser) {
+                loginText.textContent = currentUser.username;
+                loginText.onclick = null; // Remove modal trigger
+                avatar.style.display = 'flex';
+                avatar.textContent = currentUser.username.charAt(0).toUpperCase();
+                container.classList.add('logged-in');
+                container.onclick = logout; // Change click to logout
+                welcome.textContent = `Halo, ${currentUser.username}`;
+                welcome.classList.add('show');
+            } else {
+                loginText.textContent = "MASUK AKUN";
+                avatar.style.display = 'none';
+                container.classList.remove('logged-in');
+                container.onclick = openLoginModal;
+                welcome.classList.remove('show');
+            }
+        }
 
-/* === ASSESSMENT AV-SHUNT === */
-function calculateAV(){var pid=document.getElementById('av_id').value||'Pasien';var vr=document.getElementById('av_vis_red').checked,vp=document.getElementById('av_vis_pus').checked,vb=document.getElementById('av_vis_bleed').checked;var pp=document.getElementById('av_palp_pain').checked,oc=document.getElementById('av_other_cold').checked,of2=document.getElementById('av_other_fever').checked;var tv=document.querySelector('input[name="av_thrill"]:checked');var tvVal=tv?tv.value:'normal';var s="BAIK",m="Kondisi fistula baik.",r="Lanjutkan perawatan rutin dan jaga kebersihan. Hindari tekanan pada lengan shunt.",ic=false,iw=false;if(vp||vb||oc||of2||tvVal==='gone'){s="DARURAT";m="Kondisi Kritis!";r="Segera pergi ke IGD atau hubungi dokter. Jangan tunda!";ic=true}else if(vr||pp||tvVal==='weak'){s="PERHATIAN";m="Ada tanda yang perlu diwaspadai.";r="Hindari tekanan pada area shunt. Segera laporkan kepada perawat atau admin.";iw=true}document.getElementById('av-form').style.display='none';document.getElementById('av-result').style.display='block';var ab=document.getElementById('av-badge');ab.innerText=s;ab.className='badge '+(ic?'badge-danger':iw?'badge-warning':'badge-success');ab.style.fontSize='1rem';ab.style.padding='10px 24px';document.getElementById('av-msg').innerText=m;document.getElementById('av-recom').innerText=r;var cd=document.getElementById('av-critical-action');var ah='';if(ic||iw)ah=createReportButtons(pid,s,'AV Shunt');cd.innerHTML=ah;cd.style.display=ah?'block':'none'}
-function resetAV(){document.getElementById('av-form').style.display='block';document.getElementById('av-result').style.display='none';document.querySelectorAll('#av-form input[type="checkbox"]').forEach(function(c){c.checked=false});var nr=document.querySelector('input[name="av_thrill"][value="normal"]');if(nr)nr.checked=true}
+        // --- MODAL UTILS ---
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
 
-/* === WA REPORT === */
-function createReportButtons(pid,st,tp){var t='Laporan '+tp+'%0AID: '+pid+'%0AStatus: '+st;var h='<div style="margin-top:16px;padding-top:12px;border-top:1px dashed var(--border-subtle);text-align:center"><p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600">Hubungi Admin untuk melaporkan:</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';assessmentContacts.forEach(function(c){h+='<a href="https://wa.me/'+c.phone+'?text='+t+'" target="_blank" class="btn btn-secondary" style="font-size:11px;padding:8px;text-decoration:none">'+c.name+'</a>'});h+='</div></div>';return h}
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
 
-/* === ANIMASI ANGKA === */
-function animateValue(id,s,e,d){var o=document.getElementById(id);if(!o)return;var st=null;var step=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1);o.textContent=Math.floor(p*(e-s)+s).toLocaleString();if(p<1)window.requestAnimationFrame(step)};window.requestAnimationFrame(step)}
+        function checkAuthAndOpen(modalId) {
+            if (!currentUser) {
+                showToast('Anda harus login terlebih dahulu!', 'error');
+                openLoginModal();
+            } else {
+                document.getElementById(modalId).classList.add('active');
+            }
+        }
 
-/* === PENGUNJUNG REAL via CounterAPI === */
-var currentVisitorCount=0;
-function formatVisitorNumber(n){if(n>=1000000)return(n/1000000).toFixed(1).replace(/\.0$/,'')+' jt';if(n>=1000)return(n/1000).toFixed(1).replace(/\.0$/,'')+' rb';return String(n)}
-function updateVisitorDisplay(c){var f=formatVisitorNumber(c);var b=document.getElementById('visitorCountBanner');var ft=document.getElementById('visitorCountFooter');if(b)b.textContent=f;if(ft)ft.textContent=f}
-async function fetchVisitorCount(){
-    try{var r=await fetch(COUNTER_API+'/up',{signal:AbortSignal.timeout(5000)});var d=await r.json();if(d&&typeof d.count==='number'){currentVisitorCount=d.count;updateVisitorDisplay(currentVisitorCount)}}catch(e){try{var r2=await fetch(COUNTER_API,{signal:AbortSignal.timeout(5000)});var d2=await r2.json();if(d2&&typeof d2.count==='number'){currentVisitorCount=d2.count;updateVisitorDisplay(currentVisitorCount)}}catch(e2){currentVisitorCount=0;updateVisitorDisplay(0)}}
-}
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.textContent = msg;
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 3000);
+        }
 
-/* === HOLOGRAM & TOUR === */
-function showHoloMessageSimple(t,x){document.getElementById('tooltipTitle').innerText=t;document.getElementById('tooltipDesc').innerText=x;document.getElementById('holoContainer').classList.add('show');document.getElementById('tourTooltip').classList.add('active');setTimeout(function(){document.getElementById('holoContainer').classList.remove('show');document.getElementById('tourTooltip').classList.remove('active')},4000)}
-var tourSteps=[{element:'#tour-step-0',title:'Selamat Datang di Monalisa!',desc:'Monitoring dan Analisa  Akses Hemodialisis Anda.'},{element:'#tour-step-info',title:'Perkenalan Aplikasi',desc:'Aplikasi ini dikembangkan oleh TIM INOCA RSSA.'},{element:'#tour-step-1',title:'Assessment CVC',desc:'Cek risiko infeksi secara mandiri di sini.'}];
-var currentTourStep=-1;
-function startTour(){currentTourStep=-1;document.getElementById('tourOverlay').classList.add('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Memulai Tur","Saya akan memandu Anda melihat fitur-fitur menarik di sini.");setTimeout(function(){document.getElementById('tourHighlight').classList.add('animate');nextTourStep()},3000)}
-function nextTourStep(){currentTourStep++;if(currentTourStep>=tourSteps.length){endTour();return}var s=tourSteps[currentTourStep],te=document.querySelector(s.element);setTimeout(function(){if(te){var r=te.getBoundingClientRect();var hl=document.getElementById('tourHighlight');hl.style.top=r.top+'px';hl.style.left=r.left+'px';hl.style.width=r.width+'px';hl.style.height=r.height+'px';showHoloMessageSimple(s.title,s.desc);setTimeout(nextTourStep,4500)}},300)}
-function endTour(){document.getElementById('tourOverlay').classList.remove('active');document.getElementById('tourHighlight').classList.remove('animate');showHoloMessageSimple("Sampai Jumpa","Terima kasih telah mengikuti tur!");setTimeout(function(){startCredits()},3000)}
+        // --- TOGGLES FOR "TIDAK ADA KELUHAN" ---
+        function toggleCvcOptions(checkbox) {
+            const container = document.getElementById('cvc_symptoms_container');
+            const inputs = container.querySelectorAll('input');
+            inputs.forEach(inp => {
+                inp.disabled = checkbox.checked;
+                if(checkbox.checked) inp.checked = false; // Clear selection
+            });
+            container.style.opacity = checkbox.checked ? '0.4' : '1';
+        }
 
-/* === CREDITS === */
-function createStars(){var sc=document.getElementById('starContainer');sc.innerHTML='';for(var i=0;i<50;i++){var s=document.createElement('div');s.classList.add('star');s.style.left=Math.random()*100+'%';s.style.width=Math.random()*3+1+'px';s.style.height=s.style.width;s.style.animationDuration=Math.random()*3+2+'s';s.style.animationDelay=Math.random()*5+'s';sc.appendChild(s)}}
-function startCredits(){createStars();document.getElementById('creditsOverlay').classList.add('active');var cc=document.getElementById('creditsContent');cc.style.animation='none';void cc.offsetHeight;cc.style.animation='';try{var bg=document.getElementById('bgMusic');bg.currentTime=0;bg.play().catch(function(){})}catch(e){}}
-function endCredits(){document.getElementById('creditsOverlay').classList.remove('active');try{document.getElementById('bgMusic').pause()}catch(e){}}
-document.getElementById('creditsOverlay').addEventListener('click',function(e){if(e.target===this)endCredits()});
+        function toggleAvOptions(checkbox) {
+            const container = document.getElementById('av_symptoms_container');
+            const inputs = container.querySelectorAll('input');
+            inputs.forEach(inp => {
+                inp.disabled = checkbox.checked;
+                if(checkbox.checked) {
+                    if(inp.type === 'radio') {
+                        // Reset radio to normal just for visual cleanliness, or leave as is
+                        // Here we explicitly check 'normal' if unchecked, or uncheck all if logic prefers
+                        // Let's just disable interaction.
+                    } else {
+                        inp.checked = false;
+                    }
+                }
+            });
+            container.style.opacity = checkbox.checked ? '0.4' : '1';
+        }
 
-/* === INIT === */
-function init(){
-    initLogin();
-    updateVisitorDisplay(0);
-    fetchVisitorCount();
-    loadComments();
-    animateValue('statCount',0,1284,2000);
-    setTimeout(function(){showHoloMessageSimple('Halo!','Selamat datang di Monalisa. Data tersimpan lokal dan bisa dihapus permanen!')},2000);
-    setInterval(function(){loadComments()},20000);
-}
-init();
-</script>
+        // --- SAVING DATA (LOCAL + SHEET) ---
+        function saveAssessment(type, data, score, riskLevel) {
+            const record = {
+                id: Date.now(),
+                timestamp: new Date().toLocaleString('id-ID'),
+                user: currentUser.username,
+                type: type, // 'CVC' or 'AV'
+                patientName: data.patientName || 'Anonim',
+                score: score,
+                risk: riskLevel,
+                details: JSON.stringify(data.details)
+            };
+
+            // 1. Save to Local Storage (Catatan Tiap User)
+            const allRecords = JSON.parse(localStorage.getItem(STORAGE_KEY_RECORDS) || '[]');
+            allRecords.push(record);
+            localStorage.setItem(STORAGE_KEY_RECORDS, JSON.stringify(allRecords));
+
+            // 2. Save to Spreadsheet
+            sendToGoogleSheet(record);
+        }
+
+        async function sendToGoogleSheet(data) {
+            if (!GOOGLE_SCRIPT_URL) {
+                console.log("Google Sheet URL not set. Data saved locally only.");
+                return; 
+            }
+
+            // Prepare form data for standard POST
+            const formData = new FormData();
+            formData.append('timestamp', data.timestamp);
+            formData.append('username', data.user);
+            formData.append('type', data.type);
+            formData.append('patient', data.patientName);
+            formData.append('score', data.score);
+            formData.append('risk', data.risk);
+            formData.append('rawDetails', data.details);
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                console.log("Data sent to sheet successfully");
+            } catch (error) {
+                console.error("Error sending to sheet:", error);
+                // Do not alert user to avoid UX disruption, local save is primary safety
+            }
+        }
+
+        // --- CVC LOGIC ---
+        function calculateCVC() {
+            const patient = document.getElementById('cvc_id').value.trim();
+            const days = document.getElementById('cvc_days').value;
+            const isNone = document.getElementById('cvc_none').checked;
+
+            let score = 0;
+            let details = {};
+
+            if (isNone) {
+                // Logic: Tidak ada keluhan
+                score = 0;
+                details = { status: "Tidak ada keluhan", days: days };
+            } else {
+                // Check symptoms
+                if(document.getElementById('q1').checked) score++;
+                if(document.getElementById('q2').checked) score++;
+                if(document.getElementById('q3').checked) score++;
+                if(document.getElementById('q4').checked) score += 5; // Critical
+                if(document.getElementById('q5').checked) score += 5; // Critical
+                
+                details = {
+                    redness: document.getElementById('q1').checked,
+                    swelling: document.getElementById('q2').checked,
+                    pain: document.getElementById('q3').checked,
+                    pus: document.getElementById('q4').checked,
+                    fever: document.getElementById('q5').checked,
+                    days: days
+                };
+            }
+
+            // Determine Risk
+            let risk = "Rendah (Aman)";
+            let badgeClass = "badge-success";
+            let msg = "Kondisi Kateter Baik. Lanjutkan perawatan standar.";
+            
+            if (score >= 5 || (details.fever || details.pus)) {
+                risk = "Tinggi (Kritis)";
+                badgeClass = "badge-danger";
+                msg = "BAHAYA! Segera hubungi dokter. Kemungkinan infeksi sever.";
+            } else if (score > 0 && score < 5) {
+                risk = "Sedang (Waspada)";
+                badgeClass = "badge-warning";
+                msg = "Perhatikan area kateter. Lakukan pencatatan tambahan.";
+            }
+
+            // Save Data
+            saveAssessment('CVC', { patientName: patient, details: details }, score, risk);
+
+            // UI Update
+            document.getElementById('cvc-form').style.display = 'none';
+            document.getElementById('cvc-result').style.display = 'block';
+            document.getElementById('score-val').textContent = score;
+            
+            const circle = document.getElementById('cvc-score-circle');
+            circle.className = 'score-circle ' + (score >= 5 ? 'high' : (score > 0 ? 'medium' : 'low'));
+            
+            const badge = document.getElementById('risk-badge');
+            badge.className = 'badge ' + badgeClass;
+            badge.textContent = risk;
+            
+            document.getElementById('risk-msg').textContent = msg;
+            showToast('Data Screening CVC Tersimpan', 'success');
+        }
+
+        function resetCVC() {
+            document.getElementById('cvc-form').style.display = 'block';
+            document.getElementById('cvc-result').style.display = 'none';
+            document.getElementById('cvc_id').value = '';
+            document.getElementById('cvc_days').value = '';
+            document.getElementById('cvc_none').checked = false;
+            toggleCvcOptions({checked: false}); // reset disabled state
+            
+            // Uncheck all
+            document.querySelectorAll('#cvc_symptoms_container input').forEach(i => i.checked = false);
+            closeModal('cvcModal');
+        }
+
+        // --- AV-SHUNT LOGIC ---
+        function calculateAV() {
+            const patient = document.getElementById('av_id').value.trim();
+            const isNone = document.getElementById('av_none').checked;
+
+            let score = 0;
+            let details = {};
+
+            if (isNone) {
+                // Logic: Tidak ada keluhan
+                score = 0;
+                details = { status: "Tidak ada keluhan" };
+            } else {
+                // Check Visual
+                if(document.getElementById('av_vis_red').checked) score++;
+                if(document.getElementById('av_vis_pus').checked) score += 5;
+                if(document.getElementById('av_vis_bleed').checked) score += 5;
+
+                // Check Thrill
+                const thrill = document.querySelector('input[name="av_thrill"]:checked').value;
+                if (thrill === 'weak') score += 2;
+                if (thrill === 'gone') score += 5; // Critical
+
+                // Check Other
+                if(document.getElementById('av_palp_pain').checked) score += 2;
+                if(document.getElementById('av_other_cold').checked) score += 3;
+                if(document.getElementById('av_other_swollen').checked) score += 2;
+
+                details = {
+                    visual: {
+                        red: document.getElementById('av_vis_red').checked,
+                        pus: document.getElementById('av_vis_pus').checked,
+                        bleed: document.getElementById('av_vis_bleed').checked
+                    },
+                    thrill: thrill,
+                    pain: document.getElementById('av_palp_pain').checked,
+                    steal: document.getElementById('av_other_cold').checked,
+                    swollen: document.getElementById('av_other_swollen').checked
+                };
+            }
+
+            // Determine Risk
+            let risk = "Stabil (Aman)";
+            let badgeClass = "badge-success";
+            let msg = "Fungsi Shunt Baik. Lanjutkan monitoring rutin.";
+
+            if (score >= 5 || thrill === 'gone' || details.visual?.pus || details.visual?.bleed) {
+                risk = "Kritis (Bahaya)";
+                badgeClass = "badge-danger";
+                msg = "KEGAWATDARURATAN! Akses shunt bermasalah. Segera rujuk ke RS.";
+            } else if (score > 0) {
+                risk = "Waspada";
+                badgeClass = "badge-warning";
+                msg = "Terdapat kelainan ringan. Perhatikan perkembangan.";
+            }
+
+            // Save Data
+            saveAssessment('AV-SHUNT', { patientName: patient, details: details }, score, risk);
+
+            // UI Update
+            document.getElementById('av-form').style.display = 'none';
+            document.getElementById('av-result').style.display = 'block';
+            document.getElementById('av-score-val').textContent = score;
+
+            const circle = document.getElementById('av-score-circle');
+            circle.className = 'score-circle ' + (score >= 5 ? 'high' : (score > 0 ? 'medium' : 'low'));
+
+            const badge = document.getElementById('av-risk-badge');
+            badge.className = 'badge ' + badgeClass;
+            badge.textContent = risk;
+
+            document.getElementById('av-risk-msg').textContent = msg;
+            showToast('Data Screening AV-SHUNT Tersimpan', 'success');
+        }
+
+        function resetAV() {
+            document.getElementById('av-form').style.display = 'block';
+            document.getElementById('av-result').style.display = 'none';
+            document.getElementById('av_id').value = '';
+            document.getElementById('av_none').checked = false;
+            toggleAvOptions({checked: false}); // reset disabled
+
+            // Reset inputs
+            document.querySelectorAll('#av_symptoms_container input').forEach(i => {
+                if(i.type === 'radio') {
+                    if(i.value === 'normal') i.checked = true;
+                } else {
+                    i.checked = false;
+                }
+            });
+            closeModal('avModal');
+        }
+    </script>
 </body>
 </html>
