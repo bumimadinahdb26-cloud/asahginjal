@@ -292,6 +292,8 @@
         .comment-removing{animation:fadeSlideOut .35s ease forwards}
         .chat-removing{animation:fadeSlideOut .35s ease forwards}
         @keyframes fadeSlideOut{0%{opacity:1;transform:translateX(0) scale(1);max-height:200px;margin-bottom:10px}60%{opacity:0;transform:translateX(30px) scale(.95)}100%{opacity:0;transform:translateX(30px) scale(.9);max-height:0;margin-bottom:0;padding:0;overflow:hidden}}
+        
+        /* Hologram & Speech Bubble */
         .holo-container{position:fixed;bottom:20px;right:15px;width:140px;height:220px;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(20px) scale(.95);transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1),visibility .5s;perspective:1000px}
         .holo-container.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
         .holo-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:25px;background:radial-gradient(ellipse at center,rgba(124,58,237,0.6) 0%,rgba(124,58,237,0) 70%);border-radius:50%;z-index:1}
@@ -301,8 +303,12 @@
         .holo-body{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);width:100px;height:180px;transform-style:preserve-3d;z-index:2}
         .holo-container.show .holo-body{animation:holoFloat 6s infinite ease-in-out}
         .holo-avatar{width:100%;height:auto;filter:drop-shadow(0 0 15px rgba(124,58,237,0.9)) brightness(1.1) contrast(1.1);mix-blend-mode:multiply;opacity:.9}
+        .holo-speech{position:absolute;bottom:195px;right:-10px;width:220px;background:var(--bg-card);padding:14px;border-radius:12px;font-size:.8rem;color:var(--text-dark);box-shadow:0 4px 15px rgba(0,0,0,0.1);border:1px solid var(--border-gold);opacity:0;transform:translateY(10px);transition:all .5s;pointer-events:none;text-align:left;line-height:1.4}
+        .holo-speech.show{opacity:1;transform:translateY(0)}
+        .holo-speech::after{content:'';position:absolute;bottom:-10px;right:20px;border-width:10px 10px 0;border-style:solid;border-color:var(--bg-card) transparent}
         @keyframes holoFloat{0%{transform:translateX(-50%) translateY(0) rotateY(0deg)}25%{transform:translateX(-50%) translateY(-10px) rotateY(5deg)}50%{transform:translateX(-50%) translateY(0) rotateY(0deg)}75%{transform:translateX(-50%) translateY(-10px) rotateY(-5deg)}100%{transform:translateX(-50%) translateY(0) rotateY(0deg)}}
         @keyframes basePulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+        
         .tour-tooltip{position:fixed;bottom:130px;right:165px;background:var(--bg-card);padding:18px 22px;border-radius:16px 16px 0 16px;width:260px;max-width:calc(100% - 180px);box-shadow:0 10px 40px rgba(0,0,0,0.15);border:1px solid var(--border-gold);z-index:10000;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:all .3s;text-align:left}
         .tour-tooltip.active{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
         .tour-tooltip h4{color:var(--accent-purple-dark);margin-bottom:6px;font-size:1rem;font-weight:700}
@@ -352,7 +358,7 @@
 
     <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center">Memproses...</p></div></div>
 
-    <!-- ==================== CVC MODAL (3 sub-checklist, masing-masing punya Normal) ==================== -->
+    <!-- ==================== CVC MODAL ==================== -->
     <div class="modal-overlay" id="cvcModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('cvcModal')">&times;</button>
@@ -364,7 +370,6 @@
                 </div>
                 <div class="section-divider"></div>
 
-                <!-- SUB 1: Pemeriksaan Visual Lokal -->
                 <div class="sub-section-box" id="cvc_sub1">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="cvc_s1_normal" onchange="toggleSubNormal('cvc_sub1','cvc_s1_normal')">
@@ -383,7 +388,6 @@
                     </label>
                 </div>
 
-                <!-- SUB 2: Pemeriksaan Palpasi -->
                 <div class="sub-section-box" id="cvc_sub2">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="cvc_s2_normal" onchange="toggleSubNormal('cvc_sub2','cvc_s2_normal')">
@@ -397,7 +401,6 @@
                     </label>
                 </div>
 
-                <!-- SUB 3: Tanda Sistemik / Kritis -->
                 <div class="sub-section-box" id="cvc_sub3">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="cvc_s3_normal" onchange="toggleSubNormal('cvc_sub3','cvc_s3_normal')">
@@ -432,7 +435,7 @@
         </div>
     </div>
 
-    <!-- ==================== AV-SHUNT MODAL (3 sub-checklist, masing-masing punya Normal) ==================== -->
+    <!-- ==================== AV-SHUNT MODAL ==================== -->
     <div class="modal-overlay" id="avModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('avModal')">&times;</button>
@@ -441,7 +444,6 @@
                 <div class="input-group"><label>NAMA PASIEN (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div>
                 <div class="section-divider"></div>
 
-                <!-- SUB 1: Pemeriksaan Visual (Lihat) -->
                 <div class="sub-section-box" id="av_sub1">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="av_s1_normal" onchange="toggleAvSub1Normal()">
@@ -465,7 +467,6 @@
                     </label>
                 </div>
 
-                <!-- SUB 2: Pemeriksaan Raba (Feel) -->
                 <div class="sub-section-box" id="av_sub2">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="av_s2_normal" onchange="toggleAvSub2Normal()">
@@ -488,11 +489,9 @@
                         <span class="check-box"></span>
                         <span>Nyeri hebat saat disentuh</span>
                     </label>
-                    <!-- Hidden radio "normal" untuk state management -->
                     <input type="radio" name="av_thrill" value="normal" checked style="display:none">
                 </div>
 
-                <!-- SUB 3: Tanda Peringatan Lain -->
                 <div class="sub-section-box" id="av_sub3">
                     <label class="check-label normal-opt">
                         <input type="checkbox" id="av_s3_normal" onchange="toggleSubNormal('av_sub3','av_s3_normal')">
@@ -636,20 +635,45 @@
                     <div class="literature-item"><span class="literature-bullet">&#9679;</span> Exercise untuk menjaga AV-Shunt</div>
                     <div class="literature-item"><span class="literature-bullet">&#9679;</span> Kapan harus ke fasilitas kesehatan</div>
                 </div>
-                <div class="panel-actions"><button class="btn btn-teal" onclick="showToast('Materi edukasi segera tersedia','info')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Buka Materi</button></div>
+                <div class="panel-actions">
+                    <a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-teal" style="text-decoration:none;">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Buka Materi
+                    </a>
+                </div>
             </div>
 
             <div class="panel-card bg-consultation has-bg">
                 <div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                 <h3 class="panel-title">KONSULTASI</h3>
-                <p class="panel-subtitle">Konsultasi langsung dengan tim hemodialisis untuk pertanyaan dan keluhan terkait akses vascular Anda.</p>
-                <div class="consult-features">
-                    <div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><strong>Chat Real-time</strong> dengan tim HD</span></div>
-                    <div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><strong>Rahasia Terjaga</strong> privasi terjamin</span></div>
-                    <div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><strong>Respon Cepat</strong> saat jam operasional</span></div>
+                <p class="panel-subtitle">Tulis keluhan atau pertanyaan Anda, lalu pilih perawat untuk mengirimkannya via WhatsApp.</p>
+                <div class="input-group" style="margin-bottom:12px">
+                    <textarea id="consultText" class="input-field" placeholder="Tulis keluhan atau pertanyaan Anda di sini..." style="min-height: 80px; resize: vertical; background: #fff;"></textarea>
                 </div>
-                <div class="panel-actions"><button class="btn btn-consult" onclick="document.getElementById('chatInput').focus()"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Mulai Konsultasi</button></div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('628212470093')">Konsultasi Hesty</button>
+                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6285732737585')">Konsultasi Erik</button>
+                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6281234028884')">Konsultasi Rovi</button>
+                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6281234028503')">Konsultasi Maria</button>
+                </div>
             </div>
+        </div>
+
+        <!-- Kartu Catatan Petugas -->
+        <div class="panel-card" style="margin-top: 16px; border: 2px solid var(--border-gold);">
+            <div class="panel-icon-wrapper gold" style="background: linear-gradient(145deg,#fffaf0,#ffedd5); box-shadow: 6px 6px 16px rgba(245,158,11,0.12);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3 class="panel-title">CATATAN PETUGAS</h3>
+            <p class="panel-subtitle">Catatan penting terkait pasien atau akses hemodialisis. Tersimpan otomatis di internal dan Google Sheets.</p>
+            
+            <div class="grid-2" style="margin-bottom: 12px;">
+                <div class="input-group" style="margin-bottom:0;"><label>Nama Subjek/Pasien</label><input type="text" id="noteSubject" class="input-field" placeholder="Nama / No RM (opsional)"></div>
+                <div class="input-group" style="margin-bottom:0;"><label>Tanggal & Waktu</label><input type="text" id="noteDate" class="input-field" readonly></div>
+            </div>
+            <div class="input-group"><label>Isi Catatan</label><textarea id="noteContent" class="input-field" placeholder="Tulis catatan..." style="min-height: 100px; resize: vertical;"></textarea></div>
+            
+            <div class="panel-actions"><button class="btn btn-gold" onclick="saveNote()">Simpan Catatan</button></div>
+            <div id="note-save-status" style="text-align:center; margin-top: 10px;"></div>
         </div>
 
         <div class="panel-footer">
@@ -669,18 +693,10 @@
     </div>
 
     <div class="holo-container" id="holoContainer">
+        <div class="holo-speech" id="holoSpeech">Halo! Saya Dokter Monalisa. Klik 'Panduan' atau mulai 'Screening' untuk memantau akses HD Anda.</div>
         <div class="holo-beam"></div>
         <div class="holo-body">
-            <svg class="holo-avatar" viewBox="0 0 100 180" fill="none">
-                <ellipse cx="50" cy="30" rx="22" ry="28" fill="rgba(124,58,237,0.25)" stroke="rgba(124,58,237,0.7)" stroke-width="1.5"/>
-                <circle cx="42" cy="26" r="4" fill="rgba(124,58,237,0.5)"/><circle cx="58" cy="26" r="4" fill="rgba(124,58,237,0.5)"/>
-                <path d="M42 38 Q50 46 58 38" stroke="rgba(124,58,237,0.6)" stroke-width="1.5" fill="none"/>
-                <path d="M30 60 Q50 55 70 60 L65 120 Q50 125 35 120 Z" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.6)" stroke-width="1.5"/>
-                <path d="M30 60 L20 90 L30 85" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
-                <path d="M70 60 L80 90 L70 85" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
-                <path d="M35 120 L30 175 L42 175 L45 130" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
-                <path d="M65 120 L70 175 L58 175 L55 130" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
-            </svg>
+            <img src="dokter.gif" class="holo-avatar" alt="Dokter Hologram">
         </div>
         <div class="holo-base"></div>
     </div>
@@ -690,8 +706,9 @@
     <audio class="audio-hidden" id="chatSound" preload="auto"><source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=" type="audio/wav"></audio>
 
     <script>
-    /* ========== KONFIGURASI GOOGLE SHEETS — Ganti URL ini ========== */
-    const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    /* ========== KONFIGURASI GOOGLE SHEETS ========== */
+    const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Untuk screening
+    const NOTE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzDNKDlLkA4TkujQVHR4uYQ_YMkB636GO0cfL8dZpcXElJ-k76UnBTZroWGAaIQU76M/exec'; // Untuk Catatan
 
     /* ========== STATE GLOBAL ========== */
     let currentUser = localStorage.getItem('monalisa_user') || '';
@@ -711,7 +728,18 @@
         updateClock(); setInterval(updateClock, 1000);
         updateVisitorCount(); setInterval(updateVisitorCount, 8000);
         updateLoginUI(); renderChat(); updateStats();
-        setTimeout(() => { document.getElementById('holoContainer').classList.add('show'); }, 2000);
+        
+        // Set tanggal catatan awal
+        document.getElementById('noteDate').value = new Date().toLocaleString('id-ID');
+        
+        // Munculkan Hologram & Panduan Singkat
+        setTimeout(() => {
+            document.getElementById('holoContainer').classList.add('show');
+            document.getElementById('holoSpeech').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('holoSpeech').classList.remove('show');
+            }, 8000); // Hilang setelah 8 detik
+        }, 1500);
     });
 
     /* ========== JAM DIGITAL ========== */
@@ -801,7 +829,6 @@
 
     /* ==========================================================
        LOGIKA SUB-SECTION: Normal vs Gejala (GENERIC)
-       Digunakan oleh CVC Sub1, Sub2, Sub3 dan AV-Shunt Sub3
        ========================================================== */
     function toggleSubNormal(subBoxId, normalId) {
         const isNormal = document.getElementById(normalId).checked;
@@ -827,19 +854,9 @@
         }
     }
 
-    /* ==========================================================
-       AV-SHUNT SUB 1: Visual (checkbox biasa)
-       ========================================================== */
-    function toggleAvSub1Normal() {
-        toggleSubNormal('av_sub1', 'av_s1_normal');
-    }
-    function avSub1SymptomChanged() {
-        subSymptomChanged('av_sub1', 'av_s1_normal');
-    }
+    function toggleAvSub1Normal() { toggleSubNormal('av_sub1', 'av_s1_normal'); }
+    function avSub1SymptomChanged() { subSymptomChanged('av_sub1', 'av_s1_normal'); }
 
-    /* ==========================================================
-       AV-SHUNT SUB 2: Raba (ada radio + checkbox)
-       ========================================================== */
     function toggleAvSub2Normal() {
         const isNormal = document.getElementById('av_s2_normal').checked;
         const box = document.getElementById('av_sub2');
@@ -854,7 +871,6 @@
                 el.classList.remove('disabled');
             }
         });
-        // Jika normal dicentang, set radio "normal" (hidden) ke checked
         if (isNormal) {
             const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
             if (normalRadio) normalRadio.checked = true;
@@ -882,7 +898,6 @@
         let details = [];
         let isCritical = false;
 
-        // Sub 1: Visual Lokal
         if (document.getElementById('cvc_s1_normal').checked) {
             details.push('Visual Lokal: Normal');
         } else {
@@ -894,7 +909,6 @@
             sub1Items.forEach(item => { score += 1; });
         }
 
-        // Sub 2: Palpasi
         if (document.getElementById('cvc_s2_normal').checked) {
             details.push('Palpasi: Normal');
         } else {
@@ -904,7 +918,6 @@
             details.push('Palpasi: ' + sub2Items.join(', '));
         }
 
-        // Sub 3: Sistemik / Kritis
         if (document.getElementById('cvc_s3_normal').checked) {
             details.push('Sistemik: Normal');
         } else {
@@ -915,12 +928,10 @@
             details.push('Sistemik: ' + sub3Items.join(', '));
         }
 
-        // Cek apakah SEMUA sub normal
         const allNormal = document.getElementById('cvc_s1_normal').checked &&
                           document.getElementById('cvc_s2_normal').checked &&
                           document.getElementById('cvc_s3_normal').checked;
 
-        // Tentukan level risiko
         let level, badgeClass, badgeText, circleClass, msg;
         if (allNormal) {
             level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
@@ -944,7 +955,6 @@
             msg = 'Ditemukan tanda KRITIS! Segera hubungi tim HD untuk evaluasi segera.';
         }
 
-        // Tampilkan hasil
         document.getElementById('cvc-form').style.display = 'none';
         document.getElementById('cvc-result').style.display = 'block';
         document.getElementById('cvc-score-val').textContent = score;
@@ -955,7 +965,6 @@
         badge.textContent = badgeText;
         document.getElementById('cvc-risk-msg').textContent = msg;
 
-        // Aksi kritis
         const critDiv = document.getElementById('cvc-critical-action');
         if (isCritical) {
             critDiv.innerHTML = `<div style="padding:12px 16px;background:rgba(220,38,38,0.08);border:2px solid var(--accent-red);border-radius:12px;font-size:.82rem;color:var(--accent-red-dark);font-weight:700;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Segera lakukan evaluasi klinis dan pertimbangkan penggantian kateter!</div>`;
@@ -963,19 +972,17 @@
             critDiv.innerHTML = '';
         }
 
-        // Buat link WhatsApp
+        // Buat link WhatsApp Langsung
         const waText = `Nama Pasien : ${name}\nPenilaian/screening : ${details.join(' | ')}\nHasil/Kesimpulan : ${level} (Skor: ${score})\ntgl. cek : ${new Date().toLocaleString('id-ID')}`;
         const encText = encodeURIComponent(waText);
         document.getElementById('cvc-wa-action').innerHTML = buildWaButtons(encText);
 
-        // Update statistik
         totalScreenings++;
         if (level === 'Normal') normalScreenings++;
         localStorage.setItem('monalisa_total', totalScreenings);
         localStorage.setItem('monalisa_normal', normalScreenings);
         updateStats();
 
-        // Simpan ke Google Sheets
         saveToSheet({
             tipe: 'CVC',
             nama: name,
@@ -992,7 +999,6 @@
         document.getElementById('cvc-form').style.display = 'block';
         document.getElementById('cvc-result').style.display = 'none';
         document.getElementById('cvc-wa-action').innerHTML = '';
-        // Reset semua checkbox & state
         ['cvc_s1_normal','cvc_s2_normal','cvc_s3_normal','q1','q2','q3','q4','q5'].forEach(id => {
             document.getElementById(id).checked = false;
         });
@@ -1013,7 +1019,6 @@
         let details = [];
         let isCritical = false;
 
-        // Sub 1: Visual
         if (document.getElementById('av_s1_normal').checked) {
             details.push('Visual: Normal');
         } else {
@@ -1025,7 +1030,6 @@
             details.push('Visual: ' + sub1Items.join(', '));
         }
 
-        // Sub 2: Raba
         if (document.getElementById('av_s2_normal').checked) {
             details.push('Raba (Thrill): Normal');
         } else {
@@ -1040,7 +1044,6 @@
             details.push('Raba: ' + sub2Items.join(', '));
         }
 
-        // Sub 3: Tanda Lain
         if (document.getElementById('av_s3_normal').checked) {
             details.push('Tanda Lain: Normal');
         } else {
@@ -1052,12 +1055,10 @@
             details.push('Tanda Lain: ' + sub3Items.join(', '));
         }
 
-        // Cek apakah SEMUA sub normal
         const allNormal = document.getElementById('av_s1_normal').checked &&
                           document.getElementById('av_s2_normal').checked &&
                           document.getElementById('av_s3_normal').checked;
 
-        // Tentukan level
         let level, badgeClass, badgeText, circleClass, msg;
         if (allNormal) {
             level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
@@ -1081,7 +1082,6 @@
             msg = 'Ditemukan tanda KRITIS! Segera hubungi tim HD untuk evaluasi dan tindakan segera.';
         }
 
-        // Tampilkan hasil
         document.getElementById('av-form').style.display = 'none';
         document.getElementById('av-result').style.display = 'block';
         document.getElementById('av-score-val').textContent = score;
@@ -1099,7 +1099,6 @@
             critDiv.innerHTML = '';
         }
 
-        // Buat link WhatsApp
         const waText = `Nama Pasien : ${name}\nPenilaian/screening : ${details.join(' | ')}\nHasil/Kesimpulan : ${level} (Skor: ${score})\ntgl. cek : ${new Date().toLocaleString('id-ID')}`;
         const encText = encodeURIComponent(waText);
         document.getElementById('av-wa-action').innerHTML = buildWaButtons(encText);
@@ -1126,16 +1125,13 @@
         document.getElementById('av-form').style.display = 'block';
         document.getElementById('av-result').style.display = 'none';
         document.getElementById('av-wa-action').innerHTML = '';
-        // Reset semua
         ['av_s1_normal','av_s2_normal','av_s3_normal','av_vis_red','av_vis_pus','av_vis_bleed','av_palp_pain','av_other_cold','av_other_aneurysm','av_other_swelling'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.checked = false;
         });
-        // Reset radio thrill ke "normal"
         const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
         if (normalRadio) normalRadio.checked = true;
         document.querySelectorAll('input[name="av_thrill"][value="weak"],input[name="av_thrill"][value="gone"]').forEach(r => r.checked = false);
-        // Unlock semua symptom labels
         ['av_sub1','av_sub2','av_sub3'].forEach(subId => {
             document.getElementById(subId).querySelectorAll('.check-label:not(.normal-opt)').forEach(el => {
                 el.classList.remove('disabled');
@@ -1143,7 +1139,14 @@
         });
     }
 
-    /* ========== BUAT TOMBOL WHATSAPP ========== */
+    /* ========== KONSULTASI VIA WHATSAPP ========== */
+    function sendConsultation(num) {
+        const text = document.getElementById('consultText').value.trim() || 'Halo, saya ingin konsultasi terkait akses hemodialisis.';
+        const encText = encodeURIComponent(`Konsultasi HD:\n${text}`);
+        window.open(`https://wa.me/${num}?text=${encText}`, '_blank');
+    }
+
+    /* ========== BUAT TOMBOL WHATSAPP UNTUK HASIL SCREENING ========== */
     function buildWaButtons(encText) {
         const nurses = [
             { name: 'Hesty', num: '628212470093' },
@@ -1162,7 +1165,50 @@
         return html;
     }
 
-    /* ========== SIMPAN KE GOOGLE SHEETS ========== */
+    /* ========== SIMPAN CATATAN PETUGAS ========== */
+    async function saveNote() {
+        const subject = document.getElementById('noteSubject').value.trim() || '-';
+        const content = document.getElementById('noteContent').value.trim();
+        const date = document.getElementById('noteDate').value;
+        const statusEl = document.getElementById('note-save-status');
+
+        if (!content) {
+            showToast('Isi catatan tidak boleh kosong', 'error');
+            return;
+        }
+
+        // 1. Simpan ke local storage
+        let notes = JSON.parse(localStorage.getItem('monalisa_notes') || '[]');
+        notes.push({ subject, content, date, user: currentUser || 'Anonim' });
+        localStorage.setItem('monalisa_notes', JSON.stringify(notes));
+
+        // 2. Kirim ke Google Sheets
+        statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan catatan...</div>';
+        try {
+            await fetch(NOTE_SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    tipe: 'Catatan',
+                    nama: subject,
+                    detail: content,
+                    petugas: currentUser || 'Anonim',
+                    waktu: date
+                })
+            });
+            statusEl.innerHTML = '<div class="save-indicator saved">Catatan tersimpan!</div>';
+            showToast('Catatan berhasil disimpan', 'success');
+            document.getElementById('noteContent').value = '';
+            document.getElementById('noteSubject').value = '';
+            document.getElementById('noteDate').value = new Date().toLocaleString('id-ID');
+        } catch (err) {
+            statusEl.innerHTML = `<div class="save-indicator failed">Gagal sync: ${err.message}</div>`;
+            showToast('Catatan tersimpan lokal, tapi gagal sync', 'error');
+        }
+    }
+
+    /* ========== SIMPAN KE GOOGLE SHEETS (SCREENING) ========== */
     async function saveToSheet(data, statusElId) {
         const statusEl = document.getElementById(statusElId);
         statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan ke sheet "akses"...</div>';
