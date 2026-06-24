@@ -1240,7 +1240,7 @@
     /* ========== SIMPAN KE GOOGLE SHEETS (SCREENING) ========== */
     async function saveToSheet(data, statusElId) {
         const statusEl = document.getElementById(statusElId);
-        statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan ke sheet "akses"...</div>';
+        statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan...</div>';
         try {
             await fetch(SHEET_SCRIPT_URL, {
                 method: 'POST',
@@ -1248,8 +1248,8 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-            statusEl.innerHTML = '<div class="save-indicator saved">Tersimpan di sheet "akses"</div>';
-            showToast('Data berhasil direkam ke sheet "akses"','success');
+            statusEl.innerHTML = '<div class="save-indicator saved">Tersimpan...</div>';
+            showToast('Data berhasil direkam','success');
         } catch (err) {
             statusEl.innerHTML = `<div class="save-indicator failed">Gagal menyimpan: ${err.message}</div>`;
             showToast('Gagal menyimpan ke Google Sheets','error');
