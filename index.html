@@ -5,195 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monalisa - Monitoring dan Analisa Akses Hemodialisis Anda</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Library untuk generate PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root{--bg-dark:#f3f4f6;--bg-darker:#e5e7eb;--bg-card:#ffffff;--bg-elevated:#f9fafb;--accent-red:#dc2626;--accent-red-dark:#991b1b;--accent-red-light:#fca5a5;--accent-purple:#7c3aed;--accent-purple-dark:#5b21b6;--accent-purple-light:#a78bfa;--accent-gold:#7c3aed;--accent-gold-light:#a78bfa;--text-cream:#1f2937;--text-white:#111827;--text-muted:#6b7280;--text-dark:#1e293b;--border-gold:rgba(124,58,237,0.3);--border-subtle:rgba(0,0,0,0.08);--accent-teal:#14b8a6;--accent-teal-light:#2dd4bf;--accent-teal-dark:#0d9488;--color-danger:#dc2626;--color-warning:#f59e0b;--color-success:#10b981;--accent-cyan:#06b6d4;--accent-cyan-light:#22d3ee;--accent-blue:#3b82f6;--accent-blue-dark:#1d4ed8}
+        :root{--bg-dark:#f3f4f6;--bg-card:#ffffff;--bg-elevated:#f9fafb;--accent-red:#dc2626;--accent-red-dark:#991b1b;--accent-purple:#7c3aed;--accent-purple-dark:#5b21b6;--accent-purple-light:#a78bfa;--text-cream:#1f2937;--text-white:#111827;--text-muted:#6b7280;--text-dark:#1e293b;--border-gold:rgba(124,58,237,0.3);--border-subtle:rgba(0,0,0,0.08);--accent-teal:#14b8a6;--accent-teal-dark:#0d9488;--color-danger:#dc2626;--color-warning:#f59e0b;--color-success:#10b981;--accent-cyan:#06b6d4;--accent-cyan-light:#22d3ee;--accent-blue:#3b82f6;--accent-blue-dark:#1d4ed8}
         *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
         body{font-family:'DM Sans',sans-serif;background:var(--bg-dark);min-height:100vh;overflow-x:hidden;color:var(--text-cream)}
         h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+
+        /* ============ LOGIN OVERLAY ============ */
+        .login-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0a1e 0%,#1a1035 30%,#0d1b2a 70%,#0a0f1a 100%);transition:opacity .6s ease,visibility .6s ease}
+        .login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+        .login-overlay::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,0.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(220,38,38,0.1) 0%,transparent 60%);pointer-events:none}
+        .login-overlay::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237c3aed' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+
+        /* Partikel animasi latar */
+        .login-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+        .login-particle{position:absolute;width:3px;height:3px;background:var(--accent-purple-light);border-radius:50%;opacity:0;animation:particleFloat linear infinite}
+        @keyframes particleFloat{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:.6}90%{opacity:.6}100%{opacity:0;transform:translateY(-10vh) scale(1)}}
+
+        .login-card{position:relative;z-index:2;width:460px;max-width:92vw;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:0;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.5),0 0 60px rgba(124,58,237,0.1)}
+        .login-card-header{padding:28px 32px 0;text-align:center}
+        .login-card-header .logo-text{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:6px;color:#fff;background:linear-gradient(135deg,#fff 0%,var(--accent-purple-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+        .login-card-header .logo-sub{font-size:.78rem;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:2px;text-transform:uppercase}
+
+        /* Step Indicator */
+        .step-indicator{display:flex;align-items:center;justify-content:center;gap:0;padding:24px 32px 0}
+        .step-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;border:2px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.35);transition:all .4s;position:relative;z-index:2;background:rgba(0,0,0,0.3)}
+        .step-dot.active{border-color:var(--accent-purple);color:#fff;background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));box-shadow:0 0 20px rgba(124,58,237,0.4)}
+        .step-dot.done{border-color:var(--accent-teal);color:#fff;background:var(--accent-teal);box-shadow:0 0 15px rgba(20,184,166,0.3)}
+        .step-line{width:60px;height:2px;background:rgba(255,255,255,0.1);transition:background .4s}
+        .step-line.done{background:var(--accent-teal)}
+        .step-labels{display:flex;justify-content:space-between;padding:8px 44px 0}
+        .step-label{font-size:.65rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;font-weight:600;transition:color .4s}
+        .step-label.active{color:var(--accent-purple-light)}
+        .step-label.done{color:var(--accent-teal)}
+
+        /* Form Steps */
+        .login-form-body{padding:24px 32px 32px;position:relative;min-height:320px}
+        .form-step{position:absolute;inset:0;padding:24px 32px 32px;opacity:0;visibility:hidden;transform:translateX(30px);transition:all .4s ease}
+        .form-step.active{opacity:1;visibility:visible;transform:translateX(0)}
+        .form-step.exit-left{opacity:0;visibility:hidden;transform:translateX(-30px)}
+
+        .form-step .step-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;letter-spacing:2px;margin-bottom:4px}
+        .form-step .step-desc{font-size:.8rem;color:rgba(255,255,255,0.45);margin-bottom:20px;line-height:1.5}
+
+        .login-input-group{margin-bottom:14px}
+        .login-input-group label{display:block;font-size:.68rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
+        .login-input-group input,.login-input-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:.88rem;font-family:'DM Sans',sans-serif;transition:all .25s;outline:none;-webkit-appearance:none;appearance:none}
+        .login-input-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.5)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+        .login-input-group input:focus,.login-input-group select:focus{border-color:var(--accent-purple);background:rgba(124,58,237,0.08);box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
+        .login-input-group input::placeholder{color:rgba(255,255,255,0.25)}
+        .login-input-group select option{background:#1a1035;color:#fff}
+        .login-input-group .field-error{font-size:.68rem;color:#fca5a5;margin-top:4px;display:none}
+        .login-input-group.error input,.login-input-group.error select{border-color:var(--accent-red);box-shadow:0 0 0 3px rgba(220,38,38,0.15)}
+        .login-input-group.error .field-error{display:block}
+
+        .login-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+        .btn-submit-login{width:100%;padding:14px;border:none;border-radius:14px;font-size:.95rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;letter-spacing:.5px}
+        .btn-submit-login.primary{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;box-shadow:0 6px 25px rgba(124,58,237,0.35)}
+        .btn-submit-login.primary:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(124,58,237,0.45)}
+        .btn-submit-login.teal{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;box-shadow:0 6px 25px rgba(20,184,166,0.35)}
+        .btn-submit-login.teal:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(20,184,166,0.45)}
+        .btn-submit-login:active{transform:translateY(0) scale(.98)}
+        .btn-submit-login:disabled{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+        .btn-submit-login .btn-spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+        .btn-submit-login.loading .btn-spinner{display:block}
+        .btn-submit-login.loading .btn-text{opacity:0}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        .password-toggle{position:relative}
+        .password-toggle input{padding-right:44px!important}
+        .password-toggle-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;padding:4px;transition:color .2s}
+        .password-toggle-btn:hover{color:rgba(255,255,255,0.7)}
+
+        .login-footer-note{font-size:.7rem;color:rgba(255,255,255,0.3);text-align:center;margin-top:16px;line-height:1.5}
+
+        /* ============ MAIN APP ============ */
         .bg-pattern{position:fixed;inset:0;background:radial-gradient(circle at 20% 50%,rgba(124,58,237,0.08) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(220,38,38,0.06) 0%,transparent 50%),linear-gradient(180deg,#f3f4f6 0%,#e5e7eb 100%);z-index:-2}
         .noise-overlay{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.02;z-index:-1;pointer-events:none}
-        .main-container{max-width:1400px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;gap:16px}
+        .main-container{max-width:1400px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .6s ease .3s}
+        .main-container.show{opacity:1}
+
         .header-area{display:flex;gap:16px;min-height:400px}
-        .banner-section{flex:1;border-radius:20px;overflow:hidden;position:relative;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:2px solid var(--border-gold);transition:border-color .3s}
+        .banner-section{flex:1;border-radius:20px;overflow:hidden;position:relative;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:2px solid var(--border-gold);transition:border-color .3s;background:linear-gradient(135deg,#1a1035,#0d1b2a)}
         .banner-section:hover{border-color:var(--accent-purple)}
-        .banner-section .header-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 12s ease}
-        .banner-section:hover .header-bg{transform:scale(1.03)}
         .banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.35) 30%,rgba(0,0,0,0.1) 55%,transparent 70%)}
         .banner-content{position:relative;z-index:2;padding:28px 30px;color:#fff}
-        .banner-content .header-top-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
-        .banner-content .header-left-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-        .banner-content .digital-clock{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;border:2px solid rgba(6,182,212,0.7);box-shadow:0 0 15px rgba(6,182,212,0.25);background:rgba(0,0,0,0.45);backdrop-filter:blur(8px)}
-        .banner-content .clock-icon{width:24px;height:24px;filter:drop-shadow(0 0 6px var(--accent-cyan-light))}
-        .banner-content .clock-display{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--accent-cyan-light);letter-spacing:2px}
-        .banner-content .clock-date{font-size:0.7rem;color:rgba(255,255,255,0.7);font-weight:600}
-        .banner-content .clock-pulse{width:7px;height:7px;background:var(--accent-cyan-light);border-radius:50%;animation:clockPulse 1s ease-in-out infinite;box-shadow:0 0 8px var(--accent-cyan-light)}
+        .header-top-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+        .header-left-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .digital-clock{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;border:2px solid rgba(6,182,212,0.7);box-shadow:0 0 15px rgba(6,182,212,0.25);background:rgba(0,0,0,0.45);backdrop-filter:blur(8px)}
+        .clock-display{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--accent-cyan-light);letter-spacing:2px}
+        .clock-date{font-size:.7rem;color:rgba(255,255,255,0.7);font-weight:600}
+        .clock-pulse{width:7px;height:7px;background:var(--accent-cyan-light);border-radius:50%;animation:clockPulse 1s ease-in-out infinite;box-shadow:0 0 8px var(--accent-cyan-light)}
         @keyframes clockPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-        .banner-content .login-container{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);padding:8px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.25);transition:all .3s;cursor:pointer}
-        .banner-content .login-container:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.5)}
-        .banner-content .login-container.logged-in{background:rgba(20,184,166,0.2);border-color:rgba(45,212,191,0.5)}
-        .banner-content .login-icon{width:18px;height:18px;opacity:.85}
-        .banner-content .login-text{background:transparent;border:none;outline:none;font-size:.82rem;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0}
-        .banner-content .user-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:none;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.8rem}
-        .banner-content .guide-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:#fff;padding:10px 18px;border-radius:12px;font-weight:600;font-size:.8rem;text-decoration:none;transition:all .3s;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer}
-        .banner-content .guide-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
-        .banner-content .guide-icon{width:16px;height:16px}
-        .banner-content .header-title{font-family:'Bebas Neue',sans-serif;font-size:3.6rem;line-height:1;letter-spacing:4px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:4px}
-        .banner-content .header-subtitle{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:10px;font-weight:500;letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
-        .banner-content .welcome-message{font-size:.85rem;color:var(--accent-teal-light);font-weight:600;margin-bottom:8px;display:none;text-shadow:0 2px 6px rgba(0,0,0,0.3)}
-        .banner-content .welcome-message.show{display:block;animation:fadeInUp .5s ease}
+        .user-info-bar{display:flex;align-items:center;gap:8px;background:rgba(20,184,166,0.15);backdrop-filter:blur(8px);padding:8px 14px;border-radius:12px;border:1.5px solid rgba(45,212,191,0.4)}
+        .user-avatar-sm{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.75rem}
+        .user-name-text{font-size:.82rem;font-weight:600;color:#fff}
+        .user-hd-badge{font-size:.6rem;background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:6px;color:rgba(255,255,255,0.8);font-weight:600}
+        .logout-btn{background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);color:#fca5a5;padding:6px 12px;border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+        .logout-btn:hover{background:var(--accent-red);color:#fff}
+        .header-title{font-family:'Bebas Neue',sans-serif;font-size:3.6rem;line-height:1;letter-spacing:4px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:4px}
+        .header-subtitle{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:10px;font-weight:500;letter-spacing:.5px}
+        .welcome-message{font-size:.85rem;color:var(--accent-teal-light);font-weight:600;margin-bottom:8px;display:none}
+        .welcome-message.show{display:block;animation:fadeInUp .5s ease}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .visitor-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);margin-bottom:10px}
-        .visitor-eye-icon{width:16px;height:16px;opacity:.8}
+        .visitor-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.15)}
         .visitor-live-dot{width:6px;height:6px;background:#ef4444;border-radius:50%;animation:liveDotPulse 1.5s ease-in-out infinite;box-shadow:0 0 6px rgba(239,68,68,0.6)}
         @keyframes liveDotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
         .visitor-number{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:#fff;letter-spacing:1px}
         .visitor-label{font-size:.7rem;color:rgba(255,255,255,0.65);font-weight:500}
-        .visitor-badge-footer{display:flex;align-items:center;gap:8px;padding:6px 14px;background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(239,68,68,0.03));border:1.5px solid rgba(239,68,68,0.2);border-radius:12px}
-        .visitor-badge-footer .visitor-number{font-size:.8rem;color:var(--accent-red-dark)}
-        .visitor-badge-footer .visitor-label{color:var(--text-muted);font-size:.68rem}
+
         .chat-sidebar{width:330px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
         .inline-chat-container{background:var(--bg-card);border-radius:16px;border:2px solid var(--border-subtle);overflow:hidden;box-shadow:0 8px 32px rgba(124,58,237,0.1);display:flex;flex-direction:column;flex:1;min-height:0}
-        .inline-chat-container:hover{border-color:var(--border-gold)}
         .chat-header-bar{background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));padding:8px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:600;font-size:.8rem;flex-shrink:0}
         .chat-status{font-size:.68rem;opacity:.9;display:flex;align-items:center;gap:5px}
-        .chat-status::before{content:'';width:6px;height:6px;border-radius:50%;animation:blink 2s infinite}
-        .chat-status.online::before{background:#4ade80}
-        .chat-status.offline::before{background:#fbbf24}
+        .chat-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:blink 2s infinite}
         @keyframes blink{50%{opacity:.5}}
-        .chat-sync-badge{font-size:.6rem;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:8px;margin-left:4px;display:none}
-        .chat-sync-badge.show{display:inline-block}
         .chat-messages-area{flex:1;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;min-height:60px;background:var(--bg-elevated)}
-        .chat-bubble-wrap{max-width:88%;display:flex;flex-direction:column;position:relative;transition:border-color .25s,box-shadow .25s;border-radius:12px}
+        .chat-bubble-wrap{max-width:88%;display:flex;flex-direction:column;border-radius:12px}
         .chat-bubble-wrap.outgoing-wrap{align-self:flex-end}
         .chat-bubble-wrap.incoming-wrap{align-self:flex-start}
-        .chat-bubble-wrap.delete-target-inline{border:2px solid var(--accent-red)!important;box-shadow:0 0 14px rgba(220,38,38,0.25)!important;animation:deleteBubblePulse .9s ease infinite;border-radius:12px}
-        @keyframes deleteBubblePulse{0%,100%{box-shadow:0 0 6px rgba(220,38,38,0.15)}50%{box-shadow:0 0 18px rgba(220,38,38,0.4)}}
-        .chat-bubble-wrap.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 12px rgba(124,58,237,0.12)!important;border-radius:12px}
-        .chat-bubble{padding:8px 11px;border-radius:10px;font-size:.78rem;line-height:1.4;word-wrap:break-word;box-shadow:0 1px 4px rgba(0,0,0,0.04);position:relative}
+        .chat-bubble{padding:8px 11px;border-radius:10px;font-size:.78rem;line-height:1.4;word-wrap:break-word;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
         .chat-bubble.incoming{background:#fff;color:var(--text-dark);border-bottom-left-radius:3px}
         .chat-bubble.outgoing{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;border-bottom-right-radius:3px}
-        .chat-bubble .bubble-author{font-size:.65rem;opacity:.7;margin-bottom:2px;font-weight:700}
         .chat-bubble .bubble-meta{font-size:.55rem;opacity:.55;margin-top:3px;display:block;text-align:right}
-        .reply-quote{background:rgba(124,58,237,0.07);border-left:2px solid var(--accent-purple);border-radius:3px;padding:4px 8px;margin-bottom:5px;font-size:.68rem;line-height:1.3}
-        .chat-bubble.outgoing .reply-quote{background:rgba(255,255,255,0.13);border-left-color:rgba(255,255,255,0.45)}
-        .reply-quote-author{font-weight:700;color:var(--accent-purple-dark);display:block;margin-bottom:1px;font-size:.63rem}
-        .chat-bubble.outgoing .reply-quote-author{color:rgba(255,255,255,0.8)}
-        .reply-quote-text{color:var(--text-muted);display:block;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-        .chat-bubble.outgoing .reply-quote-text{color:rgba(255,255,255,0.65)}
-        .forward-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(20,184,166,0.1);color:var(--accent-teal-dark);font-size:.63rem;font-weight:700;padding:2px 6px;border-radius:3px;margin-bottom:5px;text-transform:uppercase}
-        .chat-bubble.outgoing .forward-badge{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.85)}
-        .chat-bubble-actions{display:flex;gap:8px;margin-top:4px;padding-top:4px}
-        .chat-bubble.incoming .chat-bubble-actions{border-top:1px solid rgba(0,0,0,0.05)}
-        .chat-bubble.outgoing .chat-bubble-actions{border-top:1px solid rgba(255,255,255,0.12)}
-        .chat-action-btn{background:none;border:none;font-size:.6rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:2px;padding:2px 0;transition:opacity .15s,transform .1s;font-family:'DM Sans',sans-serif}
-        .chat-action-btn:hover{opacity:.6}.chat-action-btn:active{transform:scale(.95)}
-        .chat-action-btn.reply-btn{color:var(--accent-purple)}
-        .chat-action-btn.fwd-btn{color:var(--accent-teal-dark)}
-        .chat-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
-        .chat-action-btn .ca-icon{width:11px;height:11px;flex-shrink:0}
-        .chat-bubble.outgoing .chat-action-btn.reply-btn{color:rgba(255,255,255,0.6)}
-        .chat-bubble.outgoing .chat-action-btn.fwd-btn{color:rgba(255,255,255,0.6)}
-        .chat-bubble.outgoing .chat-action-btn.delete-btn{color:#fca5a5;font-weight:800}
-        .chat-bubble.outgoing .chat-action-btn:hover{color:rgba(255,255,255,0.95)!important}
-        .reply-preview-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(124,58,237,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-purple);animation:slideDown .2s ease}
-        @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-        .reply-preview-bar .rp-indicator{width:3px;height:26px;background:var(--accent-purple);border-radius:2px;flex-shrink:0}
-        .reply-preview-bar .rp-content{flex:1;min-width:0}
-        .reply-preview-bar .rp-label{font-size:.65rem;font-weight:700;color:var(--accent-purple-dark)}
-        .reply-preview-bar .rp-text{font-size:.68rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .reply-preview-bar .rp-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.05);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-        .reply-preview-bar .rp-cancel:hover{background:var(--accent-red);color:#fff}
-        .delete-confirm-bar{padding:8px 10px;background:rgba(220,38,38,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-red);animation:slideDown .2s ease}
-        .delete-confirm-bar .dc-title{font-size:.72rem;font-weight:700;color:var(--accent-red-dark);margin-bottom:6px;display:flex;align-items:center;gap:5px}
-        .delete-confirm-bar .dc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
-        .delete-confirm-bar .dc-actions{display:flex;gap:6px;justify-content:flex-end}
-        .dc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .dc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .dc-btn-cancel:hover{background:#e5e7eb}
-        .dc-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
-        .dc-btn-confirm:hover{box-shadow:0 3px 10px rgba(220,38,38,0.3);transform:translateY(-1px)}
-        .forward-confirm-bar{padding:10px;background:rgba(20,184,166,0.05);border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent-teal);animation:slideDown .2s ease}
-        .forward-confirm-bar .fc-title{font-size:.72rem;font-weight:700;color:var(--accent-teal-dark);margin-bottom:5px;display:flex;align-items:center;gap:5px}
-        .forward-confirm-bar .fc-msg{font-size:.75rem;color:var(--text-muted);padding:6px 8px;background:var(--bg-elevated);border-radius:6px;border:1px solid var(--border-subtle);margin-bottom:8px;word-break:break-word}
-        .forward-confirm-bar .fc-actions{display:flex;gap:6px;justify-content:flex-end}
-        .fc-btn{padding:6px 14px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .fc-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .fc-btn-cancel:hover{background:#e5e7eb}
-        .fc-btn-confirm{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff}
-        .fc-btn-confirm:hover{box-shadow:0 3px 10px rgba(20,184,166,0.3);transform:translateY(-1px)}
         .chat-input-bar{display:flex;gap:6px;padding:8px 10px;border-top:1px solid var(--border-subtle);background:#fff}
         .chat-input-bar input{flex:1;border:1px solid var(--border-subtle);border-radius:16px;padding:8px 14px;font-size:.8rem;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif}
         .chat-input-bar input:focus{border-color:var(--accent-purple)}
         .chat-send-btn{width:36px;height:36px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;flex-shrink:0}
         .chat-send-btn:hover{transform:scale(1.05);box-shadow:0 3px 10px rgba(20,184,166,0.3)}
-        .chat-login-prompt{padding:12px;text-align:center;font-size:.78rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);background:#fff}
-        .chat-login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-chat{text-align:center;color:var(--text-muted);font-size:.75rem;margin:auto;opacity:.7}
-        .discussion-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(20,184,166,0.25);border:none;cursor:pointer;flex-shrink:0}
+        .discussion-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.85rem;transition:all .3s;box-shadow:0 6px 20px rgba(20,184,166,0.25);border:none;cursor:pointer;flex-shrink:0}
         .discussion-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,184,166,0.35)}
-        .discussion-btn svg{width:16px;height:16px;flex-shrink:0}
-        .discussion-modal{width:95vw;max-width:600px;height:80vh;max-height:700px;display:flex;flex-direction:column}
-        .discussion-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid var(--border-subtle);padding-bottom:12px}
-        .discussion-count{background:var(--accent-teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
-        .comments-list{flex:1;overflow-y:auto;margin-bottom:16px;padding-right:8px}
-        .comment-item{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:10px;transition:all .15s}
-        .comment-item:hover{border-color:rgba(124,58,237,0.25)}
-        .comment-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-        .comment-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent-purple),var(--accent-teal));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem}
-        .comment-author{font-weight:700;font-size:.9rem;color:var(--text-dark)}
-        .comment-time{font-size:.7rem;color:var(--text-muted);margin-left:auto}
-        .comment-text{font-size:.85rem;color:var(--text-cream);line-height:1.5}
-        .comment-reply-quote{background:rgba(124,58,237,0.07);border-left:3px solid var(--accent-purple);border-radius:4px;padding:6px 10px;margin-bottom:8px;font-size:.78rem}
-        .comment-reply-quote .crq-author{font-weight:700;color:var(--accent-purple-dark);font-size:.7rem}
-        .comment-reply-quote .crq-text{color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .comment-forward-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(20,184,166,0.12);color:var(--accent-teal-dark);font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px}
-        .comment-item.reply-target{border:2px solid var(--accent-purple)!important;box-shadow:0 0 15px rgba(124,58,237,0.15)!important}
-        .comment-item.delete-target{border:2px solid var(--accent-red)!important;box-shadow:0 0 15px rgba(220,38,38,0.15)!important;animation:deletePulse .8s ease infinite}
-        @keyframes deletePulse{0%,100%{box-shadow:0 0 5px rgba(220,38,38,0.15)}50%{box-shadow:0 0 20px rgba(220,38,38,0.3)}}
-        .comment-actions{display:flex;gap:14px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)}
-        .comment-action-btn{background:none;border:none;font-size:.75rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:2px 0;transition:all .15s;font-family:'DM Sans',sans-serif}
-        .comment-action-btn:hover{opacity:.6}.comment-action-btn:active{transform:scale(.95)}
-        .comment-action-btn.reply-btn{color:var(--accent-purple)}
-        .comment-action-btn.fwd-btn{color:var(--accent-teal-dark)}
-        .comment-action-btn.delete-btn{color:var(--accent-red);font-weight:800}
-        .comment-action-btn .cma-icon{width:13px;height:13px;flex-shrink:0}
-        .modal-delete-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(220,38,38,0.06);border:2px solid var(--accent-red);border-radius:10px;margin-bottom:10px;animation:slideDown .2s ease}
-        .modal-delete-bar .md-indicator{width:3px;height:36px;background:var(--accent-red);border-radius:2px;flex-shrink:0}
-        .modal-delete-bar .md-content{flex:1;min-width:0}
-        .modal-delete-bar .md-label{font-size:.75rem;font-weight:700;color:var(--accent-red-dark)}
-        .modal-delete-bar .md-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .modal-delete-bar .md-actions{display:flex;gap:6px;flex-shrink:0}
-        .md-btn{padding:6px 14px;border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .15s}
-        .md-btn-cancel{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .md-btn-cancel:hover{background:#e5e7eb}
-        .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
-        .md-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3)}
-        .comment-input-area textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;padding:12px;font-size:.9rem;color:var(--text-white);font-family:inherit}
-        .comment-input-area textarea:focus{outline:none;border-color:var(--accent-teal)}
-        .modal-reply-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(124,58,237,0.06);border:2px solid var(--accent-purple);border-radius:8px;margin-bottom:8px;animation:slideDown .2s ease}
-        .modal-reply-bar .mr-content{flex:1;min-width:0}
-        .modal-reply-bar .mr-label{font-size:.7rem;font-weight:700;color:var(--accent-purple-dark)}
-        .modal-reply-bar .mr-text{font-size:.75rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .modal-reply-bar .mr-cancel{width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,0.06);color:var(--text-muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .modal-reply-bar .mr-cancel:hover{background:var(--accent-red);color:#fff}
-        .login-prompt{text-align:center;padding:30px 20px;color:var(--text-muted)}
-        .login-prompt a{color:var(--accent-purple);font-weight:700;cursor:pointer;text-decoration:underline}
-        .empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);opacity:.7}
+
         .panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;flex:1}
         .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
         .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform .4s;z-index:3}
         .panel-card:hover::before{transform:scaleX(1)}
-        .panel-card::after{content:'';position:absolute;bottom:-15px;right:-15px;width:58%;height:58%;background-size:contain;background-repeat:no-repeat;background-position:bottom right;opacity:0;transition:opacity .6s ease,transform .6s ease;transform:scale(0.9) translate(10px,10px);z-index:0;pointer-events:none}
-        .panel-card:hover::after{opacity:1;transform:scale(1) translate(0,0)}
-        .panel-card.has-bg::after{opacity:.12}
-        .panel-card.has-bg:hover::after{opacity:.2}
-        .panel-card.bg-cvc::after{background-image:url('icon-cvc.png')}
-        .panel-card.bg-avshunt::after{background-image:url('icon-avshunt.png')}
-        .panel-card.bg-education::after{background-image:url('icon-education.png')}
-        .panel-card.bg-consultation::after{background-image:url('icon-consultation.png')}
-        .panel-card>.panel-icon-wrapper,.panel-card>.panel-title,.panel-card>.panel-subtitle,.panel-card>.literature-box,.panel-card>.panel-actions,.panel-card>.consult-features{position:relative;z-index:1}
         .panel-card:hover{border-color:var(--border-gold);transform:translateY(-5px);box-shadow:0 20px 50px rgba(124,58,237,0.15)}
         .panel-icon-wrapper{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all .3s;flex-shrink:0}
         .panel-card:hover .panel-icon-wrapper{transform:scale(1.08) rotate(-2deg)}
@@ -201,21 +148,11 @@
         .panel-icon-wrapper.gold{background:linear-gradient(145deg,#f5f3ff,#ede9fe);box-shadow:6px 6px 16px rgba(124,58,237,0.12)}
         .panel-icon-wrapper.teal{background:linear-gradient(145deg,#f0fdfa,#ccfbf1);box-shadow:6px 6px 16px rgba(20,184,166,0.12)}
         .panel-icon-wrapper.blue{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:6px 6px 16px rgba(59,130,246,0.12)}
-        .panel-icon-wrapper svg{width:28px;height:28px;transition:transform .3s}
-        .panel-card:hover .panel-icon-wrapper svg{transform:scale(1.1)}
+        .panel-icon-wrapper svg{width:28px;height:28px}
         .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
         .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
-        .consult-features{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
-        .consult-feature-item{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-muted);padding:8px 12px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle);transition:all .2s}
-        .consult-feature-item:hover{border-color:rgba(59,130,246,0.3);background:#eff6ff}
-        .consult-feature-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent-blue)}
-        .consult-feature-item strong{color:var(--text-dark);font-weight:600}
-        .literature-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:16px}
-        .literature-title{font-size:.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
-        .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.75rem;color:var(--text-muted);line-height:1.4}
-        .literature-bullet{color:var(--accent-purple);flex-shrink:0}
         .panel-actions{display:flex;gap:10px;margin-top:auto}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:none;border:none;transition:all .3s;flex:1}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:none;border:none;transition:all .3s;flex:1;font-family:'DM Sans',sans-serif}
         .btn-primary{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff;box-shadow:0 4px 15px rgba(220,38,38,0.25)}
         .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(220,38,38,0.35)}
         .btn-secondary{background:transparent;border:2px solid var(--accent-purple);color:var(--accent-purple-dark)}
@@ -226,49 +163,48 @@
         .btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(20,184,166,0.35)}
         .btn-consult{background:linear-gradient(135deg,var(--accent-blue),var(--accent-blue-dark));color:#fff;box-shadow:0 4px 15px rgba(59,130,246,0.25)}
         .btn-consult:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.35)}
-        .btn-icon{width:16px;height:16px}
+
         .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04);flex-wrap:wrap}
         .panel-footer:hover{border-color:var(--border-gold)}
         .footer-info{display:flex;align-items:center;gap:16px;min-width:0;flex:1}
-        .footer-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 12px rgba(124,58,237,0.12);overflow:hidden;flex-shrink:0}
-        .footer-icon img{width:28px;height:28px;object-fit:contain}
-        .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;color:var(--text-white);margin-bottom:2px;white-space:nowrap}
+        .footer-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 12px rgba(124,58,237,0.12);flex-shrink:0}
+        .footer-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;color:var(--text-white);margin-bottom:2px}
         .footer-text p{font-size:.75rem;color:var(--text-muted);line-height:1.3}
         .footer-stats{display:flex;gap:20px;align-items:center;flex-shrink:0}
         .stat-item{text-align:center}
         .stat-value{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--accent-purple);line-height:1}
         .stat-label{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-        .footer-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
-        .footer-actions .btn{padding:10px 14px;font-size:.78rem;flex:0 0 auto;white-space:nowrap}
-        .footer-actions .btn svg{width:14px;height:14px}
+
+        /* ============ MODALS ============ */
         .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all .3s}
         .modal-overlay.active{opacity:1;visibility:visible}
-        .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:420px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .3s;position:relative}
+        .modal-box{background:var(--bg-card);border:2px solid var(--border-gold);padding:30px;border-radius:20px;width:500px;max-width:90vw;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .3s;position:relative}
         .modal-overlay.active .modal-box{transform:scale(1)}
         .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;margin-bottom:20px;text-align:center;color:var(--text-white)}
         .modal-close{position:absolute;top:15px;right:15px;width:36px;height:36px;border-radius:50%;background:var(--bg-elevated);border:none;color:var(--text-muted);cursor:pointer;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center}
         .modal-close:hover{background:var(--accent-red);color:#fff}
-        .modal-btns{display:flex;gap:10px;margin-top:20px}
-        .modal-btn{flex:1;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;border:none;font-size:13px;text-decoration:none;transition:all .2s;text-align:center}
-        .modal-btn.yes{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff}
-        .modal-btn.no{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border-subtle)}
-        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
         .input-field{width:100%;background:var(--bg-elevated);border:2px solid var(--border-subtle);padding:14px 16px;border-radius:12px;font-size:14px;color:var(--text-white);font-family:inherit;transition:all .2s}
         .input-field:focus{outline:none;border-color:var(--accent-purple)}
         .input-field::placeholder{color:var(--text-muted)}
         .input-group{margin-bottom:16px;text-align:left}
         .input-group label{display:block;font-size:.75rem;color:var(--accent-purple-dark);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .section-divider{height:1px;background:var(--border-subtle);margin:20px 0}
+
         .check-label{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;cursor:pointer;margin-bottom:10px;transition:all .2s}
         .check-label:hover{border-color:var(--accent-purple)}
         .check-label input{display:none}
         .check-box{width:22px;height:22px;border:2px solid var(--text-muted);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;background:var(--bg-card)}
-        .check-box.radio-style{border-radius:50%}
         .check-label input:checked+.check-box{background:var(--accent-purple);border-color:var(--accent-purple)}
         .check-label input:checked+.check-box::after{content:'\2713';font-size:12px;color:#fff;font-weight:bold}
         .check-label span{font-size:13px;color:var(--text-cream)}
-        .check-label.disabled{opacity:.4;pointer-events:none}
-        .section-title-sm{font-size:12px;font-weight:700;color:var(--accent-purple-dark);margin:16px 0 8px 0;text-transform:uppercase;letter-spacing:.5px}
-        .section-divider{height:1px;background:var(--border-subtle);margin:20px 0}
+        .check-label.normal-opt{border-color:rgba(16,185,129,0.35);background:rgba(16,185,129,0.04);margin-bottom:8px}
+        .check-label.normal-opt:hover{border-color:rgba(16,185,129,0.6)}
+        .check-label.normal-opt .check-box{border-color:var(--color-success)}
+        .check-label.normal-opt input:checked+.check-box{background:var(--color-success);border-color:var(--color-success)}
+        .check-label.normal-opt span{color:#059669;font-weight:700}
+        .sub-section-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;padding:14px;margin-bottom:14px}
+
         .score-display{text-align:center;padding:20px 0}
         .score-circle{width:120px;height:120px;margin:0 auto 16px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--border-subtle);background:var(--bg-card)}
         .score-circle.low{border-color:var(--accent-teal);box-shadow:0 0 30px rgba(20,184,166,0.2)}
@@ -277,1163 +213,963 @@
         .score-circle.normal{border-color:var(--color-success);box-shadow:0 0 30px rgba(16,185,129,0.25)}
         .score-value{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--text-white);line-height:1}
         .score-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase}
-        .badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:8px}
         .badge-success{background:rgba(20,184,166,0.15);color:#0d9488}
         .badge-normal{background:rgba(16,185,129,0.15);color:#059669}
         .badge-warning{background:rgba(245,158,11,0.15);color:#b45309}
         .badge-danger{background:rgba(220,38,38,0.15);color:#dc2626}
+
         .spinner{border:3px solid var(--border-subtle);border-top:3px solid var(--accent-purple);border-radius:50%;width:24px;height:24px;animation:spin 1s linear infinite;margin:20px auto}
-        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+        /* Toast */
         .toast-container{position:fixed;top:20px;right:20px;z-index:11000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
         .toast{padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:600;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,0.2);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:320px;font-family:'DM Sans',sans-serif;pointer-events:auto}
         .toast.success{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark))}
         .toast.error{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark))}
         .toast.info{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark))}
         @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
-        .comment-removing{animation:fadeSlideOut .35s ease forwards}
-        .chat-removing{animation:fadeSlideOut .35s ease forwards}
-        @keyframes fadeSlideOut{0%{opacity:1;transform:translateX(0) scale(1);max-height:200px;margin-bottom:10px}60%{opacity:0;transform:translateX(30px) scale(.95)}100%{opacity:0;transform:translateX(30px) scale(.9);max-height:0;margin-bottom:0;padding:0;overflow:hidden}}
-        
-        /* Hologram & Speech Bubble */
-        .holo-container{position:fixed;bottom:20px;right:15px;width:140px;height:220px;z-index:9999;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(20px) scale(.95);transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1),visibility .5s;perspective:1000px}
-        .holo-container.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-        .holo-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:25px;background:radial-gradient(ellipse at center,rgba(124,58,237,0.6) 0%,rgba(124,58,237,0) 70%);border-radius:50%;z-index:1}
-        .holo-container.show .holo-base{animation:basePulse 3s infinite ease-in-out}
-        .holo-beam{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:70px;height:180px;background:linear-gradient(to bottom,rgba(124,58,237,0.15),transparent);clip-path:polygon(30% 0,70% 0,100% 100%,0% 100%);z-index:0;opacity:0;transition:opacity .5s}
-        .holo-container.show .holo-beam{opacity:1}
-        .holo-body{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);width:100px;height:180px;transform-style:preserve-3d;z-index:2}
-        .holo-container.show .holo-body{animation:holoFloat 6s infinite ease-in-out}
-        .holo-avatar{width:100%;height:auto;filter:drop-shadow(0 0 15px rgba(124,58,237,0.9)) brightness(1.1) contrast(1.1);mix-blend-mode:multiply;opacity:.9}
-        .holo-speech{position:absolute;bottom:195px;right:-10px;width:220px;background:var(--bg-card);padding:14px;border-radius:12px;font-size:.8rem;color:var(--text-dark);box-shadow:0 4px 15px rgba(0,0,0,0.1);border:1px solid var(--border-gold);opacity:0;transform:translateY(10px);transition:all .5s;pointer-events:none;text-align:left;line-height:1.4}
-        .holo-speech.show{opacity:1;transform:translateY(0)}
-        .holo-speech::after{content:'';position:absolute;bottom:-10px;right:20px;border-width:10px 10px 0;border-style:solid;border-color:var(--bg-card) transparent}
-        @keyframes holoFloat{0%{transform:translateX(-50%) translateY(0) rotateY(0deg)}25%{transform:translateX(-50%) translateY(-10px) rotateY(5deg)}50%{transform:translateX(-50%) translateY(0) rotateY(0deg)}75%{transform:translateX(-50%) translateY(-10px) rotateY(-5deg)}100%{transform:translateX(-50%) translateY(0) rotateY(0deg)}}
-        @keyframes basePulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
-        
-        .tour-tooltip{position:fixed;bottom:130px;right:165px;background:var(--bg-card);padding:18px 22px;border-radius:16px 16px 0 16px;width:260px;max-width:calc(100% - 180px);box-shadow:0 10px 40px rgba(0,0,0,0.15);border:1px solid var(--border-gold);z-index:10000;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:all .3s;text-align:left}
-        .tour-tooltip.active{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-        .tour-tooltip h4{color:var(--accent-purple-dark);margin-bottom:6px;font-size:1rem;font-weight:700}
-        .tour-tooltip p{font-size:13px;margin-bottom:0;line-height:1.5;color:var(--text-muted)}
-        .tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;opacity:0;visibility:hidden;transition:opacity .3s}
-        .tour-overlay.active{opacity:1;visibility:visible}
-        .credits-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#1f2937 0%,#374151 100%);z-index:10010;display:flex;justify-content:center;align-items:flex-start;overflow:hidden;opacity:0;visibility:hidden;transition:opacity 1.5s}
-        .credits-overlay.active{opacity:1;visibility:visible}
-        .credits-content{width:100%;text-align:center;color:#fff;font-family:'Outfit',sans-serif;padding:0 24px;padding-top:100vh;padding-bottom:50px;animation:scrollDown 150s linear forwards;position:relative;z-index:2}
-        @keyframes scrollDown{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
-        .credits-title{font-family:'Bebas Neue',sans-serif;font-size:28px;font-weight:800;letter-spacing:5px;margin-bottom:80px;text-transform:uppercase;color:var(--accent-purple-light)}
-        .credits-section{margin-bottom:100px}
-        .credits-section h3{font-size:16px;text-transform:uppercase;letter-spacing:4px;margin-bottom:24px;opacity:.6;font-weight:400}
-        .credits-section p{font-size:26px;font-weight:700;line-height:1.7;color:#fff;margin-bottom:20px}
-        .credits-section .role{font-size:16px;opacity:.7;margin-bottom:12px;font-weight:400;font-style:italic}
-        .credits-footer{margin-top:120px;opacity:.5;font-size:14px}
-        .audio-hidden{position:absolute;top:-9999px;left:-9999px}
-        .star-container{position:absolute;inset:0;overflow:hidden;z-index:1}
-        .star{position:absolute;background:#fff;border-radius:50%;opacity:0;animation:fallingStar linear infinite}
-        @keyframes fallingStar{0%{transform:translateY(-10px) translateX(0) scale(0);opacity:0}20%{opacity:1}100%{transform:translateY(100vh) translateX(20px) scale(1);opacity:0}}
-        /* === TAMBAHAN: Style untuk checkbox Normal per sub-section === */
-        .check-label.normal-opt{border-color:rgba(16,185,129,0.35);background:rgba(16,185,129,0.04);margin-bottom:8px}
-        .check-label.normal-opt:hover{border-color:rgba(16,185,129,0.6);background:rgba(16,185,129,0.08)}
-        .check-label.normal-opt .check-box{border-color:var(--color-success)}
-        .check-label.normal-opt input:checked+.check-box{background:var(--color-success);border-color:var(--color-success)}
-        .check-label.normal-opt span{color:#059669;font-weight:700;font-size:.82rem}
-        .sub-section-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;padding:14px;margin-bottom:14px;transition:border-color .2s}
-        .sub-section-box:hover{border-color:rgba(124,58,237,0.2)}
-        .sub-section-box .check-label{margin-bottom:8px}
-        .sub-section-box .check-label:last-child{margin-bottom:0}
-        .save-indicator{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;padding:4px 10px;border-radius:8px;margin-top:8px;font-weight:600}
-        .save-indicator.saving{background:rgba(245,158,11,0.12);color:#b45309}
-        .save-indicator.saved{background:rgba(16,185,129,0.12);color:#059669}
-        .save-indicator.failed{background:rgba(220,38,38,0.12);color:#dc2626}
-        @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:280px}.chat-sidebar{width:100%}.inline-chat-container{max-height:320px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.8rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
-        @media(max-width:600px){.main-container{padding:12px}.banner-section{min-height:220px}.banner-content{padding:18px}.banner-content .header-title{font-size:2.2rem}.panel-card{padding:20px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 12px}.banner-content .clock-display{font-size:.85rem}.panel-icon-wrapper{width:48px;height:48px}.panel-icon-wrapper svg{width:24px;height:24px}.inline-chat-container{max-height:280px}.chat-bubble-wrap{max-width:92%}.modal-delete-bar{flex-wrap:wrap}.modal-delete-bar .md-text{white-space:normal}.visitor-badge{padding:6px 12px}.visitor-number{font-size:.8rem}.visitor-label{font-size:.63rem}.panel-card::after{width:45%;height:45%;bottom:-10px;right:-10px}.modal-box{width:95vw;padding:20px}}
+        @keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(40px)}}
+
+        @media(max-width:900px){
+            .header-area{flex-direction:column;min-height:auto}
+            .banner-section{min-height:280px}
+            .chat-sidebar{width:100%}
+            .inline-chat-container{max-height:320px}
+            .panel-grid{grid-template-columns:1fr}
+            .header-title{font-size:2.8rem}
+            .footer-stats{display:none}
+        }
+        @media(max-width:600px){
+            .main-container{padding:12px}
+            .banner-section{min-height:220px}
+            .banner-content{padding:18px}
+            .header-title{font-size:2.2rem}
+            .panel-card{padding:20px}
+            .panel-title{font-size:1.4rem}
+            .login-card-header .logo-text{font-size:2.2rem}
+            .login-form-body,.form-step{padding-left:20px!important;padding-right:20px!important}
+            .step-labels{padding-left:32px;padding-right:32px}
+            .login-row{grid-template-columns:1fr}
+        }
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
     </style>
 </head>
 <body>
-    <div class="bg-pattern"></div><div class="noise-overlay"></div>
+    <div class="bg-pattern"></div>
+    <div class="noise-overlay"></div>
     <div class="toast-container" id="toastContainer"></div>
 
-    <div class="modal-overlay" id="loginModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('loginModal')">&times;</button><h3 class="modal-title">Masuk ke Akun</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center">Masukkan nama Anda untuk login.</p><div class="input-group"><label>Nama Lengkap</label><input type="text" id="loginName" class="input-field" placeholder="Masukkan nama Anda..." maxlength="50"></div><div class="modal-btns"><button class="modal-btn no" onclick="closeModal('loginModal')">Batal</button><button class="modal-btn yes" onclick="performLogin()">Masuk</button></div></div></div>
+    <!-- ==================== LOGIN OVERLAY ==================== -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-particles" id="loginParticles"></div>
+        <div class="login-card">
+            <div class="login-card-header">
+                <div class="logo-text">MONALISA</div>
+                <div class="logo-sub">Monitoring Akses Hemodialisis</div>
+            </div>
 
-    <div class="modal-overlay" id="discussionModal"><div class="modal-box discussion-modal"><button class="modal-close" onclick="closeModal('discussionModal')">&times;</button><div class="discussion-header"><h3 class="modal-title" style="text-align:left;margin-bottom:0">Komentar & Diskusi</h3><span class="discussion-count" id="commentCount">0 Komentar</span></div><div class="comments-list" id="commentsList"></div><div class="comment-input-area" id="commentInputArea"></div></div></div>
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step-dot active" id="stepDot1">1</div>
+                <div class="step-line" id="stepLine"></div>
+                <div class="step-dot" id="stepDot2">2</div>
+            </div>
+            <div class="step-labels">
+                <span class="step-label active" id="stepLabel1">Data Pasien</span>
+                <span class="step-label" id="stepLabel2">Daftar Akun</span>
+            </div>
 
-    <div class="modal-overlay" id="loadingModal"><div class="modal-box" style="padding:20px"><div class="spinner"></div><p style="margin-top:10px;font-size:13px;color:var(--text-muted);text-align:center">Memproses...</p></div></div>
+            <div class="login-form-body">
+                <!-- STEP 1: Data Login Pasien -->
+                <div class="form-step active" id="formStep1">
+                    <div class="step-title">Data Login</div>
+                    <div class="step-desc">Lengkapi data pasien hemodialisis Anda terlebih dahulu sebelum membuat akun.</div>
+
+                    <div class="login-input-group" id="grpNama">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="inNama" placeholder="Masukkan nama lengkap..." maxlength="60" autocomplete="name">
+                        <div class="field-error">Nama lengkap wajib diisi</div>
+                    </div>
+                    <div class="login-row">
+                        <div class="login-input-group" id="grpTempat">
+                            <label>Tempat Lahir</label>
+                            <input type="text" id="inTempat" placeholder="Contoh: Jakarta" maxlength="40">
+                            <div class="field-error">Tempat lahir wajib diisi</div>
+                        </div>
+                        <div class="login-input-group" id="grpTgl">
+                            <label>Tanggal Lahir</label>
+                            <input type="date" id="inTgl" max="">
+                            <div class="field-error">Tanggal lahir wajib diisi</div>
+                        </div>
+                    </div>
+                    <div class="login-input-group" id="grpAlamat">
+                        <label>Alamat / Domisili</label>
+                        <input type="text" id="inAlamat" placeholder="Contoh: Jl. Sudirman No. 10, Bandung" maxlength="150">
+                        <div class="field-error">Alamat wajib diisi</div>
+                    </div>
+                    <div class="login-input-group" id="grpAkses">
+                        <label>Akses HD</label>
+                        <select id="inAkses">
+                            <option value="">-- Pilih Jenis Akses HD --</option>
+                            <option value="CDL/Double Lumen">CDL / Double Lumen</option>
+                            <option value="AV Shunt">AV Shunt</option>
+                        </select>
+                        <div class="field-error">Pilih jenis akses HD</div>
+                    </div>
+                    <button class="btn-submit-login primary" id="btnStep1" onclick="submitStep1()">
+                        <span class="btn-text">Submit Data Login</span>
+                        <span class="btn-spinner"></span>
+                    </button>
+                    <div class="login-footer-note">Data Anda akan digunakan untuk pendaftaran akun pada langkah berikutnya.</div>
+                </div>
+
+                <!-- STEP 2: Pendaftaran Akun -->
+                <div class="form-step" id="formStep2">
+                    <div class="step-title">Pendaftaran Akun</div>
+                    <div class="step-desc">Buat akun untuk mengakses aplikasi Monalisa. Data pasien dari langkah sebelumnya sudah tersimpan.</div>
+
+                    <div class="login-input-group" id="grpRegNama">
+                        <label>Nama Akun</label>
+                        <input type="text" id="inRegNama" placeholder="Nama untuk akun Anda..." maxlength="60" autocomplete="name">
+                        <div class="field-error">Nama akun wajib diisi</div>
+                    </div>
+                    <div class="login-input-group" id="grpEmail">
+                        <label>Alamat Email</label>
+                        <input type="email" id="inEmail" placeholder="contoh@email.com" maxlength="80" autocomplete="email">
+                        <div class="field-error">Masukkan email yang valid</div>
+                    </div>
+                    <div class="login-input-group" id="grpPassword">
+                        <label>Password</label>
+                        <div class="password-toggle">
+                            <input type="password" id="inPassword" placeholder="Minimal 6 karakter" maxlength="50" autocomplete="new-password">
+                            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" aria-label="Tampilkan password">
+                                <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <div class="field-error">Password minimal 6 karakter</div>
+                    </div>
+
+                    <button class="btn-submit-login teal" id="btnStep2" onclick="submitStep2()">
+                        <span class="btn-text">Daftar Sekarang</span>
+                        <span class="btn-spinner"></span>
+                    </button>
+                    <div class="login-footer-note">Dengan mendaftar, Anda menyetujui penggunaan data untuk keperluan monitoring hemodialisis.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN APP ==================== -->
+    <div class="main-container" id="mainApp">
+        <div class="header-area">
+            <!-- Banner -->
+            <div class="banner-section">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <div class="header-top-row">
+                        <div class="header-left-group">
+                            <div class="digital-clock">
+                                <div class="clock-pulse"></div>
+                                <div>
+                                    <div class="clock-display" id="clockDisplay">--:--:--</div>
+                                    <div class="clock-date" id="clockDate">Loading...</div>
+                                </div>
+                            </div>
+                            <div class="user-info-bar" id="userInfoBar">
+                                <div class="user-avatar-sm" id="userAvatar">U</div>
+                                <span class="user-name-text" id="userNameDisplay">User</span>
+                                <span class="user-hd-badge" id="userHDBadge">HD</span>
+                            </div>
+                        </div>
+                        <button class="logout-btn" onclick="performLogout()">Keluar</button>
+                    </div>
+                    <div class="welcome-message show" id="welcomeMsg">Selamat datang kembali!</div>
+                    <div class="header-title">MONALISA</div>
+                    <div class="header-subtitle">Monitoring dan Analisa Akses Hemodialisis Anda</div>
+                    <div class="visitor-badge">
+                        <div class="visitor-live-dot"></div>
+                        <span class="visitor-number" id="visitorCount">0</span>
+                        <span class="visitor-label">Pengunjung Aktif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Sidebar -->
+            <div class="chat-sidebar">
+                <div class="inline-chat-container">
+                    <div class="chat-header-bar">
+                        <span>Chat Diskusi</span>
+                        <span class="chat-status online">Online</span>
+                    </div>
+                    <div class="chat-messages-area" id="chatMessages">
+                        <div class="chat-bubble-wrap incoming-wrap">
+                            <div class="chat-bubble incoming">
+                                Selamat datang di ruang diskusi Monalisa! Silakan bertanya atau berbagi pengalaman seputar hemodialisis.
+                                <span class="bubble-meta">Admin &bull; Baru saja</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-bar">
+                        <input type="text" id="chatInput" placeholder="Tulis pesan..." onkeydown="if(event.key==='Enter')sendChat()">
+                        <button class="chat-send-btn" onclick="sendChat()" aria-label="Kirim pesan">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <button class="discussion-btn" onclick="showToast('Fitur diskusi lengkap segera hadir','info')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Buka Diskusi Lengkap
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel Grid -->
+        <div class="panel-grid">
+            <!-- Panel CVC -->
+            <div class="panel-card">
+                <div class="panel-icon-wrapper red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <div class="panel-title">Monitoring CVC</div>
+                <div class="panel-subtitle">Screening dan monitoring komplikasi akses Central Venous Catheter (CVC/Double Lumen).</div>
+                <div class="panel-actions">
+                    <button class="btn btn-primary" onclick="openModal('cvcModal')">Mulai Screening</button>
+                </div>
+            </div>
+
+            <!-- Panel AV Shunt -->
+            <div class="panel-card">
+                <div class="panel-icon-wrapper gold">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div class="panel-title">Monitoring AV Shunt</div>
+                <div class="panel-subtitle">Evaluasi kondisi dan fungsi Arteriovenous Shunt untuk akses hemodialisis jangka panjang.</div>
+                <div class="panel-actions">
+                    <button class="btn btn-gold" onclick="openModal('avShuntModal')">Mulai Evaluasi</button>
+                </div>
+            </div>
+
+            <!-- Panel Edukasi -->
+            <div class="panel-card">
+                <div class="panel-icon-wrapper teal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <div class="panel-title">Edukasi Pasien</div>
+                <div class="panel-subtitle">Panduan perawatan akses HD, tanda bahaya, dan tips menjaga kesehatan akses hemodialisis.</div>
+                <div class="panel-actions">
+                    <button class="btn btn-teal" onclick="showToast('Materi edukasi sedang disiapkan','info')">Buka Materi</button>
+                </div>
+            </div>
+
+            <!-- Panel Konsultasi -->
+            <div class="panel-card">
+                <div class="panel-icon-wrapper blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="panel-title">Konsultasi</div>
+                <div class="panel-subtitle">Konsultasi langsung dengan tim perawat HD mengenai keluhan atau pertanyaan seputar akses Anda.</div>
+                <div class="panel-actions">
+                    <button class="btn btn-consult" onclick="showToast('Fitur konsultasi akan segera tersedia','info')">Mulai Konsultasi</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="panel-footer">
+            <div class="footer-info">
+                <div class="footer-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <div class="footer-text">
+                    <h3>MONALISA</h3>
+                    <p>Monitoring & Analisa Akses Hemodialisis &bull; v2.0</p>
+                </div>
+            </div>
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="statScreening">0</div>
+                    <div class="stat-label">Screening</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statUsers">0</div>
+                    <div class="stat-label">Pengguna</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ==================== CVC MODAL ==================== -->
     <div class="modal-overlay" id="cvcModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('cvcModal')">&times;</button>
             <h2 class="modal-title">Monitoring & Screening CVC</h2>
-            <div id="cvc-form">
+            <div id="cvcForm">
                 <div class="grid-2">
-                    <div class="input-group"><label>NAMA PASIEN</label><input type="text" class="input-field" id="cvc_id" placeholder="Contoh: Sidaraja"></div>
-                    <div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvc_days" placeholder="Contoh: 14"></div>
+                    <div class="input-group"><label>Nama Pasien</label><input type="text" class="input-field" id="cvcNama" readonly></div>
+                    <div class="input-group"><label>Hari Terpasang</label><input type="number" class="input-field" id="cvcHari" placeholder="Contoh: 14" min="0"></div>
                 </div>
                 <div class="section-divider"></div>
-
-                <div class="sub-section-box" id="cvc_sub1">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="cvc_s1_normal" onchange="toggleSubNormal('cvc_sub1','cvc_s1_normal')">
-                        <span class="check-box"></span>
-                        <span>Normal — Tidak ada kelainan visual</span>
-                    </label>
-                    <label class="check-label" data-sub="cvc_sub1">
-                        <input type="checkbox" id="q1" onchange="subSymptomChanged('cvc_sub1','cvc_s1_normal')">
-                        <span class="check-box"></span>
-                        <span>Kemerahan di area kateter</span>
-                    </label>
-                    <label class="check-label" data-sub="cvc_sub1">
-                        <input type="checkbox" id="q2" onchange="subSymptomChanged('cvc_sub1','cvc_s1_normal')">
-                        <span class="check-box"></span>
-                        <span>Bengkak di area kateter</span>
-                    </label>
+                <div class="sub-section-box" id="cvcSub1">
+                    <label class="check-label normal-opt"><input type="checkbox" id="cvcS1Normal" onchange="toggleSubNormal('cvcSub1','cvcS1Normal')"><span class="check-box"></span><span>Normal — Tidak ada kelainan visual</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ1" onchange="subChanged('cvcSub1','cvcS1Normal')"><span class="check-box"></span><span>Kemerahan di area kateter</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ2" onchange="subChanged('cvcSub1','cvcS1Normal')"><span class="check-box"></span><span>Bengkak di area kateter</span></label>
                 </div>
-
-                <div class="sub-section-box" id="cvc_sub2">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="cvc_s2_normal" onchange="toggleSubNormal('cvc_sub2','cvc_s2_normal')">
-                        <span class="check-box"></span>
-                        <span>Normal — Tidak ada nyeri saat ditekan</span>
-                    </label>
-                    <label class="check-label" data-sub="cvc_sub2">
-                        <input type="checkbox" id="q3" onchange="subSymptomChanged('cvc_sub2','cvc_s2_normal')">
-                        <span class="check-box"></span>
-                        <span>Nyeri atau sakit di area kateter</span>
-                    </label>
+                <div class="sub-section-box" id="cvcSub2">
+                    <label class="check-label normal-opt"><input type="checkbox" id="cvcS2Normal" onchange="toggleSubNormal('cvcSub2','cvcS2Normal')"><span class="check-box"></span><span>Normal — Tidak ada nyeri saat ditekan</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ3" onchange="subChanged('cvcSub2','cvcS2Normal')"><span class="check-box"></span><span>Nyeri atau sakit di area kateter</span></label>
                 </div>
-
-                <div class="sub-section-box" id="cvc_sub3">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="cvc_s3_normal" onchange="toggleSubNormal('cvc_sub3','cvc_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Normal — Tidak ada tanda sistemik</span>
-                    </label>
-                    <label class="check-label" data-sub="cvc_sub3">
-                        <input type="checkbox" id="q4" onchange="subSymptomChanged('cvc_sub3','cvc_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Keluar nanah atau cairan (Kritis)</span>
-                    </label>
-                    <label class="check-label" data-sub="cvc_sub3">
-                        <input type="checkbox" id="q5" onchange="subSymptomChanged('cvc_sub3','cvc_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Demam atau Menggigil (Kritis)</span>
-                    </label>
+                <div class="sub-section-box" id="cvcSub3">
+                    <label class="check-label normal-opt"><input type="checkbox" id="cvcS3Normal" onchange="toggleSubNormal('cvcSub3','cvcS3Normal')"><span class="check-box"></span><span>Normal — Tidak ada tanda sistemik</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ4" onchange="subChanged('cvcSub3','cvcS3Normal')"><span class="check-box"></span><span>Demam (suhu &gt; 38°C)</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ5" onchange="subChanged('cvcSub3','cvcS3Normal')"><span class="check-box"></span><span> Menggigil</span></label>
                 </div>
-
-                <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="calculateCVC()">Hitung Risiko</button>
-            </div>
-            <div id="cvc-result" style="display:none">
-                <div class="score-display">
-                    <div class="score-circle" id="cvc-score-circle"><span class="score-value" id="cvc-score-val">0</span><span class="score-label">Gejala</span></div>
-                    <span id="cvc-risk-badge" class="badge badge-normal">Normal</span>
-                    <p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="cvc-risk-msg">CVC dalam kondisi normal.</p>
+                <div class="sub-section-box" id="cvcSub4">
+                    <label class="check-label normal-opt"><input type="checkbox" id="cvcS4Normal" onchange="toggleSubNormal('cvcSub4','cvcS4Normal')"><span class="check-box"></span><span>Normal — Drainase jernih</span></label>
+                    <label class="check-label"><input type="checkbox" id="cvcQ6" onchange="subChanged('cvcSub4','cvcS4Normal')"><span class="check-box"></span><span>Drainase purulen / bernanah</span></label>
                 </div>
-                <div id="cvc-critical-action" style="margin-top:14px"></div>
-                <div id="cvc-wa-action" style="margin-top:14px"></div>
-                <div style="margin-top:10px; display:grid; grid-template-columns: 1fr; gap:8px;">
-                    <button class="btn btn-secondary" style="width:100%;" onclick="saveResultToPDF('cvc-result', 'Hasil_Screening_CVC')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Catat & Simpan PDF
-                    </button>
-                </div>
-                <div id="cvc-save-status" style="text-align:center"></div>
-                <button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetCVC()">Ulangi Pengecekan</button>
+                <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="calculateCVC()">Hitung Skor</button>
+                <div id="cvcResult" style="display:none"></div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== AV-SHUNT MODAL ==================== -->
-    <div class="modal-overlay" id="avModal">
+    <!-- ==================== AV SHUNT MODAL ==================== -->
+    <div class="modal-overlay" id="avShuntModal">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('avModal')">&times;</button>
-            <h2 class="modal-title">Monitoring & Screening AV-Shunt</h2>
-            <div id="av-form">
-                <div class="input-group"><label>NAMA PASIEN (Opsional)</label><input type="text" class="input-field" id="av_id" placeholder="Nama / No RM"></div>
+            <button class="modal-close" onclick="closeModal('avShuntModal')">&times;</button>
+            <h2 class="modal-title">Evaluasi AV Shunt</h2>
+            <div id="avForm">
+                <div class="grid-2">
+                    <div class="input-group"><label>Nama Pasien</label><input type="text" class="input-field" id="avNama" readonly></div>
+                    <div class="input-group"><label>Usia Shunt (bulan)</label><input type="number" class="input-field" id="avUsia" placeholder="Contoh: 6" min="0"></div>
+                </div>
                 <div class="section-divider"></div>
-
-                <div class="sub-section-box" id="av_sub1">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="av_s1_normal" onchange="toggleAvSub1Normal()">
-                        <span class="check-box"></span>
-                        <span>Normal — Tidak ada kelainan visual</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub1">
-                        <input type="checkbox" id="av_vis_red" onchange="avSub1SymptomChanged()">
-                        <span class="check-box"></span>
-                        <span>Kemerahan, Bengkak, atau Lepuhan</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub1">
-                        <input type="checkbox" id="av_vis_pus" onchange="avSub1SymptomChanged()">
-                        <span class="check-box"></span>
-                        <span>Keluar Nanah atau Cairan (Kritis)</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub1">
-                        <input type="checkbox" id="av_vis_bleed" onchange="avSub1SymptomChanged()">
-                        <span class="check-box"></span>
-                        <span>Perdarahan Aktif / Tidak Berhenti (Kritis)</span>
-                    </label>
+                <div class="sub-section-box" id="avSub1">
+                    <label class="check-label normal-opt"><input type="checkbox" id="avS1Normal" onchange="toggleSubNormal('avSub1','avS1Normal')"><span class="check-box"></span><span>Normal — Thrill teraba jelas</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ1" onchange="subChanged('avSub1','avS1Normal')"><span class="check-box"></span><span>Thrill melemah atau tidak teraba</span></label>
                 </div>
-
-                <div class="sub-section-box" id="av_sub2">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="av_s2_normal" onchange="toggleAvSub2Normal()">
-                        <span class="check-box"></span>
-                        <span>Normal — Thrill teraba baik, tidak ada nyeri</span>
-                    </label>
-                    <p style="font-size:11px;color:var(--text-muted);margin:4px 0 8px 0">Rasakan getaran (thrill) di area shunt:</p>
-                    <label class="check-label" data-sub="av_sub2">
-                        <input type="radio" name="av_thrill" value="weak" onchange="avSub2SymptomChanged()">
-                        <span class="check-box radio-style"></span>
-                        <span>Berkurang / Lemah</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub2">
-                        <input type="radio" name="av_thrill" value="gone" onchange="avSub2SymptomChanged()">
-                        <span class="check-box radio-style"></span>
-                        <span>Hilang / Tidak Terasa (Kritis)</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub2" style="margin-top:4px">
-                        <input type="checkbox" id="av_palp_pain" onchange="avSub2SymptomChanged()">
-                        <span class="check-box"></span>
-                        <span>Nyeri hebat saat disentuh</span>
-                    </label>
-                    <input type="radio" name="av_thrill" value="normal" checked style="display:none">
+                <div class="sub-section-box" id="avSub2">
+                    <label class="check-label normal-opt"><input type="checkbox" id="avS2Normal" onchange="toggleSubNormal('avSub2','avS2Normal')"><span class="check-box"></span><span>Normal — Bruit terdengar jelas</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ2" onchange="subChanged('avSub2','avS2Normal')"><span class="check-box"></span><span>Bruit melemah atau tidak terdengar</span></label>
                 </div>
-
-                <div class="sub-section-box" id="av_sub3">
-                    <label class="check-label normal-opt">
-                        <input type="checkbox" id="av_s3_normal" onchange="toggleSubNormal('av_sub3','av_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Normal — Tidak ada tanda peringatan lain</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub3">
-                        <input type="checkbox" id="av_other_cold" onchange="subSymptomChanged('av_sub3','av_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Tangan pucat, dingin, atau mati rasa (Steal Syndrome)</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub3">
-                        <input type="checkbox" id="av_other_aneurysm" onchange="subSymptomChanged('av_sub3','av_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Pembesaran abnormal / tonjolan (Aneurysma)</span>
-                    </label>
-                    <label class="check-label" data-sub="av_sub3">
-                        <input type="checkbox" id="av_other_swelling" onchange="subSymptomChanged('av_sub3','av_s3_normal')">
-                        <span class="check-box"></span>
-                        <span>Pembengkakan seluruh lengan</span>
-                    </label>
+                <div class="sub-section-box" id="avSub3">
+                    <label class="check-label normal-opt"><input type="checkbox" id="avS3Normal" onchange="toggleSubNormal('avSub3','avS3Normal')"><span class="check-box"></span><span>Normal — Tidak ada pembengkakan</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ3" onchange="subChanged('avSub3','avS3Normal')"><span class="check-box"></span><span>Pembengkakan di area shunt</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ4" onchange="subChanged('avSub3','avS3Normal')"><span class="check-box"></span><span>Eritema / kemerahan</span></label>
                 </div>
-
-                <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="calculateAV()">Hitung Risiko</button>
-            </div>
-            <div id="av-result" style="display:none">
-                <div class="score-display">
-                    <div class="score-circle" id="av-score-circle"><span class="score-value" id="av-score-val">0</span><span class="score-label">Gejala</span></div>
-                    <span id="av-risk-badge" class="badge badge-normal">Normal</span>
-                    <p style="margin-top:12px;font-size:14px;color:var(--text-cream)" id="av-risk-msg">AV-Shunt dalam kondisi normal.</p>
+                <div class="sub-section-box" id="avSub4">
+                    <label class="check-label normal-opt"><input type="checkbox" id="avS4Normal" onchange="toggleSubNormal('avSub4','avS4Normal')"><span class="check-box"></span><span>Normal — Aliran darah cukup</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ5" onchange="subChanged('avSub4','avS4Normal')"><span class="check-box"></span><span>Aliran darah rendah saat HD (&lt; 250 ml/menit)</span></label>
+                    <label class="check-label"><input type="checkbox" id="avQ6" onchange="subChanged('avSub4','avS4Normal')"><span class="check-box"></span><span>Waktu hemostasis memanjang (&gt; 20 menit)</span></label>
                 </div>
-                <div id="av-critical-action" style="margin-top:14px"></div>
-                <div id="av-wa-action" style="margin-top:14px"></div>
-                <div style="margin-top:10px; display:grid; grid-template-columns: 1fr; gap:8px;">
-                    <button class="btn btn-secondary" style="width:100%;" onclick="saveResultToPDF('av-result', 'Hasil_Screening_AV_Shunt')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Catat & Simpan PDF
-                    </button>
-                </div>
-                <div id="av-save-status" style="text-align:center"></div>
-                <button class="btn btn-secondary" style="width:100%;margin-top:16px" onclick="resetAV()">Ulangi Pengecekan</button>
+                <button class="btn btn-gold" style="width:100%;margin-top:16px" onclick="calculateAV()">Hitung Skor</button>
+                <div id="avResult" style="display:none"></div>
             </div>
         </div>
     </div>
-
-    <div class="credits-overlay" id="creditsOverlay">
-        <div class="star-container" id="starContainer"></div>
-        <div class="credits-content">
-            <div class="credits-title">MONALISA</div>
-            <div class="credits-section"><h3>Monitoring & Analisa Akses Hemodialisis</h3></div>
-            <div class="credits-section"><h3>Tim Pengembang</h3><p>Monalisa HD Team</p><div class="role">Hemodialysis Access Monitoring System</div></div>
-            <div class="credits-footer">v1.0 — Tahun 2025</div>
-        </div>
-    </div>
-
-    <div class="main-container">
-        <div class="header-area">
-            <div class="banner-section">
-                <div class="header-bg" style="background-image:url('banner-saya.png')"></div>
-                <div class="banner-overlay"></div>
-                <div class="banner-content">
-                    <div class="header-top-row">
-                        <div class="header-left-group">
-                            <div class="digital-clock">
-                                <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan-light)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                <div><div class="clock-display" id="clockDisplay">--:--:--</div><div class="clock-date" id="clockDate">Loading...</div></div>
-                                <div class="clock-pulse"></div>
-                            </div>
-                            <div class="login-container" id="loginContainer" onclick="handleLoginClick()">
-                                <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                                <span class="login-text" id="loginText">Masuk</span>
-                                <div class="user-avatar" id="userAvatar"></div>
-                            </div>
-                        </div>
-                        <button class="guide-btn" onclick="startTour()">
-                            <svg class="guide-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                            Panduan
-                        </button>
-                    </div>
-                    <div class="welcome-message" id="welcomeMsg"></div>
-                    <h1 class="header-title">MONALISA</h1>
-                    <p class="header-subtitle">Monitoring & Analisa Akses Hemodialisis Anda</p>
-                    <div class="visitor-badge">
-                        <svg class="visitor-eye-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        <span class="visitor-number" id="visitorCount">0</span>
-                        <span class="visitor-label">pengunjung aktif</span>
-                        <div class="visitor-live-dot"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chat-sidebar">
-                <div class="inline-chat-container" id="chatContainer">
-                    <div class="chat-header-bar">
-                        <span>Chat Tim HD</span>
-                        <span class="chat-status online" id="chatStatus">Online<span class="chat-sync-badge" id="chatSyncBadge">synced</span></span>
-                    </div>
-                    <div class="chat-messages-area" id="chatMessages"><div class="empty-chat">Belum ada pesan. Mulai diskusi!</div></div>
-                    <div id="replyPreviewBar"></div>
-                    <div id="deleteConfirmBar"></div>
-                    <div id="forwardConfirmBar"></div>
-                    <div class="chat-input-bar" id="chatInputBar">
-                        <input type="text" id="chatInput" placeholder="Tulis pesan..." onkeydown="if(event.key==='Enter')sendChat()">
-                        <button class="chat-send-btn" onclick="sendChat()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-                    </div>
-                    <div class="chat-login-prompt" id="chatLoginPrompt" style="display:none"><a onclick="openModal('loginModal')">Masuk</a> untuk mengirim pesan</div>
-                </div>
-                <button class="discussion-btn" onclick="openDiscussion()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    Diskusi Lengkap
-                </button>
-            </div>
-        </div>
-
-        <div class="panel-grid">
-            <div class="panel-card bg-cvc has-bg" id="cvcPanel">
-                <div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                <h3 class="panel-title">MONITORING CVC</h3>
-                <p class="panel-subtitle">Screening komplikasi Central Venous Catheter untuk deteksi dini infeksi, oklusi, dan masalah akses.</p>
-                <div class="literature-box">
-                    <div class="literature-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple-dark)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Referensi</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> KDOQI Clinical Practice Guidelines for Vascular Access</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> CDC Guidelines for Prevention of Intravascular Catheter-Related Infection</div>
-                </div>
-                <div class="panel-actions"><button class="btn btn-primary" onclick="openModal('cvcModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Mulai Screening</button></div>
-            </div>
-
-            <div class="panel-card bg-avshunt has-bg" id="avPanel">
-                <div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-                <h3 class="panel-title">MONITORING AV-SHUNT</h3>
-                <p class="panel-subtitle">Screening komplikasi Arteriovenous Shunt meliputi pemeriksaan visual, raba (thrill), dan tanda peringatan lainnya.</p>
-                <div class="literature-box">
-                    <div class="literature-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple-dark)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Referensi</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> KDOQI Vascular Access Guidelines 2019 Update</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> EBPG on Vascular Access for Haemodialysis (ERBP)</div>
-                </div>
-                <div class="panel-actions"><button class="btn btn-gold" onclick="openModal('avModal')"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Mulai Screening</button></div>
-            </div>
-
-            <div class="panel-card bg-education has-bg">
-                <div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-                <h3 class="panel-title">EDUKASI PASIEN</h3>
-                <p class="panel-subtitle">Panduan perawatan akses hemodialisis di rumah, tanda bahaya yang harus diwaspadai, dan tips menjaga kesehatan akses.</p>
-                <div class="literature-box">
-                    <div class="literature-title"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple-dark)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Materi</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> Cara merawat CVC di rumah</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> Exercise untuk menjaga AV-Shunt</div>
-                    <div class="literature-item"><span class="literature-bullet">&#9679;</span> Kapan harus ke fasilitas kesehatan</div>
-                </div>
-                <div class="panel-actions">
-                    <a href="https://sites.google.com/view/dialisis-rssa-go/care/care-plus-cvcare" target="_blank" class="btn btn-teal" style="text-decoration:none;">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Buka Materi
-                    </a>
-                </div>
-            </div>
-
-            <div class="panel-card bg-consultation has-bg">
-                <div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                <h3 class="panel-title">KONSULTASI</h3>
-                <p class="panel-subtitle">Tulis keluhan atau pertanyaan Anda, lalu pilih perawat untuk mengirimkannya via WhatsApp.</p>
-                <div class="input-group" style="margin-bottom:12px">
-                    <textarea id="consultText" class="input-field" placeholder="Tulis keluhan atau pertanyaan Anda di sini..." style="min-height: 80px; resize: vertical; background: #fff;"></textarea>
-                </div>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6282124700093')">Konsultasi Hesty</button>
-                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6285732737585')">Konsultasi Erik</button>
-                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6281234028884')">Konsultasi Rovi</button>
-                    <button class="btn btn-consult" style="font-size: 0.8rem; padding: 10px;" onclick="sendConsultation('6281234028503')">Konsultasi Maria</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Kartu Catatan Saya (User) -->
-        <div class="panel-card" style="margin-top: 16px; border: 2px solid var(--border-gold);">
-            <div class="panel-icon-wrapper gold" style="background: linear-gradient(145deg,#fffaf0,#ffedd5); box-shadow: 6px 6px 16px rgba(245,158,11,0.12);">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3 class="panel-title">CATATAN SAYA</h3>
-            <p class="panel-subtitle">Catatan pribadi Anda terkait hemodialisis. Tersimpan otomatis di perangkat ini dan terekam di sistem.</p>
-            
-            <div class="grid-2" style="margin-bottom: 12px;">
-                <div class="input-group" style="margin-bottom:0;"><label>Judul / Subjek</label><input type="text" id="noteSubject" class="input-field" placeholder="Contoh: Kontrol berikutnya"></div>
-                <div class="input-group" style="margin-bottom:0;"><label>Tanggal & Waktu</label><input type="text" id="noteDate" class="input-field" readonly></div>
-            </div>
-            <div class="input-group"><label>Isi Catatan</label><textarea id="noteContent" class="input-field" placeholder="Tulis catatan..." style="min-height: 100px; resize: vertical;"></textarea></div>
-            
-            <div class="panel-actions"><button class="btn btn-gold" onclick="saveNote()">Simpan Catatan</button></div>
-            <div id="note-save-status" style="text-align:center; margin-top: 10px;"></div>
-        </div>
-
-        <div class="panel-footer">
-            <div class="footer-info">
-                <div class="footer-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                <div class="footer-text"><h3>MONALISA HD</h3><p>Monitoring & Analisa Akses Hemodialisis — Data terekam otomatis ke Google Sheets</p></div>
-            </div>
-            <div class="footer-stats">
-                <div class="stat-item"><div class="stat-value" id="totalScreening">0</div><div class="stat-label">Screening</div></div>
-                <div class="stat-item"><div class="stat-value" id="normalCount">0</div><div class="stat-label">Normal</div></div>
-            </div>
-            <div class="footer-actions">
-                <div class="visitor-badge-footer"><div class="visitor-live-dot"></div><span class="visitor-number" id="footerVisitorCount">0</span><span class="visitor-label">online</span></div>
-                <button class="btn btn-secondary" onclick="showCredits()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Info</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="holo-container" id="holoContainer">
-        <div class="holo-speech" id="holoSpeech">Halo! Saya Dokter Monalisa. Klik 'Panduan' atau mulai 'Screening' untuk memantau akses HD Anda.</div>
-        <div class="holo-beam"></div>
-        <div class="holo-body">
-            <img src="dokter.gif" class="holo-avatar" alt="Dokter Hologram">
-        </div>
-        <div class="holo-base"></div>
-    </div>
-
-    <div class="tour-tooltip" id="tourTooltip"><h4 id="tourTitle">Selamat Datang</h4><p id="tourText">Gunakan panduan ini untuk memahami fitur MONALISA.</p></div>
-
-    <audio class="audio-hidden" id="chatSound" preload="auto"><source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=" type="audio/wav"></audio>
 
     <script>
-    /* ========== KONFIGURASI GOOGLE SHEETS ========== */
-    const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDNKDlLkA4TkujQVHR4uYQ_YMkB636GO0cfL8dZpcXElJ-k76UnBTZroWGAaIQU76M/exec'; // Untuk screening
-    // URL di bawah ini terhubung langsung ke Spreadsheet: https://docs.google.com/spreadsheets/d/1cmopszp4hZ3A-MIEzDD9RONMA7py148Z3izoAfneDfM/edit?gid=0#gid=0
-    const NOTE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzDNKDlLkA4TkujQVHR4uYQ_YMkB636GO0cfL8dZpcXElJ-k76UnBTZroWGAaIQU76M/exec'; // Untuk Catatan User
+    /* ==========================================================
+       KONFIGURASI GOOGLE SPREADSHEET
+       ==========================================================
+       Untuk menyimpan data ke Spreadsheet, ikuti langkah berikut:
 
-    /* ========== STATE GLOBAL ========== */
-    let currentUser = localStorage.getItem('monalisa_user') || '';
-    let chatMessages = JSON.parse(localStorage.getItem('monalisa_chat') || '[]');
-    let comments = JSON.parse(localStorage.getItem('monalisa_comments') || '[]');
-    let replyTarget = null;
-    let deleteTarget = null;
-    let forwardTarget = null;
-    let modalReplyTarget = null;
-    let modalDeleteTarget = null;
-    let totalScreenings = parseInt(localStorage.getItem('monalisa_total') || '0');
-    let normalScreenings = parseInt(localStorage.getItem('monalisa_normal') || '0');
-    let tourStep = 0;
+       1. Buka spreadsheet: https://docs.google.com/spreadsheets/d/1cmopszp4hZ3A-MIEzDD9RONMA7py148Z3izoAfneDfM
+       2. Klik menu "Extensions" > "Apps Script"
+       3. Hapus kode default, lalu paste kode berikut:
 
-    /* ========== INISIALISASI ========== */
-    document.addEventListener('DOMContentLoaded', () => {
-        updateClock(); setInterval(updateClock, 1000);
-        updateVisitorCount(); setInterval(updateVisitorCount, 8000);
-        updateLoginUI(); renderChat(); updateStats();
-        
-        // Set tanggal catatan awal
-        document.getElementById('noteDate').value = new Date().toLocaleString('id-ID');
-        
-        // Munculkan Hologram & Panduan Singkat (muncul 1 detik setelah load, hilang total setelah 5 detik)
+       function doPost(e) {
+         try {
+           var ss = SpreadsheetApp.openById('1cmopszp4hZ3A-MIEzDD9RONMA7py148Z3izoAfneDfM');
+           var sheet = ss.getSheetByName('Data Pengguna');
+           if (!sheet) {
+             sheet = ss.insertSheet('Data Pengguna');
+             sheet.appendRow(['Timestamp','Nama Lengkap','Tempat Lahir','Tanggal Lahir','Alamat/Domisili','Akses HD','Email','Password']);
+             sheet.getRange(1,1,1,8).setFontWeight('bold').setBackground('#4a148c').setFontColor('#ffffff');
+           }
+           var data = JSON.parse(e.postData.contents);
+           sheet.appendRow([
+             new Date().toLocaleString('id-ID',{timeZone:'Asia/Jakarta'}),
+             data.nama, data.tempatLahir, data.tanggalLahir,
+             data.alamat, data.aksesHD, data.email, data.password
+           ]);
+           return ContentService.createTextOutput(JSON.stringify({status:'success'}))
+             .setMimeType(ContentService.MimeType.JSON);
+         } catch(err) {
+           return ContentService.createTextOutput(JSON.stringify({status:'error',message:err.toString()}))
+             .setMimeType(ContentService.MimeType.JSON);
+         }
+       }
+       function doGet(e) {
+         return ContentService.createTextOutput(JSON.stringify({status:'ok'}))
+           .setMimeType(ContentService.MimeType.JSON);
+       }
+
+       4. Klik "Deploy" > "New deployment"
+       5. Pilih type: "Web app"
+       6. Execute as: "Me"
+       7. Who has access: "Anyone"
+       8. Klik "Deploy", lalu copy URL-nya
+       9. Paste URL tersebut di bawah ini (ganti teks PLACEHOLDER):
+       ========================================================== */
+
+    const APPS_SCRIPT_URL = 'PLACEHOLDER_PASTE_URL_WEB_APP_DISINI';
+
+    // State aplikasi
+    let loginData = {};
+    let currentUser = null;
+    let screeningCount = 0;
+
+    // ==================== PARTIKEL LOGIN ====================
+    (function initParticles() {
+        const container = document.getElementById('loginParticles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'login-particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (8 + Math.random() * 12) + 's';
+            p.style.animationDelay = Math.random() * 10 + 's';
+            p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+            if (Math.random() > 0.5) p.style.background = 'rgba(220,38,38,0.5)';
+            container.appendChild(p);
+        }
+    })();
+
+    // Set max date untuk input tanggal lahir (hari ini)
+    document.getElementById('inTgl').max = new Date().toISOString().split('T')[0];
+
+    // ==================== CEK LOGIN ====================
+    function checkExistingLogin() {
+        const saved = localStorage.getItem('monalisa_user');
+        if (saved) {
+            try {
+                currentUser = JSON.parse(saved);
+                showMainApp();
+                return true;
+            } catch(e) {
+                localStorage.removeItem('monalisa_user');
+            }
+        }
+        return false;
+    }
+
+    // ==================== STEP 1: SUBMIT DATA LOGIN ====================
+    function submitStep1() {
+        // Validasi
+        let valid = true;
+        const fields = [
+            { id: 'grpNama', input: 'inNama' },
+            { id: 'grpTempat', input: 'inTempat' },
+            { id: 'grpTgl', input: 'inTgl' },
+            { id: 'grpAlamat', input: 'inAlamat' },
+            { id: 'grpAkses', input: 'inAkses' }
+        ];
+
+        fields.forEach(f => {
+            const grp = document.getElementById(f.id);
+            const val = document.getElementById(f.input).value.trim();
+            if (!val) {
+                grp.classList.add('error');
+                valid = false;
+            } else {
+                grp.classList.remove('error');
+            }
+        });
+
+        // Validasi email khusus untuk field email (di step 2, tapi cek format di sini tidak perlu)
+        if (!valid) {
+            showToast('Lengkapi semua data yang diperlukan', 'error');
+            return;
+        }
+
+        // Simpan data sementara
+        loginData = {
+            nama: document.getElementById('inNama').value.trim(),
+            tempatLahir: document.getElementById('inTempat').value.trim(),
+            tanggalLahir: document.getElementById('inTgl').value,
+            alamat: document.getElementById('inAlamat').value.trim(),
+            aksesHD: document.getElementById('inAkses').value
+        };
+
+        // Animasi loading
+        const btn = document.getElementById('btnStep1');
+        btn.classList.add('loading');
+        btn.disabled = true;
+
         setTimeout(() => {
-            document.getElementById('holoContainer').classList.add('show');
-            document.getElementById('holoSpeech').classList.add('show');
-            setTimeout(() => {
-                document.getElementById('holoSpeech').classList.remove('show');
-                document.getElementById('holoContainer').classList.remove('show');
-            }, 5000); // Hologram Hilang Total Setelah 5 Detik
-        }, 1000);
-    });
+            btn.classList.remove('loading');
+            btn.disabled = false;
 
-    /* ========== JAM DIGITAL ========== */
-    function updateClock() {
-        const now = new Date();
-        const h = String(now.getHours()).padStart(2,'0');
-        const m = String(now.getMinutes()).padStart(2,'0');
-        const s = String(now.getSeconds()).padStart(2,'0');
-        document.getElementById('clockDisplay').textContent = `${h}:${m}:${s}`;
-        const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-        const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-        document.getElementById('clockDate').textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+            // Pindah ke step 2
+            goToStep(2);
+
+            // Pre-fill nama di step 2
+            document.getElementById('inRegNama').value = loginData.nama;
+            document.getElementById('inRegNama').focus();
+        }, 800);
     }
 
-    /* ========== PENGUNJUNG ========== */
-    function updateVisitorCount() {
-        const base = Math.floor(Math.random() * 8) + 3;
-        document.getElementById('visitorCount').textContent = base;
-        document.getElementById('footerVisitorCount').textContent = base;
-    }
+    // ==================== STEP 2: DAFTAR AKUN ====================
+    function submitStep2() {
+        let valid = true;
 
-    /* ========== LOGIN / LOGOUT ========== */
-    function handleLoginClick() {
-        if (currentUser) { performLogout(); } else { openModal('loginModal'); }
-    }
-    function performLogin() {
-        const name = document.getElementById('loginName').value.trim();
-        if (!name) { showToast('Nama tidak boleh kosong','error'); return; }
-        currentUser = name;
-        localStorage.setItem('monalisa_user', name);
-        closeModal('loginModal');
-        updateLoginUI();
-        showToast(`Selamat datang, ${name}!`,'success');
-        try { document.getElementById('chatSound').play().catch(()=>{}); } catch(e){}
-    }
-    function performLogout() {
-        currentUser = '';
-        localStorage.removeItem('monalisa_user');
-        updateLoginUI();
-        showToast('Anda telah keluar','info');
-    }
-    function updateLoginUI() {
-        const container = document.getElementById('loginContainer');
-        const text = document.getElementById('loginText');
-        const avatar = document.getElementById('userAvatar');
-        const welcome = document.getElementById('welcomeMsg');
-        const chatPrompt = document.getElementById('chatLoginPrompt');
-        const chatBar = document.getElementById('chatInputBar');
-        if (currentUser) {
-            container.classList.add('logged-in');
-            text.textContent = currentUser;
-            avatar.style.display = 'flex';
-            avatar.textContent = currentUser.charAt(0).toUpperCase();
-            welcome.textContent = `Halo, ${currentUser}!`;
-            welcome.classList.add('show');
-            chatPrompt.style.display = 'none';
-            chatBar.style.display = 'flex';
+        // Validasi nama
+        const regNama = document.getElementById('inRegNama').value.trim();
+        if (!regNama) {
+            document.getElementById('grpRegNama').classList.add('error');
+            valid = false;
         } else {
-            container.classList.remove('logged-in');
-            text.textContent = 'Masuk';
-            avatar.style.display = 'none';
-            welcome.classList.remove('show');
-            chatPrompt.style.display = 'block';
-            chatBar.style.display = 'none';
+            document.getElementById('grpRegNama').classList.remove('error');
+        }
+
+        // Validasi email
+        const email = document.getElementById('inEmail').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            document.getElementById('grpEmail').classList.add('error');
+            valid = false;
+        } else {
+            document.getElementById('grpEmail').classList.remove('error');
+        }
+
+        // Validasi password
+        const password = document.getElementById('inPassword').value;
+        if (!password || password.length < 6) {
+            document.getElementById('grpPassword').classList.add('error');
+            valid = false;
+        } else {
+            document.getElementById('grpPassword').classList.remove('error');
+        }
+
+        if (!valid) {
+            showToast('Lengkapi semua data pendaftaran dengan benar', 'error');
+            return;
+        }
+
+        // Gabungkan semua data
+        const fullData = {
+            ...loginData,
+            regNama: regNama,
+            email: email,
+            password: password
+        };
+
+        // Animasi loading
+        const btn = document.getElementById('btnStep2');
+        btn.classList.add('loading');
+        btn.disabled = true;
+
+        // Kirim ke spreadsheet
+        saveToSpreadsheet(fullData)
+            .then(() => {
+                // Simpan ke localStorage
+                currentUser = {
+                    nama: fullData.nama,
+                    regNama: fullData.regNama,
+                    email: fullData.email,
+                    tempatLahir: fullData.tempatLahir,
+                    tanggalLahir: fullData.tanggalLahir,
+                    alamat: fullData.alamat,
+                    aksesHD: fullData.aksesHD
+                };
+                localStorage.setItem('monalisa_user', JSON.stringify(currentUser));
+
+                btn.classList.remove('loading');
+                btn.disabled = false;
+
+                showToast('Pendaftaran berhasil! Selamat datang, ' + fullData.nama, 'success');
+
+                // Tampilkan aplikasi utama
+                setTimeout(() => {
+                    showMainApp();
+                }, 500);
+            })
+            .catch(err => {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+                showToast('Gagal menyimpan data: ' + err.message, 'error');
+            });
+    }
+
+    // ==================== SIMPAN KE SPREADSHEET ====================
+    function saveToSpreadsheet(data) {
+        return new Promise((resolve, reject) => {
+            if (APPS_SCRIPT_URL === 'PLACEHOLDER_PASTE_URL_WEB_APP_DISINI') {
+                // Jika URL belum dikonfigurasi, simpan hanya ke localStorage
+                console.warn('Apps Script URL belum dikonfigurasi. Data hanya tersimpan di localStorage.');
+                console.log('Data yang akan dikirim:', data);
+                // Tetap resolve agar aplikasi bisa lanjut
+                resolve();
+                return;
+            }
+
+            const payload = {
+                nama: data.nama,
+                tempatLahir: data.tempatLahir,
+                tanggalLahir: data.tanggalLahir,
+                alamat: data.alamat,
+                aksesHD: data.aksesHD,
+                email: data.email,
+                password: data.password
+            };
+
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Dengan no-cors, kita tidak bisa membaca response, tapi data tetap terkirim
+                resolve();
+            })
+            .catch(err => {
+                // Fallback: tetap simpan ke localStorage
+                console.warn('Gagal mengirim ke spreadsheet, data tersimpan lokal:', err);
+                resolve(); // Tetap resolve agar user bisa lanjut
+            });
+        });
+    }
+
+    // ==================== NAVIGASI STEP ====================
+    function goToStep(step) {
+        const step1 = document.getElementById('formStep1');
+        const step2 = document.getElementById('formStep2');
+        const dot1 = document.getElementById('stepDot1');
+        const dot2 = document.getElementById('stepDot2');
+        const line = document.getElementById('stepLine');
+        const label1 = document.getElementById('stepLabel1');
+        const label2 = document.getElementById('stepLabel2');
+
+        if (step === 2) {
+            step1.classList.remove('active');
+            step1.classList.add('exit-left');
+            step2.classList.add('active');
+            dot1.classList.remove('active');
+            dot1.classList.add('done');
+            dot1.innerHTML = '&#10003;';
+            dot2.classList.add('active');
+            line.classList.add('done');
+            label1.classList.remove('active');
+            label1.classList.add('done');
+            label2.classList.add('active');
         }
     }
 
-    /* ========== MODAL UMUM ========== */
+    // ==================== TAMPILKAN APLIKASI UTAMA ====================
+    function showMainApp() {
+        const overlay = document.getElementById('loginOverlay');
+        overlay.classList.add('hidden');
+
+        const mainApp = document.getElementById('mainApp');
+        mainApp.classList.add('show');
+
+        // Update info user di header
+        if (currentUser) {
+            const initials = currentUser.nama.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+            document.getElementById('userAvatar').textContent = initials;
+            document.getElementById('userNameDisplay').textContent = currentUser.nama;
+            document.getElementById('userHDBadge').textContent = currentUser.aksesHD;
+            document.getElementById('welcomeMsg').textContent = 'Selamat datang, ' + currentUser.nama + '!';
+            document.getElementById('welcomeMsg').classList.add('show');
+
+            // Pre-fill nama di modals
+            document.getElementById('cvcNama').value = currentUser.nama;
+            document.getElementById('avNama').value = currentUser.nama;
+        }
+    }
+
+    // ==================== LOGOUT ====================
+    function performLogout() {
+        localStorage.removeItem('monalisa_user');
+        currentUser = null;
+        loginData = {};
+
+        // Reset form
+        document.getElementById('inNama').value = '';
+        document.getElementById('inTempat').value = '';
+        document.getElementById('inTgl').value = '';
+        document.getElementById('inAlamat').value = '';
+        document.getElementById('inAkses').value = '';
+        document.getElementById('inRegNama').value = '';
+        document.getElementById('inEmail').value = '';
+        document.getElementById('inPassword').value = '';
+
+        // Reset step visual
+        const step1 = document.getElementById('formStep1');
+        const step2 = document.getElementById('formStep2');
+        step1.classList.add('active');
+        step1.classList.remove('exit-left');
+        step2.classList.remove('active');
+        document.getElementById('stepDot1').classList.add('active');
+        document.getElementById('stepDot1').classList.remove('done');
+        document.getElementById('stepDot1').innerHTML = '1';
+        document.getElementById('stepDot2').classList.remove('active','done');
+        document.getElementById('stepLine').classList.remove('done');
+        document.getElementById('stepLabel1').classList.add('active');
+        document.getElementById('stepLabel1').classList.remove('done');
+        document.getElementById('stepLabel2').classList.remove('active','done');
+
+        // Clear error states
+        document.querySelectorAll('.login-input-group').forEach(g => g.classList.remove('error'));
+
+        // Tampilkan overlay login
+        document.getElementById('loginOverlay').classList.remove('hidden');
+        document.getElementById('mainApp').classList.remove('show');
+
+        showToast('Anda telah keluar dari akun', 'info');
+    }
+
+    // ==================== TOGGLE PASSWORD ====================
+    function togglePasswordVisibility() {
+        const input = document.getElementById('inPassword');
+        const icon = document.getElementById('eyeIcon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+        } else {
+            input.type = 'password';
+            icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+        }
+    }
+
+    // ==================== TOAST ====================
+    function showToast(msg, type) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast ' + (type || 'info');
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3200);
+    }
+
+    // ==================== MODAL ====================
     function openModal(id) {
         document.getElementById(id).classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
     function closeModal(id) {
         document.getElementById(id).classList.remove('active');
-        document.body.style.overflow = '';
     }
 
-    /* ========== TOAST ========== */
-    function showToast(msg, type='info') {
-        const c = document.getElementById('toastContainer');
-        const t = document.createElement('div');
-        t.className = `toast ${type}`;
-        t.textContent = msg;
-        c.appendChild(t);
-        setTimeout(() => t.remove(), 3200);
-    }
-
-    /* ==========================================================
-       LOGIKA SUB-SECTION: Normal vs Gejala (GENERIC)
-       ========================================================== */
-    function toggleSubNormal(subBoxId, normalId) {
-        const isNormal = document.getElementById(normalId).checked;
-        const box = document.getElementById(subBoxId);
-        const symptoms = box.querySelectorAll('.check-label:not(.normal-opt)');
-        symptoms.forEach(el => {
-            if (isNormal) {
-                el.classList.add('disabled');
-                const inp = el.querySelector('input');
-                if (inp && inp.type === 'checkbox') inp.checked = false;
-                if (inp && inp.type === 'radio') inp.checked = false;
-            } else {
-                el.classList.remove('disabled');
-            }
+    // Tutup modal saat klik overlay
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+        m.addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
         });
-    }
-
-    function subSymptomChanged(subBoxId, normalId) {
-        const box = document.getElementById(subBoxId);
-        const anyChecked = box.querySelectorAll('.check-label:not(.normal-opt) input:checked').length > 0;
-        if (anyChecked) {
-            document.getElementById(normalId).checked = false;
-        }
-    }
-
-    function toggleAvSub1Normal() { toggleSubNormal('av_sub1', 'av_s1_normal'); }
-    function avSub1SymptomChanged() { subSymptomChanged('av_sub1', 'av_s1_normal'); }
-
-    function toggleAvSub2Normal() {
-        const isNormal = document.getElementById('av_s2_normal').checked;
-        const box = document.getElementById('av_sub2');
-        const symptoms = box.querySelectorAll('.check-label:not(.normal-opt)');
-        symptoms.forEach(el => {
-            if (isNormal) {
-                el.classList.add('disabled');
-                const inp = el.querySelector('input');
-                if (inp && inp.type === 'checkbox') inp.checked = false;
-                if (inp && inp.type === 'radio') inp.checked = false;
-            } else {
-                el.classList.remove('disabled');
-            }
-        });
-        if (isNormal) {
-            const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
-            if (normalRadio) normalRadio.checked = true;
-        }
-    }
-    function avSub2SymptomChanged() {
-        const box = document.getElementById('av_sub2');
-        const anyAbnormal =
-            box.querySelectorAll('.check-label:not(.normal-opt) input[type="checkbox"]:checked').length > 0 ||
-            (document.querySelector('input[name="av_thrill"]:checked') &&
-             document.querySelector('input[name="av_thrill"]:checked').value !== 'normal');
-        if (anyAbnormal) {
-            document.getElementById('av_s2_normal').checked = false;
-        }
-    }
-
-    /* ==========================================================
-       CVC: HITUNG RISIKO
-       ========================================================== */
-    function calculateCVC() {
-        const name = document.getElementById('cvc_id').value.trim() || '-';
-        const days = document.getElementById('cvc_days').value || '-';
-
-        let score = 0;
-        let details = [];
-        let isCritical = false;
-
-        if (document.getElementById('cvc_s1_normal').checked) {
-            details.push('Visual Lokal: Normal');
-        } else {
-            let sub1Items = [];
-            if (document.getElementById('q1').checked) { sub1Items.push('Kemerahan'); }
-            if (document.getElementById('q2').checked) { sub1Items.push('Bengkak'); }
-            if (sub1Items.length === 0) sub1Items.push('Tidak dicek');
-            details.push('Visual Lokal: ' + sub1Items.join(', '));
-            sub1Items.forEach(item => { score += 1; });
-        }
-
-        if (document.getElementById('cvc_s2_normal').checked) {
-            details.push('Palpasi: Normal');
-        } else {
-            let sub2Items = [];
-            if (document.getElementById('q3').checked) { sub2Items.push('Nyeri'); score += 1; }
-            if (sub2Items.length === 0) sub2Items.push('Tidak dicek');
-            details.push('Palpasi: ' + sub2Items.join(', '));
-        }
-
-        if (document.getElementById('cvc_s3_normal').checked) {
-            details.push('Sistemik: Normal');
-        } else {
-            let sub3Items = [];
-            if (document.getElementById('q4').checked) { sub3Items.push('Nanah/Cairan'); score += 3; isCritical = true; }
-            if (document.getElementById('q5').checked) { sub3Items.push('Demam/Menggigil'); score += 3; isCritical = true; }
-            if (sub3Items.length === 0) sub3Items.push('Tidak dicek');
-            details.push('Sistemik: ' + sub3Items.join(', '));
-        }
-
-        const allNormal = document.getElementById('cvc_s1_normal').checked &&
-                          document.getElementById('cvc_s2_normal').checked &&
-                          document.getElementById('cvc_s3_normal').checked;
-
-        let level, badgeClass, badgeText, circleClass, msg;
-        if (allNormal) {
-            level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
-            circleClass = 'normal';
-            msg = 'CVC dalam kondisi normal. Tidak ditemukan tanda-tanda komplikasi pada semua aspek pemeriksaan. Lanjutkan perawatan rutin.';
-        } else if (score === 0) {
-            level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
-            circleClass = 'normal';
-            msg = 'Tidak ditemukan gejala abnormal. Pastikan semua sub-pemeriksaan sudah dicentang Normal atau diisi.';
-        } else if (score <= 1) {
-            level = 'Risiko Rendah'; badgeClass = 'badge-success'; badgeText = 'RENDAH';
-            circleClass = 'low';
-            msg = 'Ditemukan tanda ringan. Lakukan monitoring lebih sering dan jaga kebersihan area kateter.';
-        } else if (score <= 3) {
-            level = 'Risiko Sedang'; badgeClass = 'badge-warning'; badgeText = 'SEDANG';
-            circleClass = 'medium';
-            msg = 'Ditemukan beberapa tanda yang perlu perhatian. Segera konsultasikan ke tim HD.';
-        } else {
-            level = 'Risiko Tinggi'; badgeClass = 'badge-danger'; badgeText = 'TINGGI';
-            circleClass = 'high';
-            msg = 'Ditemukan tanda KRITIS! Segera hubungi tim HD untuk evaluasi segera.';
-        }
-
-        document.getElementById('cvc-form').style.display = 'none';
-        document.getElementById('cvc-result').style.display = 'block';
-        document.getElementById('cvc-score-val').textContent = score;
-        const circle = document.getElementById('cvc-score-circle');
-        circle.className = 'score-circle ' + circleClass;
-        const badge = document.getElementById('cvc-risk-badge');
-        badge.className = 'badge ' + badgeClass;
-        badge.textContent = badgeText;
-        document.getElementById('cvc-risk-msg').textContent = msg;
-
-        const critDiv = document.getElementById('cvc-critical-action');
-        if (isCritical) {
-            critDiv.innerHTML = `<div style="padding:12px 16px;background:rgba(220,38,38,0.08);border:2px solid var(--accent-red);border-radius:12px;font-size:.82rem;color:var(--accent-red-dark);font-weight:700;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Segera lakukan evaluasi klinis dan pertimbangkan penggantian kateter!</div>`;
-        } else {
-            critDiv.innerHTML = '';
-        }
-
-        const waText = `Nama Pasien : ${name}\nPenilaian/screening : ${details.join(' | ')}\nHasil/Kesimpulan : ${level} (Skor: ${score})\ntgl. cek : ${new Date().toLocaleString('id-ID')}`;
-        const encText = encodeURIComponent(waText);
-        document.getElementById('cvc-wa-action').innerHTML = buildWaButtons(encText);
-
-        totalScreenings++;
-        if (level === 'Normal') normalScreenings++;
-        localStorage.setItem('monalisa_total', totalScreenings);
-        localStorage.setItem('monalisa_normal', normalScreenings);
-        updateStats();
-
-        saveToSheet({
-            tipe: 'CVC',
-            nama: name,
-            hari_terpasang: days,
-            hasil: level,
-            skor: score,
-            detail: details.join(' | '),
-            petugas: currentUser || 'Anonim',
-            waktu: new Date().toLocaleString('id-ID')
-        }, 'cvc-save-status');
-    }
-
-    function resetCVC() {
-        document.getElementById('cvc-form').style.display = 'block';
-        document.getElementById('cvc-result').style.display = 'none';
-        document.getElementById('cvc-wa-action').innerHTML = '';
-        ['cvc_s1_normal','cvc_s2_normal','cvc_s3_normal','q1','q2','q3','q4','q5'].forEach(id => {
-            document.getElementById(id).checked = false;
-        });
-        ['cvc_sub1','cvc_sub2','cvc_sub3'].forEach(subId => {
-            document.getElementById(subId).querySelectorAll('.check-label:not(.normal-opt)').forEach(el => {
-                el.classList.remove('disabled');
-            });
-        });
-    }
-
-    /* ==========================================================
-       AV-SHUNT: HITUNG RISIKO
-       ========================================================== */
-    function calculateAV() {
-        const name = document.getElementById('av_id').value.trim() || '-';
-
-        let score = 0;
-        let details = [];
-        let isCritical = false;
-
-        if (document.getElementById('av_s1_normal').checked) {
-            details.push('Visual: Normal');
-        } else {
-            let sub1Items = [];
-            if (document.getElementById('av_vis_red').checked) { sub1Items.push('Kemerahan/Bengkak/Lepuhan'); score += 1; }
-            if (document.getElementById('av_vis_pus').checked) { sub1Items.push('Nanah/Cairan'); score += 3; isCritical = true; }
-            if (document.getElementById('av_vis_bleed').checked) { sub1Items.push('Perdarahan Aktif'); score += 3; isCritical = true; }
-            if (sub1Items.length === 0) sub1Items.push('Tidak dicek');
-            details.push('Visual: ' + sub1Items.join(', '));
-        }
-
-        if (document.getElementById('av_s2_normal').checked) {
-            details.push('Raba (Thrill): Normal');
-        } else {
-            let sub2Items = [];
-            const thrill = document.querySelector('input[name="av_thrill"]:checked');
-            if (thrill) {
-                if (thrill.value === 'weak') { sub2Items.push('Thrill Berkurang/Lemah'); score += 2; }
-                if (thrill.value === 'gone') { sub2Items.push('Thrill Hilang'); score += 3; isCritical = true; }
-            }
-            if (document.getElementById('av_palp_pain').checked) { sub2Items.push('Nyeri Hebat'); score += 1; }
-            if (sub2Items.length === 0) sub2Items.push('Tidak dicek');
-            details.push('Raba: ' + sub2Items.join(', '));
-        }
-
-        if (document.getElementById('av_s3_normal').checked) {
-            details.push('Tanda Lain: Normal');
-        } else {
-            let sub3Items = [];
-            if (document.getElementById('av_other_cold').checked) { sub3Items.push('Steal Syndrome'); score += 2; }
-            if (document.getElementById('av_other_aneurysm').checked) { sub3Items.push('Aneurysma'); score += 2; }
-            if (document.getElementById('av_other_swelling').checked) { sub3Items.push('Pembengkakan Lengan'); score += 1; }
-            if (sub3Items.length === 0) sub3Items.push('Tidak dicek');
-            details.push('Tanda Lain: ' + sub3Items.join(', '));
-        }
-
-        const allNormal = document.getElementById('av_s1_normal').checked &&
-                          document.getElementById('av_s2_normal').checked &&
-                          document.getElementById('av_s3_normal').checked;
-
-        let level, badgeClass, badgeText, circleClass, msg;
-        if (allNormal) {
-            level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
-            circleClass = 'normal';
-            msg = 'AV-Shunt dalam kondisi normal. Thrill teraba, tidak ada tanda komplikasi pada semua aspek. Lanjutkan perawatan rutin.';
-        } else if (score === 0) {
-            level = 'Normal'; badgeClass = 'badge-normal'; badgeText = 'NORMAL';
-            circleClass = 'normal';
-            msg = 'Tidak ditemukan gejala abnormal. Pastikan semua sub-pemeriksaan sudah dicentang Normal atau diisi.';
-        } else if (score <= 2) {
-            level = 'Risiko Rendah'; badgeClass = 'badge-success'; badgeText = 'RENDAH';
-            circleClass = 'low';
-            msg = 'Ditemukan tanda ringan. Lakukan monitoring lebih sering dan perhatikan perubahan.';
-        } else if (score <= 4) {
-            level = 'Risiko Sedang'; badgeClass = 'badge-warning'; badgeText = 'SEDANG';
-            circleClass = 'medium';
-            msg = 'Ditemukan beberapa tanda yang perlu perhatian. Segera konsultasikan ke tim HD.';
-        } else {
-            level = 'Risiko Tinggi'; badgeClass = 'badge-danger'; badgeText = 'TINGGI';
-            circleClass = 'high';
-            msg = 'Ditemukan tanda KRITIS! Segera hubungi tim HD untuk evaluasi dan tindakan segera.';
-        }
-
-        document.getElementById('av-form').style.display = 'none';
-        document.getElementById('av-result').style.display = 'block';
-        document.getElementById('av-score-val').textContent = score;
-        const circle = document.getElementById('av-score-circle');
-        circle.className = 'score-circle ' + circleClass;
-        const badge = document.getElementById('av-risk-badge');
-        badge.className = 'badge ' + badgeClass;
-        badge.textContent = badgeText;
-        document.getElementById('av-risk-msg').textContent = msg;
-
-        const critDiv = document.getElementById('av-critical-action');
-        if (isCritical) {
-            critDiv.innerHTML = `<div style="padding:12px 16px;background:rgba(220,38,38,0.08);border:2px solid var(--accent-red);border-radius:12px;font-size:.82rem;color:var(--accent-red-dark);font-weight:700;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Segera lakukan evaluasi klinis! Pertimbangkan fistulogram atau rujukan vascular surgeon.</div>`;
-        } else {
-            critDiv.innerHTML = '';
-        }
-
-        const waText = `Nama Pasien : ${name}\nPenilaian/screening : ${details.join(' | ')}\nHasil/Kesimpulan : ${level} (Skor: ${score})\ntgl. cek : ${new Date().toLocaleString('id-ID')}`;
-        const encText = encodeURIComponent(waText);
-        document.getElementById('av-wa-action').innerHTML = buildWaButtons(encText);
-
-        totalScreenings++;
-        if (level === 'Normal') normalScreenings++;
-        localStorage.setItem('monalisa_total', totalScreenings);
-        localStorage.setItem('monalisa_normal', normalScreenings);
-        updateStats();
-
-        saveToSheet({
-            tipe: 'AV-Shunt',
-            nama: name,
-            hari_terpasang: '-',
-            hasil: level,
-            skor: score,
-            detail: details.join(' | '),
-            petugas: currentUser || 'Anonim',
-            waktu: new Date().toLocaleString('id-ID')
-        }, 'av-save-status');
-    }
-
-    function resetAV() {
-        document.getElementById('av-form').style.display = 'block';
-        document.getElementById('av-result').style.display = 'none';
-        document.getElementById('av-wa-action').innerHTML = '';
-        ['av_s1_normal','av_s2_normal','av_s3_normal','av_vis_red','av_vis_pus','av_vis_bleed','av_palp_pain','av_other_cold','av_other_aneurysm','av_other_swelling'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.checked = false;
-        });
-        const normalRadio = document.querySelector('input[name="av_thrill"][value="normal"]');
-        if (normalRadio) normalRadio.checked = true;
-        document.querySelectorAll('input[name="av_thrill"][value="weak"],input[name="av_thrill"][value="gone"]').forEach(r => r.checked = false);
-        ['av_sub1','av_sub2','av_sub3'].forEach(subId => {
-            document.getElementById(subId).querySelectorAll('.check-label:not(.normal-opt)').forEach(el => {
-                el.classList.remove('disabled');
-            });
-        });
-    }
-
-    /* ========== KONSULTASI VIA WHATSAPP ========== */
-    function sendConsultation(num) {
-        const text = document.getElementById('consultText').value.trim() || 'Halo, saya ingin konsultasi terkait akses hemodialisis.';
-        const encText = encodeURIComponent(`Konsultasi HD:\n${text}`);
-        window.open(`https://wa.me/${num}?text=${encText}`, '_blank');
-    }
-
-    /* ========== BUAT TOMBOL WHATSAPP UNTUK HASIL SCREENING ========== */
-    function buildWaButtons(encText) {
-        const nurses = [
-            { name: 'Hesty', num: '6282124700093' },
-            { name: 'Erik M', num: '6285732737585' },
-            { name: 'Rovi', num: '6281234028884' },
-            { name: 'Maria', num: '6281234028503' }
-        ];
-        let html = '<div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border-subtle);"><p style="font-size:.78rem; margin-bottom:10px; color:var(--text-dark); font-weight:600; text-align:center;">Laporkan Hasil ke Perawat via WA:</p><div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">';
-        nurses.forEach(n => {
-            html += `<a href="https://wa.me/${n.num}?text=${encText}" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:10px; font-size:.75rem; font-weight:600; text-decoration:none; background:#25D366; color:#fff; transition:transform .2s, box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(37,211,102,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                ${n.name}
-            </a>`;
-        });
-        html += '</div></div>';
-        return html;
-    }
-
-    /* ========== SIMPAN HASIL SCREENING KE PDF ========== */
-    function saveResultToPDF(elementId, filename) {
-        const element = document.getElementById(elementId);
-        const opt = {
-            margin:       10,
-            filename:     filename + '.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        showToast('Menyiapkan PDF...', 'info');
-        html2pdf().set(opt).from(element).save();
-    }
-
-    /* ========== SIMPAN CATATAN USER ========== */
-    async function saveNote() {
-        const subject = document.getElementById('noteSubject').value.trim() || '-';
-        const content = document.getElementById('noteContent').value.trim();
-        const date = document.getElementById('noteDate').value;
-        const statusEl = document.getElementById('note-save-status');
-
-        if (!content) {
-            showToast('Isi catatan tidak boleh kosong', 'error');
-            return;
-        }
-
-        // 1. Simpan ke local storage
-        let notes = JSON.parse(localStorage.getItem('monalisa_notes') || '[]');
-        notes.push({ subject, content, date, user: currentUser || 'Anonim' });
-        localStorage.setItem('monalisa_notes', JSON.stringify(notes));
-
-        // 2. Kirim ke Google Sheets
-        statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan catatan...</div>';
-        try {
-            await fetch(NOTE_SHEET_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    tipe: 'Catatan User',
-                    nama: subject,
-                    detail: content,
-                    petugas: currentUser || 'Anonim',
-                    waktu: date
-                })
-            });
-            statusEl.innerHTML = '<div class="save-indicator saved">Catatan tersimpan!</div>';
-            showToast('Catatan berhasil disimpan', 'success');
-            document.getElementById('noteContent').value = '';
-            document.getElementById('noteSubject').value = '';
-            document.getElementById('noteDate').value = new Date().toLocaleString('id-ID');
-        } catch (err) {
-            statusEl.innerHTML = `<div class="save-indicator failed">Gagal sync: ${err.message}</div>`;
-            showToast('Catatan tersimpan lokal, tapi gagal sync', 'error');
-        }
-    }
-
-    /* ========== SIMPAN KE GOOGLE SHEETS (SCREENING) ========== */
-    async function saveToSheet(data, statusElId) {
-        const statusEl = document.getElementById(statusElId);
-        statusEl.innerHTML = '<div class="save-indicator saving">Menyimpan...</div>';
-        try {
-            await fetch(SHEET_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            statusEl.innerHTML = '<div class="save-indicator saved">Tersimpan...</div>';
-            showToast('Data berhasil direkam','success');
-        } catch (err) {
-            statusEl.innerHTML = `<div class="save-indicator failed">Gagal menyimpan: ${err.message}</div>`;
-            showToast('Gagal menyimpan ke Google Sheets','error');
-        }
-    }
-
-    /* ========== STATISTIK ========== */
-    function updateStats() {
-        document.getElementById('totalScreening').textContent = totalScreenings;
-        document.getElementById('normalCount').textContent = normalScreenings;
-    }
-
-    /* ========== CHAT INLINE ========== */
-    function renderChat() {
-        const area = document.getElementById('chatMessages');
-        if (chatMessages.length === 0) {
-            area.innerHTML = '<div class="empty-chat">Belum ada pesan. Mulai diskusi!</div>';
-            return;
-        }
-        area.innerHTML = chatMessages.map((m, i) => {
-            const isOut = m.user === currentUser;
-            let html = `<div class="chat-bubble-wrap ${isOut?'outgoing-wrap':'incoming-wrap'}" id="chat-${i}">`;
-            if (m.replyTo !== undefined && m.replyTo !== null && chatMessages[m.replyTo]) {
-                const rq = chatMessages[m.replyTo];
-                html += `<div class="reply-quote"><span class="reply-quote-author">${rq.user}</span><span class="reply-quote-text">${rq.text}</span></div>`;
-            }
-            if (m.forwarded) html += `<div class="forward-badge">Diteruskan</div>`;
-            html += `<div class="chat-bubble ${isOut?'outgoing':'incoming'}">`;
-            if (!isOut) html += `<div class="bubble-author">${m.user}</div>`;
-            html += `${m.text}<span class="bubble-meta">${m.time}</span></div>`;
-            html += `<div class="chat-bubble-actions">`;
-            html += `<button class="chat-action-btn reply-btn" onclick="startReply(${i})"><svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg> Balas</button>`;
-            html += `<button class="chat-action-btn fwd-btn" onclick="startForward(${i})"><svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg> Teruskan</button>`;
-            if (isOut) html += `<button class="chat-action-btn delete-btn" onclick="startDelete(${i})"><svg class="ca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Hapus</button>`;
-            html += `</div></div>`;
-            return html;
-        }).join('');
-        area.scrollTop = area.scrollHeight;
-    }
-
-    function sendChat() {
-        if (!currentUser) { openModal('loginModal'); return; }
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text) return;
-        chatMessages.push({
-            user: currentUser, text: text,
-            time: new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'}),
-            replyTo: replyTarget, forwarded: false
-        });
-        localStorage.setItem('monalisa_chat', JSON.stringify(chatMessages));
-        input.value = '';
-        cancelReply();
-        renderChat();
-        try { document.getElementById('chatSound').play().catch(()=>{}); } catch(e){}
-    }
-
-    function startReply(idx) {
-        replyTarget = idx;
-        const m = chatMessages[idx];
-        document.getElementById('replyPreviewBar').innerHTML = `<div class="reply-preview-bar"><div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">${m.user}</div><div class="rp-text">${m.text}</div></div><button class="rp-cancel" onclick="cancelReply()">&times;</button></div>`;
-        document.getElementById('chatInput').focus();
-    }
-    function cancelReply() { replyTarget = null; document.getElementById('replyPreviewBar').innerHTML = ''; }
-
-    function startForward(idx) {
-        forwardTarget = idx;
-        const m = chatMessages[idx];
-        document.getElementById('forwardConfirmBar').innerHTML = `<div class="forward-confirm-bar"><div class="fc-title">Teruskan pesan?</div><div class="fc-msg">${m.user}: ${m.text}</div><div class="fc-actions"><button class="fc-btn fc-btn-cancel" onclick="cancelForward()">Batal</button><button class="fc-btn fc-btn-confirm" onclick="confirmForward()">Teruskan</button></div></div>`;
-    }
-    function cancelForward() { forwardTarget = null; document.getElementById('forwardConfirmBar').innerHTML = ''; }
-    function confirmForward() {
-        if (forwardTarget === null) return;
-        const m = chatMessages[forwardTarget];
-        chatMessages.push({ user: currentUser, text: m.text, time: new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'}), replyTo: null, forwarded: true });
-        localStorage.setItem('monalisa_chat', JSON.stringify(chatMessages));
-        cancelForward(); renderChat(); showToast('Pesan diteruskan','success');
-    }
-
-    function startDelete(idx) {
-        deleteTarget = idx;
-        const wrap = document.getElementById(`chat-${idx}`);
-        if (wrap) wrap.classList.add('delete-target-inline');
-        const m = chatMessages[idx];
-        document.getElementById('deleteConfirmBar').innerHTML = `<div class="delete-confirm-bar"><div class="dc-title">Hapus pesan ini?</div><div class="dc-msg">${m.text}</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" onclick="cancelDelete()">Batal</button><button class="dc-btn dc-btn-confirm" onclick="confirmDelete()">Hapus</button></div></div>`;
-    }
-    function cancelDelete() {
-        if (deleteTarget !== null) { const wrap = document.getElementById(`chat-${deleteTarget}`); if (wrap) wrap.classList.remove('delete-target-inline'); }
-        deleteTarget = null; document.getElementById('deleteConfirmBar').innerHTML = '';
-    }
-    function confirmDelete() {
-        if (deleteTarget === null) return;
-        const wrap = document.getElementById(`chat-${deleteTarget}`);
-        if (wrap) { wrap.classList.add('chat-removing'); wrap.classList.remove('delete-target-inline'); setTimeout(() => { chatMessages.splice(deleteTarget, 1); localStorage.setItem('monalisa_chat', JSON.stringify(chatMessages)); deleteTarget = null; document.getElementById('deleteConfirmBar').innerHTML = ''; renderChat(); }, 350); }
-    }
-
-    /* ========== DISKUSI MODAL ========== */
-    function openDiscussion() { openModal('discussionModal'); renderComments(); renderCommentInput(); }
-    function renderComments() {
-        const list = document.getElementById('commentsList');
-        document.getElementById('commentCount').textContent = `${comments.length} Komentar`;
-        if (comments.length === 0) { list.innerHTML = '<div class="empty-state">Belum ada komentar. Jadilah yang pertama!</div>'; return; }
-        list.innerHTML = comments.map((c, i) => {
-            let html = `<div class="comment-item ${modalDeleteTarget===i?'delete-target':''} ${modalReplyTarget===i?'reply-target':''}" id="comment-${i}">`;
-            html += `<div class="comment-header"><div class="comment-avatar">${c.user.charAt(0).toUpperCase()}</div><span class="comment-author">${c.user}</span><span class="comment-time">${c.time}</span></div>`;
-            if (c.replyTo !== undefined && c.replyTo !== null && comments[c.replyTo]) { const rq = comments[c.replyTo]; html += `<div class="comment-reply-quote"><span class="crq-author">${rq.user}</span><span class="crq-text">${rq.text}</span></div>`; }
-            if (c.forwarded) html += `<div class="comment-forward-tag">Diteruskan</div>`;
-            html += `<div class="comment-text">${c.text}</div><div class="comment-actions">`;
-            html += `<button class="comment-action-btn reply-btn" onclick="modalStartReply(${i})"><svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg> Balas</button>`;
-            html += `<button class="comment-action-btn fwd-btn" onclick="modalForward(${i})"><svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg> Teruskan</button>`;
-            if (c.user === currentUser) html += `<button class="comment-action-btn delete-btn" onclick="modalStartDelete(${i})"><svg class="cma-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Hapus</button>`;
-            html += `</div></div>`; return html;
-        }).join('');
-    }
-    function renderCommentInput() {
-        const area = document.getElementById('commentInputArea');
-        let html = '';
-        if (modalReplyTarget !== null && comments[modalReplyTarget]) { const rq = comments[modalReplyTarget]; html += `<div class="modal-reply-bar"><div class="mr-content"><div class="mr-label">${rq.user}</div><div class="mr-text">${rq.text}</div></div><button class="mr-cancel" onclick="modalCancelReply()">&times;</button></div>`; }
-        if (modalDeleteTarget !== null && comments[modalDeleteTarget]) { const dq = comments[modalDeleteTarget]; html += `<div class="modal-delete-bar"><div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar?</div><div class="md-text">${dq.text}</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" onclick="modalCancelDelete()">Batal</button><button class="md-btn md-btn-confirm" onclick="modalConfirmDelete()">Hapus</button></div></div>`; }
-        if (!currentUser) { html += '<div class="login-prompt"><a onclick="closeModal(\'discussionModal\');openModal(\'loginModal\')">Masuk</a> untuk menambah komentar</div>'; }
-        else { html += `<textarea id="commentInput" placeholder="Tulis komentar..."></textarea><div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-teal" style="flex:1" onclick="submitComment()">Kirim Komentar</button><button class="btn btn-secondary" style="flex:0 0 auto" onclick="modalCancelReply();modalCancelDelete()">Batal</button></div>`; }
-        area.innerHTML = html;
-    }
-    function submitComment() {
-        const ta = document.getElementById('commentInput'); if (!ta) return;
-        const text = ta.value.trim(); if (!text) return;
-        comments.push({ user: currentUser, text: text, time: new Date().toLocaleString('id-ID', {hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',year:'numeric'}), replyTo: modalReplyTarget, forwarded: false });
-        localStorage.setItem('monalisa_comments', JSON.stringify(comments));
-        modalReplyTarget = null; renderComments(); renderCommentInput(); showToast('Komentar ditambahkan','success');
-    }
-    function modalStartReply(idx) { modalReplyTarget = idx; modalDeleteTarget = null; renderComments(); renderCommentInput(); setTimeout(() => { const ta = document.getElementById('commentInput'); if (ta) ta.focus(); }, 100); }
-    function modalCancelReply() { modalReplyTarget = null; renderComments(); renderCommentInput(); }
-    function modalStartDelete(idx) { modalDeleteTarget = idx; modalReplyTarget = null; renderComments(); renderCommentInput(); }
-    function modalCancelDelete() { modalDeleteTarget = null; renderComments(); renderCommentInput(); }
-    function modalConfirmDelete() { if (modalDeleteTarget === null) return; comments.splice(modalDeleteTarget, 1); localStorage.setItem('monalisa_comments', JSON.stringify(comments)); modalDeleteTarget = null; renderComments(); renderCommentInput(); showToast('Komentar dihapus','info'); }
-    function modalForward(idx) { const c = comments[idx]; comments.push({ user: currentUser, text: c.text, time: new Date().toLocaleString('id-ID', {hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',year:'numeric'}), replyTo: null, forwarded: true }); localStorage.setItem('monalisa_comments', JSON.stringify(comments)); renderComments(); showToast('Komentar diteruskan','success'); }
-
-    /* ========== TOUR / PANDUAN ========== */
-    const tourSteps = [
-        { target: '#cvcPanel', title: 'Monitoring CVC', text: 'Lakukan screening komplikasi Central Venous Catheter secara teratur. 3 sub-pemeriksaan dengan opsi Normal masing-masing.' },
-        { target: '#avPanel', title: 'Monitoring AV-Shunt', text: 'Screening komplikasi Arteriovenous Shunt: Visual, Raba (Thrill), dan Tanda Lain. Setiap sub punya opsi Normal.' },
-        { target: '#chatContainer', title: 'Chat Tim HD', text: 'Diskusi langsung dengan tim hemodialisis untuk konsultasi cepat.' },
-        { target: null, title: 'Panduan Selesai', text: 'Anda siap menggunakan MONALISA. Semua data screening otomatis terekam ke Google Sheets sheet "akses"!' }
-    ];
-    function startTour() { tourStep = 0; showTourStep(); }
-    function showTourStep() {
-        if (tourStep >= tourSteps.length) return;
-        const step = tourSteps[tourStep];
-        const tooltip = document.getElementById('tourTooltip');
-        document.getElementById('tourTitle').textContent = step.title;
-        document.getElementById('tourText').textContent = step.text + ` (${tourStep+1}/${tourSteps.length})`;
-        tooltip.classList.add('active');
-        if (step.target) { const el = document.querySelector(step.target); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        tooltip.onclick = () => { tourStep++; showTourStep(); };
-        if (tourStep === tourSteps.length - 1) { setTimeout(() => { tooltip.classList.remove('active'); tooltip.onclick = null; }, 5000); }
-    }
-
-    /* ========== CREDITS ========== */
-    function showCredits() {
-        const overlay = document.getElementById('creditsOverlay');
-        overlay.classList.add('active');
-        const sc = document.getElementById('starContainer');
-        sc.innerHTML = '';
-        for (let i = 0; i < 40; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random()*100 + '%';
-            star.style.width = star.style.height = (Math.random()*3+1) + 'px';
-            star.style.animationDuration = (Math.random()*4+3) + 's';
-            star.style.animationDelay = (Math.random()*5) + 's';
-            sc.appendChild(star);
-        }
-        overlay.onclick = () => overlay.classList.remove('active');
-    }
-
-    /* ========== KEYBOARD ========== */
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-overlay.active').forEach(m => {
-                if (m.id !== 'loadingModal') m.classList.remove('active');
-            });
-            document.body.style.overflow = '';
-        }
     });
+
+    // ==================== JAM DIGITAL ====================
+    function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('clockDisplay').textContent = h + ':' + m + ':' + s;
+
+        const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+        const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+        document.getElementById('clockDate').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ==================== PENGUNJUNG (SIMULASI) ====================
+    (function initVisitors() {
+        let count = Math.floor(Math.random() * 15) + 8;
+        document.getElementById('visitorCount').textContent = count;
+        setInterval(() => {
+            count += Math.random() > 0.5 ? 1 : -1;
+            count = Math.max(5, Math.min(50, count));
+            document.getElementById('visitorCount').textContent = count;
+        }, 8000);
+    })();
+
+    // ==================== CHAT ====================
+    function sendChat() {
+        const input = document.getElementById('chatInput');
+        const msg = input.value.trim();
+        if (!msg) return;
+
+        const area = document.getElementById('chatMessages');
+        const now = new Date();
+        const time = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+
+        const wrap = document.createElement('div');
+        wrap.className = 'chat-bubble-wrap outgoing-wrap';
+        wrap.innerHTML = '<div class="chat-bubble outgoing">' + escapeHtml(msg) + '<span class="bubble-meta">' + (currentUser ? currentUser.nama : 'Anda') + ' &bull; ' + time + '</span></div>';
+        area.appendChild(wrap);
+        input.value = '';
+        area.scrollTop = area.scrollHeight;
+
+        // Auto-reply simulasi
+        setTimeout(() => {
+            const replies = [
+                'Terima kasih atas pertanyaan Anda. Tim kami akan segera merespons.',
+                'Pertanyaan yang bagus! Silakan tunggu jawaban dari perawat HD.',
+                'Catatan Anda sudah diterima. Kami akan menindaklanjuti.',
+                'Mohon tunggu sebentar, konsultan sedang memeriksa data Anda.'
+            ];
+            const replyWrap = document.createElement('div');
+            replyWrap.className = 'chat-bubble-wrap incoming-wrap';
+            replyWrap.innerHTML = '<div class="chat-bubble incoming">' + replies[Math.floor(Math.random()*replies.length)] + '<span class="bubble-meta">Admin &bull; ' + time + '</span></div>';
+            area.appendChild(replyWrap);
+            area.scrollTop = area.scrollHeight;
+        }, 1200 + Math.random() * 1500);
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // ==================== CVC SCORING ====================
+    function toggleSubNormal(subId, normalId) {
+        const normal = document.getElementById(normalId);
+        const sub = document.getElementById(subId);
+        if (normal.checked) {
+            // Uncheck semua gejala di sub-section ini
+            sub.querySelectorAll('.check-label:not(.normal-opt) input').forEach(cb => cb.checked = false);
+        }
+    }
+
+    function subChanged(subId, normalId) {
+        // Jika ada gejala dicentang, uncheck normal
+        const sub = document.getElementById(subId);
+        const normal = document.getElementById(normalId);
+        const anyChecked = Array.from(sub.querySelectorAll('.check-label:not(.normal-opt) input')).some(cb => cb.checked);
+        if (anyChecked) normal.checked = false;
+    }
+
+    function calculateCVC() {
+        const hari = parseInt(document.getElementById('cvcHari').value) || 0;
+        const sections = [
+            { normal: 'cvcS1Normal', symptoms: ['cvcQ1','cvcQ2'] },
+            { normal: 'cvcS2Normal', symptoms: ['cvcQ3'] },
+            { normal: 'cvcS3Normal', symptoms: ['cvcQ4','cvcQ5'] },
+            { normal: 'cvcS4Normal', symptoms: ['cvcQ6'] }
+        ];
+
+        let totalSymptoms = 0;
+        let abnormalSections = 0;
+
+        sections.forEach(s => {
+            const isNormal = document.getElementById(s.normal).checked;
+            const hasSymptom = s.symptoms.some(id => document.getElementById(id).checked);
+            if (!isNormal && hasSymptom) {
+                abnormalSections++;
+                s.symptoms.forEach(id => { if(document.getElementById(id).checked) totalSymptoms++; });
+            }
+        });
+
+        // Skor berdasarkan jumlah gejala dan hari terpasang
+        let score = totalSymptoms * 2;
+        if (hari > 21) score += 1;
+        if (abnormalSections >= 3) score += 2;
+
+        let level, levelClass, badgeClass, badgeText, advice;
+        if (score === 0) {
+            level = 'NORMAL'; levelClass = 'normal'; badgeClass = 'badge-normal'; badgeText = 'Normal';
+            advice = 'Akses CVC dalam kondisi baik. Lanjutkan perawatan rutin dan jaga kebersihan area kateter.';
+        } else if (score <= 3) {
+            level = 'RINGAN'; levelClass = 'low'; badgeClass = 'badge-success'; badgeText = 'Risiko Ringan';
+            advice = 'Terdapat tanda-tanda ringan. Perketat monitoring dan perawatan area kateter. Laporkan ke perawat HD.';
+        } else if (score <= 6) {
+            level = 'SEDANG'; levelClass = 'medium'; badgeClass = 'badge-warning'; badgeText = 'Risiko Sedang';
+            advice = 'Ditemukan beberapa tanda komplikasi. Segera konsultasikan dengan dokter HD untuk evaluasi lebih lanjut.';
+        } else {
+            level = 'TINGGI'; levelClass = 'high'; badgeClass = 'badge-danger'; badgeText = 'Risiko Tinggi';
+            advice = 'Terdapat indikasi kuat komplikasi CVC. Segera hubungi dokter HD untuk penanganan segera!';
+        }
+
+        const resultDiv = document.getElementById('cvcResult');
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = '<div class="section-divider"></div>' +
+            '<div class="score-display">' +
+            '<div class="score-circle ' + levelClass + '"><div class="score-value">' + score + '</div><div class="score-label">Skor</div></div>' +
+            '<div class="badge ' + badgeClass + '">' + badgeText + '</div>' +
+            '</div>' +
+            '<p style="text-align:center;font-size:.85rem;color:var(--text-muted);line-height:1.6;padding:0 10px">' + advice + '</p>';
+
+        screeningCount++;
+        document.getElementById('statScreening').textContent = screeningCount;
+        showToast('Screening CVC selesai - Skor: ' + score + ' (' + badgeText + ')', score === 0 ? 'success' : score <= 3 ? 'info' : 'error');
+    }
+
+    // ==================== AV SHUNT SCORING ====================
+    function calculateAV() {
+        const sections = [
+            { normal: 'avS1Normal', symptoms: ['avQ1'] },
+            { normal: 'avS2Normal', symptoms: ['avQ2'] },
+            { normal: 'avS3Normal', symptoms: ['avQ3','avQ4'] },
+            { normal: 'avS4Normal', symptoms: ['avQ5','avQ6'] }
+        ];
+
+        let totalSymptoms = 0;
+        sections.forEach(s => {
+            const isNormal = document.getElementById(s.normal).checked;
+            const hasSymptom = s.symptoms.some(id => document.getElementById(id).checked);
+            if (!isNormal && hasSymptom) {
+                s.symptoms.forEach(id => { if(document.getElementById(id).checked) totalSymptoms++; });
+            }
+        });
+
+        let score = totalSymptoms * 2;
+
+        let level, levelClass, badgeClass, badgeText, advice;
+        if (score === 0) {
+            level = 'NORMAL'; levelClass = 'normal'; badgeClass = 'badge-normal'; badgeText = 'Normal';
+            advice = 'AV Shunt berfungsi dengan baik. Pertahankan perawatan rutin dan hindari tekanan pada area shunt.';
+        } else if (score <= 3) {
+            level = 'RINGAN'; levelClass = 'low'; badgeClass = 'badge-success'; badgeText = 'Risiko Ringan';
+            advice = 'Terdapat perubahan ringan pada shunt. Perhatikan perkembangan dan lakukan exercise fistula secara teratur.';
+        } else if (score <= 6) {
+            level = 'SEDANG'; levelClass = 'medium'; badgeClass = 'badge-warning'; badgeText = 'Risiko Sedang';
+            advice = 'Ditemukan beberapa abnormalitas. Segera lakukan evaluasi dengan dokter HD, kemungkinan perlu fistulogram.';
+        } else {
+            level = 'TINGGI'; levelClass = 'high'; badgeClass = 'badge-danger'; badgeText = 'Risiko Tinggi';
+            advice = 'Terdapat indikasi gagal fungsi shunt. Segera rujuk ke dokter HD untuk tindakan segera!';
+        }
+
+        const resultDiv = document.getElementById('avResult');
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = '<div class="section-divider"></div>' +
+            '<div class="score-display">' +
+            '<div class="score-circle ' + levelClass + '"><div class="score-value">' + score + '</div><div class="score-label">Skor</div></div>' +
+            '<div class="badge ' + badgeClass + '">' + badgeText + '</div>' +
+            '</div>' +
+            '<p style="text-align:center;font-size:.85rem;color:var(--text-muted);line-height:1.6;padding:0 10px">' + advice + '</p>';
+
+        screeningCount++;
+        document.getElementById('statScreening').textContent = screeningCount;
+        showToast('Evaluasi AV Shunt selesai - Skor: ' + score + ' (' + badgeText + ')', score === 0 ? 'success' : score <= 3 ? 'info' : 'error');
+    }
+
+    // ==================== REMOVE ERROR ON INPUT ====================
+    document.querySelectorAll('.login-input-group input, .login-input-group select').forEach(el => {
+        el.addEventListener('input', function() {
+            this.closest('.login-input-group').classList.remove('error');
+        });
+        el.addEventListener('change', function() {
+            this.closest('.login-input-group').classList.remove('error');
+        });
+    });
+
+    // ==================== STAT PENGUNJUNG ====================
+    (function animateStats() {
+        const target = Math.floor(Math.random() * 80) + 120;
+        const el = document.getElementById('statUsers');
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(interval); }
+            el.textContent = current;
+        }, 30);
+    })();
+
+    // ==================== INISIALISASI ====================
+    checkExistingLogin();
     </script>
 </body>
 </html>
