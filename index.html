@@ -213,7 +213,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .nurse-arrow{color:var(--text-muted);flex-shrink:0;transition:transform .2s}
 .nurse-card:hover .nurse-arrow{transform:translateX(4px);color:#25d366}
 
-/* ===== LOGIN OVERLAY - BRIGHT GRAY/WHITE/BLUE ===== */
+/* ===== LOGIN OVERLAY ===== */
 .login-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#f0f4f8 0%,#e2e8f0 35%,#dbeafe 65%,#eef2f7 100%);transition:opacity .6s ease,visibility .6s ease;padding:16px}
 .login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .login-overlay::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,0.1) 0%,transparent 55%),radial-gradient(ellipse at 70% 80%,rgba(147,197,253,0.15) 0%,transparent 55%);pointer-events:none}
@@ -302,8 +302,40 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .md-btn-cancel:hover{background:#e5e7eb}
 .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
 .md-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3)}
+
+/* ===== ALERT POPUP - PERINGATAN PETUGAS ===== */
+.alert-modal{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:12000;opacity:0;visibility:hidden;transition:all .35s}
+.alert-modal.active{opacity:1;visibility:visible}
+.alert-box{background:#fff;border-radius:24px;width:440px;max-width:92vw;overflow:hidden;transform:scale(.85) translateY(20px);transition:all .4s;box-shadow:0 30px 80px rgba(220,38,38,0.25),0 10px 40px rgba(0,0,0,0.15)}
+.alert-modal.active .alert-box{transform:scale(1) translateY(0)}
+.alert-header{background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);padding:20px 24px;display:flex;align-items:center;gap:14px}
+.alert-icon{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.alert-icon svg{width:28px;height:28px;color:#fff}
+.alert-header-text h2{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.3}
+.alert-header-text p{font-size:.78rem;color:rgba(255,255,255,0.8);font-weight:500}
+.alert-body{padding:20px 24px 24px}
+.alert-score-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:#fef2f2;border:1px solid #fecaca;margin-bottom:16px;font-size:.82rem;color:#991b1b;font-weight:600}
+.alert-score-badge strong{font-size:1.4rem;color:#dc2626}
+.alert-message{font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:16px;text-align:center}
+.alert-contact-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.alert-contact-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;cursor:pointer;transition:all .25s}
+.alert-contact-card:hover{border-color:#25d366;background:#f0fdf4;transform:translateX(4px);box-shadow:0 4px 12px rgba(37,211,102,0.15)}
+.alert-contact-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0}
+.alert-contact-avatar.erik{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+.alert-contact-avatar.hesty{background:linear-gradient(135deg,#ec4899,#be185d)}
+.alert-contact-info{flex:1;min-width:0}
+.alert-contact-name{font-weight:700;font-size:.9rem;color:var(--text-dark)}
+.alert-contact-role{font-size:.72rem;color:var(--text-muted);font-weight:500}
+.alert-contact-phone{font-size:.72rem;color:var(--accent-blue);font-family:'Orbitron',monospace;letter-spacing:.5px}
+.alert-contact-arrow{color:#94a3b8;flex-shrink:0;transition:all .25s}
+.alert-contact-card:hover .alert-contact-arrow{color:#25d366;transform:translateX(3px)}
+.alert-footer{padding:0 24px 20px;text-align:center}
+.alert-close-btn{background:#f1f5f9;border:1.5px solid #e2e8f0;color:#64748b;padding:10px 28px;border-radius:12px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;width:100%}
+.alert-close-btn:hover{background:#e2e8f0;color:#1e293b}
+.alert-warn-pulse{animation:alertPulse 1.5s ease-in-out infinite}
+@keyframes alertPulse{0%,100%{opacity:1}50%{opacity:.5}}
 @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:260px}.chat-sidebar{width:100%}.chat-messages-area{max-height:220px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.6rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
-@media(max-width:600px){.main-container{padding:12px;gap:12px}.banner-section{min-height:200px}.banner-content{padding:16px}.banner-content .header-title{font-size:2rem;letter-spacing:2px}.banner-content .header-subtitle{font-size:.85rem}.panel-card{padding:18px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 10px}.banner-content .clock-display{font-size:.8rem}.panel-icon-wrapper{width:46px;height:46px}.panel-icon-wrapper svg{width:22px;height:22px}.chat-messages-area{max-height:180px}.modal-box{padding:20px}.form-step{padding-left:20px!important;padding-right:20px!important}.login-row{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.login-form-body{min-height:340px}.login-card-header{padding:14px 20px 0}.login-logo{font-size:2.2rem}}
+@media(max-width:600px){.main-container{padding:12px;gap:12px}.banner-section{min-height:200px}.banner-content{padding:16px}.banner-content .header-title{font-size:2rem;letter-spacing:2px}.banner-content .header-subtitle{font-size:.85rem}.panel-card{padding:18px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 10px}.banner-content .clock-display{font-size:.8rem}.panel-icon-wrapper{width:46px;height:46px}.panel-icon-wrapper svg{width:22px;height:22px}.chat-messages-area{max-height:180px}.modal-box{padding:20px}.form-step{padding-left:20px!important;padding-right:20px!important}.login-row{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.login-form-body{min-height:340px}.login-card-header{padding:14px 20px 0}.login-logo{font-size:2.2rem}.alert-box{width:95vw}.alert-contact-card{padding:12px}.alert-header{padding:16px 18px}.alert-body{padding:16px 18px 18px}.alert-footer{padding:0 18px 16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -362,6 +394,46 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <button type="button" class="btn-submit-login teal" id="btnRegister" style="flex:.65"><span class="btn-text">Daftar & Masuk</span><span class="btn-spinner"></span></button>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== ALERT MODAL - PERINGATAN PETUGAS ===== -->
+<div class="alert-modal" id="alertModal">
+<div class="alert-box">
+<div class="alert-header">
+<div class="alert-icon alert-warn-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+<div class="alert-header-text">
+<h2>Peringatan Hasil Pemeriksaan</h2>
+<p>Temukan ketidaknormalan pada saluran HD Anda</p>
+</div>
+</div>
+<div class="alert-body">
+<div class="alert-score-badge" id="alertScoreBadge">Skor: <strong id="alertScoreVal">0</strong> dari <span id="alertScoreTotal">8</span> — <span id="alertScoreLabel">Perlu Perhatian Segera</span></div>
+<div class="alert-message">Hasil pemeriksaan menunjukkan adanya potensi gangguan pada saluran Hemodialisis Anda. Segera hubungi petugas HD melalui WhatsApp di bawah ini untuk konsultasi dan penanganan lebih lanjut.</div>
+<div class="alert-contact-list">
+<div class="alert-contact-card" id="alertContactErik">
+<div class="alert-contact-avatar erik">E</div>
+<div class="alert-contact-info">
+<div class="alert-contact-name">Erik</div>
+<div class="alert-contact-role">Petugas HD</div>
+<div class="alert-contact-phone">085732737585</div>
+</div>
+<div class="alert-contact-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+</div>
+<div class="alert-contact-card" id="alertContactHesty">
+<div class="alert-contact-avatar hesty">H</div>
+<div class="alert-contact-info">
+<div class="alert-contact-name">Hesty</div>
+<div class="alert-contact-role">Petugas HD</div>
+<div class="alert-contact-phone">082124700093</div>
+</div>
+<div class="alert-contact-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+</div>
+</div>
+<div class="alert-footer">
+<button class="alert-close-btn" id="alertCloseBtn">Saya Mengerti, Tutup</button>
 </div>
 </div>
 </div>
@@ -466,9 +538,9 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="modalAkses"><div class="modal-box"><button class="modal-close" id="closeAkses">&times;</button><div class="modal-title">Pemeriksaan Saluran Hemodialisis</div><div id="aksesFormContent"></div><div class="score-display" id="aksesScoreDisplay" style="display:none"><div class="score-circle" id="aksesScoreCircle"><div class="score-value" id="aksesScoreValue">0</div><div class="score-label">Skor</div></div><div id="aksesScoreBadge"></div></div><div style="text-align:center;margin-top:16px"><span class="save-indicator" id="aksesSaveInd"></span></div></div></div>
 <div class="modal-overlay" id="modalSkor"><div class="modal-box"><button class="modal-close" id="closeSkor">&times;</button><div class="modal-title">Kalkulator Skor Risiko</div><div id="skorFormContent"></div><div class="score-display" id="skorScoreDisplay" style="display:none"><div class="score-circle" id="skorScoreCircle"><div class="score-value" id="skorScoreValue">0</div><div class="score-label">Skor Risiko</div></div><div id="skorScoreBadge"></div></div><div style="text-align:center;margin-top:16px"><span class="save-indicator" id="skorSaveInd"></span></div></div></div>
-<div class="modal-overlay" id="modalInfo"><div class="modal-box"><button class="modal-close" id="closeInfo">&times;</button><div class="modal-title">Informasi Hemodialisis</div><div id="infoContent" style="color:var(--text-cream);line-height:1.7;font-size:.9rem"><div class="literature-box" style="margin-bottom:14px"><div class="literature-title">Tentang Hemodialisis</div><p>Hemodialisis (cuci darah) adalah proses penyaringan darah menggunakan mesin dialisis untuk menggantikan fungsi ginjal yang sudah tidak bekerja optimal. Saluran hemodialisis (fistula/graft) adalah akses penting yang harus dijaga kondisinya.</p></div><div class="literature-box"><div class="literature-title">Tanda-Tanda Bahaya</div><ul style="padding-left:18px;font-size:.85rem;color:var(--text-muted)"><li style="margin-bottom:6px">Getaran (thrill) pada fistula hilang</li><li style="margin-bottom:6px">Bengkak, kemerahan, atau nanah di area fistula</li><li style="margin-bottom:6px">Demam tanpa sebab jelas</li><li style="margin-bottom:6px">Saat hemodialisis, aliran darah kurang lancar</li><li>Nyeri hebat pada lengan dengan fistula</li></ul></div></div></div></div>
+<div class="modal-overlay" id="modalInfo"><div class="modal-box"><button class="modal-close" id="closeInfo">&times;</button><div class="modal-title">Informasi Hemodialisis</div><div id="infoContent" style="color:var(--text-cream);line-height:1.7;font-size:.9rem"><div class="literature-box" style="margin-bottom:14px"><div class="literature-title">Tentang Hemodialisis</div><p>Hemodialisis (cuci darah) adalah proses penyaringan darah menggunakan mesin dialisis untuk menggantikan fungsi ginjal yang sudah tidak bekerja optimal. Saluran hemodialisis (fistula/graft) adalah akses penting yang harus dijaga kondisinya.</p></div><div class="literature-box"><div class="literature-title">Tanda-Tanda Bahaya</div><ul style="padding-left:18px;font-size:.85rem;color:var(--text-muted)"><li style="margin-bottom:6px">Getaran (thrill) pada fistula hilang</li><li style="margin-bottom:6px">Bengkak, kemerahan, atau nanah di area fistula</li><li style="margin-bottom:6px">Demam tanpa sebab jelas</li><li style="margin-bottom:6px">Saat hemodialisis, aliran darah kurang lancar</li><li>Nyeri hebat pada lengan dengan fistula</li></ul></div></div></div></div></div>
 <div class="modal-overlay" id="modalConsult"><div class="modal-box"><button class="modal-close" id="closeConsult">&times;</button><div class="modal-title">Daftar Petugas HD</div><div id="nurseList"><div class="nurse-card" data-phone="6281234567890"><div class="nurse-avatar">S1</div><div class="nurse-info"><div class="nurse-name">Suster Rina, S.Kep</div><div class="nurse-phone">+62 812-3456-7890</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div><div class="nurse-card" data-phone="6289876543210"><div class="nurse-avatar">S2</div><div class="nurse-info"><div class="nurse-name">Suster Dewi, S.Kep</div><div class="nurse-phone">+62 898-7654-3210</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div><div class="nurse-card" data-phone="6281555666777"><div class="nurse-avatar">D1</div><div class="nurse-info"><div class="nurse-name">Dr. Ahmad, Sp.PD</div><div class="nurse-phone">+62 815-5566-6777</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div></div></div></div>
-<div class="modal-overlay" id="modalDiscussion"><div class="modal-box discussion-modal-content"><button class="modal-close" id="closeDiscussion">&times;</button><div class="discussion-header"><div class="modal-title" style="margin-bottom:0;text-align:left">Forum Diskusi</div><div class="discussion-count" id="discussionCount">0</div></div><div id="modalReplyBar" style="display:none"></div><div id="modalDeleteBar" style="display:none"></div><div class="comments-list" id="commentsList"><div class="empty-chat">Belum ada diskusi.</div></div><div class="comment-input-area"><textarea id="commentInput" placeholder="Tulis komentar atau pertanyaan..."></textarea><div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn btn-teal" id="btnSendComment" style="flex:0 0 auto;padding:10px 24px">Kirim Komentar</button></div></div></div></div>
+<div class="modal-overlay" id="modalDiscussion"><div class="modal-box discussion-modal-content"><button class="modal-close" id="closeDiscussion">&times;</button><div class="discussion-header"><div class="modal-title" style="margin-bottom:0;text-align:left">Forum Diskusi</div><div class="discussion-count" id="discussionCount">0</div></div><div id="modalReplyBar" style="display:none"></div><div id="modalDeleteBar" style="display:none"></div><div class="comments-list" id="commentsList"><div class="empty-chat">Belum ada diskusi.</div></div><div class="comment-input-area"><textarea id="commentInput" placeholder="Tulis komentar atau pertanya..."></textarea><div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn btn-teal" id="btnSendComment" style="flex:0 0 auto;padding:10px 24px">Kirim Komentar</button></div></div></div></div>
 
 <script>
 /* ===== UTILITAS ===== */
@@ -496,7 +568,6 @@ setInterval(()=>{vCount+=Math.floor(Math.random()*2);$('#visitorCount').textCont
 function getUsers(){return lsGet('users',[])}
 function getCurrentUser(){return lsGet('currentUser',null)}
 
-// Toggle password visibility
 function setupPwToggle(btnId,inputId){const btn=$('#'+btnId),inp=$('#'+inputId);if(!btn||!inp)return;btn.addEventListener('click',()=>{const show=inp.type==='password';inp.type=show?'text':'password';btn.innerHTML=show?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'})}
 setupPwToggle('toggleLoginPw','loginPassword');
 setupPwToggle('togglePw1','inPassword');
@@ -510,7 +581,6 @@ function showRegisterView(){$('#loginView').style.display='none';$('#registerVie
 
  $('#btnShowRegister').addEventListener('click',showRegisterView);
 
-// Step navigation
 function goToStep(n){
   clearErrors();
   const s1=$('#formStep1'),s2=$('#formStep2'),d1=$('#stepDot1'),d2=$('#stepDot2'),l1=$('#stepLabel1'),l2=$('#stepLabel2'),line=$('#stepLine');
@@ -520,7 +590,6 @@ function goToStep(n){
   line.classList.remove('done');
   if(n===1){s1.classList.add('active');d1.classList.add('active');l1.classList.add('active')}
   if(n===2){s1.classList.add('exit-left');s2.classList.add('active');d1.classList.add('done');d2.classList.add('active');l1.classList.add('done');l2.classList.add('active');line.classList.add('done');
-    // Tampilkan ringkasan
     $('#sumNama').textContent=$('#inNama').value||'-';
     $('#sumRM').textContent=$('#inRM').value||'-';
     $('#sumUsia').textContent=$('#inUsia').value?$('#inUsia').value+' tahun':'-';
@@ -550,7 +619,6 @@ function goToStep(n){
   if(pw.length<6){setError('grpPassword');ok=false}
   if(pw!==cpw){setError('grpConfirm');ok=false}
   if(!ok)return;
-  // Cek duplikat email
   const users=getUsers();
   if(users.find(u=>u.email===email)){setError('grpEmail');$('.field-error',$('#grpEmail')).textContent='Email sudah terdaftar';return}
   const btn=this;btn.classList.add('loading');btn.disabled=true;
@@ -603,7 +671,6 @@ function enterDashboard(user){
   $('#mainDashboard').style.display='none';
   $('#loginOverlay').classList.remove('hidden');
   showLoginView();
-  // Clear form fields
   $('#loginEmail').value='';$('#loginPassword').value='';
   showToast('Anda telah keluar.','info');
 });
@@ -723,7 +790,6 @@ function renderComment(c,i,list){
 });
 
 document.addEventListener('click',function(e){
-  // Comment reply
   const crb=e.target.closest('.comments-list .reply-btn');
   if(crb){
     const idx=parseInt(crb.dataset.idx);const comments=lsGet(getCommentKey(),[]);const c=comments[idx];if(!c)return;
@@ -733,7 +799,6 @@ document.addEventListener('click',function(e){
     $('#cancelModReply').addEventListener('click',cancelCommentReply);
     $('#commentInput').focus();return;
   }
-  // Comment delete
   const cdb=e.target.closest('.comments-list .delete-btn');
   if(cdb){
     const idx=parseInt(cdb.dataset.idx);commentDeleteIdx=idx;
@@ -742,36 +807,89 @@ document.addEventListener('click',function(e){
     bar.innerHTML='<div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar?</div><div class="md-text">'+escHtml(c?.text||'')+'</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" id="cancelModDel">Batal</button><button class="md-btn md-btn-confirm" id="confirmModDel">Hapus</button></div>';
     $('#cancelModDel').addEventListener('click',()=>{$('#modalDeleteBar').style.display='none';commentDeleteIdx=null});
     $('#confirmModDel').addEventListener('click',()=>{
-      const comments=lsGet(getCommentKey(),[]);comments.splice(commentDeleteIdx,1);lsSet(getCommentKey(),comments);
-      $('#modalDeleteBar').style.display='none';commentDeleteIdx=null;loadComments();loadStats();
+      const comments=lsGet(getCommentKey(),[]);comments.splice(commentDeleteIdx,1);lsSet(getCommentKey(),comments);$('#modalDeleteBar').style.display='none';commentDeleteIdx=null;loadComments();loadStats();
     });
   }
 });
 function cancelCommentReply(){commentReplyTo=null;$('#modalReplyBar').style.display='none'}
 
-/* ===== FORM CEK AKSES ===== */
+/* ===== FORM CEK AKSES (AV-SHUNT, CDL, CVC) ===== */
 function buildAksesForm(){
-  const items=[
-    {id:'akses1',cat:'Sebelum HD',label:'Getaran (thrill) terasa kuat',good:true},
-    {id:'akses2',cat:'Sebelum HD',label:'Bising (bruit) terdengar jelas',good:true},
-    {id:'akses3',cat:'Sebelum HD',label:'Tidak ada bengkak di area fistula',good:true},
-    {id:'akses4',cat:'Sebelum HD',label:'Tidak ada kemerahan atau panas',good:true},
-    {id:'akses5',cat:'Sesudah HD',label:'Perdarahan berhenti dalam waktu normal',good:true},
-    {id:'akses6',cat:'Sesudah HD',label:'Tidak ada pembengkakan setelah pencabutan jarum',good:true},
-    {id:'akses7',cat:'Sesudah HD',label:'Getaran masih terasa setelah HD',good:true},
-    {id:'akses8',cat:'Sesudah HD',label:'Tidak ada nyeri hebat di area akses',good:true},
-  ];
-  let html='';let lastCat='';
-  items.forEach(it=>{
-    if(it.cat!==lastCat){if(lastCat)html+='</div>';html+='<div class="sub-section-box"><div class="section-title-sm">'+it.cat+'</div>';lastCat=it.cat}
-    html+='<label class="check-label '+(it.good?'good-opt':'bad-opt')+'"><input type="checkbox" name="'+it.id+'" value="1"><div class="check-box"></div><span>'+it.label+'</span></label>';
-  });
-  html+='</div><div style="text-align:center;margin-top:18px"><button class="btn btn-primary" id="btnSubmitAkses" style="max-width:300px;margin:0 auto">Hitung Skor Pemeriksaan</button></div>';
+  // Pilih jenis akses
+  let html='<div style="margin-bottom:18px"><label style="display:block;font-size:.72rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600">Jenis Akses</label><select id="aksesTypeSelect" style="width:100%;padding:12px 14px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;font-size:.88rem;color:var(--text-white);font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;transition:all .25s;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px" onfocus="this.style.borderColor=var(--accent-blue)"><option value="avshunt">AV-Shunt / Fistula</option><option value="cdl">CDL (Catheter Darah Sentral)</option><option value="cvc">CVC (Catheter Vena Sentral)</option></select></div>';
+
+  // Data pemeriksaan per jenis
+  const aksesData={
+    avshunt:[
+      {cat:'Sebelum HD',items:[
+        {id:'av1',label:'Getaran (thrill) terasa kuat',good:true},
+        {id:'av2',label:'Bising (bruit) terdengar jelas',good:true},
+        {id:'av3',label:'Tidak ada bengkak di area fistula',good:true},
+        {id:'av4',label:'Tidak ada kemerahan atau panas',good:true},
+        {id:'av5',cat:'Sesudah HD',items:[
+          {id:'av5',label:'Perdarahan berhenti dalam waktu normal',good:true},
+          {id:'av6',label:'Tidak ada pembengkakan setelah pencabutan jarum',good:true},
+          {id:'av7',label:'Getaran masih terasa setelah HD',good:true},
+          {id:'av8',label:'Tidak ada nyeri hebat di area akses',good:true},
+        ]}],
+    cdl:[
+      {cat:'Pemeriksaan Area Catheter',items:[
+        {id:'cdl1',label:'Area masuk catheter tidak kemerahan',good:true},
+        {id:'cdl2',label:'Tidak ada pembengkakan di sekitar catheter',good:true},
+        {id:'cdl3',label:'Tidak ada nanah atau cairan keluar dari area catheter',good:true},
+        {id:'cdl4',label:'Tidak demam (>38°C)',good:true},
+        {id:'cdl5',label:'Area catheter bersih dan kering',good:true},
+        {id:'cdl6',label:'Catheter tidak longgar atau bergeser dari tempatnya',good:true},
+        {id:'cdl7',label:'Tidak ada nyeri hebat saat infusion dimulai',good:true},
+        {id:'cdl8',label:'Dressing/penutup area insersi dalam kondisi baik',good:true},
+      ]},
+    cvc:[
+      {cat:'Pemeriksaan Area Exit Site',items:[
+        {id:'cvc1',label:'Area exit site tidak kemerahan',good:true},
+        {id:'cvc2',label:'Tidak ada tanda infeksi (nanah, bengkak, panas)',good:true},
+        {id:'cvc3',label:'Aliran darah lancar saat HD (tidak perlu suction tinggi)',good:true},
+        {id:'cvc4',label:'Tidak ada nyeri saat pengisian/suction darah',good:true},
+        {id:'cvc5',label:'Catheter tidak tersumbat (darah bisa ditarik dengan mudah)',good:true},
+        {id:'cvc6',label:'Area sekitar catheter bersih dan kering',good:true},
+        {id:'cvc7',label:'Tidak ada demam tanpa sebab jelas',good:true},
+        {id:'cvc8',label:'Covering/dressing catheter masih utuh dan bersih',good:true},
+      ]}
+    ]
+  };
+
+  html+='<div id="aksesChecksArea"></div>';
   $('#aksesFormContent').innerHTML=html;
   $('#aksesScoreDisplay').style.display='none';
+
+  // Fungsi render checklist
+  function renderChecks(type){
+    const data=aksesData[type];const area=$('#aksesChecksArea');area.innerHTML='';
+    let lastCat='';
+    data.forEach(section=>{
+      if(section.cat!==lastCat){if(lastCat)area+='</div>';area+='<div class="sub-section-box"><div class="section-title-sm">'+section.cat+'</div>';lastCat=section.cat}
+      section.items.forEach(it=>{
+        area+='<label class="check-label good-opt"><input type="checkbox" name="'+it.id+'" value="1"><div class="check-box"></div><span>'+it.label+'</span></label>';
+      });
+      area+='</div>';
+    });
+    // Update total for scoring
+    const total=$$('#aksesChecksArea input[type=checkbox]').length;
+    return total;
+  }
+
+  // Render awal
+  renderChecks('avshunt');
+
+  // Event: ganti jenis akses
+  $('#aksesTypeSelect').addEventListener('change',function(){
+    renderChecks(this.value);
+    $('#aksesScoreDisplay').style.display='none';
+  });
+
+  // Event: submit
   $('#btnSubmitAkses').addEventListener('click',()=>{
-    const checked=$$('#aksesFormContent input[type=checkbox]:checked').length;
-    const total=$$('#aksesFormContent input[type=checkbox]').length;
+    const checked=$$('#aksesChecksArea input[type=checkbox]:checked').length;
+    const total=$$('#aksesChecksArea input[type=checkbox]').length;
     const pct=Math.round((checked/total)*100);
     let level='low',label='Baik',badgeClass='badge-success';
     if(pct<50){level='high';label='Perlu Perhatian Segera';badgeClass='badge-danger'}
@@ -782,8 +900,30 @@ function buildAksesForm(){
     $('#aksesScoreDisplay').style.display='block';
     // Simpan
     const ind=$('#aksesSaveInd');ind.className='save-indicator saving';ind.textContent='Menyimpan...';
-    setTimeout(()=>{const h=lsGet('aksesHistory',[]);h.push({date:new Date().toISOString(),score:pct,level});lsSet('aksesHistory',h);ind.className='save-indicator saved';ind.textContent='Tersimpan';loadStats();setTimeout(()=>ind.textContent='',3000)},800);
+    setTimeout(()=>{
+      const h=lsGet('aksesHistory',[]);h.push({date:new Date().toISOString(),score:pct,level,type:$('#aksesTypeSelect').value});lsSet('aksesHistory',h);
+      ind.className='save-indicator saved';ind.textContent='Tersimpan';loadStats();setTimeout(()=>ind.textContent='',3000);
+      // Cek apakah perlu tampilkan peringatan
+      if(level==='high'){
+        showUrgentAlert(pct,total,$('#aksesTypeSelect option:selected').text());
+      }
+    },800);
   });
+}
+
+/* ===== POP UP PERINGATAN PETUGAS ===== */
+function showUrgentAlert(score,total,typeName){
+  $('#alertScoreVal').textContent=score;
+  $('#alertScoreTotal').textContent=total;
+  $('#alertScoreLabel').textContent='Perlu Perhatian Segera ('+typeName+')';
+  $('#alertModal').classList.add('active');
+  // WA links
+  $('#alertContactErik').onclick=()=>{window.open('https://wa.me/62857327373585?text='+encodeURIComponent('Halo Erik, saya pasien HD. Saya baru saja melakukan pengecekan saluran CDL dan hasilnya kurang baik. Mohon bantu saya.') ,'_blank')};
+  $('#alertContactHesty').onclick=()=>{window.open('https://wa.me/6282124700093?text='+encodeURIComponent('Halo Hesty, saya pasien HD. Saya baru saja melakukan pengecekan saluran CVC dan hasilnya kurang baik. Mohon bantu saya.') ,'_blank')};
+  // Close
+  $('#alertCloseBtn').addEventListener('click',()=>{$('#alertModal').classList.remove('active')});
+  // Klik di luar popup untuk tutup
+  $('#alertModal').addEventListener('click',function(e){if(e.target===this)$('#alertModal').classList.remove('active')});
 }
 
 /* ===== FORM SKOR RISIKO ===== */
@@ -832,14 +972,8 @@ function closeModal(id){$('#'+id).classList.remove('active')}
  $('#closeConsult').addEventListener('click',()=>closeModal('modalConsult'));
  $('#openDiscussionBtn').addEventListener('click',()=>openModal('modalDiscussion'));
  $('#closeDiscussion').addEventListener('click',()=>closeModal('modalDiscussion'));
-
-// Close modal on overlay click
  $$('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active')})});
-
-// Nurse card WhatsApp
- $$('.nurse-card').forEach(card=>{card.addEventListener('click',()=>{const phone=card.dataset.phone;const user=getCurrentUser();const msg=encodeURIComponent('Halo, saya '+user?.nama+' pasien HD. Saya ingin berkonsultasi.');window.open('https://wa.me/'+phone+'?text='+msg,'_blank')})});
-
-// WhatsApp button
+ $$('.nurse-card').forEach(card=>{card.addEventListener('click',()=>{const u=getCurrentUser();window.open('https://wa.me/'+card.dataset.phone+'?text='+encodeURIComponent('Halo, saya '+(u?.nama||'pasien HD')+'. Saya ingin berkonsultasi.'),'_blank')})});
  $('#btnOpenWA').addEventListener('click',()=>{window.open('https://wa.me/6281234567890?text='+encodeURIComponent('Halo, saya ingin berkonsultasi mengenai saluran HD.'),'_blank')});
 
 /* ===== EXPORT PDF ===== */
@@ -847,14 +981,13 @@ function closeModal(id){$('#'+id).classList.remove('active')}
   const user=getCurrentUser();if(!user){showToast('Silakan login terlebih dahulu','error');return}
   const akses=lsGet('aksesHistory',[]);const skor=lsGet('skorHistory',[]);
   let html='<div style="font-family:Arial,sans-serif;padding:20px"><h1 style="text-align:center;color:#1e293b">Laporan Monitoring Saluran HD</h1><h3 style="color:#64748b;text-align:center">Pasien: '+user.nama+' | RM: '+user.rm+'</h3><hr style="margin:16px 0">';
-  if(akses.length){html+='<h2 style="color:#1e293b">Riwayat Pemeriksaan Saluran ('+akses.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';
-  akses.forEach(a=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(a.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.score+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.level+'</td></tr>'});html+='</table>'}
-  if(skor.length){html+='<h2 style="color:#1e293b;margin-top:16px">Riwayat Skor Risiko ('+skor.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';
-  skor.forEach(s=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(s.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.score+'/'+s.max+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.level+'</td></tr>'});html+='</table>'}
+  if(akses.length){html+='<h2 style="color:#1e293b">Riwayat Pemeriksaan Saluran ('+akses.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';akses.forEach(a=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(a.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.score+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.level+(a.type?' ('+a.type+')':'')+'</td></tr>'});html+='</table>'}
+  if(skor.length){html+='<h2 style="color:#1e293b;margin-top:16px">Riwayat Skor Risiko ('+skor.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';skor.forEach(s=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(s.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.score+'/'+s.max+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.level+'</td></tr>'});html+='</table>'}
   if(!akses.length&&!skor.length)html+='<p style="color:#94a3b8;text-align:center">Belum ada data pemeriksaan.</p>';
   html+='<p style="margin-top:20px;font-size:10px;color:#94a3b8;text-align:center">Dicetak dari MONALISA v1.0 pada '+new Date().toLocaleString('id-ID')+'</p></div>';
   const el=document.createElement('div');el.innerHTML=html;document.body.appendChild(el);
   html2pdf().set({margin:10,filename:'Laporan_Monalisa_'+user.nama+'.pdf',html2canvas:{scale:2}}).from(el).save().then(()=>{el.remove();showToast('PDF berhasil diunduh!','success')}).catch(()=>{el.remove();showToast('Gagal membuat PDF','error')});
+});
 });
 </script>
 </body>
