@@ -94,7 +94,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .empty-chat{text-align:center;color:var(--text-muted);font-size:.75rem;margin:auto;opacity:.7}
 .discussion-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(20,184,166,0.25);border:none;cursor:pointer;flex-shrink:0}
 .discussion-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(20,184,166,0.35)}
-.panel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;flex:1}
+.panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;flex:1}
 .panel-card{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:24px;position:relative;overflow:hidden;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
 .panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-red));transform:scaleX(0);transition:transform .4s;z-index:3}
 .panel-card:hover::before{transform:scaleX(1)}
@@ -419,8 +419,20 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="panel-card">
 <div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
 <div class="panel-title">Cek Saluran Hemodialisis</div>
-<div class="panel-subtitle">Periksa kondisi saluran Hemodialisis Anda sebelum dan sesudah cuci darah. Pilih yang sesuai dengan kondisi Anda.</div>
+<div class="panel-subtitle">Periksa kondisi saluran Hemodialisis (AV-Shunt/Fistula/Graft) Anda sebelum dan sesudah cuci darah.</div>
 <div class="panel-actions"><button class="btn btn-primary" id="btnOpenAkses">Mulai Pemeriksaan</button></div>
+</div>
+<div class="panel-card">
+<div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+<div class="panel-title">Skrining Khusus CVC/CDL</div>
+<div class="panel-subtitle">Pemeriksaan khusus, penilaian, dan pelaporan untuk Kateter Double Lumen (CVC/CDL).</div>
+<div class="panel-actions"><button class="btn btn-consult" id="btnOpenCVC">Mulai Skrining CVC</button></div>
+</div>
+<div class="panel-card">
+<div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+<div class="panel-title">Catatan Pribadi</div>
+<div class="panel-subtitle">Catat dan simpan hasil skrining saluran hemodialisis Anda secara pribadi di aplikasi.</div>
+<div class="panel-actions"><button class="btn btn-teal" id="btnOpenCatatan">Buka Catatan</button></div>
 </div>
 <div class="panel-card">
 <div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
@@ -501,11 +513,73 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div id="saveIndicatorAkses"></div>
 <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
 <button class="btn btn-primary" id="submitAkses" style="flex:1;min-width:140px">Simpan Pemeriksaan</button>
-<button class="btn btn-whatsapp" id="btnLaporPerawat" style="flex:1;min-width:140px">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-Laporkan ke Perawat
-</button>
+<button class="btn btn-whatsapp" id="btnLaporPerawat" style="flex:1;min-width:140px">Laporkan ke Perawat</button>
+<button class="btn btn-teal" id="btnSaveAksesToNotes" style="flex:1;min-width:140px">Simpan ke Catatan</button>
 <button class="btn btn-secondary" id="cancelAkses" style="flex:0 0 auto">Batal</button>
+</div>
+</div>
+</div>
+
+<!-- ===== MODAL: SKRINING CVC/CDL ===== -->
+<div class="modal-overlay" id="modalCVC">
+<div class="modal-box">
+<button class="modal-close" id="closeCVC">&times;</button>
+<div class="modal-title">Skrining Khusus CVC/CDL</div>
+<div class="grid-2">
+<div class="input-group"><label>Lokasi CVC/CDL</label><select class="input-field" id="cvcLokasi"><option value="">-- Pilih --</option><option value="Leher Kiri (IJV Kiri)">Leher Kiri (IJV Kiri)</option><option value="Leher Kanan (IJV Kanan)">Leher Kanan (IJV Kanan)</option><option value="Dada Kiri (Subclavia Kiri)">Dada Kiri (Subclavia Kiri)</option><option value="Dada Kanan (Subclavia Kanan)">Dada Kanan (Subclavia Kanan)</option><option value="Groin Kiri (Femoralis Kiri)">Groin Kiri (Femoralis Kiri)</option><option value="Groin Kanan (Femoralis Kanan)">Groin Kanan (Femoralis Kanan)</option></select></div>
+<div class="input-group"><label>Tanggal Pemeriksaan</label><input type="date" class="input-field" id="cvcTanggal"></div>
+</div>
+<div class="section-title-sm">Pemeriksaan Kondisi Baik (centang yang sesuai)</div>
+<div class="sub-section-box">
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Balutan kering, bersih, dan menempel rapat"><div class="check-box"></div><span>Balutan kering, bersih, dan menempel rapat</span></label>
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Tidak ada bengkak di area insersi"><div class="check-box"></div><span>Tidak ada bengkak di area insersi</span></label>
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Tidak ada kemerahan di kulit sekitar"><div class="check-box"></div><span>Tidak ada kemerahan di kulit sekitar</span></label>
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Tidak ada nyeri saat disentuh"><div class="check-box"></div><span>Tidak ada nyeri saat disentuh</span></label>
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Tidak ada bau busuk"><div class="check-box"></div><span>Tidak ada bau busuk dari area kateter</span></label>
+<label class="check-label good-opt"><input type="checkbox" class="cvc-good-check" data-label="Aliran darah lancar saat cuci darah"><div class="check-box"></div><span>Aliran darah lancar saat cuci darah</span></label>
+</div>
+<div class="section-title-sm">Keluhan / Gangguan CVC (centang yang Anda alami)</div>
+<div class="sub-section-box">
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Balutan basah, lepas, atau kotor"><div class="check-box"></div><span>Balutan basah, lepas, atau kotor</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Kemerahan atau kulit terasa panas"><div class="check-box"></div><span>Kemerahan atau kulit terasa panas di area insersi</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Bengkak di area insersi"><div class="check-box"></div><span>Bengkak di area insersi</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Nyeri saat disentuh atau saat cuci darah"><div class="check-box"></div><span>Nyeri saat disentuh atau saat cuci darah</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Keluar nanah atau cairan dari lubang kateter"><div class="check-box"></div><span>Keluar nanah atau cairan dari lubang kateter</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Demam tinggi atau menggigil"><div class="check-box"></div><span>Demam tinggi atau menggigil</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Aliran darah tersendat atau sulit keluar"><div class="check-box"></div><span>Aliran darah tersendat atau sulit keluar</span></label>
+<label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Kateter terlihat keluar dari kulit"><div class="check-box"></div><span>Kateter terlihat keluar dari kulit (terlepas sebagian)</span></label>
+</div>
+<div class="input-group"><label>Catatan Tambahan</label><textarea class="input-field" id="cvcCatatan" rows="3" placeholder="Tuliskan keluhan atau catatan lainnya..." style="resize:vertical;min-height:60px"></textarea></div>
+
+<div class="section-divider"></div>
+<div class="section-title-sm">Penilaian Otomatis CVC/CDL</div>
+<div class="score-display" id="cvcScoreDisplay" style="display:none">
+<div class="score-circle" id="cvcScoreCircle"><div class="score-value" id="cvcScoreValue">0</div><div class="score-label">Penilaian</div></div>
+<div id="cvcBadge" style="margin-bottom:10px"></div>
+<div id="cvcRecommendation" style="font-size:.82rem;color:var(--text-dark);line-height:1.5;text-align:center;max-width:420px;margin:0 auto;padding:12px 14px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle)"></div>
+</div>
+<button class="btn btn-gold" id="btnHitungCVC" style="width:100%;margin-bottom:12px">Hitung Penilaian CVC</button>
+
+<div id="saveIndicatorCVC"></div>
+<div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+<button class="btn btn-primary" id="submitCVC" style="flex:1;min-width:140px">Simpan CVC</button>
+<button class="btn btn-whatsapp" id="btnLaporPerawatCVC" style="flex:1;min-width:140px">Laporkan ke Perawat</button>
+<button class="btn btn-teal" id="btnSaveCVCToNotes" style="flex:1;min-width:140px">Simpan ke Catatan</button>
+<button class="btn btn-secondary" id="cancelCVC" style="flex:0 0 auto">Batal</button>
+</div>
+</div>
+</div>
+
+<!-- ===== MODAL: CATATAN PRIBADI ===== -->
+<div class="modal-overlay" id="modalCatatan">
+<div class="modal-box discussion-modal-content">
+<button class="modal-close" id="closeCatatan">&times;</button>
+<div class="discussion-header"><div class="modal-title" style="margin:0;text-align:left">Catatan Pribadi Skrining</div><span class="discussion-count" id="catatanCount">0 Catatan</span></div>
+<div class="comments-list" id="catatanList"><div id="emptyCatatan" style="text-align:center;padding:40px 20px;color:var(--text-muted);opacity:.7">Belum ada catatan tersimpan.</div></div>
+<div class="comment-input-area">
+<div class="input-group" style="margin-bottom:10px"><label>Judul Catatan</label><input type="text" class="input-field" id="catatanJudul" placeholder="Contoh: Hasil Skrining Tanggal ..."></div>
+<textarea id="catatanIsi" placeholder="Tulis isi catatan..." maxlength="2000" style="width:100%;min-height:70px;resize:vertical;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;padding:12px;font-size:.9rem;color:var(--text-white);font-family:inherit"></textarea>
+<div style="display:flex;gap:10px;margin-top:10px"><button class="btn btn-teal" id="submitCatatan" style="flex:1">Tambah Catatan Manual</button></div>
 </div>
 </div>
 </div>
@@ -625,13 +699,6 @@ Laporkan ke Perawat
 // ============================================================
 // KONFIGURASI GOOGLE SPREADSHEET
 // ============================================================
-// PANDUAN:
-// 1. Buka spreadsheet https://docs.google.com/spreadsheets/d/1cmopszp4hZ3A-MIEzDD9RONMA7py148Z3izoAfneDfM
-// 2. Klik menu Extensions > Apps Script
-// 3. Hapus kode default, paste kode .gs, lalu simpan
-// 4. Klik Deploy > New deployment > type: Web app > Execute as: Me > Who has access: Anyone > Deploy
-// 5. Salin URL yang muncul, lalu ganti URL di bawah ini:
-// ============================================================
 var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyjjroUmxSse6datFzzLb4LP1HbwD2nAEFMTsGSBJPNeTR382Q7tJuuhXr3bQVT_Q/exec';
 
 // Data perawat
@@ -662,7 +729,6 @@ function simpleHash(str){ var h=0; for(var i=0;i<str.length;i++){ h=((h<<5)-h)+s
 function sendToSheet(sheetName, rowData){
     if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('GANTI_DENGAN') !== -1){
         console.log('[MONALISA] Google Script URL belum dikonfigurasi. Data hanya tersimpan lokal.');
-        console.log('[MONALISA] Data yang akan dikirim ke sheet "'+sheetName+'":', rowData);
         return Promise.resolve(false);
     }
     return fetch(GOOGLE_SCRIPT_URL, {
@@ -676,9 +742,9 @@ function sendToSheet(sheetName, rowData){
 }
 
 // ---- DATA APLIKASI ----
-var appData = { user:null, passwordHash:null, chatMessages:[], comments:[], assessments:[], stats:{sessions:0,days:0} };
+var appData = { user:null, passwordHash:null, chatMessages:[], comments:[], assessments:[], privateNotes:[], stats:{sessions:0,days:0} };
 function saveData(){ try{ localStorage.setItem('monalisa_data', JSON.stringify(appData)); }catch(e){} }
-function loadData(){ try{ var d=localStorage.getItem('monalisa_data'); if(d){ appData=JSON.parse(d); return true; } }catch(e){} return false; }
+function loadData(){ try{ var d=localStorage.getItem('monalisa_data'); if(d){ appData=JSON.parse(d); if(!appData.privateNotes) appData.privateNotes=[]; return true; } }catch(e){} return false; }
 
 // ---- LOGIN PARTICLES ----
 (function(){
@@ -776,7 +842,7 @@ function initDashboard(){
     $('welcomeMsg').textContent='Selamat datang kembali, '+u.nama.split(' ')[0]+'!'; $('welcomeMsg').classList.add('show');
     $('statSessions').textContent=appData.stats.sessions; $('statDays').textContent=appData.stats.days;
     if(u.registeredAt){var diff=Math.max(1,Math.ceil((new Date()-new Date(u.registeredAt))/(1000*60*60*24)));appData.stats.days=diff;$('statDays').textContent=diff;saveData();}
-    startClock(); animateVisitorCount(); renderChat(); renderComments();
+    startClock(); animateVisitorCount(); renderChat(); renderComments(); renderCatatan();
 }
 function startClock(){function up(){var n=new Date();$('clockDisplay').textContent=formatTime(n);$('clockDate').textContent=formatDate(n);}up();setInterval(up,1000);}
 function animateVisitorCount(){var target=12+Math.floor(Math.random()*20),current=0,el=$('visitorCount');function step(){if(current<target){current+=Math.ceil((target-current)*0.15);if(current>target)current=target;el.textContent=current;requestAnimationFrame(step);}}step();setInterval(function(){target+=Math.floor(Math.random()*3)-1;if(target<5)target=5;if(target>50)target=50;el.textContent=target;},8000);}
@@ -807,6 +873,44 @@ function renderComments(){var list=$('commentsList'),empty=$('emptyDiscussion');
 function showModalReplyBar(idx){var c=appData.comments[idx];if(!c)return;var bar=$('modalReplyBar');bar.style.display='flex';bar.className='modal-reply-bar';bar.innerHTML='<div class="mr-content"><div class="mr-label">Membalas '+escHtml(c.author)+'</div><div class="mr-text">'+escHtml(c.text)+'</div></div><button class="mr-cancel" id="cancelModalReply">&times;</button>';$('cancelModalReply').onclick=function(){bar.style.display='none';replyToComment=null;};$('commentInput').focus();}
 function showModalDeleteBar(idx){var c=appData.comments[idx];if(!c)return;var bar=$('modalDeleteBar');bar.style.display='flex';bar.className='modal-delete-bar';bar.innerHTML='<div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar?</div><div class="md-text">'+escHtml(c.text)+'</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" id="cancelModalDel">Batal</button><button class="md-btn md-btn-confirm" id="confirmModalDel">Hapus</button></div>';$('cancelModalDel').onclick=function(){bar.style.display='none';};$('confirmModalDel').onclick=function(){appData.comments.splice(idx,1);saveData();renderComments();bar.style.display='none';toast('Komentar dihapus','info');};}
  $('submitComment').addEventListener('click',function(){var input=$('commentInput'),text=input.value.trim();if(!text){toast('Tulis komentar terlebih dahulu','error');return;}var now=new Date();appData.comments.push({author:appData.user?appData.user.nama:'Anonim',text:text,time:formatDate(now)+' '+formatTime(now).substring(0,5),replyTo:replyToComment,ts:now.toISOString()});saveData();input.value='';$('modalReplyBar').style.display='none';replyToComment=null;renderComments();toast('Komentar terkirim','success');});
+
+// ---- CATATAN PRIBADI ----
+function renderCatatan(){
+    var list=$('catatanList'),empty=$('emptyCatatan');
+    list.querySelectorAll('.comment-item').forEach(function(e){e.remove();});
+    $('catatanCount').textContent=appData.privateNotes.length+' Catatan';
+    if(!appData.privateNotes.length){empty.style.display='block';return;}
+    empty.style.display='none';
+    appData.privateNotes.forEach(function(c,idx){
+        var item=document.createElement('div');item.className='comment-item';item.dataset.idx=idx;
+        var h='<div class="comment-header"><div class="comment-avatar">N</div><span class="comment-author">'+escHtml(c.title)+'</span><span class="comment-time">'+c.date+'</span></div>';
+        h+='<div class="comment-text">'+escHtml(c.content).replace(/\n/g, '<br>')+'</div>';
+        h+='<div class="comment-actions"><button class="comment-action-btn delete-btn" data-idx="'+idx+'">Hapus</button></div>';
+        item.innerHTML=h;list.appendChild(item);
+    });
+    list.scrollTop=list.scrollHeight;
+    list.onclick=function(e){var btn=e.target.closest('.comment-action-btn');if(!btn)return;var idx=parseInt(btn.dataset.idx);if(btn.classList.contains('delete-btn')){appData.privateNotes.splice(idx,1);saveData();renderCatatan();toast('Catatan dihapus','info');}};
+}
+ $('submitCatatan').addEventListener('click',function(){
+    var judul=$('catatanJudul').value.trim(), isi=$('catatanIsi').value.trim();
+    if(!judul||!isi){toast('Judul dan isi catatan wajib diisi','error');return;}
+    var now=new Date();
+    appData.privateNotes.push({title:judul,content:isi,date:formatDate(now)+' '+formatTime(now).substring(0,5),ts:now.toISOString()});
+    saveData();
+    var u=appData.user;
+    sendToSheet('CatatanPribadi',[now.toISOString(),u.nama,u.rm,formatDate(now),judul,isi]);
+    $('catatanJudul').value='';$('catatanIsi').value='';
+    renderCatatan();toast('Catatan tersimpan','success');
+});
+function addPrivateNoteFromData(title, lines){
+    var now=new Date();
+    var content = lines.join('\n');
+    appData.privateNotes.push({title:title, content:content, date:formatDate(now)+' '+formatTime(now).substring(0,5), ts:now.toISOString()});
+    saveData();
+    var u=appData.user;
+    sendToSheet('CatatanPribadi',[now.toISOString(),u.nama,u.rm,formatDate(now),title,content]);
+    toast('Berhasil disimpan ke Catatan Pribadi','success');
+}
 
 // ---- MODAL MANAGEMENT ----
 function openModal(id){$(id).classList.add('active');}
@@ -880,31 +984,198 @@ function buildWaMessage(assessment, nurseName){
     setTimeout(function(){closeModal('modalAkses');},1200);
 });
 
+ $('btnSaveAksesToNotes').addEventListener('click',function(){
+    var data=collectAssessmentData();
+    if(!data.tipe||!data.lokasi){toast('Isi jenis dan lokasi saluran terlebih dahulu','error');return;}
+    var lines=['Jenis: '+data.tipe, 'Lokasi: '+data.lokasi, 'Tanggal: '+data.tanggal];
+    if(data.kondisiBaik.length){lines.push('Kondisi Baik:');data.kondisiBaik.forEach(function(i){lines.push('- '+i);});}
+    if(data.keluhan.length){lines.push('Keluhan:');data.keluhan.forEach(function(i){lines.push('- '+i);});}
+    if(data.catatan){lines.push('Catatan: '+data.catatan);}
+    addPrivateNoteFromData('Skrining Saluran HD ('+data.tipe+')', lines);
+});
+
 // ---- CEK SALURAN: LAPOR KE PERAWAT ----
  $('btnLaporPerawat').addEventListener('click',function(){
     var tipe=$('aksesTipe').value, lokasi=$('aksesLokasi').value;
     if(!tipe||!lokasi){toast('Isi jenis dan lokasi saluran terlebih dahulu','error');return;}
+    window.reportType='normal';
     openModal('modalPerawat');
 });
  $('closePerawat').addEventListener('click',function(){closeModal('modalPerawat');});
  $('cancelPerawat').addEventListener('click',function(){closeModal('modalPerawat');});
 
+// ---- SKRINING CVC/CDL ----
+function collectCvcData(){
+    var lokasi=$('cvcLokasi').value;
+    var goodItems=[],badItems=[];
+    document.querySelectorAll('.cvc-good-check:checked').forEach(function(cb){goodItems.push(cb.dataset.label);});
+    document.querySelectorAll('.cvc-bad-check:checked').forEach(function(cb){badItems.push(cb.dataset.label);});
+    return {lokasi:lokasi,tanggal:$('cvcTanggal').value||new Date().toISOString().split('T')[0],kondisiBaik:goodItems,keluhan:badItems,catatan:$('cvcCatatan').value.trim()};
+}
+function calculateCvcAssessment(data){
+    var goodScores = {
+        'Balutan kering, bersih, dan menempel rapat': 2,
+        'Tidak ada bengkak di area insersi': 2,
+        'Tidak ada kemerahan di kulit sekitar': 2,
+        'Tidak ada nyeri saat disentuh': 2,
+        'Tidak ada bau busuk': 1,
+        'Aliran darah lancar saat cuci darah': 2
+    };
+    var badScores = {
+        'Balutan basah, lepas, atau kotor': -3,
+        'Kemerahan atau kulit terasa panas': -4,
+        'Bengkak di area insersi': -3,
+        'Nyeri saat disentuh atau saat cuci darah': -3,
+        'Keluar nanah atau cairan dari lubang kateter': -5,
+        'Demam tinggi atau menggigil': -5,
+        'Aliran darah tersendat atau sulit keluar': -4,
+        'Kateter terlihat keluar dari kulit': -5
+    };
+
+    var score = 0;
+    var maxScore = 11;
+    data.kondisiBaik.forEach(function(item){ score += (goodScores[item] || 0); });
+    data.keluhan.forEach(function(item){ score += (badScores[item] || 0); });
+
+    var hasCritical = data.keluhan.some(function(k){ return (badScores[k] || 0) <= -5; });
+    var percentScore = Math.max(0, Math.min(100, Math.round((score / maxScore) * 100)));
+
+    var level, badgeClass, recommendation;
+    if(hasCritical || score < 0){
+        level = 'KRITIS'; badgeClass = 'badge-danger';
+        recommendation = '⚠️ Kondisi CVC/CDL menunjukkan TANDA BAHAYA! Segera hubungi perawat atau datang ke Unit Gawat Darurat.';
+    } else if(data.keluhan.length > 0 || score < maxScore * 0.5){
+        level = 'PERLU PERHATIAN'; badgeClass = 'badge-warning';
+        recommendation = '⚠️ Ada keluhan pada kateter Anda. Disarankan menghubungi perawat untuk konsultasi lebih lanjut.';
+    } else {
+        level = 'BAIK'; badgeClass = 'badge-success';
+        recommendation = '✅ Kondisi CVC/CDL dalam keadaan baik. Lanjutkan perawatan dan jaga kebersihan area kateter.';
+    }
+
+    return { score: score, maxScore: maxScore, percent: percentScore, level: level, badgeClass: badgeClass, recommendation: recommendation, hasCritical: hasCritical };
+}
+function buildWaMessageCVC(data, nurseName, result){
+    var u = appData.user;
+    var msg = '*LAPORAN SKRINING CVC/CDL*\n';
+    msg += 'Via MONALISA v2.0\n';
+    msg += '═══════════════════════\n';
+    msg += '👤 Perawat: ' + nurseName + '\n';
+    msg += '📅 Tanggal: ' + data.tanggal + '\n';
+    msg += '═══════════════════════\n';
+    msg += '*🎯 PENILAIAN: ' + result.level + '*\n';
+    msg += 'Skor: ' + result.score + '/' + result.maxScore + ' (' + result.percent + '%)\n';
+    msg += '═══════════════════════\n';
+    msg += '*📋 Data Pasien:*\n';
+    msg += 'Nama: ' + u.nama + '\n';
+    msg += 'No. RM: ' + u.rm + '\n';
+    msg += '═══════════════════════\n';
+    msg += '*🏥 Detail CVC:*\n';
+    msg += 'Lokasi: ' + data.lokasi + '\n';
+    msg += '═══════════════════════\n';
+    if(data.kondisiBaik.length > 0){
+        msg += '*✅ Kondisi Baik (' + data.kondisiBaik.length + '):*\n';
+        data.kondisiBaik.forEach(function(item, i){ msg += '   ' + (i+1) + '. ' + item + '\n'; });
+    }
+    if(data.keluhan.length > 0){
+        msg += '\n*⚠️ KELUHAN (' + data.keluhan.length + '):*\n';
+        data.keluhan.forEach(function(item, i){ msg += '   ' + (i+1) + '. ' + item + '\n'; });
+    } else {
+        msg += '*✅ Tidak ada keluhan*\n';
+    }
+    if(data.catatan){
+        msg += '\n*📝 Catatan:*\n' + data.catatan + '\n';
+    }
+    msg += '═══════════════════════\n';
+    msg += '*📌 REKOMENDASI:*\n' + result.recommendation + '\n';
+    msg += '═══════════════════════\n';
+    msg += 'Mohon segera ditindaklanjuti. Terima kasih.';
+    return msg;
+}
+
+ $('btnOpenCVC').addEventListener('click',function(){openModal('modalCVC');});
+ $('closeCVC').addEventListener('click',function(){closeModal('modalCVC');});
+ $('cancelCVC').addEventListener('click',function(){closeModal('modalCVC');});
+ $('btnHitungCVC').addEventListener('click',function(){
+    var data=collectCvcData();
+    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
+    var result=calculateCvcAssessment(data);
+    window.cvcResult=result;
+    $('cvcScoreDisplay').style.display='block';
+    $('cvcScoreValue').textContent=result.hasCritical?'!':result.percent+'%';
+    var circle=$('cvcScoreCircle');circle.className='score-circle';
+    if(result.level==='BAIK')circle.classList.add('low');
+    else if(result.level==='PERLU PERHATIAN')circle.classList.add('medium');
+    else circle.classList.add('high');
+    $('cvcBadge').innerHTML='<span class="badge '+result.badgeClass+'">'+result.level+'</span>';
+    $('cvcRecommendation').textContent=result.recommendation;
+    toast('Penilaian: '+result.level+' ('+result.percent+'%)',result.hasCritical?'error':'info');
+});
+ $('submitCVC').addEventListener('click',function(){
+    var data=collectCvcData();
+    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
+    var result=window.cvcResult||calculateCvcAssessment(data);
+    var u=appData.user, now=new Date();
+    appData.stats.sessions++; $('statSessions').textContent=appData.stats.sessions; saveData();
+    sendToSheet('CVC_Assessment',[now.toISOString(),u.nama,u.rm,data.lokasi,data.tanggal,data.kondisiBaik.join('; '),data.keluhan.join('; '),data.catatan,result.level]);
+    toast('Data CVC berhasil disimpan!','success');
+    $('cvcLokasi').value='';$('cvcTanggal').value='';$('cvcCatatan').value='';
+    document.querySelectorAll('.cvc-good-check,.cvc-bad-check').forEach(function(cb){cb.checked=false;});
+    $('cvcScoreDisplay').style.display='none'; window.cvcResult=null;
+    setTimeout(function(){closeModal('modalCVC');},1200);
+});
+ $('btnSaveCVCToNotes').addEventListener('click',function(){
+    var data=collectCvcData();
+    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
+    var result=window.cvcResult||calculateCvcAssessment(data);
+    var lines=['Lokasi CVC: '+data.lokasi, 'Tanggal: '+data.tanggal, 'Penilaian: '+result.level+' ('+result.percent+'%)'];
+    if(data.kondisiBaik.length){lines.push('Kondisi Baik:');data.kondisiBaik.forEach(function(i){lines.push('- '+i);});}
+    if(data.keluhan.length){lines.push('Keluhan:');data.keluhan.forEach(function(i){lines.push('- '+i);});}
+    if(data.catatan){lines.push('Catatan: '+data.catatan);}
+    addPrivateNoteFromData('Skrining Khusus CVC/CDL', lines);
+});
+ $('btnLaporPerawatCVC').addEventListener('click',function(){
+    var data=collectCvcData();
+    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
+    if(!window.cvcResult){window.cvcResult=calculateCvcAssessment(data);}
+    window.reportType='cvc';
+    openModal('modalPerawat');
+});
+
+// ---- KIRIM KE WHATSAPP PERAWAT ----
  $('nurseHesty').addEventListener('click',function(){
-    var assessment = collectAssessmentData();
-    var msg = buildWaMessage(assessment, 'Hesty');
-    var url = 'https://wa.me/' + NURSES[0].phone + '?text=' + encodeURIComponent(msg);
+    var url = '';
+    if(window.reportType==='cvc'){
+        var data = collectCvcData();
+        var msg = buildWaMessageCVC(data, 'Hesty', window.cvcResult || calculateCvcAssessment(data));
+        url = 'https://wa.me/' + NURSES[0].phone + '?text=' + encodeURIComponent(msg);
+    } else {
+        var assessment = collectAssessmentData();
+        var msg = buildWaMessage(assessment, 'Hesty');
+        url = 'https://wa.me/' + NURSES[0].phone + '?text=' + encodeURIComponent(msg);
+    }
     window.open(url, '_blank');
     closeModal('modalPerawat');
     toast('Membuka WhatsApp ke Hesty...','info');
 });
  $('nurseErik').addEventListener('click',function(){
-    var assessment = collectAssessmentData();
-    var msg = buildWaMessage(assessment, 'Erik');
-    var url = 'https://wa.me/' + NURSES[1].phone + '?text=' + encodeURIComponent(msg);
+    var url = '';
+    if(window.reportType==='cvc'){
+        var data = collectCvcData();
+        var msg = buildWaMessageCVC(data, 'Erik', window.cvcResult || calculateCvcAssessment(data));
+        url = 'https://wa.me/' + NURSES[1].phone + '?text=' + encodeURIComponent(msg);
+    } else {
+        var assessment = collectAssessmentData();
+        var msg = buildWaMessage(assessment, 'Erik');
+        url = 'https://wa.me/' + NURSES[1].phone + '?text=' + encodeURIComponent(msg);
+    }
     window.open(url, '_blank');
     closeModal('modalPerawat');
     toast('Membuka WhatsApp ke Erik...','info');
 });
+
+// ---- CATATAN PRIBADI MODAL ----
+ $('btnOpenCatatan').addEventListener('click',function(){openModal('modalCatatan');});
+ $('closeCatatan').addEventListener('click',function(){closeModal('modalCatatan');});
 
 // ---- SKOR RISIKO ----
  $('btnOpenSkor').addEventListener('click',function(){openModal('modalSkor');});
