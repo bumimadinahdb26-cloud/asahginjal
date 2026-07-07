@@ -418,8 +418,8 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="panel-grid">
 <div class="panel-card">
 <div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="panel-title">Cek Saluran Hemodialisis</div>
-<div class="panel-subtitle">Periksa kondisi saluran Hemodialisis (AV-Shunt/Fistula/Graft) Anda sebelum dan sesudah cuci darah.</div>
+<div class="panel-title">Skrining dan monitor AV-Shunt</div>
+<div class="panel-subtitle">Periksa kondisi saluran AV-Shunt Anda sebelum dan sesudah cuci darah.</div>
 <div class="panel-actions"><button class="btn btn-primary" id="btnOpenAkses">Mulai Pemeriksaan</button></div>
 </div>
 <div class="panel-card">
@@ -478,13 +478,13 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 
-<!-- ===== MODAL: CEK SALURAN ===== -->
+<!-- ===== MODAL: CEK SALURAN (AV-SHUNT) ===== -->
 <div class="modal-overlay" id="modalAkses">
 <div class="modal-box">
 <button class="modal-close" id="closeAkses">&times;</button>
-<div class="modal-title">Pemeriksaan Saluran Hemodialisis</div>
+<div class="modal-title">Skrining dan monitor AV-Shunt</div>
 <div class="grid-2">
-<div class="input-group"><label>Jenis Saluran</label><select class="input-field" id="aksesTipe"><option value="">-- Pilih --</option><option value="Fistula">Fistula (sambungan pembuluh darah sendiri)</option><option value="Graft">Graft (selang buatan di bawah kulit)</option><option value="Kateter">Kateter (selang di leher/dada)</option></select></div>
+<div class="input-group"><label>Jenis Saluran</label><select class="input-field" id="aksesTipe"><option value="">-- Pilih --</option><option value="AV Fistula/Shunt/cimino">AV Fistula/Shunt/cimino</option><option value="AV Graft">AV Graft</option></select></div>
 <div class="input-group"><label>Lokasi Saluran</label><select class="input-field" id="aksesLokasi"><option value="">-- Pilih --</option><option value="Lengan Kiri Atas">Lengan Kiri Atas</option><option value="Lengan Kanan Atas">Lengan Kanan Atas</option><option value="Lengan Kiri Bawah">Lengan Kiri Bawah</option><option value="Lengan Kanan Bawah">Lengan Kanan Bawah</option><option value="Leher Kiri">Leher Kiri</option><option value="Leher Kanan">Leher Kanan</option><option value="Dada Kiri">Dada Kiri</option><option value="Dada Kanan">Dada Kanan</option></select></div>
 </div>
 <div class="input-group"><label>Tanggal Pemeriksaan</label><input type="date" class="input-field" id="aksesTanggal"></div>
@@ -826,7 +826,7 @@ function goToStep(step){
     if(!appData.user||appData.user.email!==email){setFieldError('grpLoginEmail');toast('Email tidak terdaftar','error');return;}
     if(appData.passwordHash!==simpleHash(pw)){setFieldError('grpLoginPw');toast('Password salah','error');return;}
     var btn=this; btn.classList.add('loading'); btn.disabled=true;
-    setTimeout(function(){ btn.classList.remove('loading'); btn.disabled=false; $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard(); toast('Selamat datang kembali, '+appData.user.nama+'!','success'); },800);
+    setTimeout(function(){ btn.classList.remove('loading'); btn.disabled=false; $('loginOverlay').classList.remove('hidden'); $('mainDashboard').style.display='flex'; initDashboard(); toast('Selamat datang kembali, '+appData.user.nama+'!','success'); },800);
 });
  $('loginPassword').addEventListener('keydown',function(e){if(e.key==='Enter')$('btnLogin').click();});
  $('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')$('loginPassword').focus();});
