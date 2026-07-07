@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Monalisa - Monitoring Saluran Hemodialisis Anda</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=BeFas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 :root{--bg-dark:#f3f4f6;--bg-darker:#e5e7eb;--bg-card:#ffffff;--bg-elevated:#f9fafb;--accent-red:#dc2626;--accent-red-dark:#991b1b;--accent-red-light:#fca5a5;--accent-purple:#7c3aed;--accent-purple-dark:#5b21b6;--accent-purple-light:#a78bfa;--text-cream:#1f2937;--text-white:#111827;--text-muted:#6b7280;--text-dark:#1e293b;--border-gold:rgba(124,58,237,0.3);--border-subtle:rgba(0,0,0,0.08);--accent-teal:#14b8a6;--accent-teal-light:#2dd4bf;--accent-teal-dark:#0d9488;--color-danger:#dc2626;--color-warning:#f59e0b;--color-success:#10b981;--accent-cyan:#06b6d4;--accent-cyan-light:#22d3ee;--accent-blue:#3b82f6;--accent-blue-dark:#1d4ed8}
@@ -333,10 +333,10 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 <div id="registerView">
 <div class="step-indicator"><div class="step-dot active" id="stepDot1">1</div><div class="step-line" id="stepLine"></div><div class="step-dot" id="stepDot2">2</div></div>
-<div class="step-labels"><span class="step-label active" id="stepLabel1">Data Pasien</span><span class="step-label" id="stepLabel2">Buat Akun</span></div>
+<div class="step-labels"><span class="step-label active" id="stepLabel1">Data Pengguna</span><span class="step-label" id="stepLabel2">Buat Akun</span></div>
 <div class="login-form-body" id="loginFormBody">
 <div class="form-step active" id="formStep1">
-<div class="step-title">Data Pasien</div>
+<div class="step-title">Data Pengguna</div>
 <div class="step-desc">Lengkapi data diri Anda. Data ini akan tersimpan di perangkat dan spreadsheet monitoring.</div>
 <div class="login-input-group" id="grpNama"><label>Nama Lengkap</label><input type="text" id="inNama" placeholder="Masukkan nama lengkap..." maxlength="60" autocomplete="off"><div class="field-error">Nama wajib diisi (min. 3 karakter)</div></div>
 <div class="login-row">
@@ -935,7 +935,7 @@ function buildWaMessage(assessment, nurseName){
     msg += 'Perawat: ' + nurseName + '\n';
     msg += 'Tanggal: ' + assessment.tanggal + '\n';
     msg += '─────────────────────\n';
-    msg += '*Data Pasien:*\n';
+    msg += '*Data Pengguna:*\n';
     msg += 'Nama: ' + u.nama + '\n';
     msg += 'No. RM: ' + u.rm + '\n';
     msg += 'Usia: ' + u.usia + ' tahun\n';
@@ -1063,7 +1063,7 @@ function buildWaMessageCVC(data, nurseName, result){
     msg += '*🎯 PENILAIAN: ' + result.level + '*\n';
     msg += 'Skor: ' + result.score + '/' + result.maxScore + ' (' + result.percent + '%)\n';
     msg += '═══════════════════════\n';
-    msg += '*📋 Data Pasien:*\n';
+    msg += '*📋 Data Pengguna:*\n';
     msg += 'Nama: ' + u.nama + '\n';
     msg += 'No. RM: ' + u.rm + '\n';
     msg += '═══════════════════════\n';
