@@ -110,11 +110,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .panel-card:hover .panel-icon-wrapper svg{transform:scale(1.1)}
 .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
 .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
-.consult-features{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
-.consult-feature-item{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-muted);padding:8px 12px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle);transition:all .2s}
-.consult-feature-item:hover{border-color:rgba(59,130,246,0.3);background:#eff6ff}
-.consult-feature-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent-blue)}
-.consult-feature-item strong{color:var(--text-dark);font-weight:600}
 .literature-box{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:12px;padding:14px;margin-bottom:16px}
 .literature-title{font-size:.7rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:6px}
 .literature-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.75rem;color:var(--text-muted);line-height:1.4}
@@ -131,8 +126,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(20,184,166,0.35)}
 .btn-consult{background:linear-gradient(135deg,var(--accent-blue),var(--accent-blue-dark));color:#fff;box-shadow:0 4px 15px rgba(59,130,246,0.25)}
 .btn-consult:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.35)}
-.btn-whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;box-shadow:0 4px 15px rgba(37,211,102,0.25)}
-.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,0.35)}
 .btn-icon{width:16px;height:16px}
 .panel-footer{background:var(--bg-card);border-radius:20px;border:2px solid var(--border-subtle);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,0.04);flex-wrap:wrap}
 .panel-footer:hover{border-color:var(--border-gold)}
@@ -157,8 +150,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .input-field{width:100%;background:var(--bg-elevated);border:2px solid var(--border-subtle);padding:12px 14px;border-radius:12px;font-size:14px;color:var(--text-white);font-family:inherit;transition:all .2s}
 .input-field:focus{outline:none;border-color:var(--accent-purple)}
 .input-field::placeholder{color:var(--text-muted)}
-.input-group{margin-bottom:14px;text-align:left}
-.input-group label{display:block;font-size:.72rem;color:var(--accent-purple-dark);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .check-label{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;cursor:pointer;margin-bottom:8px;transition:all .2s}
 .check-label:hover{border-color:var(--accent-purple)}
@@ -204,16 +195,14 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .save-indicator.saving{background:rgba(245,158,11,0.12);color:#b45309}
 .save-indicator.saved{background:rgba(16,185,129,0.12);color:#059669}
 .save-indicator.failed{background:rgba(220,38,38,0.12);color:#dc2626}
-.nurse-card{display:flex;align-items:center;gap:14px;padding:16px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:all .25s}
+.nurse-card{display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:14px;margin-bottom:8px;cursor:pointer;transition:all .25s}
 .nurse-card:hover{border-color:#25d366;background:rgba(37,211,102,0.05);transform:translateX(4px)}
-.nurse-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;flex-shrink:0}
+.nurse-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0}
 .nurse-info{flex:1;min-width:0}
-.nurse-name{font-weight:700;font-size:.95rem;color:var(--text-dark);margin-bottom:2px}
-.nurse-phone{font-size:.8rem;color:var(--text-muted);font-family:'Orbitron',monospace;letter-spacing:.5px}
+.nurse-name{font-weight:700;font-size:.9rem;color:var(--text-dark);margin-bottom:2px}
+.nurse-phone{font-size:.75rem;color:var(--text-muted);font-family:'Orbitron',monospace;letter-spacing:.5px}
 .nurse-arrow{color:var(--text-muted);flex-shrink:0;transition:transform .2s}
 .nurse-card:hover .nurse-arrow{transform:translateX(4px);color:#25d366}
-
-/* ===== LOGIN OVERLAY ===== */
 .login-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#f0f4f8 0%,#e2e8f0 35%,#dbeafe 65%,#eef2f7 100%);transition:opacity .6s ease,visibility .6s ease;padding:16px}
 .login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .login-overlay::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,0.1) 0%,transparent 55%),radial-gradient(ellipse at 70% 80%,rgba(147,197,253,0.15) 0%,transparent 55%);pointer-events:none}
@@ -302,8 +291,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .md-btn-cancel:hover{background:#e5e7eb}
 .md-btn-confirm{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark));color:#fff}
 .md-btn-confirm:hover{box-shadow:0 4px 12px rgba(220,38,38,0.3)}
-
-/* ===== ALERT POPUP - PERINGATAN PETUGAS ===== */
 .alert-modal{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:12000;opacity:0;visibility:hidden;transition:all .35s}
 .alert-modal.active{opacity:1;visibility:visible}
 .alert-box{background:#fff;border-radius:24px;width:440px;max-width:92vw;overflow:hidden;transform:scale(.85) translateY(20px);transition:all .4s;box-shadow:0 30px 80px rgba(220,38,38,0.25),0 10px 40px rgba(0,0,0,0.15)}
@@ -334,6 +321,12 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .alert-close-btn:hover{background:#e2e8f0;color:#1e293b}
 .alert-warn-pulse{animation:alertPulse 1.5s ease-in-out infinite}
 @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.history-item{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;margin-bottom:6px;font-size:.78rem;transition:all .2s}
+.history-item:hover{border-color:rgba(59,130,246,0.3)}
+.history-score-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.history-date{color:var(--text-muted);flex:1}
+.history-score{font-weight:700;font-family:'Orbitron',monospace;font-size:.75rem}
+.empty-history{text-align:center;color:var(--text-muted);font-size:.78rem;padding:20px 0;opacity:.7}
 @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:260px}.chat-sidebar{width:100%}.chat-messages-area{max-height:220px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.6rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
 @media(max-width:600px){.main-container{padding:12px;gap:12px}.banner-section{min-height:200px}.banner-content{padding:16px}.banner-content .header-title{font-size:2rem;letter-spacing:2px}.banner-content .header-subtitle{font-size:.85rem}.panel-card{padding:18px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 10px}.banner-content .clock-display{font-size:.8rem}.panel-icon-wrapper{width:46px;height:46px}.panel-icon-wrapper svg{width:22px;height:22px}.chat-messages-area{max-height:180px}.modal-box{padding:20px}.form-step{padding-left:20px!important;padding-right:20px!important}.login-row{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.login-form-body{min-height:340px}.login-card-header{padding:14px 20px 0}.login-logo{font-size:2.2rem}.alert-box{width:95vw}.alert-contact-card{padding:12px}.alert-header{padding:16px 18px}.alert-body{padding:16px 18px 18px}.alert-footer{padding:0 18px 16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
@@ -351,22 +344,22 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="login-logo">MONALISA</div>
 <div class="login-logo-sub">Monitoring Saluran Hemodialisis</div>
 </div>
+<!-- VIEW LOGIN: awalnya TIDAK dipakai display:none, JS yang mengatur -->
 <div id="loginView" style="display:none;padding:20px 28px 24px">
-<div class="step-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#1e293b;letter-spacing:2px;margin-bottom:2px">Masuk Kembali</div>
-<div class="step-desc" style="font-size:.76rem;color:#64748b;margin-bottom:16px;line-height:1.4">Masukkan email dan password yang telah Anda buat saat pertama kali mendaftar.</div>
+<div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#1e293b;letter-spacing:2px;margin-bottom:2px">Masuk Kembali</div>
+<div style="font-size:.76rem;color:#64748b;margin-bottom:16px;line-height:1.4">Masukkan email dan password yang telah Anda buat saat pertama kali mendaftar.</div>
 <div class="login-input-group" id="grpLoginEmail"><label>Email</label><input type="email" id="loginEmail" placeholder="email@contoh.com" autocomplete="off"><div class="field-error">Masukkan email yang valid</div></div>
-<div class="login-input-group password-toggle" id="grpLoginPw"><label>Password</label><input type="password" id="loginPassword" placeholder="Masukkan password" autocomplete="off"><button type="button" class="password-toggle-btn" id="toggleLoginPw" aria-label="Tampilkan password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><div class="field-error">Password salah</div></div>
+<div class="login-input-group password-toggle" id="grpLoginPw"><label>Password</label><input type="password" id="loginPassword" placeholder="Masukkan password" autocomplete="off"><button type="button" class="password-toggle-btn" id="toggleLoginPw" aria-label="Tampilkan password"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><div class="field-error">Email atau password salah</div></div>
 <button type="button" class="btn-submit-login primary" id="btnLogin"><span class="btn-text">Masuk</span><span class="btn-spinner"></span></button>
 <div class="login-footer-note">Lupa password? Hubungi petugas HD untuk mereset akun Anda.</div>
 <div style="text-align:center;margin-top:8px"><button type="button" id="btnShowRegister" style="background:none;border:none;color:#64748b;font-size:.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline">Buat akun baru</button></div>
 </div>
+<!-- VIEW REGISTER -->
 <div id="registerView">
-<div class="step-indicator"><div class="step-dot active" id="stepDot1">1</div><div class="step-line" id="stepLine"></div><div class="step-dot" id="stepDot2">2</div></div>
-<div class="step-labels"><span class="step-label active" id="stepLabel1">Data Pasien</span><span class="step-label" id="stepLabel2">Buat Akun</span></div>
 <div class="login-form-body" id="loginFormBody">
 <div class="form-step active" id="formStep1">
 <div class="step-title">Data Pasien</div>
-<div class="step-desc">Lengkapi data diri Anda. Data ini akan tersimpan di perangkat dan spreadsheet monitoring.</div>
+<div class="step-desc">Lengkapi data diri Anda. Data ini akan tersimpan di perangkat.</div>
 <div class="login-input-group" id="grpNama"><label>Nama Lengkap</label><input type="text" id="inNama" placeholder="Masukkan nama lengkap..." maxlength="60" autocomplete="off"><div class="field-error">Nama wajib diisi (min. 3 karakter)</div></div>
 <div class="login-row">
 <div class="login-input-group" id="grpRM"><label>No. Rekam Medis</label><input type="text" id="inRM" placeholder="Contoh: RM-00123" maxlength="20" autocomplete="off"><div class="field-error">No. RM wajib diisi</div></div>
@@ -375,12 +368,12 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="login-input-group" id="grpJK"><label>Jenis Kelamin</label><select id="inJK"><option value="">-- Pilih --</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select><div class="field-error">Pilih jenis kelamin</div></div>
 <div class="login-input-group" id="grpAlamat"><label>Alamat</label><input type="text" id="inAlamat" placeholder="Alamat tempat tinggal..." maxlength="150" autocomplete="off"><div class="field-error">Alamat wajib diisi</div></div>
 <button type="button" class="btn-submit-login primary" id="btnNextStep"><span class="btn-text">Lanjutkan ke Pembuatan Akun</span><span class="btn-spinner"></span></button>
-<div class="login-footer-note">Data tersimpan lokal di perangkat dan dikirim ke spreadsheet monitoring.</div>
+<div class="login-footer-note">Data tersimpan lokal di perangkat Anda.</div>
 </div>
 <div class="form-step" id="formStep2">
 <div class="step-title">Buat Akun</div>
 <div class="step-desc">Buat email dan password untuk login berikutnya.</div>
-<div class="data-summary" id="dataSummary" style="display:none">
+<div class="data-summary" id="dataSummary">
 <div class="data-summary-title">Ringkasan Data</div>
 <div class="data-summary-row"><span class="ds-label">Nama</span><span class="ds-value" id="sumNama">-</span></div>
 <div class="data-summary-row"><span class="ds-label">No. RM</span><span class="ds-value" id="sumRM">-</span></div>
@@ -399,7 +392,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 
-<!-- ===== ALERT MODAL - PERINGATAN PETUGAS ===== -->
+<!-- ===== ALERT MODAL ===== -->
 <div class="alert-modal" id="alertModal">
 <div class="alert-box">
 <div class="alert-header">
@@ -411,9 +404,9 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 <div class="alert-body">
 <div class="alert-score-badge" id="alertScoreBadge">Skor: <strong id="alertScoreVal">0</strong> dari <span id="alertScoreTotal">8</span> — <span id="alertScoreLabel">Perlu Perhatian Segera</span></div>
-<div class="alert-message">Hasil pemeriksaan menunjukkan adanya potensi gangguan pada saluran Hemodialisis Anda. Segera hubungi petugas HD melalui WhatsApp di bawah ini untuk konsultasi dan penanganan lebih lanjut.</div>
+<div class="alert-message">Hasil pemeriksaan menunjukkan adanya potensi gangguan pada saluran Hemodialisis Anda. Segera hubungi petugas HD melalui WhatsApp di bawah ini.</div>
 <div class="alert-contact-list">
-<div class="alert-contact-card" id="alertContactErik">
+<div class="alert-contact-card" onclick="window.open('https://wa.me/6285732737585?text=Halo%20Erik%2C%20saya%20ingin%20konsultasi%20mengenai%20hasil%20pemeriksaan%20saluran%20HD%20saya.','_blank')">
 <div class="alert-contact-avatar erik">E</div>
 <div class="alert-contact-info">
 <div class="alert-contact-name">Erik</div>
@@ -422,7 +415,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 <div class="alert-contact-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
 </div>
-<div class="alert-contact-card" id="alertContactHesty">
+<div class="alert-contact-card" onclick="window.open('https://wa.me/6282124700093?text=Halo%20Hesty%2C%20saya%20ingin%20konsultasi%20mengenai%20hasil%20pemeriksaan%20saluran%20HD%20saya.','_blank')">
 <div class="alert-contact-avatar hesty">H</div>
 <div class="alert-contact-info">
 <div class="alert-contact-name">Hesty</div>
@@ -448,547 +441,1092 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="header-top-row">
 <div class="header-left-group">
 <div class="digital-clock">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-<div><div class="clock-display" id="clockDisplay">00:00:00</div><div class="clock-date" id="clockDate">Loading...</div></div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<div><div class="clock-display" id="clockDisplay">00:00:00</div><div class="clock-date" id="clockDate">-</div></div>
 <div class="clock-pulse"></div>
 </div>
-<div class="visitor-badge">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-<div class="visitor-live-dot"></div>
-<span class="visitor-number" id="visitorCount">0</span>
-<span class="visitor-label">pengguna aktif</span>
-</div>
-</div>
-<div class="user-info-bar">
-<div class="user-avatar-sm" id="userAvatar">U</div>
-<span class="user-name-text" id="userNameDisplay">User</span>
+<div class="user-info-bar" id="userInfoBar">
+<div class="user-avatar-sm" id="userAvatarSm">U</div>
+<span class="user-name-text" id="userNameText">User</span>
 <span class="user-hd-badge">Pasien HD</span>
 <button class="logout-btn" id="logoutBtn">Keluar</button>
+</div>
 </div>
 </div>
 <div class="welcome-message" id="welcomeMsg">Selamat datang kembali!</div>
 <div class="header-title">MONALISA</div>
 <div class="header-subtitle">Monitoring Saluran Hemodialisis Anda</div>
+<div class="visitor-badge">
+<div class="visitor-live-dot"></div>
+<span class="visitor-number" id="visitorCount">0</span>
+<span class="visitor-label">kunjungan</span>
+</div>
 </div>
 </div>
 <div class="chat-sidebar">
 <div class="inline-chat-container">
-<div class="chat-header-bar"><span>Chat Petugas HD</span><span class="chat-status">Online</span></div>
-<div class="chat-messages-area" id="chatMessages"><div class="empty-chat" id="emptyChat">Belum ada pesan. Mulai percakapan.</div></div>
-<div id="replyPreviewBar" style="display:none"></div>
-<div id="deleteConfirmBar" style="display:none"></div>
-<div class="chat-input-bar"><input type="text" id="chatInput" placeholder="Tulis pesan..." maxlength="500" autocomplete="off"><button class="chat-send-btn" id="chatSendBtn" aria-label="Kirim"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
+<div class="chat-header-bar"><span>Chat Pasien</span><span class="chat-status">Online</span></div>
+<div class="chat-messages-area" id="chatMessagesArea"><div class="empty-chat" id="emptyChat">Belum ada pesan</div></div>
+<div id="chatReplyBar" style="display:none"></div>
+<div id="chatDeleteBar" style="display:none"></div>
+<div class="chat-input-bar">
+<input type="text" id="chatInput" placeholder="Ketik pesan...">
+<button class="chat-send-btn" id="chatSendBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
 </div>
-<button class="discussion-btn" id="openDiscussionBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Buka Diskusi Lengkap</button>
+</div>
+<button class="discussion-btn" id="discussionBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Forum Diskusi</button>
 </div>
 </div>
 <div class="panel-grid">
 <div class="panel-card">
-<div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="panel-title">Cek Saluran Hemodialisis</div>
-<div class="panel-subtitle">Periksa kondisi saluran Hemodialisis Anda sebelum dan sesudah cuci darah. Pilih yang sesuai dengan kondisi Anda.</div>
-<div class="panel-actions"><button class="btn btn-primary" id="btnOpenAkses">Mulai Pemeriksaan</button></div>
+<div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+<div class="panel-title">Pemeriksaan Saluran HD</div>
+<div class="panel-subtitle">Lakukan pemeriksaan rutin pada saluran hemodialisis Anda dan dapatkan skor penilaian langsung.</div>
+<div class="panel-actions"><button class="btn btn-primary" id="btnOpenAssessment"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Mulai Pemeriksaan</button></div>
 </div>
 <div class="panel-card">
-<div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-<div class="panel-title">Skor Risiko</div>
-<div class="panel-subtitle">Hitung tingkat risiko gangguan saluran Hemodialisis berdasarkan kondisi kesehatan Anda.</div>
-<div class="panel-actions"><button class="btn btn-gold" id="btnOpenSkor">Hitung Skor</button></div>
-</div>
-<div class="panel-card">
-<div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-<div class="panel-title">Informasi HD</div>
-<div class="panel-subtitle">Baca panduan dan tips merawat saluran Hemodialisis sehari-hari.</div>
+<div class="panel-icon-wrapper gold"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+<div class="panel-title">Edukasi & Literatur</div>
+<div class="panel-subtitle">Pelajari lebih lanjut tentang perawatan saluran HD melalui materi edukasi.</div>
 <div class="literature-box">
-<div class="literature-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Tips Penting</div>
-<div class="literature-item"><span class="literature-bullet">&#9679;</span>Jangan memakai tangan dengan saluran Hemodialisis untuk mengangkat beban berat</div>
-<div class="literature-item"><span class="literature-bullet">&#9679;</span>Jangan tidur miring ke arah tangan yang ada saluran Hemodialisisnya</div>
-<div class="literature-item"><span class="literature-bullet">&#9679;</span>Rasakan getaran di saluran setiap hari, jika hilang segera laporkan</div>
+<div class="literature-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Materi Penting</div>
+<div class="literature-item"><span class="literature-bullet">&#9679;</span>Cara menjaga kebersihan area akses HD</div>
+<div class="literature-item"><span class="literature-bullet">&#9679;</span>Tanda-tanda infeksi yang harus diwaspadai</div>
+<div class="literature-item"><span class="literature-bullet">&#9679;</span>Latihan fisik untuk menjaga patensi fistula</div>
+<div class="literature-item"><span class="literature-bullet">&#9679;</span>Pantangan dan anjuran setelah sesi HD</div>
 </div>
-<div class="panel-actions"><button class="btn btn-teal" id="btnOpenInfo">Lihat Selengkapnya</button></div>
+<div class="panel-actions"><button class="btn btn-gold" id="btnEdukasi"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Baca Selengkapnya</button></div>
 </div>
 <div class="panel-card">
-<div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-<div class="panel-title">Konsultasi Petugas</div>
-<div class="panel-subtitle">Hubungi petugas HD langsung melalui WhatsApp untuk konsultasi cepat.</div>
-<div class="consult-features">
-<div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Respon Cepat</strong> &mdash; langsung ke petugas HD</div>
-<div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Tanpa Antri</strong> &mdash; kapan saja, di mana saja</div>
-<div class="consult-feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><strong>Riwayat Tersimpan</strong> &mdash; bisa dilihat kembali</div>
+<div class="panel-icon-wrapper teal"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+<div class="panel-title">Konsultasi Petugas HD</div>
+<div class="panel-subtitle">Hubungi petugas hemodialisis langsung melalui WhatsApp.</div>
+<div id="nurseCards"></div>
+<div class="panel-actions"><button class="btn btn-teal" id="btnConsultAll"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Hubungi via WhatsApp</button></div>
 </div>
-<div class="panel-actions"><button class="btn btn-consult" id="btnOpenConsult">Hubungi Petugas</button><button class="btn btn-whatsapp" id="btnOpenWA"><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</button></div>
+<div class="panel-card">
+<div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+<div class="panel-title">Riwayat Pemeriksaan</div>
+<div class="panel-subtitle">Lihat hasil pemeriksaan sebelumnya dan lacak perkembangan saluran HD Anda.</div>
+<div id="historyList" style="margin-bottom:16px;max-height:180px;overflow-y:auto"><div class="empty-history">Belum ada riwayat pemeriksaan</div></div>
+<div class="panel-actions">
+<button class="btn btn-consult" id="btnViewHistory"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Lihat Semua</button>
+<button class="btn btn-secondary" id="btnExportPDF"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export PDF</button>
+</div>
 </div>
 </div>
 <div class="panel-footer">
 <div class="footer-info">
 <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="footer-text"><h3>MONALISA v1.0</h3><p>Aplikasi Monitoring Saluran Hemodialisis &mdash; RSUD</p></div>
+<div class="footer-text"><h3>MONALISA HEALTH TRACKER</h3><p>Pantau kesehatan saluran HD Anda secara rutin</p></div>
 </div>
 <div class="footer-stats">
-<div class="stat-item"><div class="stat-value" id="statCek">0</div><div class="stat-label">Pemeriksaan</div></div>
-<div class="stat-item"><div class="stat-value" id="statSkor">0</div><div class="stat-label">Skor Risiko</div></div>
-<div class="stat-item"><div class="stat-value" id="statChat">0</div><div class="stat-label">Pesan Chat</div></div>
+<div class="stat-item"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Pemeriksaan</div></div>
+<div class="stat-item"><div class="stat-value" id="statAvg">-</div><div class="stat-label">Skor Rata-rata</div></div>
 </div>
 <div class="footer-actions">
-<button class="btn btn-secondary" id="btnExportPDF"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Export PDF</button>
+<button class="btn btn-primary" id="btnFooterAssess" style="padding:10px 16px;font-size:.78rem">Mulai Pemeriksaan</button>
+<button class="btn btn-gold" id="btnFooterExport" style="padding:10px 16px;font-size:.78rem">Export PDF</button>
 </div>
 </div>
 </div>
 
-<!-- ===== MODALS ===== -->
-<div class="modal-overlay" id="modalAkses"><div class="modal-box"><button class="modal-close" id="closeAkses">&times;</button><div class="modal-title">Pemeriksaan Saluran Hemodialisis</div><div id="aksesFormContent"></div><div class="score-display" id="aksesScoreDisplay" style="display:none"><div class="score-circle" id="aksesScoreCircle"><div class="score-value" id="aksesScoreValue">0</div><div class="score-label">Skor</div></div><div id="aksesScoreBadge"></div></div><div style="text-align:center;margin-top:16px"><span class="save-indicator" id="aksesSaveInd"></span></div></div></div>
-<div class="modal-overlay" id="modalSkor"><div class="modal-box"><button class="modal-close" id="closeSkor">&times;</button><div class="modal-title">Kalkulator Skor Risiko</div><div id="skorFormContent"></div><div class="score-display" id="skorScoreDisplay" style="display:none"><div class="score-circle" id="skorScoreCircle"><div class="score-value" id="skorScoreValue">0</div><div class="score-label">Skor Risiko</div></div><div id="skorScoreBadge"></div></div><div style="text-align:center;margin-top:16px"><span class="save-indicator" id="skorSaveInd"></span></div></div></div>
-<div class="modal-overlay" id="modalInfo"><div class="modal-box"><button class="modal-close" id="closeInfo">&times;</button><div class="modal-title">Informasi Hemodialisis</div><div id="infoContent" style="color:var(--text-cream);line-height:1.7;font-size:.9rem"><div class="literature-box" style="margin-bottom:14px"><div class="literature-title">Tentang Hemodialisis</div><p>Hemodialisis (cuci darah) adalah proses penyaringan darah menggunakan mesin dialisis untuk menggantikan fungsi ginjal yang sudah tidak bekerja optimal. Saluran hemodialisis (fistula/graft) adalah akses penting yang harus dijaga kondisinya.</p></div><div class="literature-box"><div class="literature-title">Tanda-Tanda Bahaya</div><ul style="padding-left:18px;font-size:.85rem;color:var(--text-muted)"><li style="margin-bottom:6px">Getaran (thrill) pada fistula hilang</li><li style="margin-bottom:6px">Bengkak, kemerahan, atau nanah di area fistula</li><li style="margin-bottom:6px">Demam tanpa sebab jelas</li><li style="margin-bottom:6px">Saat hemodialisis, aliran darah kurang lancar</li><li>Nyeri hebat pada lengan dengan fistula</li></ul></div></div></div></div></div>
-<div class="modal-overlay" id="modalConsult"><div class="modal-box"><button class="modal-close" id="closeConsult">&times;</button><div class="modal-title">Daftar Petugas HD</div><div id="nurseList"><div class="nurse-card" data-phone="6281234567890"><div class="nurse-avatar">S1</div><div class="nurse-info"><div class="nurse-name">Suster Rina, S.Kep</div><div class="nurse-phone">+62 812-3456-7890</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div><div class="nurse-card" data-phone="6289876543210"><div class="nurse-avatar">S2</div><div class="nurse-info"><div class="nurse-name">Suster Dewi, S.Kep</div><div class="nurse-phone">+62 898-7654-3210</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div><div class="nurse-card" data-phone="6281555666777"><div class="nurse-avatar">D1</div><div class="nurse-info"><div class="nurse-name">Dr. Ahmad, Sp.PD</div><div class="nurse-phone">+62 815-5566-6777</div></div><div class="nurse-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div></div></div></div>
-<div class="modal-overlay" id="modalDiscussion"><div class="modal-box discussion-modal-content"><button class="modal-close" id="closeDiscussion">&times;</button><div class="discussion-header"><div class="modal-title" style="margin-bottom:0;text-align:left">Forum Diskusi</div><div class="discussion-count" id="discussionCount">0</div></div><div id="modalReplyBar" style="display:none"></div><div id="modalDeleteBar" style="display:none"></div><div class="comments-list" id="commentsList"><div class="empty-chat">Belum ada diskusi.</div></div><div class="comment-input-area"><textarea id="commentInput" placeholder="Tulis komentar atau pertanya..."></textarea><div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn btn-teal" id="btnSendComment" style="flex:0 0 auto;padding:10px 24px">Kirim Komentar</button></div></div></div></div>
+<!-- ===== MODAL ASSESSMENT ===== -->
+<div class="modal-overlay" id="assessmentModal">
+<div class="modal-box">
+<button class="modal-close" id="closeAssessment">&times;</button>
+<div class="modal-title">Pemeriksaan Saluran Hemodialisis</div>
+<div class="data-summary" id="assessPatientInfo">
+<div class="data-summary-title">Data Pasien</div>
+<div class="data-summary-row"><span class="ds-label">Nama</span><span class="ds-value" id="apNama">-</span></div>
+<div class="data-summary-row"><span class="ds-label">No. RM</span><span class="ds-value" id="apRM">-</span></div>
+<div class="data-summary-row"><span class="ds-label">Usia / JK</span><span class="ds-value" id="apUsiaJK">-</span></div>
+</div>
+<div class="section-divider"></div>
+<div id="assessmentItems"></div>
+<div class="section-divider"></div>
+<button class="btn btn-primary" id="btnSubmitAssess" style="width:100%"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Simpan Hasil Pemeriksaan</button>
+<div id="saveIndicator" style="display:none;text-align:center"></div>
+<div id="scoreResult" style="display:none">
+<div class="section-divider"></div>
+<div class="score-display">
+<div class="score-circle" id="scoreCircle"><div class="score-value" id="scoreValue">0</div><div class="score-label">Abnormal</div></div>
+<div id="scoreBadge"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== MODAL DISKUSI ===== -->
+<div class="modal-overlay" id="discussionModal">
+<div class="modal-box discussion-modal-content">
+<button class="modal-close" id="closeDiscussion">&times;</button>
+<div class="discussion-header">
+<div class="modal-title" style="margin:0;text-align:left">Forum Diskusi</div>
+<div class="discussion-count" id="discussionCount">0 komentar</div>
+</div>
+<div id="discussionReplyBar" style="display:none"></div>
+<div id="discussionDeleteBar" style="display:none"></div>
+<div class="comments-list" id="commentsList"><div class="empty-chat">Belum ada diskusi</div></div>
+<div class="comment-input-area">
+<textarea id="commentInput" placeholder="Tulis komentar atau pertanyaan..."></textarea>
+<div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn btn-teal" id="btnSendComment" style="flex:0;padding:10px 20px">Kirim</button></div>
+</div>
+</div>
+</div>
 
 <script>
-/* ===== UTILITAS ===== */
-const $=s=>document.querySelector(s);
-const $$=s=>document.querySelectorAll(s);
-const LS_PREFIX='monalisa_';
-function lsGet(k,d){try{const v=localStorage.getItem(LS_PREFIX+k);return v?JSON.parse(v):d}catch(e){return d}}
-function lsSet(k,v){try{localStorage.setItem(LS_PREFIX+k,JSON.stringify(v))}catch(e){}}
-function showToast(msg,type='info'){const c=$('#toastContainer'),t=document.createElement('div');t.className='toast '+type;t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3200)}
-function formatDate(d){const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];const months=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];return days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear()}
+// =============================================
+// KONFIGURASI
+// =============================================
+const NURSES = [
+  { name: 'Erik', phone: '085732737585', color: 'linear-gradient(135deg,#3b82f6,#1d4ed8)' },
+  { name: 'Hesty', phone: '082124700093', color: 'linear-gradient(135deg,#ec4899,#be185d)' }
+];
 
-/* ===== JAM DIGITAL ===== */
-function updateClock(){const n=new Date();$('#clockDisplay').textContent=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});$('#clockDate').textContent=formatDate(n)}
-setInterval(updateClock,1000);updateClock();
-
-/* ===== PARTIKEL LOGIN ===== */
-(function initParticles(){const c=$('#loginParticles');for(let i=0;i<30;i++){const p=document.createElement('div');p.className='login-particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=(6+Math.random()*8)+'s';p.style.animationDelay=(Math.random()*10)+'s';p.style.width=p.style.height=(2+Math.random()*3)+'px';c.appendChild(p)}})();
-
-/* ===== PENGUNJUNG SIMULASI ===== */
-let vCount=lsGet('visitors',12)+Math.floor(Math.random()*3);
- $('#visitorCount').textContent=vCount;
-setInterval(()=>{vCount+=Math.floor(Math.random()*2);$('#visitorCount').textContent=vCount;lsSet('visitors',vCount)},8000);
-
-/* ===== SISTEM LOGIN ===== */
-function getUsers(){return lsGet('users',[])}
-function getCurrentUser(){return lsGet('currentUser',null)}
-
-function setupPwToggle(btnId,inputId){const btn=$('#'+btnId),inp=$('#'+inputId);if(!btn||!inp)return;btn.addEventListener('click',()=>{const show=inp.type==='password';inp.type=show?'text':'password';btn.innerHTML=show?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'})}
-setupPwToggle('toggleLoginPw','loginPassword');
-setupPwToggle('togglePw1','inPassword');
-setupPwToggle('togglePw2','inConfirm');
-
-function clearErrors(){document.querySelectorAll('.login-input-group.error').forEach(g=>g.classList.remove('error'))}
-function setError(id){const g=$('#'+id);if(g)g.classList.add('error')}
-
-function showLoginView(){$('#registerView').style.display='none';$('#loginView').style.display='block';clearErrors()}
-function showRegisterView(){$('#loginView').style.display='none';$('#registerView').style.display='block';clearErrors();goToStep(1)}
-
- $('#btnShowRegister').addEventListener('click',showRegisterView);
-
-function goToStep(n){
-  clearErrors();
-  const s1=$('#formStep1'),s2=$('#formStep2'),d1=$('#stepDot1'),d2=$('#stepDot2'),l1=$('#stepLabel1'),l2=$('#stepLabel2'),line=$('#stepLine');
-  s1.classList.remove('active','exit-left');s2.classList.remove('active','exit-left');
-  d1.classList.remove('active','done');d2.classList.remove('active','done');
-  l1.classList.remove('active','done');l2.classList.remove('active','done');
-  line.classList.remove('done');
-  if(n===1){s1.classList.add('active');d1.classList.add('active');l1.classList.add('active')}
-  if(n===2){s1.classList.add('exit-left');s2.classList.add('active');d1.classList.add('done');d2.classList.add('active');l1.classList.add('done');l2.classList.add('active');line.classList.add('done');
-    $('#sumNama').textContent=$('#inNama').value||'-';
-    $('#sumRM').textContent=$('#inRM').value||'-';
-    $('#sumUsia').textContent=$('#inUsia').value?$('#inUsia').value+' tahun':'-';
-    $('#dataSummary').style.display='block';
-  }else{$('#dataSummary').style.display='none'}
-}
-
-// Next step
- $('#btnNextStep').addEventListener('click',function(){
-  clearErrors();let ok=true;
-  const nama=$('#inNama').value.trim(),rm=$('#inRM').value.trim(),usia=$('#inUsia').value,jk=$('#inJK').value,alamat=$('#inAlamat').value.trim();
-  if(nama.length<3){setError('grpNama');ok=false}
-  if(!rm){setError('grpRM');ok=false}
-  if(!usia||usia<1||usia>120){setError('grpUsia');ok=false}
-  if(!jk){setError('grpJK');ok=false}
-  if(!alamat){setError('grpAlamat');ok=false}
-  if(ok)goToStep(2);
-});
-
- $('#btnBackStep').addEventListener('click',()=>goToStep(1));
-
-// Register
- $('#btnRegister').addEventListener('click',function(){
-  clearErrors();let ok=true;
-  const email=$('#inEmail').value.trim(),pw=$('#inPassword').value,cpw=$('#inConfirm').value;
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setError('grpEmail');ok=false}
-  if(pw.length<6){setError('grpPassword');ok=false}
-  if(pw!==cpw){setError('grpConfirm');ok=false}
-  if(!ok)return;
-  const users=getUsers();
-  if(users.find(u=>u.email===email)){setError('grpEmail');$('.field-error',$('#grpEmail')).textContent='Email sudah terdaftar';return}
-  const btn=this;btn.classList.add('loading');btn.disabled=true;
-  setTimeout(()=>{
-    const userData={nama:$('#inNama').value.trim(),rm:$('#inRM').value.trim(),usia:$('#inUsia').value,jk:$('#inJK').value,alamat:$('#inAlamat').value.trim(),email,pw};
-    users.push(userData);lsSet('users',users);lsSet('currentUser',userData);
-    btn.classList.remove('loading');btn.disabled=false;
-    enterDashboard(userData);
-    showToast('Akun berhasil dibuat! Selamat datang, '+userData.nama,'success');
-  },1200);
-});
-
-// Login
- $('#btnLogin').addEventListener('click',function(){
-  clearErrors();let ok=true;
-  const email=$('#loginEmail').value.trim(),pw=$('#loginPassword').value;
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setError('grpLoginEmail');ok=false}
-  if(!pw){setError('grpLoginPw');ok=false}
-  if(!ok)return;
-  const btn=this;btn.classList.add('loading');btn.disabled=true;
-  setTimeout(()=>{
-    const users=getUsers();
-    const user=users.find(u=>u.email===email&&u.pw===pw);
-    btn.classList.remove('loading');btn.disabled=false;
-    if(!user){setError('grpLoginPw');$('.field-error',$('#grpLoginPw')).textContent='Email atau password salah';return}
-    lsSet('currentUser',user);
-    enterDashboard(user);
-    showToast('Selamat datang kembali, '+user.nama+'!','success');
-  },1000);
-});
-
-// Enter key support
- $('#loginPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('#btnLogin').click()});
- $('#inConfirm').addEventListener('keydown',e=>{if(e.key==='Enter')$('#btnRegister').click()});
-
-/* ===== MASUK DASHBOARD ===== */
-function enterDashboard(user){
-  $('#loginOverlay').classList.add('hidden');
-  $('#mainDashboard').style.display='flex';
-  $('#userNameDisplay').textContent=user.nama;
-  $('#userAvatar').textContent=user.nama.charAt(0).toUpperCase();
-  const wm=$('#welcomeMsg');wm.textContent='Selamat datang, '+user.nama+'!';wm.classList.add('show');
-  setTimeout(()=>wm.classList.remove('show'),4000);
-  loadStats();loadChatMessages();loadComments();buildAksesForm();buildSkorForm();
-}
-
-/* ===== LOGOUT ===== */
- $('#logoutBtn').addEventListener('click',()=>{
-  lsSet('currentUser',null);
-  $('#mainDashboard').style.display='none';
-  $('#loginOverlay').classList.remove('hidden');
-  showLoginView();
-  $('#loginEmail').value='';$('#loginPassword').value='';
-  showToast('Anda telah keluar.','info');
-});
-
-/* ===== AUTO-LOGIN CHECK ===== */
-(function initAuth(){
-  const user=getCurrentUser();
-  if(user){enterDashboard(user)}
-  else{showLoginView()}
-})();
-
-/* ===== STATISTIK ===== */
-function loadStats(){
-  const akses=lsGet('aksesHistory',[]);$('#statCek').textContent=akses.length;
-  const skor=lsGet('skorHistory',[]);$('#statSkor').textContent=skor.length;
-  const chat=lsGet('chatMessages',[]);$('#statChat').textContent=chat.length;
-}
-
-/* ===== CHAT SYSTEM ===== */
-function getChatKey(){const u=getCurrentUser();return u?u.email+'_chat':'guest_chat'}
-function loadChatMessages(){
-  const msgs=lsGet(getChatKey(),[]);const area=$('#chatMessages');area.innerHTML='';
-  if(!msgs.length){area.innerHTML='<div class="empty-chat" id="emptyChat">Belum ada pesan. Mulai percakapan.</div>';return}
-  msgs.forEach((m,i)=>renderChatBubble(m,i,area));
-  area.scrollTop=area.scrollHeight;loadStats();
-}
-function renderChatBubble(m,i,area){
-  const wrap=document.createElement('div');
-  wrap.className='chat-bubble-wrap '+(m.type==='outgoing'?'outgoing-wrap':'incoming-wrap');
-  wrap.dataset.index=i;
-  const bubble=document.createElement('div');
-  bubble.className='chat-bubble '+m.type;
-  let html='';
-  if(m.author)html+='<div class="bubble-author">'+escHtml(m.author)+'</div>';
-  if(m.replyTo)html+='<div style="font-size:.6rem;opacity:.5;margin-bottom:2px;border-left:2px solid rgba(255,255,255,0.2);padding-left:4px">Re: '+escHtml(m.replyTo)+'</div>';
-  html+=escHtml(m.text);
-  html+='<span class="bubble-meta">'+m.time+'</span>';
-  bubble.innerHTML=html;
-  const actions=document.createElement('div');
-  actions.className='chat-bubble-actions';
-  if(m.type==='incoming'){
-    actions.innerHTML='<button class="chat-action-btn reply-btn" data-idx="'+i+'">&#8634; Balas</button><button class="chat-action-btn delete-btn" data-idx="'+i+'">&#10005; Hapus</button>';
-  }else{
-    actions.innerHTML='<button class="chat-action-btn outgoing-act delete-btn" data-idx="'+i+'">&#10005; Hapus</button>';
-  }
-  wrap.appendChild(bubble);wrap.appendChild(actions);area.appendChild(wrap);
-}
-function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-let chatReplyTo=null;let chatDeleteIdx=null;
-
- $('#chatSendBtn').addEventListener('click',sendChat);
- $('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});
-
-function sendChat(){
-  const inp=$('#chatInput'),text=inp.value.trim();if(!text)return;
-  const msgs=lsGet(getChatKey(),[]);const now=new Date();
-  const msg={type:'outgoing',text,author:'Anda',time:now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),replyTo:chatReplyTo||null};
-  msgs.push(msg);lsSet(getChatKey(),msgs);inp.value='';
-  cancelChatReply();loadChatMessages();
-  // Simulasi balasan petugas
-  setTimeout(()=>{
-    const replies=['Baik, terima kasih informasinya.','Segera kami cek, mohon tunggu.','Silakan datang ke ruang HD untuk pemeriksaan.','Catatan sudah disimpan.','Jangan khawatir, akan kami follow up.','Terima kasih sudah melaporkan.'];
-    const auto={type:'incoming',text:replies[Math.floor(Math.random()*replies.length)],author:'Petugas HD',time:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),replyTo:null};
-    msgs.push(auto);lsSet(getChatKey(),msgs);loadChatMessages();
-  },1500+Math.random()*2000);
-}
-
-// Chat reply & delete delegates
-document.addEventListener('click',function(e){
-  const replyBtn=e.target.closest('.chat-action-btn.reply-btn');
-  if(replyBtn){
-    const idx=parseInt(replyBtn.dataset.idx);const msgs=lsGet(getChatKey(),[]);const m=msgs[idx];if(!m)return;
-    chatReplyTo=m.text.substring(0,60);
-    const bar=$('#replyPreviewBar');bar.style.display='flex';bar.className='reply-preview-bar';
-    bar.innerHTML='<div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas</div><div class="rp-text">'+escHtml(chatReplyTo)+'</div></div><button class="rp-cancel" id="cancelChatReply">&times;</button>';
-    $('#cancelChatReply').addEventListener('click',cancelChatReply);
-    $('#chatInput').focus();return;
-  }
-  const delBtn=e.target.closest('.chat-bubble-actions .delete-btn, .chat-action-btn.delete-btn');
-  if(delBtn){
-    const idx=parseInt(delBtn.dataset.idx);chatDeleteIdx=idx;
-    const bar=$('#deleteConfirmBar');bar.style.display='block';bar.className='delete-confirm-bar';
-    bar.innerHTML='<div class="dc-title">Hapus pesan ini?</div><div class="dc-msg">'+(lsGet(getChatKey(),[])[idx]?.text||'')+'</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" id="cancelChatDel">Batal</button><button class="dc-btn dc-btn-confirm" id="confirmChatDel">Hapus</button></div>';
-    $('#cancelChatDel').addEventListener('click',()=>{$('#deleteConfirmBar').style.display='none';chatDeleteIdx=null});
-    $('#confirmChatDel').addEventListener('click',()=>{
-      const msgs=lsGet(getChatKey(),[]);const wrap=document.querySelector('.chat-bubble-wrap[data-index="'+chatDeleteIdx+'"]');
-      if(wrap){wrap.classList.add('chat-removing');setTimeout(()=>{msgs.splice(chatDeleteIdx,1);lsSet(getChatKey(),msgs);$('#deleteConfirmBar').style.display='none';chatDeleteIdx=null;loadChatMessages()},350)}
-    });
-  }
-});
-function cancelChatReply(){chatReplyTo=null;$('#replyPreviewBar').style.display='none'}
-
-/* ===== DISKUSI / KOMENTAR ===== */
-function getCommentKey(){const u=getCurrentUser();return u?u.email+'_comments':'guest_comments'}
-let commentReplyTo=null;let commentDeleteIdx=null;
-
-function loadComments(){
-  const comments=lsGet(getCommentKey(),[]);const list=$('#commentsList');list.innerHTML='';
-  $('#discussionCount').textContent=comments.length;
-  if(!comments.length){list.innerHTML='<div class="empty-chat">Belum ada diskusi.</div>';return}
-  comments.forEach((c,i)=>renderComment(c,i,list));
-}
-function renderComment(c,i,list){
-  const div=document.createElement('div');div.className='comment-item';div.dataset.index=i;
-  let html='<div class="comment-header"><div class="comment-avatar">'+escHtml(c.author.charAt(0).toUpperCase())+'</div><div class="comment-author">'+escHtml(c.author)+'</div><div class="comment-time">'+c.time+'</div></div>';
-  if(c.replyTo)html+='<div style="font-size:.7rem;color:var(--accent-purple);margin-bottom:4px;padding:4px 8px;background:rgba(124,58,237,0.05);border-radius:6px;border-left:3px solid var(--accent-purple)">Re: '+escHtml(c.replyTo)+'</div>';
-  html+='<div class="comment-text">'+escHtml(c.text)+'</div>';
-  html+='<div class="comment-actions"><button class="comment-action-btn reply-btn" data-idx="'+i+'">&#8634; Balas</button><button class="comment-action-btn delete-btn" data-idx="'+i+'">&#10005; Hapus</button></div>';
-  div.innerHTML=html;list.appendChild(div);
-}
-
- $('#btnSendComment').addEventListener('click',()=>{
-  const inp=$('#commentInput'),text=inp.value.trim();if(!text)return;
-  const comments=lsGet(getCommentKey(),[]);const user=getCurrentUser();
-  comments.push({author:user?user.nama:'Anonim',text,time:new Date().toLocaleString('id-ID'),replyTo:commentReplyTo||null});
-  lsSet(getCommentKey(),comments);inp.value='';cancelCommentReply();loadComments();loadStats();
-});
-
-document.addEventListener('click',function(e){
-  const crb=e.target.closest('.comments-list .reply-btn');
-  if(crb){
-    const idx=parseInt(crb.dataset.idx);const comments=lsGet(getCommentKey(),[]);const c=comments[idx];if(!c)return;
-    commentReplyTo=c.text.substring(0,80);
-    const bar=$('#modalReplyBar');bar.style.display='flex';bar.className='modal-reply-bar';
-    bar.innerHTML='<div class="mr-content"><div class="mr-label">Membalas</div><div class="mr-text">'+escHtml(commentReplyTo)+'</div></div><button class="mr-cancel" id="cancelModReply">&times;</button>';
-    $('#cancelModReply').addEventListener('click',cancelCommentReply);
-    $('#commentInput').focus();return;
-  }
-  const cdb=e.target.closest('.comments-list .delete-btn');
-  if(cdb){
-    const idx=parseInt(cdb.dataset.idx);commentDeleteIdx=idx;
-    const comments=lsGet(getCommentKey(),[]);const c=comments[idx];
-    const bar=$('#modalDeleteBar');bar.style.display='flex';bar.className='modal-delete-bar';
-    bar.innerHTML='<div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar?</div><div class="md-text">'+escHtml(c?.text||'')+'</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" id="cancelModDel">Batal</button><button class="md-btn md-btn-confirm" id="confirmModDel">Hapus</button></div>';
-    $('#cancelModDel').addEventListener('click',()=>{$('#modalDeleteBar').style.display='none';commentDeleteIdx=null});
-    $('#confirmModDel').addEventListener('click',()=>{
-      const comments=lsGet(getCommentKey(),[]);comments.splice(commentDeleteIdx,1);lsSet(getCommentKey(),comments);$('#modalDeleteBar').style.display='none';commentDeleteIdx=null;loadComments();loadStats();
-    });
-  }
-});
-function cancelCommentReply(){commentReplyTo=null;$('#modalReplyBar').style.display='none'}
-
-/* ===== FORM CEK AKSES (AV-SHUNT, CDL, CVC) ===== */
-function buildAksesForm(){
-  // Pilih jenis akses
-  let html='<div style="margin-bottom:18px"><label style="display:block;font-size:.72rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600">Jenis Akses</label><select id="aksesTypeSelect" style="width:100%;padding:12px 14px;background:var(--bg-elevated);border:2px solid var(--border-subtle);border-radius:12px;font-size:.88rem;color:var(--text-white);font-family:'DM Sans',sans-serif;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;transition:all .25s;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px" onfocus="this.style.borderColor=var(--accent-blue)"><option value="avshunt">AV-Shunt / Fistula</option><option value="cdl">CDL (Catheter Darah Sentral)</option><option value="cvc">CVC (Catheter Vena Sentral)</option></select></div>';
-
-  // Data pemeriksaan per jenis
-  const aksesData={
-    avshunt:[
-      {cat:'Sebelum HD',items:[
-        {id:'av1',label:'Getaran (thrill) terasa kuat',good:true},
-        {id:'av2',label:'Bising (bruit) terdengar jelas',good:true},
-        {id:'av3',label:'Tidak ada bengkak di area fistula',good:true},
-        {id:'av4',label:'Tidak ada kemerahan atau panas',good:true},
-        {id:'av5',cat:'Sesudah HD',items:[
-          {id:'av5',label:'Perdarahan berhenti dalam waktu normal',good:true},
-          {id:'av6',label:'Tidak ada pembengkakan setelah pencabutan jarum',good:true},
-          {id:'av7',label:'Getaran masih terasa setelah HD',good:true},
-          {id:'av8',label:'Tidak ada nyeri hebat di area akses',good:true},
-        ]}],
-    cdl:[
-      {cat:'Pemeriksaan Area Catheter',items:[
-        {id:'cdl1',label:'Area masuk catheter tidak kemerahan',good:true},
-        {id:'cdl2',label:'Tidak ada pembengkakan di sekitar catheter',good:true},
-        {id:'cdl3',label:'Tidak ada nanah atau cairan keluar dari area catheter',good:true},
-        {id:'cdl4',label:'Tidak demam (>38°C)',good:true},
-        {id:'cdl5',label:'Area catheter bersih dan kering',good:true},
-        {id:'cdl6',label:'Catheter tidak longgar atau bergeser dari tempatnya',good:true},
-        {id:'cdl7',label:'Tidak ada nyeri hebat saat infusion dimulai',good:true},
-        {id:'cdl8',label:'Dressing/penutup area insersi dalam kondisi baik',good:true},
-      ]},
-    cvc:[
-      {cat:'Pemeriksaan Area Exit Site',items:[
-        {id:'cvc1',label:'Area exit site tidak kemerahan',good:true},
-        {id:'cvc2',label:'Tidak ada tanda infeksi (nanah, bengkak, panas)',good:true},
-        {id:'cvc3',label:'Aliran darah lancar saat HD (tidak perlu suction tinggi)',good:true},
-        {id:'cvc4',label:'Tidak ada nyeri saat pengisian/suction darah',good:true},
-        {id:'cvc5',label:'Catheter tidak tersumbat (darah bisa ditarik dengan mudah)',good:true},
-        {id:'cvc6',label:'Area sekitar catheter bersih dan kering',good:true},
-        {id:'cvc7',label:'Tidak ada demam tanpa sebab jelas',good:true},
-        {id:'cvc8',label:'Covering/dressing catheter masih utuh dan bersih',good:true},
-      ]}
+const ASSESSMENT_SECTIONS = [
+  {
+    title: 'Pemeriksaan Fisik Saluran HD',
+    items: [
+      { id: 'bruit', label: 'Bruit (suara aliran darah) terdengar jelas' },
+      { id: 'thrill', label: 'Thrill (getaran) terasa kuat dan konsisten' },
+      { id: 'swelling', label: 'Tidak ada pembengkakan di area akses' },
+      { id: 'redness', label: 'Tidak ada kemerahan di sekitar area akses' }
     ]
+  },
+  {
+    title: 'Tanda-tanda Komplikasi',
+    items: [
+      { id: 'pain', label: 'Tidak ada rasa nyeri saat atau setelah HD' },
+      { id: 'bleeding', label: 'Tidak ada perdarahan spontan dari area akses' },
+      { id: 'infection', label: 'Tidak ada tanda infeksi (nanah, panas lokal)' },
+      { id: 'temperature', label: 'Suhu area akses normal, tidak terasa hangat berlebih' }
+    ]
+  }
+];
+
+const STORAGE_KEYS = {
+  users: 'monalisa_users',
+  session: 'monalisa_session',
+  chat: 'monalisa_chat',
+  history: 'monalisa_history',
+  discussion: 'monalisa_discussion',
+  visits: 'monalisa_visits'
+};
+
+// =============================================
+// STATE
+// =============================================
+let currentUser = null;
+let chatMessages = [];
+let assessmentHistory = [];
+let discussionComments = [];
+let chatReplyTo = null;
+let chatDeleteId = null;
+let discReplyTo = null;
+let discDeleteId = null;
+let clockInterval = null;
+
+// =============================================
+// UTILITAS
+// =============================================
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+function getStore(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) || fallback; }
+  catch(e) { return fallback; }
+}
+function setStore(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function formatDate(d) {
+  const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Des'];
+  return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+function formatTime(d) {
+  return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0');
+}
+function formatDateTime(iso) {
+  const d = new Date(iso);
+  return formatDate(d) + ' ' + formatTime(d);
+}
+function escapeHtml(t) {
+  const div = document.createElement('div');
+  div.textContent = t;
+  return div.innerHTML;
+}
+
+function showToast(msg, type) {
+  type = type || 'info';
+  const c = $('#toastContainer');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 3200);
+}
+
+// =============================================
+// PARTIKEL LOGIN
+// =============================================
+function createLoginParticles() {
+  const container = $('#loginParticles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'login-particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.width = (2 + Math.random() * 3) + 'px';
+    p.style.height = p.style.width;
+    container.appendChild(p);
+  }
+}
+
+// =============================================
+// AUTH: LOGIN & REGISTER
+// =============================================
+function showLoginView() {
+  $('#loginView').style.display = 'block';
+  $('#registerView').style.display = 'none';
+  // Reset form dan error
+  $('#loginEmail').value = '';
+  $('#loginPassword').value = '';
+  clearGroupError('grpLoginEmail');
+  clearGroupError('grpLoginPw');
+}
+
+function showRegisterView() {
+  $('#loginView').style.display = 'none';
+  $('#registerView').style.display = 'block';
+  // Reset ke step 1
+  goToStep(1);
+  // Reset semua input
+  ['inNama','inRM','inUsia','inAlamat','inEmail','inPassword','inConfirm'].forEach(function(id) {
+    const el = $('#' + id);
+    if (el) el.value = '';
+  });
+  if ($('#inJK')) $('#inJK').value = '';
+  // Reset semua error
+  ['grpNama','grpRM','grpUsia','grpJK','grpAlamat','grpEmail','grpPassword','grpConfirm'].forEach(clearGroupError);
+}
+
+function clearGroupError(id) {
+  const g = $('#' + id);
+  if (g) g.classList.remove('error');
+}
+
+function setGroupError(id, msg) {
+  const g = $('#' + id);
+  if (!g) return;
+  g.classList.add('error');
+  const err = g.querySelector('.field-error');
+  if (err && msg) err.textContent = msg;
+}
+
+function goToStep(num) {
+  var s1 = $('#formStep1'), s2 = $('#formStep2');
+  if (num === 1) {
+    s1.className = 'form-step active';
+    s2.className = 'form-step';
+  } else {
+    s1.className = 'form-step exit-left';
+    s2.className = 'form-step active';
+    // Isi ringkasan
+    $('#sumNama').textContent = $('#inNama').value.trim() || '-';
+    $('#sumRM').textContent = $('#inRM').value.trim() || '-';
+    $('#sumUsia').textContent = ($('#inUsia').value || '-') + ' tahun';
+  }
+}
+
+function validateStep1() {
+  let valid = true;
+  const nama = $('#inNama').value.trim();
+  const rm = $('#inRM').value.trim();
+  const usia = $('#inUsia').value;
+  const jk = $('#inJK').value;
+  const alamat = $('#inAlamat').value.trim();
+
+  if (nama.length < 3) { setGroupError('grpNama'); valid = false; } else { clearGroupError('grpNama'); }
+  if (!rm) { setGroupError('grpRM'); valid = false; } else { clearGroupError('grpRM'); }
+  if (!usia || usia < 1 || usia > 120) { setGroupError('grpUsia'); valid = false; } else { clearGroupError('grpUsia'); }
+  if (!jk) { setGroupError('grpJK'); valid = false; } else { clearGroupError('grpJK'); }
+  if (!alamat) { setGroupError('grpAlamat'); valid = false; } else { clearGroupError('grpAlamat'); }
+  return valid;
+}
+
+function validateStep2() {
+  let valid = true;
+  const email = $('#inEmail').value.trim();
+  const pw = $('#inPassword').value;
+  const confirm = $('#inConfirm').value;
+
+  if (!isValidEmail(email)) { setGroupError('grpEmail', 'Masukkan email yang valid'); valid = false; } else { clearGroupError('grpEmail'); }
+  if (pw.length < 6) { setGroupError('grpPassword', 'Password min. 6 karakter'); valid = false; } else { clearGroupError('grpPassword'); }
+  if (pw !== confirm) { setGroupError('grpConfirm', 'Password tidak cocok'); valid = false; } else { clearGroupError('grpConfirm'); }
+
+  // Cek email sudah terdaftar
+  if (valid) {
+    const users = getStore(STORAGE_KEYS.users, []);
+    if (users.find(function(u) { return u.email === email; })) {
+      setGroupError('grpEmail', 'Email sudah terdaftar. Silakan login.');
+      valid = false;
+    }
+  }
+  return valid;
+}
+
+function handleRegister() {
+  if (!validateStep2()) return;
+  const btn = $('#btnRegister');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  // Simulasi delay
+  setTimeout(function() {
+    const userData = {
+      id: genId(),
+      nama: $('#inNama').value.trim(),
+      rm: $('#inRM').value.trim(),
+      usia: parseInt($('#inUsia').value),
+      jk: $('#inJK').value,
+      alamat: $('#inAlamat').value.trim(),
+      email: $('#inEmail').value.trim(),
+      password: $('#inPassword').value,
+      createdAt: new Date().toISOString()
+    };
+
+    // Simpan ke users
+    const users = getStore(STORAGE_KEYS.users, []);
+    users.push(userData);
+    setStore(STORAGE_KEYS.users, users);
+
+    // Auto login setelah daftar
+    const session = Object.assign({}, userData, { loggedIn: true });
+    delete session.password; // Jangan simpan password di session
+    setStore(STORAGE_KEYS.session, session);
+    currentUser = session;
+
+    btn.classList.remove('loading');
+    btn.disabled = false;
+
+    showToast('Akun berhasil dibuat! Selamat datang, ' + userData.nama, 'success');
+    enterDashboard();
+  }, 800);
+}
+
+function handleLogin() {
+  let valid = true;
+  const email = $('#loginEmail').value.trim();
+  const pw = $('#loginPassword').value;
+
+  if (!isValidEmail(email)) { setGroupError('grpLoginEmail', 'Masukkan email yang valid'); valid = false; } else { clearGroupError('grpLoginEmail'); }
+  if (!pw) { setGroupError('grpLoginPw', 'Password wajib diisi'); valid = false; } else { clearGroupError('grpLoginPw'); }
+  if (!valid) return;
+
+  const btn = $('#btnLogin');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  setTimeout(function() {
+    const users = getStore(STORAGE_KEYS.users, []);
+    const user = users.find(function(u) { return u.email === email && u.password === pw; });
+
+    btn.classList.remove('loading');
+    btn.disabled = false;
+
+    if (!user) {
+      setGroupError('grpLoginPw', 'Email atau password salah');
+      showToast('Email atau password tidak cocok', 'error');
+      return;
+    }
+
+    // Login berhasil
+    const session = Object.assign({}, user, { loggedIn: true });
+    delete session.password;
+    setStore(STORAGE_KEYS.session, session);
+    currentUser = session;
+
+    showToast('Selamat datang kembali, ' + user.nama + '!', 'success');
+    enterDashboard();
+  }, 600);
+}
+
+function handleLogout() {
+  localStorage.removeItem(STORAGE_KEYS.session);
+  currentUser = null;
+  // Stop clock
+  if (clockInterval) { clearInterval(clockInterval); clockInterval = null; }
+  // Tampilkan login overlay
+  $('#loginOverlay').classList.remove('hidden');
+  $('#mainDashboard').style.display = 'none';
+  // Tentukan view: login atau register
+  const users = getStore(STORAGE_KEYS.users, []);
+  if (users.length > 0) {
+    showLoginView();
+  } else {
+    showRegisterView();
+  }
+  showToast('Anda telah keluar', 'info');
+}
+
+// =============================================
+// DASHBOARD
+// =============================================
+function enterDashboard() {
+  $('#loginOverlay').classList.add('hidden');
+  $('#mainDashboard').style.display = 'flex';
+
+  // Update user info
+  if (currentUser) {
+    const initial = (currentUser.nama || 'U').charAt(0).toUpperCase();
+    $('#userAvatarSm').textContent = initial;
+    $('#userNameText').textContent = currentUser.nama || 'User';
+    const welcome = $('#welcomeMsg');
+    welcome.textContent = 'Selamat datang, ' + currentUser.nama + '!';
+    welcome.classList.add('show');
+  }
+
+  // Load data
+  chatMessages = getStore(STORAGE_KEYS.chat, []);
+  assessmentHistory = getStore(STORAGE_KEYS.history, []);
+  discussionComments = getStore(STORAGE_KEYS.discussion, []);
+
+  // Update visitor count
+  let visits = parseInt(localStorage.getItem(STORAGE_KEYS.visits) || '0');
+  visits++;
+  localStorage.setItem(STORAGE_KEYS.visits, String(visits));
+  $('#visitorCount').textContent = visits;
+
+  // Render components
+  startClock();
+  renderChat();
+  renderNurseCards();
+  renderHistory();
+  updateStats();
+}
+
+function startClock() {
+  function tick() {
+    const now = new Date();
+    $('#clockDisplay').textContent = formatTime(now);
+    $('#clockDate').textContent = formatDate(now);
+  }
+  tick();
+  clockInterval = setInterval(tick, 1000);
+}
+
+function renderNurseCards() {
+  const container = $('#nurseCards');
+  container.innerHTML = '';
+  NURSES.forEach(function(n) {
+    const card = document.createElement('div');
+    card.className = 'nurse-card';
+    card.onclick = function() {
+      const msg = encodeURIComponent('Halo ' + n.name + ', saya ' + (currentUser ? currentUser.nama : 'pasien HD') + '. Saya ingin berkonsultasi mengenai saluran HD saya.');
+      window.open('https://wa.me/62' + n.phone.replace(/^0/, '') + '?text=' + msg, '_blank');
+    };
+    card.innerHTML = '<div class="nurse-avatar" style="background:' + n.color + '">' + n.name.charAt(0) + '</div><div class="nurse-info"><div class="nurse-name">' + n.name + '</div><div class="nurse-phone">' + n.phone + '</div></div><div class="nurse-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>';
+    container.appendChild(card);
+  });
+}
+
+function renderHistory() {
+  const container = $('#historyList');
+  if (assessmentHistory.length === 0) {
+    container.innerHTML = '<div class="empty-history">Belum ada riwayat pemeriksaan</div>';
+    return;
+  }
+  container.innerHTML = '';
+  // Tampilkan 5 terakhir (terbaru di atas)
+  var recent = assessmentHistory.slice(-5).reverse();
+  recent.forEach(function(h) {
+    var d = new Date(h.date);
+    var dotColor = h.abnormal === 0 ? 'var(--color-success)' : h.abnormal <= 2 ? 'var(--color-warning)' : 'var(--color-danger)';
+    var item = document.createElement('div');
+    item.className = 'history-item';
+    item.innerHTML = '<div class="history-score-dot" style="background:' + dotColor + '"></div><div class="history-date">' + formatDate(d) + ' ' + formatTime(d) + '</div><div class="history-score" style="color:' + dotColor + '">' + h.abnormal + '/' + h.total + '</div>';
+    container.appendChild(item);
+  });
+}
+
+function updateStats() {
+  var total = assessmentHistory.length;
+  $('#statTotal').textContent = total;
+  if (total > 0) {
+    var sum = assessmentHistory.reduce(function(a, b) { return a + b.abnormal; }, 0);
+    var avg = (sum / total).toFixed(1);
+    $('#statAvg').textContent = avg;
+  } else {
+    $('#statAvg').textContent = '-';
+  }
+}
+
+// =============================================
+// CHAT
+// =============================================
+function renderChat() {
+  var area = $('#chatMessagesArea');
+  area.innerHTML = '';
+  if (chatMessages.length === 0) {
+    area.innerHTML = '<div class="empty-chat" id="emptyChat">Belum ada pesan</div>';
+    return;
+  }
+  chatMessages.forEach(function(msg) {
+    area.appendChild(createChatBubble(msg));
+  });
+  area.scrollTop = area.scrollHeight;
+}
+
+function createChatBubble(msg) {
+  var isMine = msg.userId === (currentUser ? currentUser.id : '__self__');
+  var wrap = document.createElement('div');
+  wrap.className = 'chat-bubble-wrap ' + (isMine ? 'outgoing-wrap' : 'incoming-wrap');
+  wrap.dataset.id = msg.id;
+
+  var bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + (isMine ? 'outgoing' : 'incoming');
+
+  var html = '';
+  if (!isMine) html += '<div class="bubble-author">' + escapeHtml(msg.author || 'Pasien') + '</div>';
+  if (msg.replyTo) {
+    var ref = chatMessages.find(function(m) { return m.id === msg.replyTo; });
+    if (ref) html += '<div style="font-size:.65rem;opacity:.6;border-left:2px solid ' + (isMine ? 'rgba(255,255,255,0.3)' : 'rgba(124,58,237,0.3)') + ';padding-left:6px;margin-bottom:4px">' + escapeHtml(ref.text.substring(0, 60)) + (ref.text.length > 60 ? '...' : '') + '</div>';
+  }
+  html += '<div>' + escapeHtml(msg.text) + '</div>';
+  html += '<span class="bubble-meta">' + formatDateTime(msg.date) + '</span>';
+  bubble.innerHTML = html;
+
+  var actions = document.createElement('div');
+  actions.className = 'chat-bubble-actions';
+  var actClass = isMine ? 'outgoing-act' : '';
+  actions.innerHTML = '<button class="chat-action-btn reply-btn ' + actClass + '" data-action="reply" data-id="' + msg.id + '">Balas</button><button class="chat-action-btn delete-btn ' + actClass + '" data-action="delete" data-id="' + msg.id + '">Hapus</button>';
+
+  wrap.appendChild(bubble);
+  wrap.appendChild(actions);
+  return wrap;
+}
+
+function sendChatMessage() {
+  var input = $('#chatInput');
+  var text = input.value.trim();
+  if (!text) return;
+
+  var msg = {
+    id: genId(),
+    userId: currentUser ? currentUser.id : '__self__',
+    author: currentUser ? currentUser.nama : 'Anda',
+    text: text,
+    date: new Date().toISOString(),
+    replyTo: chatReplyTo
+  };
+  chatMessages.push(msg);
+  setStore(STORAGE_KEYS.chat, chatMessages);
+  input.value = '';
+  cancelChatReply();
+  renderChat();
+}
+
+function deleteChatMessage(id) {
+  // Animasi hapus
+  var wrap = document.querySelector('.chat-bubble-wrap[data-id="' + id + '"]');
+  if (wrap) {
+    wrap.classList.add('chat-removing');
+    setTimeout(function() {
+      chatMessages = chatMessages.filter(function(m) { return m.id !== id; });
+      setStore(STORAGE_KEYS.chat, chatMessages);
+      cancelChatDelete();
+      renderChat();
+    }, 350);
+  } else {
+    chatMessages = chatMessages.filter(function(m) { return m.id !== id; });
+    setStore(STORAGE_KEYS.chat, chatMessages);
+    cancelChatDelete();
+    renderChat();
+  }
+}
+
+function showChatReply(id) {
+  chatReplyTo = id;
+  cancelChatDelete();
+  var msg = chatMessages.find(function(m) { return m.id === id; });
+  if (!msg) return;
+  var bar = $('#chatReplyBar');
+  bar.style.display = 'flex';
+  bar.className = 'reply-preview-bar';
+  bar.innerHTML = '<div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas</div><div class="rp-text">' + escapeHtml(msg.text.substring(0, 80)) + (msg.text.length > 80 ? '...' : '') + '</div></div><button class="rp-cancel" id="cancelChatReplyBtn">&times;</button>';
+  $('#cancelChatReplyBtn').onclick = cancelChatReply;
+  $('#chatInput').focus();
+}
+
+function cancelChatReply() {
+  chatReplyTo = null;
+  var bar = $('#chatReplyBar');
+  bar.style.display = 'none';
+  bar.innerHTML = '';
+}
+
+function showChatDelete(id) {
+  chatDeleteId = id;
+  cancelChatReply();
+  var msg = chatMessages.find(function(m) { return m.id === id; });
+  if (!msg) return;
+  var bar = $('#chatDeleteBar');
+  bar.style.display = 'block';
+  bar.className = 'delete-confirm-bar';
+  bar.innerHTML = '<div class="dc-title">Hapus pesan ini?</div><div class="dc-msg">' + escapeHtml(msg.text) + '</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" id="cancelChatDelBtn">Batal</button><button class="dc-btn dc-btn-confirm" id="confirmChatDelBtn">Hapus</button></div>';
+  $('#cancelChatDelBtn').onclick = cancelChatDelete;
+  $('#confirmChatDelBtn').onclick = function() { deleteChatMessage(id); };
+}
+
+function cancelChatDelete() {
+  chatDeleteId = null;
+  var bar = $('#chatDeleteBar');
+  bar.style.display = 'none';
+  bar.innerHTML = '';
+}
+
+// =============================================
+// ASSESSMENT
+// =============================================
+function openAssessment() {
+  if (!currentUser) return;
+  // Isi data pasien
+  $('#apNama').textContent = currentUser.nama || '-';
+  $('#apRM').textContent = currentUser.rm || '-';
+  $('#apUsiaJK').textContent = (currentUser.usia || '-') + ' thn / ' + (currentUser.jk || '-');
+
+  // Generate items
+  var container = $('#assessmentItems');
+  container.innerHTML = '';
+  ASSESSMENT_SECTIONS.forEach(function(section) {
+    var title = document.createElement('div');
+    title.className = 'section-title-sm';
+    title.textContent = section.title;
+    container.appendChild(title);
+
+    var box = document.createElement('div');
+    box.className = 'sub-section-box';
+    section.items.forEach(function(item) {
+      var row = document.createElement('div');
+      row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px';
+      row.innerHTML =
+        '<label class="check-label good-opt"><input type="radio" name="' + item.id + '" value="good" checked><div class="check-box"></div><span>Baik</span></label>' +
+        '<label class="check-label bad-opt"><input type="radio" name="' + item.id + '" value="bad"><div class="check-box"></div><span>Tidak Baik</span></label>';
+      box.appendChild(row);
+    });
+    container.appendChild(box);
+  });
+
+  // Reset skor
+  $('#scoreResult').style.display = 'none';
+  $('#saveIndicator').style.display = 'none';
+  $('#btnSubmitAssess').style.display = 'flex';
+
+  $('#assessmentModal').classList.add('active');
+}
+
+function calculateScore() {
+  var bad = 0;
+  var total = 0;
+  ASSESSMENT_SECTIONS.forEach(function(section) {
+    section.items.forEach(function(item) {
+      total++;
+      var checked = document.querySelector('input[name="' + item.id + '"]:checked');
+      if (checked && checked.value === 'bad') bad++;
+    });
+  });
+  return { abnormal: bad, total: total };
+}
+
+function submitAssessment() {
+  var score = calculateScore();
+  var result = {
+    id: genId(),
+    userId: currentUser.id,
+    date: new Date().toISOString(),
+    abnormal: score.abnormal,
+    total: score.total,
+    details: []
   };
 
-  html+='<div id="aksesChecksArea"></div>';
-  $('#aksesFormContent').innerHTML=html;
-  $('#aksesScoreDisplay').style.display='none';
-
-  // Fungsi render checklist
-  function renderChecks(type){
-    const data=aksesData[type];const area=$('#aksesChecksArea');area.innerHTML='';
-    let lastCat='';
-    data.forEach(section=>{
-      if(section.cat!==lastCat){if(lastCat)area+='</div>';area+='<div class="sub-section-box"><div class="section-title-sm">'+section.cat+'</div>';lastCat=section.cat}
-      section.items.forEach(it=>{
-        area+='<label class="check-label good-opt"><input type="checkbox" name="'+it.id+'" value="1"><div class="check-box"></div><span>'+it.label+'</span></label>';
+  // Kumpulkan detail
+  ASSESSMENT_SECTIONS.forEach(function(section) {
+    section.items.forEach(function(item) {
+      var checked = document.querySelector('input[name="' + item.id + '"]:checked');
+      result.details.push({
+        id: item.id,
+        label: item.label,
+        value: checked ? checked.value : 'good'
       });
-      area+='</div>';
     });
-    // Update total for scoring
-    const total=$$('#aksesChecksArea input[type=checkbox]').length;
-    return total;
+  });
+
+  // Tampilkan skor
+  var circle = $('#scoreCircle');
+  circle.className = 'score-circle';
+  if (score.abnormal === 0) circle.classList.add('low');
+  else if (score.abnormal <= 2) circle.classList.add('medium');
+  else circle.classList.add('high');
+  $('#scoreValue').textContent = score.abnormal;
+
+  var badgeHtml = '';
+  if (score.abnormal === 0) badgeHtml = '<div class="badge badge-success">Saluran HD Normal</div>';
+  else if (score.abnormal <= 2) badgeHtml = '<div class="badge badge-warning">Perlu Perhatian</div>';
+  else badgeHtml = '<div class="badge badge-danger">Perlu Perhatian Segera</div>';
+  $('#scoreBadge').innerHTML = badgeHtml;
+
+  // Simpan
+  assessmentHistory.push(result);
+  setStore(STORAGE_KEYS.history, assessmentHistory);
+
+  // Tampilkan save indicator
+  var si = $('#saveIndicator');
+  si.style.display = 'inline-flex';
+  si.className = 'save-indicator saved';
+  si.textContent = 'Tersimpan';
+
+  $('#scoreResult').style.display = 'block';
+  $('#btnSubmitAssess').style.display = 'none';
+
+  renderHistory();
+  updateStats();
+
+  // Jika skor tinggi, tampilkan alert setelah 1 detik
+  if (score.abnormal >= 3) {
+    setTimeout(function() {
+      showAlertModal(score.abnormal, score.total);
+    }, 1000);
+  }
+}
+
+// =============================================
+// ALERT MODAL
+// =============================================
+function showAlertModal(score, total) {
+  $('#alertScoreVal').textContent = score;
+  $('#alertScoreTotal').textContent = total;
+  if (score >= 3) {
+    $('#alertScoreLabel').textContent = 'Perlu Perhatian Segera';
+  } else {
+    $('#alertScoreLabel').textContent = 'Perlu Perhatian';
+  }
+  $('#alertModal').classList.add('active');
+}
+
+// =============================================
+// DISCUSSION
+// =============================================
+function renderDiscussion() {
+  var list = $('#commentsList');
+  list.innerHTML = '';
+  if (discussionComments.length === 0) {
+    list.innerHTML = '<div class="empty-chat">Belum ada diskusi</div>';
+    $('#discussionCount').textContent = '0 komentar';
+    return;
+  }
+  $('#discussionCount').textContent = discussionComments.length + ' komentar';
+  discussionComments.forEach(function(c) {
+    var item = document.createElement('div');
+    item.className = 'comment-item';
+    item.dataset.id = c.id;
+
+    var initial = (c.author || 'U').charAt(0).toUpperCase();
+    var html = '<div class="comment-header"><div class="comment-avatar">' + initial + '</div><div class="comment-author">' + escapeHtml(c.author) + '</div><div class="comment-time">' + formatDateTime(c.date) + '</div></div>';
+    if (c.replyTo) {
+      var ref = discussionComments.find(function(r) { return r.id === c.replyTo; });
+      if (ref) html += '<div style="font-size:.75rem;color:var(--accent-purple);border-left:2px solid var(--accent-purple);padding-left:8px;margin-bottom:8px;opacity:.7">Balasan ke ' + escapeHtml(ref.author) + ': ' + escapeHtml(ref.text.substring(0, 60)) + '...</div>';
+    }
+    html += '<div class="comment-text">' + escapeHtml(c.text) + '</div>';
+    html += '<div class="comment-actions"><button class="comment-action-btn reply-btn" data-action="reply" data-id="' + c.id + '">Balas</button>';
+    // Hanya bisa hapus milik sendiri
+    if (c.userId === (currentUser ? currentUser.id : '')) {
+      html += '<button class="comment-action-btn delete-btn" data-action="delete" data-id="' + c.id + '">Hapus</button>';
+    }
+    html += '</div>';
+    item.innerHTML = html;
+    list.appendChild(item);
+  });
+  list.scrollTop = list.scrollHeight;
+}
+
+function addComment() {
+  var textarea = $('#commentInput');
+  var text = textarea.value.trim();
+  if (!text) return;
+
+  var comment = {
+    id: genId(),
+    userId: currentUser ? currentUser.id : '__anon__',
+    author: currentUser ? currentUser.nama : 'Anonim',
+    text: text,
+    date: new Date().toISOString(),
+    replyTo: discReplyTo
+  };
+  discussionComments.push(comment);
+  setStore(STORAGE_KEYS.discussion, discussionComments);
+  textarea.value = '';
+  cancelDiscReply();
+  renderDiscussion();
+}
+
+function showDiscReply(id) {
+  discReplyTo = id;
+  cancelDiscDelete();
+  var msg = discussionComments.find(function(m) { return m.id === id; });
+  if (!msg) return;
+  var bar = $('#discussionReplyBar');
+  bar.style.display = 'flex';
+  bar.className = 'modal-reply-bar';
+  bar.innerHTML = '<div class="mr-content"><div class="mr-label">Membalas ' + escapeHtml(msg.author) + '</div><div class="mr-text">' + escapeHtml(msg.text.substring(0, 80)) + (msg.text.length > 80 ? '...' : '') + '</div></div><button class="mr-cancel" id="cancelDiscReplyBtn">&times;</button>';
+  $('#cancelDiscReplyBtn').onclick = cancelDiscReply;
+  $('#commentInput').focus();
+}
+
+function cancelDiscReply() {
+  discReplyTo = null;
+  var bar = $('#discussionReplyBar');
+  bar.style.display = 'none';
+  bar.innerHTML = '';
+}
+
+function showDiscDelete(id) {
+  discDeleteId = id;
+  cancelDiscReply();
+  var msg = discussionComments.find(function(m) { return m.id === id; });
+  if (!msg) return;
+  var bar = $('#discussionDeleteBar');
+  bar.style.display = 'flex';
+  bar.className = 'modal-delete-bar';
+  bar.innerHTML = '<div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar ini?</div><div class="md-text">' + escapeHtml(msg.text.substring(0, 80)) + '</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" id="cancelDiscDelBtn">Batal</button><button class="md-btn md-btn-confirm" id="confirmDiscDelBtn">Hapus</button></div>';
+  $('#cancelDiscDelBtn').onclick = cancelDiscDelete;
+  $('#confirmDiscDelBtn').onclick = function() {
+    discussionComments = discussionComments.filter(function(m) { return m.id !== id; });
+    setStore(STORAGE_KEYS.discussion, discussionComments);
+    cancelDiscDelete();
+    renderDiscussion();
+    showToast('Komentar dihapus', 'info');
+  };
+}
+
+function cancelDiscDelete() {
+  discDeleteId = null;
+  var bar = $('#discussionDeleteBar');
+  bar.style.display = 'none';
+  bar.innerHTML = '';
+}
+
+// =============================================
+// EXPORT PDF
+// =============================================
+function exportPDF() {
+  if (assessmentHistory.length === 0) {
+    showToast('Belum ada data pemeriksaan untuk diexport', 'error');
+    return;
+  }
+  showToast('Mempersiapkan PDF...', 'info');
+
+  var el = document.createElement('div');
+  el.style.cssText = 'padding:24px;font-family:"DM Sans",sans-serif;color:#1e293b;max-width:700px;margin:auto;background:#fff';
+  var html = '<h1 style="font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:4px;color:#1e293b">LAPORAN PEMERIKSAAN SALURAN HD</h1>';
+  html += '<p style="font-size:12px;color:#6b7280;margin-bottom:16px">MONALISA - Monitoring Saluran Hemodialisis</p>';
+  html += '<div style="border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-bottom:16px;background:#f9fafb">';
+  html += '<p style="font-size:13px;margin:2px 0"><strong>Nama:</strong> ' + escapeHtml(currentUser.nama) + '</p>';
+  html += '<p style="font-size:13px;margin:2px 0"><strong>No. RM:</strong> ' + escapeHtml(currentUser.rm) + '</p>';
+  html += '<p style="font-size:13px;margin:2px 0"><strong>Usia/JK:</strong> ' + currentUser.usia + ' thn / ' + currentUser.jk + '</p>';
+  html += '</div>';
+  html += '<table style="width:100%;border-collapse:collapse;font-size:12px">';
+  html += '<thead><tr style="background:#f3f4f6"><th style="padding:8px;border:1px solid #e5e7eb;text-align:left">Tanggal</th><th style="padding:8px;border:1px solid #e5e7eb;text-align:center">Abnormal</th><th style="padding:8px;border:1px solid #e5e7eb;text-align:center">Total Item</th><th style="padding:8px;border:1px solid #e5e7eb;text-align:center">Status</th></tr></thead><tbody>';
+  assessmentHistory.forEach(function(h) {
+    var d = new Date(h.date);
+    var status = h.abnormal === 0 ? 'Normal' : h.abnormal <= 2 ? 'Perlu Perhatian' : 'Perlu Perhatian Segera';
+    var sColor = h.abnormal === 0 ? '#059669' : h.abnormal <= 2 ? '#b45309' : '#dc2626';
+    html += '<tr><td style="padding:8px;border:1px solid #e5e7eb">' + formatDate(d) + '</td><td style="padding:8px;border:1px solid #e5e7eb;text-align:center;font-weight:bold;color:' + sColor + '">' + h.abnormal + '</td><td style="padding:8px;border:1px solid #e5e7eb;text-align:center">' + h.total + '</td><td style="padding:8px;border:1px solid #e5e7eb;text-align:center;color:' + sColor + ';font-weight:600">' + status + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  html += '<p style="font-size:10px;color:#9ca3af;margin-top:16px;text-align:center">Dicetak pada ' + formatDate(new Date()) + ' ' + formatTime(new Date()) + '</p>';
+  el.innerHTML = html;
+  document.body.appendChild(el);
+
+  var opt = { margin: 10, filename: 'Laporan_Monalisa_' + (currentUser.rm || 'export') + '.pdf', image: { type: 'jpeg', quality: 0.95 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+  html2pdf().set(opt).from(el).save().then(function() {
+    document.body.removeChild(el);
+    showToast('PDF berhasil diunduh', 'success');
+  }).catch(function() {
+    if (el.parentNode) document.body.removeChild(el);
+    showToast('Gagal membuat PDF', 'error');
+  });
+}
+
+// =============================================
+// EVENT LISTENERS
+// =============================================
+function setupEvents() {
+  // Login form
+  $('#btnLogin').addEventListener('click', handleLogin);
+  $('#loginPassword').addEventListener('keydown', function(e) { if (e.key === 'Enter') handleLogin(); });
+  $('#loginEmail').addEventListener('keydown', function(e) { if (e.key === 'Enter') $('#loginPassword').focus(); });
+
+  // Toggle password login
+  $('#toggleLoginPw').addEventListener('click', function() {
+    var inp = $('#loginPassword');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  });
+
+  // Show register dari login
+  $('#btnShowRegister').addEventListener('click', showRegisterView);
+
+  // Register step navigation
+  $('#btnNextStep').addEventListener('click', function() {
+    if (validateStep1()) goToStep(2);
+  });
+  $('#btnBackStep').addEventListener('click', function() { goToStep(1); });
+  $('#btnRegister').addEventListener('click', handleRegister);
+
+  // Toggle password register
+  $('#togglePw1').addEventListener('click', function() {
+    var inp = $('#inPassword');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  });
+  $('#togglePw2').addEventListener('click', function() {
+    var inp = $('#inConfirm');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  });
+
+  // Logout
+  $('#logoutBtn').addEventListener('click', handleLogout);
+
+  // Chat
+  $('#chatSendBtn').addEventListener('click', sendChatMessage);
+  $('#chatInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') sendChatMessage(); });
+
+  // Chat actions (delegasi event)
+  $('#chatMessagesArea').addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = btn.dataset.id;
+    if (action === 'reply') showChatReply(id);
+    else if (action === 'delete') showChatDelete(id);
+  });
+
+  // Discussion
+  $('#discussionBtn').addEventListener('click', function() {
+    renderDiscussion();
+    $('#discussionModal').classList.add('active');
+  });
+  $('#closeDiscussion').addEventListener('click', function() {
+    $('#discussionModal').classList.remove('active');
+    cancelDiscReply();
+    cancelDiscDelete();
+  });
+  $('#btnSendComment').addEventListener('click', addComment);
+  $('#commentInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addComment(); }
+  });
+
+  // Discussion actions (delegasi)
+  $('#commentsList').addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.dataset.action;
+    var id = btn.dataset.id;
+    if (action === 'reply') showDiscReply(id);
+    else if (action === 'delete') showDiscDelete(id);
+  });
+
+  // Assessment
+  $('#btnOpenAssessment').addEventListener('click', openAssessment);
+  $('#btnFooterAssess').addEventListener('click', openAssessment);
+  $('#closeAssessment').addEventListener('click', function() {
+    $('#assessmentModal').classList.remove('active');
+  });
+  $('#btnSubmitAssess').addEventListener('click', submitAssess);
+
+  // Alert modal
+  $('#alertCloseBtn').addEventListener('click', function() {
+    $('#alertModal').classList.remove('active');
+  });
+
+  // Export PDF
+  $('#btnExportPDF').addEventListener('click', exportPDF);
+  $('#btnFooterExport').addEventListener('click', exportPDF);
+
+  // Edukasi
+  $('#btnEdukasi').addEventListener('click', function() {
+    showToast('Materi edukasi lengkap akan segera tersedia', 'info');
+  });
+
+  // Consult all
+  $('#btnConsultAll').addEventListener('click', function() {
+    if (NURSES.length > 0) {
+      var n = NURSES[0];
+      var msg = encodeURIComponent('Halo ' + n.name + ', saya ' + (currentUser ? currentUser.nama : 'pasien HD') + '. Saya ingin berkonsultasi mengenai saluran HD saya.');
+      window.open('https://wa.me/62' + n.phone.replace(/^0/, '') + '?text=' + msg, '_blank');
+    }
+  });
+
+  // View history
+  $('#btnViewHistory').addEventListener('click', function() {
+    if (assessmentHistory.length === 0) {
+      showToast('Belum ada riwayat pemeriksaan', 'info');
+      return;
+    }
+    // Buka assessment modal dalam mode view-only (langsung tampilkan skor terakhir)
+    openAssessment();
+    // Langsung submit untuk lihat skor (tidak simpan ulang)
+    // Sebenarnya lebih baik buat modal khusus riwayat, tapi untuk sekarang:
+    showToast('Riwayat ditampilkan di panel riwayat', 'info');
+    $('#assessmentModal').classList.remove('active');
+  });
+
+  // Klik di luar modal untuk tutup
+  $$('.modal-overlay').forEach(function(overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        cancelDiscReply();
+        cancelDiscDelete();
+      }
+    });
+  });
+
+  // Alert modal klik luar
+  $('#alertModal').addEventListener('click', function(e) {
+    if (e.target === $('#alertModal')) {
+      $('#alertModal').classList.remove('active');
+    }
+  });
+}
+
+// =============================================
+// INIT
+// =============================================
+function init() {
+  createLoginParticles();
+  setupEvents();
+
+  // Cek apakah sudah ada session aktif
+  var session = getStore(STORAGE_KEYS.session, null);
+  if (session && session.loggedIn && session.email) {
+    currentUser = session;
+    enterDashboard();
+    return;
   }
 
-  // Render awal
-  renderChecks('avshunt');
-
-  // Event: ganti jenis akses
-  $('#aksesTypeSelect').addEventListener('change',function(){
-    renderChecks(this.value);
-    $('#aksesScoreDisplay').style.display='none';
-  });
-
-  // Event: submit
-  $('#btnSubmitAkses').addEventListener('click',()=>{
-    const checked=$$('#aksesChecksArea input[type=checkbox]:checked').length;
-    const total=$$('#aksesChecksArea input[type=checkbox]').length;
-    const pct=Math.round((checked/total)*100);
-    let level='low',label='Baik',badgeClass='badge-success';
-    if(pct<50){level='high';label='Perlu Perhatian Segera';badgeClass='badge-danger'}
-    else if(pct<75){level='medium';label='Perlu Diperhatikan';badgeClass='badge-warning'}
-    $('#aksesScoreValue').textContent=pct;
-    const circle=$('#aksesScoreCircle');circle.className='score-circle '+level;
-    $('#aksesScoreBadge').innerHTML='<div class="badge '+badgeClass+'">'+label+'</div>';
-    $('#aksesScoreDisplay').style.display='block';
-    // Simpan
-    const ind=$('#aksesSaveInd');ind.className='save-indicator saving';ind.textContent='Menyimpan...';
-    setTimeout(()=>{
-      const h=lsGet('aksesHistory',[]);h.push({date:new Date().toISOString(),score:pct,level,type:$('#aksesTypeSelect').value});lsSet('aksesHistory',h);
-      ind.className='save-indicator saved';ind.textContent='Tersimpan';loadStats();setTimeout(()=>ind.textContent='',3000);
-      // Cek apakah perlu tampilkan peringatan
-      if(level==='high'){
-        showUrgentAlert(pct,total,$('#aksesTypeSelect option:selected').text());
-      }
-    },800);
-  });
+  // Cek apakah ada user yang sudah terdaftar
+  var users = getStore(STORAGE_KEYS.users, []);
+  if (users.length > 0) {
+    // Tampilkan form login
+    showLoginView();
+  } else {
+    // Tampilkan form registrasi
+    showRegisterView();
+  }
 }
 
-/* ===== POP UP PERINGATAN PETUGAS ===== */
-function showUrgentAlert(score,total,typeName){
-  $('#alertScoreVal').textContent=score;
-  $('#alertScoreTotal').textContent=total;
-  $('#alertScoreLabel').textContent='Perlu Perhatian Segera ('+typeName+')';
-  $('#alertModal').classList.add('active');
-  // WA links
-  $('#alertContactErik').onclick=()=>{window.open('https://wa.me/62857327373585?text='+encodeURIComponent('Halo Erik, saya pasien HD. Saya baru saja melakukan pengecekan saluran CDL dan hasilnya kurang baik. Mohon bantu saya.') ,'_blank')};
-  $('#alertContactHesty').onclick=()=>{window.open('https://wa.me/6282124700093?text='+encodeURIComponent('Halo Hesty, saya pasien HD. Saya baru saja melakukan pengecekan saluran CVC dan hasilnya kurang baik. Mohon bantu saya.') ,'_blank')};
-  // Close
-  $('#alertCloseBtn').addEventListener('click',()=>{$('#alertModal').classList.remove('active')});
-  // Klik di luar popup untuk tutup
-  $('#alertModal').addEventListener('click',function(e){if(e.target===this)$('#alertModal').classList.remove('active')});
-}
-
-/* ===== FORM SKOR RISIKO ===== */
-function buildSkorForm(){
-  const items=[
-    {id:'skor1',label:'Diabetes Melitus',points:2},
-    {id:'skor2',label:'Hipertensi',points:1},
-    {id:'skor3',label:'Usia > 60 tahun',points:1},
-    {id:'skor4',label:'Obesitas (IMT > 30)',points:1},
-    {id:'skor5',label:'Riwayat trombosis / penggumpalan darah',points:2},
-    {id:'skor6',label:'Merokok aktif',points:1},
-    {id:'skor7',label:'Kadar kalsium tinggi',points:1},
-    {id:'skor8',label:'Sering melupakan jadwal HD',points:1},
-  ];
-  let html='<div style="margin-bottom:12px;font-size:.78rem;color:var(--text-muted)">Centang faktor risiko yang Anda miliki. Setiap faktor memiliki bobot berbeda.</div>';
-  items.forEach(it=>{html+='<label class="check-label bad-opt"><input type="checkbox" name="'+it.id+'" data-pts="'+it.points+'"><div class="check-box"></div><span>'+it.label+' <strong style="color:var(--accent-red);margin-left:auto;font-size:.7rem">+'+it.points+'</strong></span></label>'});
-  html+='<div style="text-align:center;margin-top:18px"><button class="btn btn-gold" id="btnSubmitSkor" style="max-width:300px;margin:0 auto">Hitung Skor Risiko</button></div>';
-  $('#skorFormContent').innerHTML=html;
-  $('#skorScoreDisplay').style.display='none';
-  $('#btnSubmitSkor').addEventListener('click',()=>{
-    let total=0;
-    $$('#skorFormContent input[type=checkbox]:checked').forEach(cb=>{total+=parseInt(cb.dataset.pts)});
-    const max=10;const pct=Math.round((total/max)*100);
-    let level='low',label='Risiko Rendah',badgeClass='badge-success';
-    if(pct>=60){level='high';label='Risiko Tinggi';badgeClass='badge-danger'}
-    else if(pct>=30){level='medium';label='Risiko Sedang';badgeClass='badge-warning'}
-    $('#skorScoreValue').textContent=total+'/'+max;
-    const circle=$('#skorScoreCircle');circle.className='score-circle '+level;
-    $('#skorScoreBadge').innerHTML='<div class="badge '+badgeClass+'">'+label+'</div>';
-    $('#skorScoreDisplay').style.display='block';
-    const ind=$('#skorSaveInd');ind.className='save-indicator saving';ind.textContent='Menyimpan...';
-    setTimeout(()=>{const h=lsGet('skorHistory',[]);h.push({date:new Date().toISOString(),score:total,max,level});lsSet('skorHistory',h);ind.className='save-indicator saved';ind.textContent='Tersimpan';loadStats();setTimeout(()=>ind.textContent='',3000)},800);
-  });
-}
-
-/* ===== MODAL CONTROLS ===== */
-function openModal(id){$('#'+id).classList.add('active')}
-function closeModal(id){$('#'+id).classList.remove('active')}
- $('#btnOpenAkses').addEventListener('click',()=>openModal('modalAkses'));
- $('#closeAkses').addEventListener('click',()=>closeModal('modalAkses'));
- $('#btnOpenSkor').addEventListener('click',()=>openModal('modalSkor'));
- $('#closeSkor').addEventListener('click',()=>closeModal('modalSkor'));
- $('#btnOpenInfo').addEventListener('click',()=>openModal('modalInfo'));
- $('#closeInfo').addEventListener('click',()=>closeModal('modalInfo'));
- $('#btnOpenConsult').addEventListener('click',()=>openModal('modalConsult'));
- $('#closeConsult').addEventListener('click',()=>closeModal('modalConsult'));
- $('#openDiscussionBtn').addEventListener('click',()=>openModal('modalDiscussion'));
- $('#closeDiscussion').addEventListener('click',()=>closeModal('modalDiscussion'));
- $$('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active')})});
- $$('.nurse-card').forEach(card=>{card.addEventListener('click',()=>{const u=getCurrentUser();window.open('https://wa.me/'+card.dataset.phone+'?text='+encodeURIComponent('Halo, saya '+(u?.nama||'pasien HD')+'. Saya ingin berkonsultasi.'),'_blank')})});
- $('#btnOpenWA').addEventListener('click',()=>{window.open('https://wa.me/6281234567890?text='+encodeURIComponent('Halo, saya ingin berkonsultasi mengenai saluran HD.'),'_blank')});
-
-/* ===== EXPORT PDF ===== */
- $('#btnExportPDF').addEventListener('click',()=>{
-  const user=getCurrentUser();if(!user){showToast('Silakan login terlebih dahulu','error');return}
-  const akses=lsGet('aksesHistory',[]);const skor=lsGet('skorHistory',[]);
-  let html='<div style="font-family:Arial,sans-serif;padding:20px"><h1 style="text-align:center;color:#1e293b">Laporan Monitoring Saluran HD</h1><h3 style="color:#64748b;text-align:center">Pasien: '+user.nama+' | RM: '+user.rm+'</h3><hr style="margin:16px 0">';
-  if(akses.length){html+='<h2 style="color:#1e293b">Riwayat Pemeriksaan Saluran ('+akses.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';akses.forEach(a=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(a.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.score+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+a.level+(a.type?' ('+a.type+')':'')+'</td></tr>'});html+='</table>'}
-  if(skor.length){html+='<h2 style="color:#1e293b;margin-top:16px">Riwayat Skor Risiko ('+skor.length+')</h2><table style="width:100%;border-collapse:collapse;font-size:12px"><tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:6px">Tanggal</th><th style="border:1px solid #e2e8f0;padding:6px">Skor</th><th style="border:1px solid #e2e8f0;padding:6px">Status</th></tr>';skor.forEach(s=>{html+='<tr><td style="border:1px solid #e2e8f0;padding:6px">'+new Date(s.date).toLocaleString('id-ID')+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.score+'/'+s.max+'</td><td style="border:1px solid #e2e8f0;padding:6px;text-align:center">'+s.level+'</td></tr>'});html+='</table>'}
-  if(!akses.length&&!skor.length)html+='<p style="color:#94a3b8;text-align:center">Belum ada data pemeriksaan.</p>';
-  html+='<p style="margin-top:20px;font-size:10px;color:#94a3b8;text-align:center">Dicetak dari MONALISA v1.0 pada '+new Date().toLocaleString('id-ID')+'</p></div>';
-  const el=document.createElement('div');el.innerHTML=html;document.body.appendChild(el);
-  html2pdf().set({margin:10,filename:'Laporan_Monalisa_'+user.nama+'.pdf',html2canvas:{scale:2}}).from(el).save().then(()=>{el.remove();showToast('PDF berhasil diunduh!','success')}).catch(()=>{el.remove();showToast('Gagal membuat PDF','error')});
-});
-});
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
