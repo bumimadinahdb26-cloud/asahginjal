@@ -727,7 +727,7 @@ function simpleHash(str){ var h=0; for(var i=0;i<str.length;i++){ h=((h<<5)-h)+s
 
 // ---- KIRIM KE GOOGLE SPREADSHEET ----
 function sendToSheet(sheetName, rowData){
-    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('GANTI_DENGAN') !== -1){
+    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbyt_iT2KjqTw4K_LMsSZ9CzdgNXVDGQkWr6ZJoHjkFUK5FBD6OL4CF0UyWvfHkNiLtG/exec') !== -1){
         console.log('[MONALISA] Google Script URL belum dikonfigurasi. Data hanya tersimpan lokal.');
         return Promise.resolve(false);
     }
