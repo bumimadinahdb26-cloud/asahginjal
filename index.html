@@ -215,9 +215,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .login-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0a1e 0%,#1a1035 30%,#0d1b2a 70%,#0a0f1a 100%);transition:opacity .6s ease,visibility .6s ease}
 .login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .login-overlay::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,0.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(220,38,38,0.1) 0%,transparent 60%);pointer-events:none}
-.login-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.login-particle{position:absolute;width:3px;height:3px;background:var(--accent-purple-light);border-radius:50%;opacity:0;animation:particleFloat linear infinite}
-@keyframes particleFloat{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:.6}90%{opacity:.6}100%{opacity:0;transform:translateY(-10vh) scale(1)}}
 .login-card{position:relative;z-index:2;width:460px;max-width:92vw;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.5),0 0 60px rgba(124,58,237,0.1)}
 .login-card-header{padding:28px 32px 0;text-align:center}
 .login-logo{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:6px;color:#fff;background:linear-gradient(135deg,#fff 0%,var(--accent-purple-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
@@ -316,7 +313,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 
 <!-- ===== LOGIN OVERLAY ===== -->
 <div class="login-overlay" id="loginOverlay">
-<div class="login-particles" id="loginParticles"></div>
 <div class="login-card">
 <div class="login-card-header">
 <div class="login-logo">MONALISA</div>
@@ -340,13 +336,14 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="step-desc">Lengkapi data diri Anda. Data ini akan tersimpan di perangkat dan spreadsheet monitoring.</div>
 <div class="login-input-group" id="grpNama"><label>Nama Lengkap</label><input type="text" id="inNama" placeholder="Masukkan nama lengkap..." maxlength="60" autocomplete="off"><div class="field-error">Nama wajib diisi (min. 3 karakter)</div></div>
 <div class="login-row">
-<div class="login-input-group" id="grpRM"><label>No. Rekam Medis</label><input type="text" id="inRM" placeholder="Contoh: RM-00123" maxlength="20" autocomplete="off"><div class="field-error">No. RM wajib diisi</div></div>
+<div class="login-input-group" id="grpRM"><label>No. Rekam Medis</label><input type="text" id="inRM" placeholder="Contoh: RM-00123" maxlength="20" autocomplete="off"><div style="font-size:.62rem;color:rgba(255,255,255,0.35);margin-top:4px;font-style:italic">Kalau tidak tahu boleh dikosongi</div><div class="field-error">No. RM wajib diisi</div></div>
 <div class="login-input-group" id="grpUsia"><label>Usia</label><input type="number" id="inUsia" placeholder="Tahun" min="1" max="120" autocomplete="off"><div class="field-error">Usia tidak valid</div></div>
 </div>
 <div class="login-input-group" id="grpJK"><label>Jenis Kelamin</label><select id="inJK"><option value="">-- Pilih --</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select><div class="field-error">Pilih jenis kelamin</div></div>
 <div class="login-input-group" id="grpAlamat"><label>Alamat</label><input type="text" id="inAlamat" placeholder="Alamat tempat tinggal..." maxlength="150" autocomplete="off"><div class="field-error">Alamat wajib diisi</div></div>
 <button type="button" class="btn-submit-login primary" id="btnNextStep"><span class="btn-text">Lanjutkan ke Pembuatan Akun</span><span class="btn-spinner"></span></button>
 <div class="login-footer-note">Data tersimpan lokal di perangkat dan dikirim ke spreadsheet monitoring.</div>
+<div style="text-align:center;margin-top:10px"><button type="button" id="btnShowLogin" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline">Sudah punya akun? Klik akun saya</button></div>
 </div>
 <div class="form-step" id="formStep2">
 <div class="step-title">Buat Akun</div>
@@ -746,17 +743,6 @@ var appData = { user:null, passwordHash:null, chatMessages:[], comments:[], asse
 function saveData(){ try{ localStorage.setItem('monalisa_data', JSON.stringify(appData)); }catch(e){} }
 function loadData(){ try{ var d=localStorage.getItem('monalisa_data'); if(d){ appData=JSON.parse(d); if(!appData.privateNotes) appData.privateNotes=[]; return true; } }catch(e){} return false; }
 
-// ---- LOGIN PARTICLES ----
-(function(){
-    var c=$('loginParticles'); if(!c) return;
-    for(var i=0;i<25;i++){
-        var p=document.createElement('div'); p.className='login-particle';
-        p.style.left=Math.random()*100+'%'; p.style.animationDuration=(6+Math.random()*10)+'s';
-        p.style.animationDelay=(Math.random()*8)+'s'; p.style.width=p.style.height=(2+Math.random()*3)+'px';
-        c.appendChild(p);
-    }
-})();
-
 // ---- LOGIN LOGIC ----
 var loginStep=1, tempPatientData={};
 function clearFieldError(id){ var g=$(id); if(g) g.classList.remove('error'); }
@@ -831,7 +817,22 @@ function goToStep(step){
  $('loginPassword').addEventListener('keydown',function(e){if(e.key==='Enter')$('btnLogin').click();});
  $('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')$('loginPassword').focus();});
  $('btnShowRegister').addEventListener('click',function(){$('loginView').style.display='none';$('registerView').style.display='block';setTimeout(function(){$('loginFormBody').style.minHeight=$('formStep1').scrollHeight+'px';},50);});
-
+document.getElementById('btnShowLogin').addEventListener('click',function(){
+  document.getElementById('registerView').style.display='none';
+  document.getElementById('loginView').style.display='block';
+  // reset step indicator ke awal
+  document.getElementById('formStep1').classList.add('active');
+  document.getElementById('formStep1').classList.remove('exit-left');
+  document.getElementById('formStep2').classList.remove('active');
+  document.getElementById('formStep2').classList.add('exit-left');
+  document.getElementById('stepDot1').classList.add('active');
+  document.getElementById('stepDot1').classList.remove('done');
+  document.getElementById('stepDot2').classList.remove('active','done');
+  document.getElementById('stepLine').classList.remove('done');
+  document.getElementById('stepLabel1').classList.add('active');
+  document.getElementById('stepLabel1').classList.remove('done');
+  document.getElementById('stepLabel2').classList.remove('active','done');
+});
 if(loadData()&&appData.user&&appData.passwordHash){$('loginView').style.display='block';$('registerView').style.display='none';}
 else{$('loginView').style.display='none';$('registerView').style.display='block';setTimeout(function(){$('loginFormBody').style.minHeight=$('formStep1').scrollHeight+'px';},50);}
 
