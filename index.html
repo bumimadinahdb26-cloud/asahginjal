@@ -213,6 +213,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .nurse-arrow{color:var(--text-muted);flex-shrink:0;transition:transform .2s}
 .nurse-card:hover .nurse-arrow{transform:translateX(4px);color:#25d366}
 .login-overlay{ position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:url('banner-saya.png')center/cover no-repeat;transition:opacity .6s ease,visibility .6s ease}
+.login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none;z-index:-1}   
 .login-overlay::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,10,30,0.88) 0%,rgba(26,16,53,0.83) 30%,rgba(13,27,42,0.83) 70%,rgba(10,15,26,0.88) 100%);pointer-events:none}
 .login-card{position:relative;z-index:2;width:460px;max-width:92vw;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.5),0 0 60px rgba(124,58,237,0.1)}
 .login-card-header{padding:28px 32px 0;text-align:center}
@@ -252,7 +253,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .btn-submit-login.teal:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(20,184,166,0.45)}
 .btn-submit-login:active{transform:translateY(0) scale(.98)}
 .btn-submit-login:disabled{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
-.btn-submit-login .btn-spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.btn-submit-.btn-spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
 .btn-submit-login.loading .btn-spinner{display:block}
 .btn-submit-login.loading .btn-text{opacity:0}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
@@ -723,7 +724,8 @@ function simpleHash(str){ var h=0; for(var i=0;i<str.length;i++){ h=((h<<5)-h)+s
 
 // ---- KIRIM KE GOOGLE SPREADSHEET ----
 function sendToSheet(sheetName, rowData){
-    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbyt_iT2KjqTw4K_LMsSZ9CzdgNXVDGQkWr6ZJoHjkFUK5FBD6OL4CF0UyWvfHkNiLtG/exec') !== -1){
+    // Perbaikan: Hapus pengecekan URL placeholder yang salah
+    if(!GOOGLE_SCRIPT_URL){
         console.log('[MONALISA] Google Script URL belum dikonfigurasi. Data hanya tersimpan lokal.');
         return Promise.resolve(false);
     }
