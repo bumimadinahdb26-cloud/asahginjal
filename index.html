@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>monalisa - Monitoring Akses Vaskuler Hemodialisis Anda</title>
+<title>Monalisa+ - Monitoring Akses Vaskuler Hemodialisis Anda</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
@@ -316,7 +316,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="login-overlay" id="loginOverlay">
 <div class="login-card">
 <div class="login-card-header">
-<div class="login-logo">monalisa</div>
+<div class="login-logo">Monalisa+</div>
 <div class="login-logo-sub">Monitoring AKSES VASKULER Hemodialisis</div>
 </div>
 <div id="loginView" style="display:none;padding:32px">
@@ -396,7 +396,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 <div class="welcome-message" id="welcomeMsg">Selamat datang kembali!</div>
-<div class="header-title">monalisa</div>
+<div class="header-title">Monalisa+</div>
 <div class="header-subtitle">Monitoring Akses Vaskuler Hemodialisis Anda</div>
 </div>
 </div>
@@ -416,8 +416,8 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="panel-grid">
 <div class="panel-card">
 <div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="panel-title">Skrining dan monitor AV-Shunt dan MANUAL/FEMORAL</div>
-<div class="panel-subtitle">Periksa kondisi AKSES VASKULER AV-Shunt dan  MANUAL / FEMORAL Anda sebelum dan sesudah cuci darah.</div>
+<div class="panel-title">Skrining dan monitor AV-Shunt</div>
+<div class="panel-subtitle">Periksa kondisi AKSES VASKULER AV-Shunt Anda sebelum dan sesudah cuci darah.</div>
 <div class="panel-actions"><button class="btn btn-primary" id="btnOpenAkses">Mulai Pemeriksaan</button></div>
 </div>
 <div class="panel-card">
@@ -466,7 +466,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="panel-footer">
 <div class="footer-info">
 <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="footer-text"><h3>monalisa v3.0</h3><p>Monitoring Akses Vaskuler Hemodialisis Anda </p></div>
+<div class="footer-text"><h3>Monalisa+ v3.0</h3><p>Monitoring Akses Vaskuler Hemodialisis Anda </p></div>
 </div>
 <div class="footer-stats">
 <div class="stat-item"><div class="stat-value" id="statSessions">0</div><div class="stat-label">Pemeriksaan</div></div>
@@ -476,11 +476,11 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 
-<!-- ===== MODAL: CEK AKSES VASKULER (AV-SHUNT) dan MANUAL / FEMORAL===== -->
+<!-- ===== MODAL: CEK AKSES VASKULER (AV-SHUNT) ===== -->
 <div class="modal-overlay" id="modalAkses">
 <div class="modal-box">
-<button class="modal-close" id="closeAkses">&times;</b utton>
-<div class="modal-title">Skrining dan monitor AV-Shunt dan MANUAL / FEMORAL</div>
+<button class="modal-close" id="closeAkses">&times;</button>
+<div class="modal-title">Skrining dan monitor AV-Shunt</div>
 <div class="grid-2">
 <div class="input-group"><label>Jenis AKSES VASKULER</label><select class="input-field" id="aksesTipe"><option value="">-- Pilih --</option><option value="AV Fistula/Shunt/cimino">AV Fistula/Shunt/cimino</option><option value="AV Graft">AV Graft</option><option value="Manual / Femoral">Manual / Femoral</option></select></div>
 <div class="input-group"><label>Lokasi AKSES VASKULER</label><select class="input-field" id="aksesLokasi"><option value="">-- Pilih --</option><option value="Lengan Kiri Atas">Lengan Kiri Atas</option><option value="Lengan Kanan Atas">Lengan Kanan Atas</option><option value="Lengan Kiri Bawah">Lengan Kiri Bawah</option><option value="Lengan Kanan Bawah">Lengan Kanan Bawah</option><option value="Leher Kiri">Leher Kiri</option><option value="Leher Kanan">Leher Kanan</option><option value="Dada Kiri">Dada Kiri</option><option value="Dada Kanan">Dada Kanan</option><option value="Groin Kiri">Groin Kiri</option><option value="Groin Kanan">Groin Kanan</option></select></div>
@@ -691,7 +691,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 
 <script>
 /* =========================================================
-   monalisa v3.0 - Monitoring Akses Vaskuler Hemodialisis
+   Monalisa+ v3.0 - Monitoring Akses Vaskuler Hemodialisis
    ========================================================= */
 
 // ============================================================
@@ -726,7 +726,7 @@ function simpleHash(str){ var h=0; for(var i=0;i<str.length;i++){ h=((h<<5)-h)+s
 // ---- KIRIM KE GOOGLE SPREADSHEET ----
 function sendToSheet(sheetName, rowData){
     if(!GOOGLE_SCRIPT_URL){
-        console.log('[monalisa] Google Script URL belum dikonfigurasi. Data hanya tersimpan lokal.');
+        console.log('[Monalisa+] Google Script URL belum dikonfigurasi. Data hanya tersimpan lokal.');
         return Promise.resolve(false);
     }
     return fetch(GOOGLE_SCRIPT_URL, {
@@ -734,7 +734,7 @@ function sendToSheet(sheetName, rowData){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sheet: sheetName, data: rowData })
     }).then(function(){ return true; }).catch(function(e){
-        console.error('[monalisa] Gagal kirim ke spreadsheet:', e);
+        console.error('[Monalisa+] Gagal kirim ke spreadsheet:', e);
         return false;
     });
 }
@@ -774,8 +774,8 @@ function loginToBackend(email, passwordHash) {
 
 // ---- DATA APLIKASI ----
 var appData = { user:null, passwordHash:null, isLoggedIn:false, chatMessages:[], comments:[], assessments:[], privateNotes:[], stats:{sessions:0,days:0} };
-function saveData(){ try{ localStorage.setItem('monalisa_data', JSON.stringify(appData)); }catch(e){} }
-function loadData(){ try{ var d=localStorage.getItem('monalisa_data'); if(d){ appData=JSON.parse(d); if(!appData.privateNotes) appData.privateNotes=[]; if(!appData.stats) appData.stats={sessions:0,days:0}; if(typeof appData.isLoggedIn === 'undefined') appData.isLoggedIn=false; return true; } }catch(e){} return false; }
+function saveData(){ try{ localStorage.setItem('Monalisa+_data', JSON.stringify(appData)); }catch(e){} }
+function loadData(){ try{ var d=localStorage.getItem('Monalisa+_data'); if(d){ appData=JSON.parse(d); if(!appData.privateNotes) appData.privateNotes=[]; if(!appData.stats) appData.stats={sessions:0,days:0}; if(typeof appData.isLoggedIn === 'undefined') appData.isLoggedIn=false; return true; } }catch(e){} return false; }
 
 // ---- LOGIN LOGIC ----
 var loginStep=1, tempPatientData={};
@@ -1076,7 +1076,7 @@ function collectAssessmentData(){
 function buildWaMessage(assessment, nurseName){
     var u = appData.user;
     var msg = '*LAPORAN SALURAN HEMODIALISIS*\n';
-    msg += 'Dikirim via monalisa\n';
+    msg += 'Dikirim via Monalisa+\n';
     msg += '─────────────────────\n';
     msg += 'Perawat: ' + nurseName + '\n';
     msg += 'Tanggal: ' + assessment.tanggal + '\n';
@@ -1203,7 +1203,7 @@ function calculateCvcAssessment(data){
 function buildWaMessageCVC(data, nurseName, result){
     var u = appData.user;
     var msg = '*LAPORAN SKRINING CVC/CDL*\n';
-    msg += 'Via monalisa v3.0\n';
+    msg += 'Via Monalisa+ v3.0\n';
     msg += '═══════════════════════\n';
     msg += '👤 Perawat: ' + nurseName + '\n';
     msg += '📅 Tanggal: ' + data.tanggal + '\n';
@@ -1360,7 +1360,7 @@ function buildWaMessageCVC(data, nurseName, result){
 // ---- EXPORT PDF ----
  $('btnExportPDF').addEventListener('click',function(){
     toast('Menyiapkan dokumen PDF...','info');
-    html2pdf().set({margin:[10,10,10,10],filename:'monalisa_'+new Date().toISOString().split('T')[0]+'.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from($('mainDashboard')).save().then(function(){toast('PDF berhasil diunduh!','success');}).catch(function(){toast('Gagal mengunduh PDF','error');});
+    html2pdf().set({margin:[10,10,10,10],filename:'Monalisa+_'+new Date().toISOString().split('T')[0]+'.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from($('mainDashboard')).save().then(function(){toast('PDF berhasil diunduh!','success');}).catch(function(){toast('Gagal mengunduh PDF','error');});
 });
 
 // ---- LOGOUT ----
