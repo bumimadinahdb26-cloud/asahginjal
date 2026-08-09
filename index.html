@@ -11,13 +11,13 @@
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;color:var(--text-cream)}
 h1,h2,h3,h4{font-family:'Outfit',sans-serif}
-.bg-pattern{position:fixed;inset:0;background:url('dasboard.png') center/cover no-repeat fixed;z-index:-2}
+.bg-pattern{position:fixed;inset:0;background:url('dashboard.png') center/cover no-repeat fixed;z-index:-2}
 .noise-overlay{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.02;z-index:-1;pointer-events:none}
 .main-container{max-width:1400px;margin:0 auto;padding:20px;min-height:100vh;display:flex;flex-direction:column;gap:16px}
 .header-area{display:flex;gap:16px;min-height:380px}
 .banner-section{flex:1;border-radius:20px;overflow:hidden;position:relative;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:2px solid var(--border-gold);transition:border-color .3s}
 .banner-section:hover{border-color:var(--accent-purple)}
-.banner-section .header-bg{position:absolute;inset:0;background:url('https://picsum.photos/seed/hemodialysis2024/1400/500.jpg') center/cover;transition:transform 12s ease}
+.banner-section .header-bg{position:absolute;inset:0;background:url('dashboard.png') center/cover;transition:transform 12s ease}
 .banner-section:hover .header-bg{transform:scale(1.03)}
 .banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.35) 30%,rgba(0,0,0,0.1) 55%,transparent 70%)}
 .banner-content{position:relative;z-index:2;padding:24px 28px;color:#fff}
