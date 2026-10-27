@@ -225,9 +225,36 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .form-step .step-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;letter-spacing:2px;margin-bottom:4px}
 .form-step .step-desc{font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.5}
 .login-input-group{margin-bottom:14px}
-.login-input-group label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
-#loginView .login-input-group label{color:#a78bfa;text-shadow:0 0 8px rgba(167,139,250,0.4)}
-#registerView .login-input-group label{color:#2dd4bf;text-shadow:0 0 8px rgba(45,212,191,0.4)}
+.login-input-group label{
+    display:inline-block;
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:8px;
+    font-weight:700;
+    padding:4px 12px;
+    border-radius:8px;
+    border:1.5px solid;
+    backdrop-filter:blur(4px);
+}
+
+/* ===== LOGIN VIEW - UNGU NEON ===== */
+#loginView .login-input-group label{
+    color:#ede9fe;
+    background:rgba(124,58,237,0.35);
+    border-color:#a78bfa;
+    box-shadow:0 0 10px rgba(167,139,250,0.6),inset 0 0 8px rgba(167,139,250,0.2);
+    text-shadow:0 0 6px #c4b5fd,0 0 12px #a78bfa;
+}
+
+/* ===== REGISTER VIEW - HIJAU NEON ===== */
+#registerView .login-input-group label{
+    color:#ccfbf1;
+    background:rgba(20,184,166,0.35);
+    border-color:#2dd4bf;
+    box-shadow:0 0 10px rgba(45,212,191,0.6),inset 0 0 8px rgba(45,212,191,0.2);
+    text-shadow:0 0 6px #5eead4,0 0 12px #2dd4bf;
+}
 .login-input-group input,.login-input-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:.88rem;font-family:'DM Sans',sans-serif;transition:all .25s;outline:none;-webkit-appearance:none;appearance:none}
 .login-input-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.7)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .login-input-group input:focus,.login-input-group select:focus{border-color:var(--accent-purple);background:rgba(124,58,237,0.15);box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
