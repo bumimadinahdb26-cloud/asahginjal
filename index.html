@@ -196,6 +196,7 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .toast.success{background:linear-gradient(135deg,var(--accent-teal),var(--accent-teal-dark))}
 .toast.error{background:linear-gradient(135deg,var(--accent-red),var(--accent-red-dark))}
 .toast.info{background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark))}
+.toast.warning{background:linear-gradient(135deg,var(--color-warning),#b45309)}
 @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
 .chat-removing{animation:fadeSlideOut .35s ease forwards}
@@ -213,48 +214,15 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .nurse-arrow{color:var(--text-muted);flex-shrink:0;transition:transform .2s}
 .nurse-card:hover .nurse-arrow{transform:translateX(4px);color:#25d366}
 .login-overlay{ position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:url('banner-saya.png')center/cover no-repeat;transition:opacity .6s ease,visibility .6s ease}
-.login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none;z-index:-1}   
+.login-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none;z-index:-1}
 .login-card{position:relative;z-index:2;width:460px;max-width:92vw;max-height:95vh;overflow-y:auto;background:rgba(255,255,255,0.15);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.2);border-radius:24px;overflow-x:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
 .login-card-header{padding:28px 32px 0;text-align:center}
 .login-logo{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:6px;color:#fff;background:linear-gradient(135deg,#fff 0%,var(--accent-purple-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .login-logo-sub{font-size:.78rem;color:rgba(255,255,255,0.8);margin-top:4px;letter-spacing:2px;text-transform:uppercase}
-.login-form-body{padding:0;position:relative}
-.form-step{position:absolute;inset:0;padding:24px 32px 32px;opacity:0;visibility:hidden;transform:translateX(30px);transition:all .4s ease}
-.form-step.active{opacity:1;visibility:visible;transform:translateX(0)}
-.form-step.exit-left{opacity:0;visibility:hidden;transform:translateX(-30px)}
-.form-step .step-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;letter-spacing:2px;margin-bottom:4px}
-.form-step .step-desc{font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.5}
 .login-input-group{margin-bottom:14px}
-.login-input-group label{
-    display:inline-block;
-    font-size:.72rem;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    margin-bottom:8px;
-    font-weight:700;
-    padding:4px 12px;
-    border-radius:8px;
-    border:1.5px solid;
-    backdrop-filter:blur(4px);
-}
-
-/* ===== LOGIN VIEW - UNGU NEON ===== */
-#loginView .login-input-group label{
-    color:#ede9fe;
-    background:rgba(124,58,237,0.35);
-    border-color:#a78bfa;
-    box-shadow:0 0 10px rgba(167,139,250,0.6),inset 0 0 8px rgba(167,139,250,0.2);
-    text-shadow:0 0 6px #c4b5fd,0 0 12px #a78bfa;
-}
-
-/* ===== REGISTER VIEW - HIJAU NEON ===== */
-#registerView .login-input-group label{
-    color:#ccfbf1;
-    background:rgba(20,184,166,0.35);
-    border-color:#2dd4bf;
-    box-shadow:0 0 10px rgba(45,212,191,0.6),inset 0 0 8px rgba(45,212,191,0.2);
-    text-shadow:0 0 6px #5eead4,0 0 12px #2dd4bf;
-}
+.login-input-group label{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;font-weight:700;padding:4px 12px;border-radius:8px;border:1.5px solid;backdrop-filter:blur(4px)}
+#loginView .login-input-group label{color:#ede9fe;background:rgba(124,58,237,0.35);border-color:#a78bfa;box-shadow:0 0 10px rgba(167,139,250,0.6),inset 0 0 8px rgba(167,139,250,0.2);text-shadow:0 0 6px #c4b5fd,0 0 12px #a78bfa}
+#registerView .login-input-group label{color:#ccfbf1;background:rgba(20,184,166,0.35);border-color:#2dd4bf;box-shadow:0 0 10px rgba(45,212,191,0.6),inset 0 0 8px rgba(45,212,191,0.2);text-shadow:0 0 6px #5eead4,0 0 12px #2dd4bf}
 .login-input-group input,.login-input-group select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:.88rem;font-family:'DM Sans',sans-serif;transition:all .25s;outline:none;-webkit-appearance:none;appearance:none}
 .login-input-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.7)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .login-input-group input:focus,.login-input-group select:focus{border-color:var(--accent-purple);background:rgba(124,58,237,0.15);box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
@@ -280,11 +248,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .password-toggle-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.6);cursor:pointer;padding:4px;transition:color .2s;display:flex;align-items:center}
 .password-toggle-btn:hover{color:rgba(255,255,255,0.9)}
 .login-footer-note{font-size:.7rem;color:rgba(255,255,255,0.6);text-align:center;margin-top:16px;line-height:1.5}
-.data-summary{background:rgba(20,184,166,0.15);border:1px solid rgba(20,184,166,0.3);border-radius:12px;padding:12px 14px;margin-bottom:18px}
-.data-summary-title{font-size:.65rem;color:var(--accent-teal-light);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
-.data-summary-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:.75rem}
-.data-summary-row .ds-label{color:rgba(255,255,255,0.6)}
-.data-summary-row .ds-value{color:rgba(255,255,255,0.95);font-weight:600;max-width:200px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .discussion-modal-content{width:95vw;max-width:600px;max-height:80vh;display:flex;flex-direction:column}
 .discussion-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;border-bottom:2px solid var(--border-subtle);padding-bottom:12px}
 .discussion-count{background:var(--accent-teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
@@ -323,8 +286,43 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .login-hint{font-size:.65rem;color:rgba(255,255,255,0.5);margin-top:4px;font-style:italic;line-height:1.4}
 .email-info-box{background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.72rem;color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:8px}
 .email-info-box svg{width:18px;height:18px;color:var(--accent-cyan-light);flex-shrink:0}
+
+/* ===== PENILAIAN OTOMATIS ===== */
+.assessment-result-box{margin:16px 0;padding:16px;border-radius:14px;border:2px solid;text-align:center;display:none;animation:slideDown .3s ease}
+.assessment-result-box.show{display:block}
+.assessment-result-box.result-baik{background:rgba(16,185,129,0.1);border-color:#10b981;box-shadow:0 0 20px rgba(16,185,129,0.3)}
+.assessment-result-box.result-kurang{background:rgba(245,158,11,0.1);border-color:#f59e0b;box-shadow:0 0 20px rgba(245,158,11,0.3)}
+.assessment-result-box.result-buruk{background:rgba(220,38,38,0.1);border-color:#dc2626;box-shadow:0 0 25px rgba(220,38,38,0.4);animation:slideDown .3s ease,urgentPulse 1.5s ease-in-out infinite}
+@keyframes urgentPulse{0%,100%{box-shadow:0 0 25px rgba(220,38,38,0.4)}50%{box-shadow:0 0 35px rgba(220,38,38,0.7)}}
+.result-label{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:6px}
+.result-baik .result-label{color:#10b981;text-shadow:0 0 10px rgba(16,185,129,0.5)}
+.result-kurang .result-label{color:#f59e0b;text-shadow:0 0 10px rgba(245,158,11,0.5)}
+.result-buruk .result-label{color:#dc2626;text-shadow:0 0 12px rgba(220,38,38,0.6)}
+.result-score{font-size:.85rem;color:var(--text-dark);margin-bottom:8px;font-weight:600}
+.result-recommendation{font-size:.8rem;color:var(--text-muted);line-height:1.5;padding:10px 12px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border-subtle)}
+.result-urgent-banner{margin-top:10px;padding:8px 12px;background:rgba(220,38,38,0.15);border:1.5px dashed #dc2626;border-radius:8px;color:#dc2626;font-size:.78rem;font-weight:700;display:none;align-items:center;justify-content:center;gap:6px}
+.result-buruk .result-urgent-banner{display:flex}
+.cvc-urgent-banner{margin-top:10px;padding:8px 12px;background:rgba(220,38,38,0.15);border:1.5px dashed #dc2626;border-radius:8px;color:#dc2626;font-size:.78rem;font-weight:700;display:none;align-items:center;justify-content:center;gap:6px}
+.cvc-urgent-banner.show{display:flex}
+
+/* ===== FOTO AKSES VASKULER ===== */
+.foto-upload-box{background:var(--bg-elevated);border:2px dashed var(--border-subtle);border-radius:14px;padding:16px;margin:14px 0;text-align:center;transition:all .25s}
+.foto-upload-box:hover{border-color:var(--accent-purple);background:rgba(124,58,237,0.04)}
+.foto-upload-box.has-photo{border-style:solid;border-color:var(--accent-teal);background:rgba(20,184,166,0.05)}
+.foto-label{font-size:.72rem;color:var(--accent-purple-dark);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:10px;display:block}
+.foto-label .optional-tag{font-size:.65rem;color:var(--text-muted);text-transform:none;letter-spacing:0;font-weight:500;font-style:italic;margin-left:6px}
+.foto-input-hidden{display:none}
+.foto-upload-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:linear-gradient(135deg,var(--accent-purple),var(--accent-purple-dark));color:#fff;border:none;border-radius:10px;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif}
+.foto-upload-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(124,58,237,0.3)}
+.foto-preview-container{margin-top:12px;position:relative;display:none}
+.foto-preview-container.show{display:block}
+.foto-preview-container img{width:100%;max-height:200px;object-fit:cover;border-radius:10px;border:2px solid var(--accent-teal);box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+.foto-remove-btn{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(220,38,38,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;transition:all .2s}
+.foto-remove-btn:hover{background:var(--accent-red);transform:scale(1.1)}
+.foto-info{font-size:.7rem;color:var(--text-muted);margin-top:8px;font-style:italic}
+
 @media(max-width:900px){.header-area{flex-direction:column;min-height:auto}.banner-section{min-height:260px}.chat-sidebar{width:100%}.chat-messages-area{max-height:220px}.panel-grid{grid-template-columns:1fr}.banner-content .header-title{font-size:2.6rem}.footer-stats{display:none}.banner-content .header-top-row{flex-direction:column;align-items:flex-start}.banner-content .header-left-group{width:100%;justify-content:space-between}.panel-footer{justify-content:center;text-align:center}.footer-info{justify-content:center}.footer-actions{justify-content:center;width:100%}}
-@media(max-width:600px){.main-container{padding:12px;gap:12px}.banner-section{min-height:200px}.banner-content{padding:16px}.banner-content .header-title{font-size:2rem;letter-spacing:2px}.banner-content .header-subtitle{font-size:.85rem}.panel-card{padding:18px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 10px}.banner-content .clock-display{font-size:.8rem}.panel-icon-wrapper{width:46px;height:46px}.panel-icon-wrapper svg{width:22px;height:22px}.chat-messages-area{max-height:180px}.modal-box{padding:20px}.form-step{padding-left:20px!important;padding-right:20px!important}.login-row{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+@media(max-width:600px){.main-container{padding:12px;gap:12px}.banner-section{min-height:200px}.banner-content{padding:16px}.banner-content .header-title{font-size:2rem;letter-spacing:2px}.banner-content .header-subtitle{font-size:.85rem}.panel-card{padding:18px}.panel-title{font-size:1.4rem}.footer-info{flex-direction:column;text-align:center}.footer-actions{flex-direction:column;width:100%}.footer-actions .btn{width:100%}.banner-content .digital-clock{padding:8px 10px}.banner-content .clock-display{font-size:.8rem}.panel-icon-wrapper{width:46px;height:46px}.panel-icon-wrapper svg{width:22px;height:22px}.chat-messages-area{max-height:180px}.modal-box{padding:20px}.login-row{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -340,13 +338,11 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <div class="login-logo-sub">Monitoring Akses Vaskuler Hemodialisis</div>
 </div>
 
-<!-- ===== MODE SELECTOR (Pasien / Petugas) ===== -->
 <div id="modeSelector" style="display:flex;gap:8px;padding:20px 32px 0">
 <button type="button" class="mode-tab active" id="tabPasien" data-mode="pasien" style="flex:1;padding:12px;border-radius:12px;border:2px solid rgba(124,58,237,0.6);background:rgba(124,58,237,0.2);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif">👤 Pasien</button>
 <button type="button" class="mode-tab" id="tabPetugas" data-mode="petugas" style="flex:1;padding:12px;border-radius:12px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-weight:700;font-size:.85rem;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif">🏥 Petugas HD</button>
 </div>
 
-<!-- ===== LOGIN VIEW ===== -->
 <div id="loginView" style="display:none;padding:24px 32px 32px">
 <div class="step-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:2px;margin-bottom:4px">Masuk Kembali</div>
 <div class="step-desc" style="font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:24px;line-height:1.5">Masuk dengan <strong style="color:#fff">Email</strong> / <strong style="color:#fff">No HP</strong> / <strong style="color:#fff">Nama</strong> dan password Anda.</div>
@@ -368,10 +364,8 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 
-<!-- ===== REGISTER VIEW ===== -->
 <div id="registerView" style="padding:0 32px 32px">
 
-<!-- ===== REGISTER PASIEN (Sederhana) ===== -->
 <div id="registerPasienView">
 <div class="step-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:2px;margin-bottom:4px;margin-top:20px">Daftar Akun Pasien</div>
 <div class="step-desc" style="font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.5">Isi data berikut untuk membuat akun. Konfirmasi akan dikirim ke <strong style="color:#fff">Email</strong> dan <strong style="color:#fff">WhatsApp</strong> Anda.</div>
@@ -425,7 +419,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 <button type="button" class="btn-submit-login" id="btnShowLogin" style="background:rgba(134,239,172,0.15);color:#bbf7d0;box-shadow:none;margin-top:12px;border:1.5px solid rgba(134,239,172,0.4)"><span class="btn-text">Sudah punya akun? Klik di sini</span></button>
 </div>
 
-<!-- ===== REGISTER PETUGAS ===== -->
 <div id="registerPetugasView" style="display:none">
 <div class="step-title" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:2px;margin-bottom:4px;margin-top:20px">Daftar Akun Petugas</div>
 <div class="step-desc" style="font-size:.8rem;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.5">Khusus untuk petugas HD. Masukkan nama dan <strong style="color:#fff">password petugas</strong> untuk membuat akun.</div>
@@ -478,7 +471,6 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 </div>
 </div>
 
-<!-- ===== TOMBOL CATATAN MONALISA (Khusus Petugas) ===== -->
 <a id="petugasLinkBtn" href="https://docs.google.com/spreadsheets/d/1cmopszp4hZ3A-MIEzDD9RONMA7py148Z3izoAfneDfM/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" style="display:none;text-decoration:none">
 <button style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:8px 16px;border-radius:10px;border:none;font-weight:700;font-size:.78rem;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 15px rgba(245,158,11,0.3);transition:all .3s;font-family:'DM Sans',sans-serif;white-space:nowrap">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -562,7 +554,7 @@ Catatan Monalisa
 <div class="panel-footer">
 <div class="footer-info">
 <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-<div class="footer-text"><h3>Monalisa+ v3.0</h3><p>Monitoring Akses Vaskuler Hemodialisis Anda </p></div>
+<div class="footer-text"><h3>Monalisa+ v3.2</h3><p>Monitoring Akses Vaskuler Hemodialisis Anda </p></div>
 </div>
 <div class="footer-stats">
 <div class="stat-item"><div class="stat-value" id="statSessions">0</div><div class="stat-label">Pemeriksaan</div></div>
@@ -604,6 +596,35 @@ Catatan Monalisa
 <label class="check-label bad-opt"><input type="checkbox" class="bad-check" data-label="Demam tanpa sebab jelas"><div class="check-box"></div><span>Demam tanpa sebab jelas (bukan pilek/batuk)</span></label>
 </div>
 <div class="input-group"><label>Catatan Tambahan</label><textarea class="input-field" id="aksesCatatan" rows="3" placeholder="Tuliskan keluhan atau catatan lainnya..." style="resize:vertical;min-height:60px"></textarea></div>
+
+<!-- FOTO AKSES VASKULER (OPSIONAL) -->
+<div class="foto-upload-box" id="fotoUploadAkses">
+<span class="foto-label">Foto Akses Vaskuler <span class="optional-tag">(opsional)</span></span>
+<input type="file" accept="image/*" capture="camera" class="foto-input-hidden" id="fotoInputAkses">
+<button type="button" class="foto-upload-btn" id="fotoBtnAkses">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+Ambil / Pilih Foto
+</button>
+<div class="foto-preview-container" id="fotoPreviewAkses">
+<img id="fotoImgAkses" alt="Preview">
+<button type="button" class="foto-remove-btn" id="fotoRemoveAkses">&times;</button>
+</div>
+<div class="foto-info">Foto akan ikut tersimpan dalam catatan (opsional, boleh dikosongkan)</div>
+</div>
+
+<!-- PENILAIAN OTOMATIS AV-SHUNT -->
+<div class="section-title-sm" style="margin-top:14px">Penilaian Otomatis</div>
+<button class="btn btn-gold" id="btnHitungAkses" style="width:100%;margin-bottom:12px">Hitung Penilaian</button>
+<div class="assessment-result-box" id="aksesResultBox">
+<div class="result-label" id="aksesResultLabel">-</div>
+<div class="result-score" id="aksesResultScore"></div>
+<div class="result-recommendation" id="aksesResultRec"></div>
+<div class="result-urgent-banner">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+WAJIB LAPOR KE PERAWAT — Kondisi memerlukan tindak lanjut
+</div>
+</div>
+
 <div id="saveIndicatorAkses"></div>
 <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
 <button class="btn btn-primary" id="submitAkses" style="flex:1;min-width:140px">Simpan Pemeriksaan</button>
@@ -648,12 +669,32 @@ Catatan Monalisa
 <label class="check-label bad-opt"><input type="checkbox" class="cvc-bad-check" data-label="Kateter terlihat keluar dari kulit"><div class="check-box"></div><span>Kateter terlihat keluar dari kulit (terlepas sebagian)</span></label>
 </div>
 <div class="input-group"><label>Catatan Tambahan</label><textarea class="input-field" id="cvcCatatan" rows="3" placeholder="Tuliskan keluhan atau catatan lainnya..." style="resize:vertical;min-height:60px"></textarea></div>
+
+<!-- FOTO CVC (OPSIONAL) -->
+<div class="foto-upload-box" id="fotoUploadCVC">
+<span class="foto-label">Foto Area CVC <span class="optional-tag">(opsional)</span></span>
+<input type="file" accept="image/*" capture="camera" class="foto-input-hidden" id="fotoInputCVC">
+<button type="button" class="foto-upload-btn" id="fotoBtnCVC">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+Ambil / Pilih Foto
+</button>
+<div class="foto-preview-container" id="fotoPreviewCVC">
+<img id="fotoImgCVC" alt="Preview">
+<button type="button" class="foto-remove-btn" id="fotoRemoveCVC">&times;</button>
+</div>
+<div class="foto-info">Foto akan ikut tersimpan dalam catatan (opsional, boleh dikosongkan)</div>
+</div>
+
 <div class="section-divider"></div>
 <div class="section-title-sm">Penilaian Otomatis CVC/CDL</div>
 <div class="score-display" id="cvcScoreDisplay" style="display:none">
 <div class="score-circle" id="cvcScoreCircle"><div class="score-value" id="cvcScoreValue">0</div><div class="score-label">Penilaian</div></div>
 <div id="cvcBadge" style="margin-bottom:10px"></div>
 <div id="cvcRecommendation" style="font-size:.82rem;color:var(--text-dark);line-height:1.5;text-align:center;max-width:420px;margin:0 auto;padding:12px 14px;background:var(--bg-elevated);border-radius:10px;border:1px solid var(--border-subtle)"></div>
+<div class="cvc-urgent-banner" id="cvcUrgentBanner">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+WAJIB LAPOR KE PERAWAT — Kondisi memerlukan tindak lanjut
+</div>
 </div>
 <button class="btn btn-gold" id="btnHitungCVC" style="width:100%;margin-bottom:12px">Hitung Penilaian CVC</button>
 <div id="saveIndicatorCVC"></div>
@@ -791,7 +832,7 @@ function toast(msg, type){
     type = type || 'info';
     var c = $('toastContainer'), t = document.createElement('div');
     t.className = 'toast ' + type; t.textContent = msg; c.appendChild(t);
-    setTimeout(function(){ if(t.parentNode) t.remove(); }, 3200);
+    setTimeout(function(){ if(t.parentNode) t.remove(); }, 3500);
 }
 function formatDate(d){
     var days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
@@ -812,7 +853,6 @@ function sendToSheet(sheetName, rowData){
     }).then(function(){ return true; }).catch(function(e){ console.error(e); return false; });
 }
 
-// ===== REGISTER KE BACKEND =====
 function registerToBackend(userData, passwordHash, passwordPlain, role) {
     return fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -836,11 +876,7 @@ function loginToBackend(identifier, passwordHash) {
     return fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({
-            action: 'login',
-            identifier: identifier,
-            passwordHash: passwordHash
-        })
+        body: JSON.stringify({ action: 'login', identifier: identifier, passwordHash: passwordHash })
     }).then(function(r) { return r.json(); });
 }
 
@@ -848,12 +884,10 @@ var appData = { user:null, passwordHash:null, isLoggedIn:false, userRole:'pasien
 function saveData(){ try{ localStorage.setItem('Monalisa+_data', JSON.stringify(appData)); }catch(e){} }
 function loadData(){ try{ var d=localStorage.getItem('Monalisa+_data'); if(d){ appData=JSON.parse(d); if(!appData.privateNotes) appData.privateNotes=[]; if(!appData.stats) appData.stats={sessions:0,days:0}; if(typeof appData.isLoggedIn === 'undefined') appData.isLoggedIn=false; if(!appData.userRole) appData.userRole='pasien'; return true; } }catch(e){} return false; }
 
-var registerMode = 'pasien'; // 'pasien' atau 'petugas'
-
+var registerMode = 'pasien';
 function clearFieldError(id){ var g=$(id); if(g) g.classList.remove('error'); }
 function setFieldError(id){ var g=$(id); if(g) g.classList.add('error'); }
 
-// ===== MODE SELECTOR (Pasien / Petugas) =====
 document.querySelectorAll('.mode-tab').forEach(function(tab){
     tab.addEventListener('click', function(){
         registerMode = this.dataset.mode;
@@ -867,38 +901,24 @@ document.querySelectorAll('.mode-tab').forEach(function(tab){
         this.style.borderColor = 'rgba(124,58,237,0.6)';
         this.style.background = 'rgba(124,58,237,0.2)';
         this.style.color = '#fff';
-        
-        if(registerMode === 'pasien') {
-            $('registerPasienView').style.display = 'block';
-            $('registerPetugasView').style.display = 'none';
-        } else {
-            $('registerPasienView').style.display = 'none';
-            $('registerPetugasView').style.display = 'block';
-        }
+        if(registerMode === 'pasien') { $('registerPasienView').style.display = 'block'; $('registerPetugasView').style.display = 'none'; }
+        else { $('registerPasienView').style.display = 'none'; $('registerPetugasView').style.display = 'block'; }
     });
 });
 
-// ===== Password Toggle Handlers =====
 ['togglePw1','togglePw2','toggleLoginPw','togglePetugasPw'].forEach(function(id){
     var btn=$(id); if(btn) btn.addEventListener('click',function(){ var inp=this.parentElement.querySelector('input'); inp.type=inp.type==='password'?'text':'password'; });
 });
 
-// ===== Clear error on input =====
 document.querySelectorAll('.login-input-group input, .login-input-group textarea, .login-input-group select').forEach(function(el){
     var handler=function(){ var grp=el.closest('.login-input-group'); if(grp) grp.classList.remove('error'); };
     el.addEventListener('input',handler); el.addEventListener('change',handler);
 });
 
-// ===== VALIDASI REGISTER PASIEN =====
 function validateRegisterPasien(){
     var valid=true;
-    var nama=$('inNama').value.trim();
-    var alamat=$('inAlamat').value.trim();
-    var noHP=$('inNoHP').value.trim();
-    var email=$('inEmail').value.trim();
-    var pw=$('inPassword').value;
-    var confirm=$('inConfirm').value;
-    
+    var nama=$('inNama').value.trim(), alamat=$('inAlamat').value.trim(), noHP=$('inNoHP').value.trim();
+    var email=$('inEmail').value.trim(), pw=$('inPassword').value, confirm=$('inConfirm').value;
     if(nama.length<3){setFieldError('grpNama');valid=false}else clearFieldError('grpNama');
     if(alamat.length<3){setFieldError('grpAlamat');valid=false}else clearFieldError('grpAlamat');
     if(noHP.replace(/[^0-9]/g,'').length<8){setFieldError('grpNoHP');valid=false}else clearFieldError('grpNoHP');
@@ -908,46 +928,27 @@ function validateRegisterPasien(){
     return valid;
 }
 
-// ===== VALIDASI REGISTER PETUGAS =====
 function validateRegisterPetugas(){
     var valid=true;
-    var nama=$('inPetugasNama').value.trim();
-    var pw=$('inPetugasPw').value;
-    
+    var nama=$('inPetugasNama').value.trim(), pw=$('inPetugasPw').value;
     if(nama.length<3){setFieldError('grpPetugasNama');valid=false}else clearFieldError('grpPetugasNama');
     if(pw.length<1){setFieldError('grpPetugasPw');valid=false}else clearFieldError('grpPetugasPw');
     return valid;
 }
 
-// ===== REGISTER PASIEN =====
- $('btnRegisterPasien').addEventListener('click',function(){
+$('btnRegisterPasien').addEventListener('click',function(){
     if(!validateRegisterPasien()){toast('Lengkapi semua data dengan benar','error');return;}
     var btn=this; btn.classList.add('loading'); btn.disabled=true;
-    
-    var nama=$('inNama').value.trim();
-    var alamat=$('inAlamat').value.trim();
-    var noHP=$('inNoHP').value.trim();
-    var email=$('inEmail').value.trim();
-    var pw=$('inPassword').value;
-    var pwHash = simpleHash(pw);
-    var now=new Date();
-    
-    registerToBackend({
-        nama: nama, alamat: alamat, email: email, noHP: noHP
-    }, pwHash, pw, 'pasien').then(function(resp){
+    var nama=$('inNama').value.trim(), alamat=$('inAlamat').value.trim();
+    var noHP=$('inNoHP').value.trim(), email=$('inEmail').value.trim();
+    var pw=$('inPassword').value, pwHash = simpleHash(pw), now=new Date();
+    registerToBackend({nama:nama, alamat:alamat, email:email, noHP:noHP}, pwHash, pw, 'pasien').then(function(resp){
         btn.classList.remove('loading'); btn.disabled=false;
         if(resp.status === 'ok'){
-            appData.user = resp.user;
-            appData.userRole = 'pasien';
-            appData.passwordHash = pwHash;
-            appData.stats.days = 1; appData.stats.sessions = 0; appData.isLoggedIn = true;
-            saveData();
+            appData.user = resp.user; appData.userRole = 'pasien'; appData.passwordHash = pwHash;
+            appData.stats.days = 1; appData.stats.sessions = 0; appData.isLoggedIn = true; saveData();
             sendToSheet('Pendaftaran',[now.toISOString(),nama,alamat,email,noHP,formatDate(now)]);
-            $('loginOverlay').classList.add('hidden');
-            $('mainDashboard').style.display='flex';
-            initDashboard();
-            
-            // Tampilkan konfirmasi
+            $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
             var confMsg = '✅ Pendaftaran berhasil!';
             if(resp.confirmation){
                 if(resp.confirmation.email) confMsg += ' 📧 Cek email Anda.';
@@ -955,93 +956,61 @@ function validateRegisterPetugas(){
                 else if(resp.confirmation.waLink){
                     confMsg += ' Klik untuk konfirmasi WA.';
                     setTimeout(function(){
-                        if(confirm('Pendaftaran berhasil!\n\nKirim konfirmasi ke WhatsApp Anda?')){
-                            window.open(resp.confirmation.waLink, '_blank');
-                        }
+                        if(confirm('Pendaftaran berhasil!\n\nKirim konfirmasi ke WhatsApp Anda?')){ window.open(resp.confirmation.waLink, '_blank'); }
                     }, 500);
                 }
             }
             toast(confMsg,'success');
-        } else {
-            toast(resp.message || 'Gagal mendaftar','error');
-        }
+        } else { toast(resp.message || 'Gagal mendaftar','error'); }
     }).catch(function(err){
         btn.classList.remove('loading'); btn.disabled=false;
-        // Mode offline
         appData.user={nama:nama,alamat:alamat,email:email,noHP:noHP,role:'pasien',registeredAt:now.toISOString()};
-        appData.userRole='pasien';
-        appData.passwordHash=pwHash; appData.stats.days=1; appData.stats.sessions=0; appData.isLoggedIn=true; saveData();
+        appData.userRole='pasien'; appData.passwordHash=pwHash;
+        appData.stats.days=1; appData.stats.sessions=0; appData.isLoggedIn=true; saveData();
         $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
         toast('Pendaftaran berhasil (mode offline)!','success');
     });
 });
 
-// ===== REGISTER PETUGAS =====
- $('btnRegisterPetugas').addEventListener('click',function(){
+$('btnRegisterPetugas').addEventListener('click',function(){
     if(!validateRegisterPetugas()){toast('Lengkapi data petugas','error');return;}
     var btn=this; btn.classList.add('loading'); btn.disabled=true;
-    
-    var nama=$('inPetugasNama').value.trim();
-    var pw=$('inPetugasPw').value;
-    var pwHash = simpleHash(pw);
-    var now=new Date();
-    
-    registerToBackend({
-        nama: nama
-    }, pwHash, pw, 'petugas').then(function(resp){
+    var nama=$('inPetugasNama').value.trim(), pw=$('inPetugasPw').value;
+    var pwHash = simpleHash(pw), now=new Date();
+    registerToBackend({nama:nama}, pwHash, pw, 'petugas').then(function(resp){
         btn.classList.remove('loading'); btn.disabled=false;
         if(resp.status === 'ok'){
-            appData.user = resp.user;
-            appData.userRole = 'petugas';
-            appData.passwordHash = pwHash;
-            appData.stats.days = 1; appData.stats.sessions = 0; appData.isLoggedIn = true;
-            saveData();
-            $('loginOverlay').classList.add('hidden');
-            $('mainDashboard').style.display='flex';
-            initDashboard();
+            appData.user = resp.user; appData.userRole = 'petugas'; appData.passwordHash = pwHash;
+            appData.stats.days = 1; appData.stats.sessions = 0; appData.isLoggedIn = true; saveData();
+            $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
             toast('✅ Selamat datang, Petugas '+resp.user.nama+'!','success');
-        } else {
-            toast(resp.message || 'Gagal mendaftar petugas','error');
-            setFieldError('grpPetugasPw');
-        }
+        } else { toast(resp.message || 'Gagal mendaftar petugas','error'); setFieldError('grpPetugasPw'); }
     }).catch(function(err){
         btn.classList.remove('loading'); btn.disabled=false;
-        // Cek password lokal
         if(pw === 'inochadialisis2026'){
             appData.user={nama:nama,rm:'PETUGAS',role:'petugas',registeredAt:now.toISOString()};
-            appData.userRole='petugas';
-            appData.passwordHash=pwHash; appData.stats.days=1; appData.stats.sessions=0; appData.isLoggedIn=true; saveData();
+            appData.userRole='petugas'; appData.passwordHash=pwHash;
+            appData.stats.days=1; appData.stats.sessions=0; appData.isLoggedIn=true; saveData();
             $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
             toast('✅ Selamat datang, Petugas '+nama+'! (mode offline)','success');
-        } else {
-            toast('Password petugas salah','error');
-            setFieldError('grpPetugasPw');
-        }
+        } else { toast('Password petugas salah','error'); setFieldError('grpPetugasPw'); }
     });
 });
 
-// ===== LOGIN =====
- $('btnLogin').addEventListener('click',function(){
+$('btnLogin').addEventListener('click',function(){
     var identifier=$('loginEmail').value.trim(), pw=$('loginPassword').value, valid=true;
     if(identifier.length<3){setFieldError('grpLoginEmail');valid=false}else clearFieldError('grpLoginEmail');
     if(pw.length<1){setFieldError('grpLoginPw');valid=false}else clearFieldError('grpLoginPw');
     if(!valid){toast('Masukkan Email / No HP / Nama dan password','error');return;}
-
     var btn=this; btn.classList.add('loading'); btn.disabled=true;
     var pwHash = simpleHash(pw);
-
     loginToBackend(identifier, pwHash).then(function(resp){
         btn.classList.remove('loading'); btn.disabled=false;
         if(resp.status === 'ok'){
-            appData.user = resp.user;
-            appData.userRole = resp.user.role || 'pasien';
-            appData.passwordHash = pwHash;
-            appData.isLoggedIn = true;
-            if(!appData.stats) appData.stats = {sessions:0, days:1};
-            saveData();
-            $('loginOverlay').classList.add('hidden');
-            $('mainDashboard').style.display='flex';
-            initDashboard();
+            appData.user = resp.user; appData.userRole = resp.user.role || 'pasien';
+            appData.passwordHash = pwHash; appData.isLoggedIn = true;
+            if(!appData.stats) appData.stats = {sessions:0, days:1}; saveData();
+            $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
             var roleText = appData.userRole === 'petugas' ? 'Petugas' : '';
             toast('Selamat datang'+(roleText?', '+roleText:'')+', '+appData.user.nama+'!','success');
         } else {
@@ -1055,50 +1024,26 @@ function validateRegisterPetugas(){
            (appData.user.noHP && appData.user.noHP.replace(/[^0-9]/g,'') === identifier.replace(/[^0-9]/g,'')) ||
            (appData.user.nama && appData.user.nama.toLowerCase() === identifier.toLowerCase()))){
             appData.isLoggedIn = true; saveData();
-            $('loginOverlay').classList.add('hidden');
-            $('mainDashboard').style.display='flex'; initDashboard();
+            $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display='flex'; initDashboard();
             toast('Selamat datang kembali, '+appData.user.nama+'!','success');
-        } else {
-            toast('Gagal terhubung ke server. Periksa koneksi internet Anda.','error');
-        }
+        } else { toast('Gagal terhubung ke server. Periksa koneksi internet Anda.','error'); }
     });
 });
 
- $('loginPassword').addEventListener('keydown',function(e){if(e.key==='Enter')$('btnLogin').click();});
- $('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')$('loginPassword').focus();});
+$('loginPassword').addEventListener('keydown',function(e){if(e.key==='Enter')$('btnLogin').click();});
+$('loginEmail').addEventListener('keydown',function(e){if(e.key==='Enter')$('loginPassword').focus();});
+$('btnShowRegister').addEventListener('click',function(){ $('loginView').style.display='none'; $('registerView').style.display='block'; $('modeSelector').style.display='flex'; });
+$('btnShowLogin').addEventListener('click',function(){ $('registerView').style.display='none'; $('loginView').style.display='block'; $('modeSelector').style.display='flex'; });
+$('btnShowLogin2').addEventListener('click',function(){ $('registerView').style.display='none'; $('loginView').style.display='block'; $('modeSelector').style.display='flex'; });
 
- $('btnShowRegister').addEventListener('click',function(){
-    $('loginView').style.display='none';
-    $('registerView').style.display='block';
-    $('modeSelector').style.display='flex';
-});
- $('btnShowLogin').addEventListener('click',function(){
-    $('registerView').style.display='none';
-    $('loginView').style.display='block';
-    $('modeSelector').style.display='flex';
-});
- $('btnShowLogin2').addEventListener('click',function(){
-    $('registerView').style.display='none';
-    $('loginView').style.display='block';
-    $('modeSelector').style.display='flex';
-});
-
-// ===== INIT: Check existing session =====
 if(loadData() && appData.user && appData.isLoggedIn) {
-    $('loginOverlay').classList.add('hidden');
-    $('mainDashboard').style.display = 'flex';
-    initDashboard();
+    $('loginOverlay').classList.add('hidden'); $('mainDashboard').style.display = 'flex'; initDashboard();
 } else if(loadData() && appData.user && appData.passwordHash) {
-    $('loginView').style.display='block';
-    $('registerView').style.display='none';
-    $('modeSelector').style.display='flex';
+    $('loginView').style.display='block'; $('registerView').style.display='none'; $('modeSelector').style.display='flex';
 } else {
-    $('loginView').style.display='none';
-    $('registerView').style.display='block';
-    $('modeSelector').style.display='flex';
+    $('loginView').style.display='none'; $('registerView').style.display='block'; $('modeSelector').style.display='flex';
 }
 
-// ===== INIT DASHBOARD =====
 function initDashboard(){
     var u=appData.user;
     $('userAvatar').textContent=getInitial(u.nama);
@@ -1107,8 +1052,6 @@ function initDashboard(){
     $('welcomeMsg').classList.add('show');
     $('statSessions').textContent=appData.stats.sessions;
     $('statDays').textContent=appData.stats.days;
-    
-    // ===== CEK ROLE: Tampilkan tombol Catatan Monalisa untuk Petugas =====
     var role = u.role || appData.userRole || 'pasien';
     if(role === 'petugas'){
         $('petugasLinkBtn').style.display = 'flex';
@@ -1121,45 +1064,25 @@ function initDashboard(){
         $('userRoleBadge').style.background = 'rgba(255,255,255,0.15)';
         $('userRoleBadge').style.color = 'rgba(255,255,255,0.8)';
     }
-    
     if(u.registeredAt){
         var diff=Math.max(1,Math.ceil((new Date()-new Date(u.registeredAt))/(1000*60*60*24)));
-        appData.stats.days=diff;
-        $('statDays').textContent=diff;
-        saveData();
+        appData.stats.days=diff; $('statDays').textContent=diff; saveData();
     }
     startClock(); animateVisitorCount(); renderChat(); renderComments(); renderCatatan();
 }
 
 function startClock(){
-    function up(){
-        var n=new Date();
-        $('clockDisplay').textContent=formatTime(n);
-        $('clockDate').textContent=formatDate(n);
-    }
+    function up(){ var n=new Date(); $('clockDisplay').textContent=formatTime(n); $('clockDate').textContent=formatDate(n); }
     up();setInterval(up,1000);
 }
 
 function animateVisitorCount(){
     var target=12+Math.floor(Math.random()*20),current=0,el=$('visitorCount');
-    function step(){
-        if(current<target){
-            current+=Math.ceil((target-current)*0.15);
-            if(current>target)current=target;
-            el.textContent=current;
-            requestAnimationFrame(step);
-        }
-    }
+    function step(){ if(current<target){ current+=Math.ceil((target-current)*0.15); if(current>target)current=target; el.textContent=current; requestAnimationFrame(step); } }
     step();
-    setInterval(function(){
-        target+=Math.floor(Math.random()*3)-1;
-        if(target<5)target=5;
-        if(target>50)target=50;
-        el.textContent=target;
-    },8000);
+    setInterval(function(){ target+=Math.floor(Math.random()*3)-1; if(target<5)target=5; if(target>50)target=50; el.textContent=target; },8000);
 }
 
-// ===== CHAT =====
 var replyToChat=null;
 function renderChat(){
     var area=$('chatMessages'),empty=$('emptyChat');
@@ -1172,43 +1095,27 @@ function renderChat(){
         wrap.dataset.idx=idx;
         var authorLabel = msg.outgoing ? (appData.userRole==='petugas'?'Petugas':'Anda') : (appData.userRole==='petugas'?'Pasien':'Petugas HD');
         var h='<div class="chat-bubble '+(msg.outgoing?'outgoing':'incoming')+'"><div class="bubble-author">'+authorLabel+'</div>';
-        if(msg.replyTo!==undefined&&msg.replyTo!==null){
-            var orig=appData.chatMessages[msg.replyTo];
-            if(orig){h+='<div class="reply-quote"><span class="reply-quote-author">'+(orig.outgoing?'Anda':'Petugas HD')+'</span><span class="reply-quote-text">'+escHtml(orig.text)+'</span></div>';}
-        }
+        if(msg.replyTo!==undefined&&msg.replyTo!==null){ var orig=appData.chatMessages[msg.replyTo]; if(orig){h+='<div class="reply-quote"><span class="reply-quote-author">'+(orig.outgoing?'Anda':'Petugas HD')+'</span><span class="reply-quote-text">'+escHtml(orig.text)+'</span></div>';} }
         h+=escHtml(msg.text)+'<span class="bubble-meta">'+msg.time+'</span></div>';
         h+='<div class="chat-bubble-actions"><button class="chat-action-btn reply-btn '+(msg.outgoing?'outgoing-act':'')+'" data-idx="'+idx+'">Balas</button><button class="chat-action-btn delete-btn '+(msg.outgoing?'outgoing-act':'')+'" data-idx="'+idx+'">Hapus</button></div>';
-        wrap.innerHTML=h;
-        area.appendChild(wrap);
+        wrap.innerHTML=h; area.appendChild(wrap);
     });
     area.scrollTop=area.scrollHeight;
-    area.onclick=function(e){
-        var btn=e.target.closest('.chat-action-btn');
-        if(!btn)return;
-        var idx=parseInt(btn.dataset.idx);
-        if(btn.classList.contains('reply-btn')){replyToChat=idx;showReplyPreviewBar(idx);}
-        else if(btn.classList.contains('delete-btn')){showDeleteConfirmBar(idx);}
-    };
+    area.onclick=function(e){ var btn=e.target.closest('.chat-action-btn'); if(!btn)return; var idx=parseInt(btn.dataset.idx); if(btn.classList.contains('reply-btn')){replyToChat=idx;showReplyPreviewBar(idx);} else if(btn.classList.contains('delete-btn')){showDeleteConfirmBar(idx);} };
 }
 function showReplyPreviewBar(idx){
     var msg=appData.chatMessages[idx];if(!msg)return;
-    var bar=$('replyPreviewBar');
-    bar.style.display='flex';bar.className='reply-preview-bar';
+    var bar=$('replyPreviewBar'); bar.style.display='flex';bar.className='reply-preview-bar';
     bar.innerHTML='<div class="rp-indicator"></div><div class="rp-content"><div class="rp-label">Membalas '+(msg.outgoing?'Anda':'Petugas HD')+'</div><div class="rp-text">'+escHtml(msg.text)+'</div></div><button class="rp-cancel" id="cancelReplyChat">&times;</button>';
     $('cancelReplyChat').onclick=function(){bar.style.display='none';replyToChat=null;};
     $('chatInput').focus();
 }
 function showDeleteConfirmBar(idx){
     var msg=appData.chatMessages[idx];if(!msg)return;
-    var bar=$('deleteConfirmBar');
-    bar.style.display='block';bar.className='delete-confirm-bar';
+    var bar=$('deleteConfirmBar'); bar.style.display='block';bar.className='delete-confirm-bar';
     bar.innerHTML='<div class="dc-title">Hapus pesan ini?</div><div class="dc-msg">'+escHtml(msg.text)+'</div><div class="dc-actions"><button class="dc-btn dc-btn-cancel" id="cancelDelChat">Batal</button><button class="dc-btn dc-btn-confirm" id="confirmDelChat">Hapus</button></div>';
     $('cancelDelChat').onclick=function(){bar.style.display='none';};
-    $('confirmDelChat').onclick=function(){
-        var w=$('chatMessages').querySelector('[data-idx="'+idx+'"]');
-        if(w){w.classList.add('chat-removing');setTimeout(function(){appData.chatMessages.splice(idx,1);saveData();renderChat();toast('Pesan dihapus','info');},350);}
-        bar.style.display='none';
-    };
+    $('confirmDelChat').onclick=function(){ var w=$('chatMessages').querySelector('[data-idx="'+idx+'"]'); if(w){w.classList.add('chat-removing');setTimeout(function(){appData.chatMessages.splice(idx,1);saveData();renderChat();toast('Pesan dihapus','info');},350);} bar.style.display='none'; };
 }
 function sendChatMessage(){
     var input=$('chatInput'),text=input.value.trim();if(!text)return;
@@ -1222,10 +1129,9 @@ function sendChatMessage(){
         saveData();renderChat();
     },1000+Math.random()*1000);
 }
- $('chatSendBtn').addEventListener('click',sendChatMessage);
- $('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter')sendChatMessage();});
+$('chatSendBtn').addEventListener('click',sendChatMessage);
+$('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter')sendChatMessage();});
 
-// ===== COMMENTS / DISCUSSION =====
 var replyToComment=null;
 function renderComments(){
     var list=$('commentsList'),empty=$('emptyDiscussion');
@@ -1241,30 +1147,23 @@ function renderComments(){
         item.innerHTML=h;list.appendChild(item);
     });
     list.scrollTop=list.scrollHeight;
-    list.onclick=function(e){
-        var btn=e.target.closest('.comment-action-btn');if(!btn)return;
-        var idx=parseInt(btn.dataset.idx);
-        if(btn.classList.contains('reply-btn')){replyToComment=idx;$('modalDeleteBar').style.display='none';showModalReplyBar(idx);}
-        else if(btn.classList.contains('delete-btn')){$('modalReplyBar').style.display='none';showModalDeleteBar(idx);}
-    };
+    list.onclick=function(e){ var btn=e.target.closest('.comment-action-btn');if(!btn)return; var idx=parseInt(btn.dataset.idx); if(btn.classList.contains('reply-btn')){replyToComment=idx;$('modalDeleteBar').style.display='none';showModalReplyBar(idx);} else if(btn.classList.contains('delete-btn')){$('modalReplyBar').style.display='none';showModalDeleteBar(idx);} };
 }
 function showModalReplyBar(idx){
     var c=appData.comments[idx];if(!c)return;
-    var bar=$('modalReplyBar');
-    bar.style.display='flex';bar.className='modal-reply-bar';
+    var bar=$('modalReplyBar'); bar.style.display='flex';bar.className='modal-reply-bar';
     bar.innerHTML='<div class="mr-content"><div class="mr-label">Membalas '+escHtml(c.author)+'</div><div class="mr-text">'+escHtml(c.text)+'</div></div><button class="mr-cancel" id="cancelModalReply">&times;</button>';
     $('cancelModalReply').onclick=function(){bar.style.display='none';replyToComment=null;};
     $('commentInput').focus();
 }
 function showModalDeleteBar(idx){
     var c=appData.comments[idx];if(!c)return;
-    var bar=$('modalDeleteBar');
-    bar.style.display='flex';bar.className='modal-delete-bar';
+    var bar=$('modalDeleteBar'); bar.style.display='flex';bar.className='modal-delete-bar';
     bar.innerHTML='<div class="md-indicator"></div><div class="md-content"><div class="md-label">Hapus komentar?</div><div class="md-text">'+escHtml(c.text)+'</div></div><div class="md-actions"><button class="md-btn md-btn-cancel" id="cancelModalDel">Batal</button><button class="md-btn md-btn-confirm" id="confirmModalDel">Hapus</button></div>';
     $('cancelModalDel').onclick=function(){bar.style.display='none';};
     $('confirmModalDel').onclick=function(){appData.comments.splice(idx,1);saveData();renderComments();bar.style.display='none';toast('Komentar dihapus','info');};
 }
- $('submitComment').addEventListener('click',function(){
+$('submitComment').addEventListener('click',function(){
     var input=$('commentInput'),text=input.value.trim();
     if(!text){toast('Tulis komentar terlebih dahulu','error');return;}
     var now=new Date();
@@ -1273,7 +1172,6 @@ function showModalDeleteBar(idx){
     toast('Komentar terkirim','success');
 });
 
-// ===== CATATAN PRIBADI =====
 function renderCatatan(){
     var list=$('catatanList'),empty=$('emptyCatatan');
     list.querySelectorAll('.comment-item').forEach(function(e){e.remove();});
@@ -1283,18 +1181,15 @@ function renderCatatan(){
     appData.privateNotes.forEach(function(c,idx){
         var item=document.createElement('div');item.className='comment-item';item.dataset.idx=idx;
         var h='<div class="comment-header"><div class="comment-avatar">N</div><span class="comment-author">'+escHtml(c.title)+'</span><span class="comment-time">'+c.date+'</span></div>';
+        if(c.foto){ h+='<div style="margin:8px 0"><img src="'+c.foto+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;border:2px solid var(--accent-teal)" alt="Foto"></div>'; }
         h+='<div class="comment-text">'+escHtml(c.content).replace(/\n/g, '<br>')+'</div>';
         h+='<div class="comment-actions"><button class="comment-action-btn delete-btn" data-idx="'+idx+'">Hapus</button></div>';
         item.innerHTML=h;list.appendChild(item);
     });
     list.scrollTop=list.scrollHeight;
-    list.onclick=function(e){
-        var btn=e.target.closest('.comment-action-btn');if(!btn)return;
-        var idx=parseInt(btn.dataset.idx);
-        if(btn.classList.contains('delete-btn')){appData.privateNotes.splice(idx,1);saveData();renderCatatan();toast('Catatan dihapus','info');}
-    };
+    list.onclick=function(e){ var btn=e.target.closest('.comment-action-btn');if(!btn)return; var idx=parseInt(btn.dataset.idx); if(btn.classList.contains('delete-btn')){appData.privateNotes.splice(idx,1);saveData();renderCatatan();toast('Catatan dihapus','info');} };
 }
- $('submitCatatan').addEventListener('click',function(){
+$('submitCatatan').addEventListener('click',function(){
     var judul=$('catatanJudul').value.trim(),isi=$('catatanIsi').value.trim();
     if(!judul||!isi){toast('Judul dan isi catatan wajib diisi','error');return;}
     var now=new Date();
@@ -1304,17 +1199,7 @@ function renderCatatan(){
     sendToSheet('CatatanPribadi',[now.toISOString(),u.nama,u.rm||'',formatDate(now),judul,isi]);
     $('catatanJudul').value='';$('catatanIsi').value='';renderCatatan();toast('Catatan tersimpan','success');
 });
-function addPrivateNoteFromData(title,lines){
-    var now=new Date();
-    var content=lines.join('\n');
-    appData.privateNotes.push({title:title,content:content,date:formatDate(now)+' '+formatTime(now).substring(0,5),ts:now.toISOString()});
-    saveData();
-    var u=appData.user;
-    sendToSheet('CatatanPribadi',[now.toISOString(),u.nama,u.rm||'',formatDate(now),title,content]);
-    toast('Berhasil disimpan ke Catatan Pribadi','success');
-}
 
-// ===== MODAL HELPERS =====
 function openModal(id){$(id).classList.add('active');}
 function closeModal(id){$(id).classList.remove('active');}
 document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});});
@@ -1325,9 +1210,9 @@ function collectAssessmentData(){
     var goodItems=[],badItems=[];
     document.querySelectorAll('.good-check:checked').forEach(function(cb){goodItems.push(cb.dataset.label);});
     document.querySelectorAll('.bad-check:checked').forEach(function(cb){badItems.push(cb.dataset.label);});
-    return {tipe:tipe,lokasi:lokasi,tanggal:$('aksesTanggal').value||new Date().toISOString().split('T')[0],kondisiBaik:goodItems,keluhan:badItems,catatan:$('aksesCatatan').value.trim()};
+    return {tipe:tipe,lokasi:lokasi,tanggal:$('aksesTanggal').value||new Date().toISOString().split('T')[0],kondisiBaik:goodItems,keluhan:badItems,catatan:$('aksesCatatan').value.trim(),foto:window.fotoAksesData||null};
 }
- $('aksesTipe').addEventListener('change',function(){
+$('aksesTipe').addEventListener('change',function(){
     var isMF=this.value==='Manual / Femoral';
     var good1=document.querySelector('.good-check[data-label="Getaran terasa saat disentuh"]');
     var good2=document.querySelector('.good-check[data-label="Suara desiran darah terdengar"]');
@@ -1338,214 +1223,424 @@ function collectAssessmentData(){
     });
     if(isMF)toast('Getaran & suara desiran dinonaktifkan untuk akses Manual/Femoral','info');
 });
-function buildWaMessage(assessment,nurseName){
-    var u=appData.user;
-    var msg='*LAPORAN SALURAN HEMODIALISIS*\nDikirim via Monalisa+\n─────────────────────\nPerawat: '+nurseName+'\nTanggal: '+assessment.tanggal+'\n─────────────────────\n*DATA PENGGUNA:*\nNama: '+u.nama+'\nNo. RM: '+(u.rm||'-')+'\n─────────────────────\n*Saluran:*\nJenis: '+assessment.tipe+'\nLokasi: '+assessment.lokasi+'\n─────────────────────\n';
-    if(assessment.kondisiBaik.length>0){msg+='*Kondisi Baik:*\n';assessment.kondisiBaik.forEach(function(item,i){msg+=(i+1)+'. '+item+'\n';});}
-    if(assessment.keluhan.length>0){msg+='\n*KELUHAN / GANGGUAN:*\n';assessment.keluhan.forEach(function(item,i){msg+=(i+1)+'. '+item+'\n';});}else{msg+='*Tidak ada keluhan*\n';}
-    if(assessment.catatan){msg+='\n*Catatan:*\n'+assessment.catatan+'\n';}
-    msg+='─────────────────────\nMohon segera ditindaklanjuti. Terima kasih.';
+
+// ===== HITUNG PENILAIAN AV-SHUNT =====
+function calculateAksesAssessment(data){
+    var badScores = {
+        'Getaran tidak terasa sama sekali': -5,
+        'Suara desiran darah tidak terdengar': -4,
+        'Bengkak di sekitar AKSES VASKULER': -3,
+        'Kulit kemerahan atau terasa panas': -4,
+        'Nyeri saat proses cuci darah': -3,
+        'Darah sulit keluar atau aliran lambat': -3,
+        'Darah tidak berhenti setelah jarum dicabut': -5,
+        'Muncul benjolan yang tidak biasa': -3,
+        'Ada luka, borok, atau nanah': -5,
+        'Demam tanpa sebab jelas': -5
+    };
+    var goodScores = {
+        'Getaran terasa saat disentuh': 2,
+        'Suara desiran darah terdengar': 2,
+        'Tidak ada bengkak': 2,
+        'Tidak ada kemerahan': 2,
+        'Tidak ada nyeri saat ditekan': 1
+    };
+    var score = 0, maxGood = 9;
+    data.kondisiBaik.forEach(function(item){ score += (goodScores[item] || 0); });
+    data.keluhan.forEach(function(item){ score += (badScores[item] || 0); });
+    var urgentConditions = [
+        'Getaran tidak terasa sama sekali',
+        'Darah tidak berhenti setelah jarum dicabut',
+        'Ada luka, borok, atau nanah',
+        'Demam tanpa sebab jelas'
+    ];
+    var isUrgent = data.keluhan.some(function(k){ return urgentConditions.indexOf(k) >= 0; });
+    var level, badgeClass, recommendation;
+    if(isUrgent || score < 0){
+        level = 'BURUK / DARURAT';
+        badgeClass = 'result-buruk';
+        recommendation = '⚠️ Kondisi Akses Vaskuler MENUNJUKKAN TANDA DARURAT! Segera hubungi perawat atau datang ke Unit Gawat Darurat. Jangan menunda!';
+    } else if(data.keluhan.length > 0 || score < maxGood * 0.6){
+        level = 'KURANG';
+        badgeClass = 'result-kurang';
+        recommendation = '⚠️ Ada keluhan pada akses vaskuler Anda. Wajib menghubungi perawat untuk konsultasi dan tindak lanjut.';
+    } else {
+        level = 'BAIK';
+        badgeClass = 'result-baik';
+        recommendation = '✅ Kondisi Akses Vaskuler dalam keadaan baik. Lanjutkan perawatan rutin dan tetap pantau setiap hari.';
+    }
+    return { score: score, maxScore: maxGood, level: level, badgeClass: badgeClass, recommendation: recommendation, isUrgent: isUrgent, needReport: (level !== 'BAIK') };
+}
+
+$('btnHitungAkses').addEventListener('click', function(){
+    var data = collectAssessmentData();
+    if(!data.tipe || !data.lokasi){ toast('Pilih jenis dan lokasi saluran terlebih dahulu', 'error'); return; }
+    var result = calculateAksesAssessment(data);
+    window.aksesResult = result;
+    var box = $('aksesResultBox');
+    box.className = 'assessment-result-box show ' + result.badgeClass;
+    $('aksesResultLabel').textContent = result.level;
+    $('aksesResultScore').textContent = 'Skor: ' + result.score + ' / ' + result.maxScore + ' • Keluhan: ' + data.keluhan.length + ' item';
+    $('aksesResultRec').textContent = result.recommendation;
+    var toastType = result.level === 'BAIK' ? 'success' : (result.level === 'KURANG' ? 'warning' : 'error');
+    toast('Penilaian: ' + result.level, toastType);
+});
+
+// ===== FOTO AV-SHUNT =====
+$('fotoBtnAkses').addEventListener('click', function(){ $('fotoInputAkses').click(); });
+$('fotoInputAkses').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 3*1024*1024){ toast('Ukuran foto maksimal 3MB', 'error'); return; }
+    var reader = new FileReader();
+    reader.onload = function(ev){
+        $('fotoImgAkses').src = ev.target.result;
+        $('fotoPreviewAkses').classList.add('show');
+        $('fotoUploadAkses').classList.add('has-photo');
+        window.fotoAksesData = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+$('fotoRemoveAkses').addEventListener('click', function(){
+    $('fotoImgAkses').src = '';
+    $('fotoPreviewAkses').classList.remove('show');
+    $('fotoUploadAkses').classList.remove('has-photo');
+    $('fotoInputAkses').value = '';
+    window.fotoAksesData = null;
+});
+
+// ===== FOTO CVC =====
+$('fotoBtnCVC').addEventListener('click', function(){ $('fotoInputCVC').click(); });
+$('fotoInputCVC').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 3*1024*1024){ toast('Ukuran foto maksimal 3MB', 'error'); return; }
+    var reader = new FileReader();
+    reader.onload = function(ev){
+        $('fotoImgCVC').src = ev.target.result;
+        $('fotoPreviewCVC').classList.add('show');
+        $('fotoUploadCVC').classList.add('has-photo');
+        window.fotoCVCData = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+$('fotoRemoveCVC').addEventListener('click', function(){
+    $('fotoImgCVC').src = '';
+    $('fotoPreviewCVC').classList.remove('show');
+    $('fotoUploadCVC').classList.remove('has-photo');
+    $('fotoInputCVC').value = '';
+    window.fotoCVCData = null;
+});
+
+// ===== PESAN WA AV-SHUNT (dengan penilaian & foto info) =====
+function buildWaMessage(assessment, nurseName){
+    var u = appData.user;
+    var result = window.aksesResult || calculateAksesAssessment(assessment);
+    var msg = '*LAPORAN SALURAN HEMODIALISIS*\nDikirim via Monalisa+\n─────────────────────\nPerawat: ' + nurseName + '\nTanggal: ' + assessment.tanggal + '\n─────────────────────\n*DATA PENGGUNA:*\nNama: ' + u.nama + '\nNo. RM: ' + (u.rm||'-') + '\n─────────────────────\n*Saluran:*\nJenis: ' + assessment.tipe + '\nLokasi: ' + assessment.lokasi + '\n─────────────────────\n';
+    msg += '*🎯 PENILAIAN: ' + result.level + '*\n';
+    if(assessment.foto) msg += '📸 Foto akses vaskuler: Tersedia\n';
+    msg += '─────────────────────\n';
+    if(assessment.kondisiBaik.length > 0){ msg += '*Kondisi Baik:*\n'; assessment.kondisiBaik.forEach(function(item, i){ msg += (i+1) + '. ' + item + '\n'; }); }
+    if(assessment.keluhan.length > 0){ msg += '\n*KELUHAN / GANGGUAN:*\n'; assessment.keluhan.forEach(function(item, i){ msg += (i+1) + '. ' + item + '\n'; }); } else { msg += '*Tidak ada keluhan*\n'; }
+    if(assessment.catatan){ msg += '\n*Catatan:*\n' + assessment.catatan + '\n'; }
+    if(result.needReport){ msg += '\n─────────────────────\n🚨 *PENTING:* Pasien diwajibkan menghubungi perawat berdasarkan hasil penilaian.\n'; }
+    msg += '─────────────────────\nMohon segera ditindaklanjuti. Terima kasih.';
     return msg;
 }
- $('btnOpenAkses').addEventListener('click',function(){openModal('modalAkses');});
- $('closeAkses').addEventListener('click',function(){closeModal('modalAkses');});
- $('cancelAkses').addEventListener('click',function(){closeModal('modalAkses');});
- $('submitAkses').addEventListener('click',function(){
-    var tipe=$('aksesTipe').value,lokasi=$('aksesLokasi').value;
-    if(!tipe||!lokasi){toast('Pilih jenis dan lokasi saluran','error');return;}
-    var ind=$('saveIndicatorAkses');
-    ind.innerHTML='<span class="save-indicator saving">Menyimpan...</span>';
-    var assessment=collectAssessmentData();
-    var u=appData.user,now=new Date();
+
+$('btnOpenAkses').addEventListener('click',function(){openModal('modalAkses');});
+$('closeAkses').addEventListener('click',function(){closeModal('modalAkses');});
+$('cancelAkses').addEventListener('click',function(){closeModal('modalAkses');});
+
+// ===== SIMPAN AV-SHUNT (dengan auto-lapor WA) =====
+$('submitAkses').addEventListener('click', function(){
+    var tipe = $('aksesTipe').value, lokasi = $('aksesLokasi').value;
+    if(!tipe || !lokasi){ toast('Pilih jenis dan lokasi saluran', 'error'); return; }
+    var assessment = collectAssessmentData();
+    var result = window.aksesResult || calculateAksesAssessment(assessment);
+    window.aksesResult = result;
+    var ind = $('saveIndicatorAkses');
+    ind.innerHTML = '<span class="save-indicator saving">Menyimpan...</span>';
+    var u = appData.user, now = new Date();
     appData.assessments.push(assessment);
-    appData.stats.sessions++;$('statSessions').textContent=appData.stats.sessions;saveData();
-    sendToSheet('Assessment',[now.toISOString(),u.nama,u.rm||'',tipe,lokasi,assessment.tanggal,assessment.kondisiBaik.join('; '),assessment.keluhan.join('; '),assessment.catatan]).then(function(ok){
-        ind.innerHTML='<span class="save-indicator saved">Tersimpan'+(ok?'':' (lokal saja)')+'</span>';
+    appData.stats.sessions++; $('statSessions').textContent = appData.stats.sessions; saveData();
+    sendToSheet('Assessment', [
+        now.toISOString(), u.nama, u.rm || '', tipe, lokasi, assessment.tanggal,
+        assessment.kondisiBaik.join('; '), assessment.keluhan.join('; '),
+        assessment.catatan, result.level, assessment.foto ? 'ADA FOTO' : 'TANPA FOTO'
+    ]).then(function(ok){
+        ind.innerHTML = '<span class="save-indicator saved">Tersimpan' + (ok ? '' : ' (lokal saja)') + '</span>';
     });
-    toast('Pemeriksaan saluran berhasil disimpan!','success');
-    $('aksesTipe').value='';$('aksesLokasi').value='';$('aksesTanggal').value='';$('aksesCatatan').value='';
-    document.querySelectorAll('.good-check,.bad-check').forEach(function(cb){cb.checked=false;cb.disabled=false;var lbl=cb.closest('.check-label');if(lbl){lbl.style.opacity='1';lbl.style.pointerEvents='auto';lbl.style.borderColor='';}});
-    setTimeout(function(){closeModal('modalAkses');},1200);
+    // Simpan ke catatan pribadi
+    var lines = ['Jenis: ' + tipe, 'Lokasi: ' + lokasi, 'Tanggal: ' + assessment.tanggal, 'Penilaian: ' + result.level];
+    if(assessment.kondisiBaik.length){ lines.push('Kondisi Baik:'); assessment.kondisiBaik.forEach(function(i){ lines.push('- ' + i); }); }
+    if(assessment.keluhan.length){ lines.push('Keluhan:'); assessment.keluhan.forEach(function(i){ lines.push('- ' + i); }); }
+    if(assessment.catatan){ lines.push('Catatan: ' + assessment.catatan); }
+    if(assessment.foto){ lines.push('Foto: Tersedia'); }
+    appData.privateNotes.push({ title:'Skrining AV-Shunt (' + tipe + ') - ' + result.level, content:lines.join('\n'), foto:assessment.foto, date:formatDate(now)+' '+formatTime(now).substring(0,5), ts:now.toISOString() });
+    saveData();
+    toast('Pemeriksaan tersimpan! Penilaian: ' + result.level, result.level === 'BAIK' ? 'success' : 'warning');
+    // Reset form
+    $('aksesTipe').value = ''; $('aksesLokasi').value = ''; $('aksesTanggal').value = ''; $('aksesCatatan').value = '';
+    document.querySelectorAll('.good-check,.bad-check').forEach(function(cb){ cb.checked = false; cb.disabled = false; var lbl = cb.closest('.check-label'); if(lbl){ lbl.style.opacity = '1'; lbl.style.pointerEvents = 'auto'; lbl.style.borderColor = ''; } });
+    $('aksesResultBox').classList.remove('show');
+    $('fotoRemoveAkses').click();
+    window.aksesResult = null;
+    // AUTO-LAPOR WA jika KURANG / BURUK
+    if(result.needReport){
+        setTimeout(function(){
+            closeModal('modalAkses');
+            var pesan = result.level === 'BURUK / DARURAT'
+                ? '🚨 HASIL SKRINING: BURUK / DARURAT!\n\nAnda WAJIB segera menghubungi perawat untuk tindak lanjut.'
+                : '⚠️ HASIL SKRINING: KURANG\n\nAnda WAJIB menghubungi perawat untuk konsultasi.';
+            toast(pesan, 'error');
+            setTimeout(function(){
+                if(confirm(pesan + '\n\nPilih perawat untuk mengirim laporan via WhatsApp sekarang?')){
+                    window.reportType = 'normal';
+                    openModal('modalPerawat');
+                }
+            }, 600);
+        }, 800);
+    } else {
+        setTimeout(function(){ closeModal('modalAkses'); }, 1200);
+    }
 });
- $('btnSaveAksesToNotes').addEventListener('click',function(){
-    var data=collectAssessmentData();
-    if(!data.tipe||!data.lokasi){toast('Isi jenis dan lokasi saluran terlebih dahulu','error');return;}
-    var lines=['Jenis: '+data.tipe,'Lokasi: '+data.lokasi,'Tanggal: '+data.tanggal];
-    if(data.kondisiBaik.length){lines.push('Kondisi Baik:');data.kondisiBaik.forEach(function(i){lines.push('- '+i);});}
-    if(data.keluhan.length){lines.push('Keluhan:');data.keluhan.forEach(function(i){lines.push('- '+i);});}
-    if(data.catatan){lines.push('Catatan: '+data.catatan);}
-    addPrivateNoteFromData('Skrining Saluran HD ('+data.tipe+')',lines);
+
+$('btnSaveAksesToNotes').addEventListener('click', function(){
+    var data = collectAssessmentData();
+    if(!data.tipe || !data.lokasi){ toast('Isi jenis dan lokasi saluran terlebih dahulu', 'error'); return; }
+    var result = window.aksesResult || calculateAksesAssessment(data);
+    var lines = ['Jenis: ' + data.tipe, 'Lokasi: ' + data.lokasi, 'Tanggal: ' + data.tanggal, 'Penilaian: ' + result.level];
+    if(data.kondisiBaik.length){ lines.push('Kondisi Baik:'); data.kondisiBaik.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.keluhan.length){ lines.push('Keluhan:'); data.keluhan.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.catatan){ lines.push('Catatan: ' + data.catatan); }
+    if(data.foto){ lines.push('Foto: Tersedia'); }
+    var now = new Date();
+    appData.privateNotes.push({ title:'Skrining AV-Shunt (' + data.tipe + ') - ' + result.level, content:lines.join('\n'), foto:data.foto, date:formatDate(now)+' '+formatTime(now).substring(0,5), ts:now.toISOString() });
+    saveData();
+    toast('Berhasil disimpan ke Catatan Pribadi', 'success');
 });
- $('btnLaporPerawat').addEventListener('click',function(){
-    var tipe=$('aksesTipe').value,lokasi=$('aksesLokasi').value;
-    if(!tipe||!lokasi){toast('Isi jenis dan lokasi saluran terlebih dahulu','error');return;}
-    window.reportType='normal';openModal('modalPerawat');
+
+$('btnLaporPerawat').addEventListener('click', function(){
+    var tipe = $('aksesTipe').value, lokasi = $('aksesLokasi').value;
+    if(!tipe || !lokasi){ toast('Isi jenis dan lokasi saluran terlebih dahulu', 'error'); return; }
+    var assessment = collectAssessmentData();
+    if(!window.aksesResult){ window.aksesResult = calculateAksesAssessment(assessment); }
+    window.reportType = 'normal';
+    openModal('modalPerawat');
 });
- $('closePerawat').addEventListener('click',function(){closeModal('modalPerawat');});
- $('cancelPerawat').addEventListener('click',function(){closeModal('modalPerawat');});
+$('closePerawat').addEventListener('click', function(){ closeModal('modalPerawat'); });
+$('cancelPerawat').addEventListener('click', function(){ closeModal('modalPerawat'); });
 
 // ===== CVC ASSESSMENT =====
 function collectCvcData(){
-    var lokasi=$('cvcLokasi').value;
-    var lama=$('cvcLama').value.trim();
-    var keBerapa=$('cvcKe').value.trim();
-    var goodItems=[],badItems=[];
-    document.querySelectorAll('.cvc-good-check:checked').forEach(function(cb){goodItems.push(cb.dataset.label);});
-    document.querySelectorAll('.cvc-bad-check:checked').forEach(function(cb){badItems.push(cb.dataset.label);});
-    return {lokasi:lokasi,tanggal:$('cvcTanggal').value||new Date().toISOString().split('T')[0],lamaPasang:lama,keBerapa:keBerapa,kondisiBaik:goodItems,keluhan:badItems,catatan:$('cvcCatatan').value.trim()};
+    var lokasi = $('cvcLokasi').value;
+    var lama = $('cvcLama').value.trim();
+    var keBerapa = $('cvcKe').value.trim();
+    var goodItems = [], badItems = [];
+    document.querySelectorAll('.cvc-good-check:checked').forEach(function(cb){ goodItems.push(cb.dataset.label); });
+    document.querySelectorAll('.cvc-bad-check:checked').forEach(function(cb){ badItems.push(cb.dataset.label); });
+    return { lokasi:lokasi, tanggal:$('cvcTanggal').value||new Date().toISOString().split('T')[0], lamaPasang:lama, keBerapa:keBerapa, kondisiBaik:goodItems, keluhan:badItems, catatan:$('cvcCatatan').value.trim(), foto:window.fotoCVCData||null };
 }
 function calculateCvcAssessment(data){
-    var goodScores={'Balutan kering, bersih, dan menempel rapat':2,'Tidak ada bengkak di area insersi':2,'Tidak ada kemerahan di kulit sekitar':2,'Tidak ada nyeri saat disentuh':2,'Tidak ada bau busuk':1,'Aliran darah lancar saat cuci darah':2};
-    var badScores={'Balutan basah, lepas, atau kotor':-3,'Kemerahan atau kulit terasa panas':-4,'Bengkak di area insersi':-3,'Nyeri saat disentuh atau saat cuci darah':-3,'Keluar nanah atau cairan dari lubang kateter':-5,'Demam tinggi atau menggigil':-5,'Aliran darah tersendat atau sulit keluar':-4,'Kateter terlihat keluar dari kulit':-5};
-    var score=0,maxScore=11;
-    data.kondisiBaik.forEach(function(item){score+=(goodScores[item]||0);});
-    data.keluhan.forEach(function(item){score+=(badScores[item]||0);});
-    var hasCritical=data.keluhan.some(function(k){return(badScores[k]||0)<=-5;});
-    var percentScore=Math.max(0,Math.min(100,Math.round((score/maxScore)*100)));
-    var level,badgeClass,recommendation;
-    if(hasCritical||score<0){level='KRITIS';badgeClass='badge-danger';recommendation='⚠️ Kondisi CVC/CDL menunjukkan TANDA BAHAYA! Segera hubungi perawat atau datang ke UGD.';}
-    else if(data.keluhan.length>0||score<maxScore*0.5){level='PERLU PERHATIAN';badgeClass='badge-warning';recommendation='⚠️ Ada keluhan pada kateter Anda. Disarankan menghubungi perawat untuk konsultasi lebih lanjut.';}
-    else{level='BAIK';badgeClass='badge-success';recommendation='✅ Kondisi CVC/CDL dalam keadaan baik. Lanjutkan perawatan dan jaga kebersihan area kateter.';}
-    return {score:score,maxScore:maxScore,percent:percentScore,level:level,badgeClass:badgeClass,recommendation:recommendation,hasCritical:hasCritical};
+    var goodScores = {'Balutan kering, bersih, dan menempel rapat':2,'Tidak ada bengkak di area insersi':2,'Tidak ada kemerahan di kulit sekitar':2,'Tidak ada nyeri saat disentuh':2,'Tidak ada bau busuk':1,'Aliran darah lancar saat cuci darah':2};
+    var badScores = {'Balutan basah, lepas, atau kotor':-3,'Kemerahan atau kulit terasa panas':-4,'Bengkak di area insersi':-3,'Nyeri saat disentuh atau saat cuci darah':-3,'Keluar nanah atau cairan dari lubang kateter':-5,'Demam tinggi atau menggigil':-5,'Aliran darah tersendat atau sulit keluar':-4,'Kateter terlihat keluar dari kulit':-5};
+    var score = 0, maxScore = 11;
+    data.kondisiBaik.forEach(function(item){ score += (goodScores[item] || 0); });
+    data.keluhan.forEach(function(item){ score += (badScores[item] || 0); });
+    var hasCritical = data.keluhan.some(function(k){ return (badScores[k] || 0) <= -5; });
+    var percentScore = Math.max(0, Math.min(100, Math.round((score / maxScore) * 100)));
+    var level, badgeClass, recommendation;
+    if(hasCritical || score < 0){ level = 'KRITIS'; badgeClass = 'badge-danger'; recommendation = '⚠️ Kondisi CVC/CDL menunjukkan TANDA BAHAYA! Segera hubungi perawat atau datang ke UGD.'; }
+    else if(data.keluhan.length > 0 || score < maxScore * 0.5){ level = 'PERLU PERHATIAN'; badgeClass = 'badge-warning'; recommendation = '⚠️ Ada keluhan pada kateter Anda. Disarankan menghubungi perawat untuk konsultasi lebih lanjut.'; }
+    else { level = 'BAIK'; badgeClass = 'badge-success'; recommendation = '✅ Kondisi CVC/CDL dalam keadaan baik. Lanjutkan perawatan dan jaga kebersihan area kateter.'; }
+    return { score:score, maxScore:maxScore, percent:percentScore, level:level, badgeClass:badgeClass, recommendation:recommendation, hasCritical:hasCritical, needReport:(level !== 'BAIK') };
 }
-function buildWaMessageCVC(data,nurseName,result){
-    var u=appData.user;
-    var msg='*LAPORAN SKRINING CVC/CDL*\nVia Monalisa+ v3.0\n═══════════════════════\n👤 Perawat: '+nurseName+'\n📅 Tanggal: '+data.tanggal+'\n═══════════════════════\n*🎯 PENILAIAN: '+result.level+'*\nSkor: '+result.score+'/'+result.maxScore+' ('+result.percent+'%)\n═══════════════════════\n*📋 DATA PENGGUNA:*\nNama: '+u.nama+'\nNo. RM: '+(u.rm||'-')+'\n═══════════════════════\n*🏥 Detail CVC:*\nLokasi: '+data.lokasi+'\nLama Pemasangan: '+(data.lamaPasang||'-')+'\nPemasangan Ke-: '+(data.keBerapa||'-')+'\n═══════════════════════\n';
-    if(data.kondisiBaik.length>0){msg+='*✅ Kondisi Baik ('+data.kondisiBaik.length+'):*\n';data.kondisiBaik.forEach(function(item,i){msg+='   '+(i+1)+'. '+item+'\n';});}
-    if(data.keluhan.length>0){msg+='\n*⚠️ KELUHAN ('+data.keluhan.length+'):*\n';data.keluhan.forEach(function(item,i){msg+='   '+(i+1)+'. '+item+'\n';});}else{msg+='*✅ Tidak ada keluhan*\n';}
-    if(data.catatan){msg+='\n*📝 Catatan:*\n'+data.catatan+'\n';}
-    msg+='═══════════════════════\n*📌 REKOMENDASI:*\n'+result.recommendation+'\n═══════════════════════\nMohon segera ditindaklanjuti. Terima kasih.';
+function buildWaMessageCVC(data, nurseName, result){
+    var u = appData.user;
+    result = result || calculateCvcAssessment(data);
+    var msg = '*LAPORAN SKRINING CVC/CDL*\nVia Monalisa+ v3.0\n═══════════════════════\n👤 Perawat: ' + nurseName + '\n📅 Tanggal: ' + data.tanggal + '\n═══════════════════════\n*🎯 PENILAIAN: ' + result.level + '*\nSkor: ' + result.score + '/' + result.maxScore + ' (' + result.percent + '%)\n';
+    if(data.foto) msg += '📸 Foto area CVC: Tersedia\n';
+    msg += '═══════════════════════\n*📋 DATA PENGGUNA:*\nNama: ' + u.nama + '\nNo. RM: ' + (u.rm || '-') + '\n═══════════════════════\n*🏥 Detail CVC:*\nLokasi: ' + data.lokasi + '\nLama Pemasangan: ' + (data.lamaPasang || '-') + '\nPemasangan Ke-: ' + (data.keBerapa || '-') + '\n═══════════════════════\n';
+    if(data.kondisiBaik.length > 0){ msg += '*✅ Kondisi Baik (' + data.kondisiBaik.length + '):*\n'; data.kondisiBaik.forEach(function(item, i){ msg += '   ' + (i+1) + '. ' + item + '\n'; }); }
+    if(data.keluhan.length > 0){ msg += '\n*⚠️ KELUHAN (' + data.keluhan.length + '):*\n'; data.keluhan.forEach(function(item, i){ msg += '   ' + (i+1) + '. ' + item + '\n'; }); } else { msg += '*✅ Tidak ada keluhan*\n'; }
+    if(data.catatan){ msg += '\n*📝 Catatan:*\n' + data.catatan + '\n'; }
+    msg += '═══════════════════════\n*📌 REKOMENDASI:*\n' + result.recommendation + '\n═══════════════════════\nMohon segera ditindaklanjuti. Terima kasih.';
     return msg;
 }
- $('btnOpenCVC').addEventListener('click',function(){openModal('modalCVC');});
- $('closeCVC').addEventListener('click',function(){closeModal('modalCVC');});
- $('cancelCVC').addEventListener('click',function(){closeModal('modalCVC');});
- $('btnHitungCVC').addEventListener('click',function(){
-    var data=collectCvcData();
-    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
-    var result=calculateCvcAssessment(data);
-    window.cvcResult=result;
-    $('cvcScoreDisplay').style.display='block';
-    $('cvcScoreValue').textContent=result.hasCritical?'!':result.percent+'%';
-    var circle=$('cvcScoreCircle');circle.className='score-circle';
-    if(result.level==='BAIK')circle.classList.add('low');
-    else if(result.level==='PERLU PERHATIAN')circle.classList.add('medium');
+$('btnOpenCVC').addEventListener('click', function(){ openModal('modalCVC'); });
+$('closeCVC').addEventListener('click', function(){ closeModal('modalCVC'); });
+$('cancelCVC').addEventListener('click', function(){ closeModal('modalCVC'); });
+$('btnHitungCVC').addEventListener('click', function(){
+    var data = collectCvcData();
+    if(!data.lokasi){ toast('Pilih lokasi CVC terlebih dahulu', 'error'); return; }
+    var result = calculateCvcAssessment(data);
+    window.cvcResult = result;
+    $('cvcScoreDisplay').style.display = 'block';
+    $('cvcScoreValue').textContent = result.hasCritical ? '!' : result.percent + '%';
+    var circle = $('cvcScoreCircle'); circle.className = 'score-circle';
+    if(result.level === 'BAIK') circle.classList.add('low');
+    else if(result.level === 'PERLU PERHATIAN') circle.classList.add('medium');
     else circle.classList.add('high');
-    $('cvcBadge').innerHTML='<span class="badge '+result.badgeClass+'">'+result.level+'</span>';
-    $('cvcRecommendation').textContent=result.recommendation;
-    toast('Penilaian: '+result.level+' ('+result.percent+'%)',result.hasCritical?'error':'info');
+    $('cvcBadge').innerHTML = '<span class="badge ' + result.badgeClass + '">' + result.level + '</span>';
+    $('cvcRecommendation').textContent = result.recommendation;
+    var cvcUrgent = $('cvcUrgentBanner');
+    if(cvcUrgent){ cvcUrgent.classList.toggle('show', result.needReport); }
+    toast('Penilaian: ' + result.level + ' (' + result.percent + '%)', result.hasCritical ? 'error' : 'info');
 });
- $('submitCVC').addEventListener('click',function(){
-    var data=collectCvcData();
-    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
-    var result=window.cvcResult||calculateCvcAssessment(data);
-    var u=appData.user,now=new Date();
-    appData.stats.sessions++;$('statSessions').textContent=appData.stats.sessions;saveData();
-    sendToSheet('CVC_Assessment',[now.toISOString(),u.nama,u.rm||'',data.lokasi,data.tanggal,data.lamaPasang,data.keBerapa,data.kondisiBaik.join('; '),data.keluhan.join('; '),data.catatan,result.level]);
-    toast('Data CVC berhasil disimpan!','success');
-    $('cvcLokasi').value='';$('cvcTanggal').value='';$('cvcLama').value='';$('cvcKe').value='';$('cvcCatatan').value='';
-    document.querySelectorAll('.cvc-good-check,.cvc-bad-check').forEach(function(cb){cb.checked=false;});
-    $('cvcScoreDisplay').style.display='none';window.cvcResult=null;
-    setTimeout(function(){closeModal('modalCVC');},1200);
+
+// ===== SIMPAN CVC (dengan auto-lapor WA) =====
+$('submitCVC').addEventListener('click', function(){
+    var data = collectCvcData();
+    if(!data.lokasi){ toast('Pilih lokasi CVC terlebih dahulu', 'error'); return; }
+    var result = window.cvcResult || calculateCvcAssessment(data);
+    window.cvcResult = result;
+    var u = appData.user, now = new Date();
+    appData.stats.sessions++; $('statSessions').textContent = appData.stats.sessions; saveData();
+    sendToSheet('CVC_Assessment', [
+        now.toISOString(), u.nama, u.rm || '', data.lokasi, data.tanggal,
+        data.lamaPasang, data.keBerapa,
+        data.kondisiBaik.join('; '), data.keluhan.join('; '),
+        data.catatan, result.level, data.foto ? 'ADA FOTO' : 'TANPA FOTO'
+    ]);
+    // Simpan ke catatan
+    var lines = ['Lokasi CVC: ' + data.lokasi, 'Tanggal: ' + data.tanggal, 'Lama Pemasangan: ' + data.lamaPasang, 'Pemasangan Ke-: ' + data.keBerapa, 'Penilaian: ' + result.level + ' (' + result.percent + '%)'];
+    if(data.kondisiBaik.length){ lines.push('Kondisi Baik:'); data.kondisiBaik.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.keluhan.length){ lines.push('Keluhan:'); data.keluhan.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.catatan){ lines.push('Catatan: ' + data.catatan); }
+    if(data.foto){ lines.push('Foto: Tersedia'); }
+    appData.privateNotes.push({ title:'Skrining CVC/CDL (' + data.lokasi + ') - ' + result.level, content:lines.join('\n'), foto:data.foto, date:formatDate(now)+' '+formatTime(now).substring(0,5), ts:now.toISOString() });
+    saveData();
+    toast('Data CVC tersimpan! Penilaian: ' + result.level, result.level === 'BAIK' ? 'success' : 'warning');
+    // Reset form
+    $('cvcLokasi').value = ''; $('cvcTanggal').value = ''; $('cvcLama').value = ''; $('cvcKe').value = ''; $('cvcCatatan').value = '';
+    document.querySelectorAll('.cvc-good-check,.cvc-bad-check').forEach(function(cb){ cb.checked = false; });
+    $('cvcScoreDisplay').style.display = 'none';
+    var cvcUrgent = $('cvcUrgentBanner');
+    if(cvcUrgent) cvcUrgent.classList.remove('show');
+    $('fotoRemoveCVC').click();
+    window.cvcResult = null;
+    // AUTO-LAPOR WA jika PERLU PERHATIAN / KRITIS
+    if(result.needReport){
+        setTimeout(function(){
+            closeModal('modalCVC');
+            var pesan = result.hasCritical
+                ? '🚨 HASIL SKRINING CVC: KRITIS / DARURAT!\n\nAnda WAJIB segera menghubungi perawat!'
+                : '⚠️ HASIL SKRINING CVC: PERLU PERHATIAN\n\nAnda WAJIB menghubungi perawat untuk konsultasi.';
+            toast(pesan, 'error');
+            setTimeout(function(){
+                if(confirm(pesan + '\n\nPilih perawat untuk mengirim laporan via WhatsApp sekarang?')){
+                    window.reportType = 'cvc';
+                    openModal('modalPerawat');
+                }
+            }, 600);
+        }, 800);
+    } else {
+        setTimeout(function(){ closeModal('modalCVC'); }, 1200);
+    }
 });
- $('btnSaveCVCToNotes').addEventListener('click',function(){
-    var data=collectCvcData();
-    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
-    var result=window.cvcResult||calculateCvcAssessment(data);
-    var lines=['Lokasi CVC: '+data.lokasi,'Tanggal: '+data.tanggal,'Lama Pemasangan: '+data.lamaPasang,'Pemasangan Ke-: '+data.keBerapa,'Penilaian: '+result.level+' ('+result.percent+'%)'];
-    if(data.kondisiBaik.length){lines.push('Kondisi Baik:');data.kondisiBaik.forEach(function(i){lines.push('- '+i);});}
-    if(data.keluhan.length){lines.push('Keluhan:');data.keluhan.forEach(function(i){lines.push('- '+i);});}
-    if(data.catatan){lines.push('Catatan: '+data.catatan);}
-    addPrivateNoteFromData('Skrining Khusus CVC/CDL',lines);
+
+$('btnSaveCVCToNotes').addEventListener('click', function(){
+    var data = collectCvcData();
+    if(!data.lokasi){ toast('Pilih lokasi CVC terlebih dahulu', 'error'); return; }
+    var result = window.cvcResult || calculateCvcAssessment(data);
+    var lines = ['Lokasi CVC: ' + data.lokasi, 'Tanggal: ' + data.tanggal, 'Lama Pemasangan: ' + data.lamaPasang, 'Pemasangan Ke-: ' + data.keBerapa, 'Penilaian: ' + result.level + ' (' + result.percent + '%)'];
+    if(data.kondisiBaik.length){ lines.push('Kondisi Baik:'); data.kondisiBaik.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.keluhan.length){ lines.push('Keluhan:'); data.keluhan.forEach(function(i){ lines.push('- ' + i); }); }
+    if(data.catatan){ lines.push('Catatan: ' + data.catatan); }
+    if(data.foto){ lines.push('Foto: Tersedia'); }
+    var now = new Date();
+    appData.privateNotes.push({ title:'Skrining CVC/CDL (' + data.lokasi + ') - ' + result.level, content:lines.join('\n'), foto:data.foto, date:formatDate(now)+' '+formatTime(now).substring(0,5), ts:now.toISOString() });
+    saveData();
+    toast('Berhasil disimpan ke Catatan Pribadi', 'success');
 });
- $('btnLaporPerawatCVC').addEventListener('click',function(){
-    var data=collectCvcData();
-    if(!data.lokasi){toast('Pilih lokasi CVC terlebih dahulu','error');return;}
-    if(!window.cvcResult){window.cvcResult=calculateCvcAssessment(data);}
-    window.reportType='cvc';openModal('modalPerawat');
+
+$('btnLaporPerawatCVC').addEventListener('click', function(){
+    var data = collectCvcData();
+    if(!data.lokasi){ toast('Pilih lokasi CVC terlebih dahulu', 'error'); return; }
+    if(!window.cvcResult){ window.cvcResult = calculateCvcAssessment(data); }
+    window.reportType = 'cvc';
+    openModal('modalPerawat');
 });
 
 // ===== NURSE WHATSAPP =====
- $('nurseHesty').addEventListener('click',function(){
-    var url='';
-    if(window.reportType==='cvc'){
-        var data=collectCvcData();
-        var msg=buildWaMessageCVC(data,'Hesty',window.cvcResult||calculateCvcAssessment(data));
-        url='https://wa.me/'+NURSES[0].phone+'?text='+encodeURIComponent(msg);
-    }else{
-        var assessment=collectAssessmentData();
-        var msg=buildWaMessage(assessment,'Hesty');
-        url='https://wa.me/'+NURSES[0].phone+'?text='+encodeURIComponent(msg);
+$('nurseHesty').addEventListener('click', function(){
+    var url = '';
+    if(window.reportType === 'cvc'){
+        var data = collectCvcData();
+        var msg = buildWaMessageCVC(data, 'Hesty', window.cvcResult || calculateCvcAssessment(data));
+        url = 'https://wa.me/' + NURSES[0].phone + '?text=' + encodeURIComponent(msg);
+    } else {
+        var assessment = collectAssessmentData();
+        var msg = buildWaMessage(assessment, 'Hesty');
+        url = 'https://wa.me/' + NURSES[0].phone + '?text=' + encodeURIComponent(msg);
     }
-    window.open(url,'_blank');closeModal('modalPerawat');toast('Membuka WhatsApp ke Hesty...','info');
+    window.open(url, '_blank'); closeModal('modalPerawat'); toast('Membuka WhatsApp ke Hesty...', 'info');
 });
- $('nurseErik').addEventListener('click',function(){
-    var url='';
-    if(window.reportType==='cvc'){
-        var data=collectCvcData();
-        var msg=buildWaMessageCVC(data,'Erik',window.cvcResult||calculateCvcAssessment(data));
-        url='https://wa.me/'+NURSES[1].phone+'?text='+encodeURIComponent(msg);
-    }else{
-        var assessment=collectAssessmentData();
-        var msg=buildWaMessage(assessment,'Erik');
-        url='https://wa.me/'+NURSES[1].phone+'?text='+encodeURIComponent(msg);
+$('nurseErik').addEventListener('click', function(){
+    var url = '';
+    if(window.reportType === 'cvc'){
+        var data = collectCvcData();
+        var msg = buildWaMessageCVC(data, 'Erik', window.cvcResult || calculateCvcAssessment(data));
+        url = 'https://wa.me/' + NURSES[1].phone + '?text=' + encodeURIComponent(msg);
+    } else {
+        var assessment = collectAssessmentData();
+        var msg = buildWaMessage(assessment, 'Erik');
+        url = 'https://wa.me/' + NURSES[1].phone + '?text=' + encodeURIComponent(msg);
     }
-    window.open(url,'_blank');closeModal('modalPerawat');toast('Membuka WhatsApp ke Erik...','info');
+    window.open(url, '_blank'); closeModal('modalPerawat'); toast('Membuka WhatsApp ke Erik...', 'info');
 });
 
 // ===== OTHER MODALS =====
- $('btnOpenCatatan').addEventListener('click',function(){openModal('modalCatatan');});
- $('closeCatatan').addEventListener('click',function(){closeModal('modalCatatan');});
- $('btnOpenSkor').addEventListener('click',function(){openModal('modalSkor');});
- $('closeSkor').addEventListener('click',function(){closeModal('modalSkor');});
- $('cancelSkor').addEventListener('click',function(){closeModal('modalSkor');});
- $('submitSkor').addEventListener('click',function(){
-    var score=0;document.querySelectorAll('.risk-factor').forEach(function(cb){if(cb.checked)score+=parseInt(cb.dataset.score);});
-    $('scoreDisplay').style.display='block';$('scoreValue').textContent=score;
-    var circle=$('scoreCircle');circle.className='score-circle';var badge='';
-    if(score<=2){circle.classList.add('low');badge='<span class="badge badge-success">Risiko Rendah</span>';}
-    else if(score<=5){circle.classList.add('medium');badge='<span class="badge badge-warning">Risiko Sedang</span>';}
-    else{circle.classList.add('high');badge='<span class="badge badge-danger">Risiko Tinggi</span>';}
-    $('scoreBadge').innerHTML=badge;toast('Skor risiko: '+score+' poin','info');
+$('btnOpenCatatan').addEventListener('click', function(){ openModal('modalCatatan'); });
+$('closeCatatan').addEventListener('click', function(){ closeModal('modalCatatan'); });
+$('btnOpenSkor').addEventListener('click', function(){ openModal('modalSkor'); });
+$('closeSkor').addEventListener('click', function(){ closeModal('modalSkor'); });
+$('cancelSkor').addEventListener('click', function(){ closeModal('modalSkor'); });
+$('submitSkor').addEventListener('click', function(){
+    var score = 0; document.querySelectorAll('.risk-factor').forEach(function(cb){ if(cb.checked) score += parseInt(cb.dataset.score); });
+    $('scoreDisplay').style.display = 'block'; $('scoreValue').textContent = score;
+    var circle = $('scoreCircle'); circle.className = 'score-circle'; var badge = '';
+    if(score <= 2){ circle.classList.add('low'); badge = '<span class="badge badge-success">Risiko Rendah</span>'; }
+    else if(score <= 5){ circle.classList.add('medium'); badge = '<span class="badge badge-warning">Risiko Sedang</span>'; }
+    else { circle.classList.add('high'); badge = '<span class="badge badge-danger">Risiko Tinggi</span>'; }
+    $('scoreBadge').innerHTML = badge; toast('Skor risiko: ' + score + ' poin', 'info');
 });
- $('btnOpenLiteratur').addEventListener('click',function(){openModal('modalLiteratur');});
- $('closeLiteratur').addEventListener('click',function(){closeModal('modalLiteratur');});
- $('closeLiteraturBtn').addEventListener('click',function(){closeModal('modalLiteratur');});
- $('btnOpenKonsultasi').addEventListener('click',function(){openModal('modalKonsultasi');});
- $('closeKonsultasi').addEventListener('click',function(){closeModal('modalKonsultasi');});
- $('cancelKonsultasi').addEventListener('click',function(){closeModal('modalKonsultasi');});
- $('submitKonsultasi').addEventListener('click',function(){
-    var pesan=$('konsultasiPesan').value.trim();if(!pesan){toast('Tulis keluhan atau pertanyaan Anda','error');return;}
-    var now=new Date();
-    appData.chatMessages.push({text:'[Konsultasi] '+pesan,outgoing:true,time:formatTime(now).substring(0,5),replyTo:null,ts:now.toISOString()});
-    saveData();$('konsultasiPesan').value='';closeModal('modalKonsultasi');renderChat();toast('Konsultasi terkirim! Tim HD akan merespons.','success');
-    setTimeout(function(){appData.chatMessages.push({text:'Terima kasih konsultasinya. Petugas atau dokter HD akan merespons dalam waktu 1x24 jam.',outgoing:false,time:formatTime(new Date()).substring(0,5),replyTo:null,ts:new Date().toISOString()});saveData();renderChat();},1500);
+$('btnOpenLiteratur').addEventListener('click', function(){ openModal('modalLiteratur'); });
+$('closeLiteratur').addEventListener('click', function(){ closeModal('modalLiteratur'); });
+$('closeLiteraturBtn').addEventListener('click', function(){ closeModal('modalLiteratur'); });
+$('btnOpenKonsultasi').addEventListener('click', function(){ openModal('modalKonsultasi'); });
+$('closeKonsultasi').addEventListener('click', function(){ closeModal('modalKonsultasi'); });
+$('cancelKonsultasi').addEventListener('click', function(){ closeModal('modalKonsultasi'); });
+$('submitKonsultasi').addEventListener('click', function(){
+    var pesan = $('konsultasiPesan').value.trim(); if(!pesan){ toast('Tulis keluhan atau pertanyaan Anda', 'error'); return; }
+    var now = new Date();
+    appData.chatMessages.push({ text:'[Konsultasi] ' + pesan, outgoing:true, time:formatTime(now).substring(0,5), replyTo:null, ts:now.toISOString() });
+    saveData(); $('konsultasiPesan').value = ''; closeModal('modalKonsultasi'); renderChat(); toast('Konsultasi terkirim! Tim HD akan merespons.', 'success');
+    setTimeout(function(){ appData.chatMessages.push({ text:'Terima kasih konsultasinya. Petugas atau dokter HD akan merespons dalam waktu 1x24 jam.', outgoing:false, time:formatTime(new Date()).substring(0,5), replyTo:null, ts:new Date().toISOString() }); saveData(); renderChat(); }, 1500);
 });
- $('openDiscussionBtn').addEventListener('click',function(){openModal('modalDiscussion');});
- $('closeDiscussion').addEventListener('click',function(){closeModal('modalDiscussion');});
+$('openDiscussionBtn').addEventListener('click', function(){ openModal('modalDiscussion'); });
+$('closeDiscussion').addEventListener('click', function(){ closeModal('modalDiscussion'); });
 
-// ===== EXPORT PDF =====
- $('btnExportPDF').addEventListener('click',function(){
-    toast('Menyiapkan dokumen PDF...','info');
-    html2pdf().set({margin:[10,10,10,10],filename:'Monalisa+_'+new Date().toISOString().split('T')[0]+'.pdf',image:{type:'jpeg',quality:0.95},html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from($('mainDashboard')).save().then(function(){toast('PDF berhasil diunduh!','success');}).catch(function(){toast('Gagal mengunduh PDF','error');});
+$('btnExportPDF').addEventListener('click', function(){
+    toast('Menyiapkan dokumen PDF...', 'info');
+    html2pdf().set({ margin:[10,10,10,10], filename:'Monalisa+_' + new Date().toISOString().split('T')[0] + '.pdf', image:{ type:'jpeg', quality:0.95 }, html2canvas:{ scale:2, useCORS:true, logging:false }, jsPDF:{ unit:'mm', format:'a4', orientation:'portrait' } }).from($('mainDashboard')).save().then(function(){ toast('PDF berhasil diunduh!', 'success'); }).catch(function(){ toast('Gagal mengunduh PDF', 'error'); });
 });
 
-// ===== LOGOUT =====
- $('logoutBtn').addEventListener('click',function(){
-    if(!confirm('Yakin ingin keluar?'))return;
-    appData.isLoggedIn=false;saveData();
-    $('mainDashboard').style.display='none';
-    $('registerView').style.display='none';
-    $('loginView').style.display='block';
-    $('modeSelector').style.display='flex';
-    $('loginEmail').value='';$('loginPassword').value='';
-    clearFieldError('grpLoginEmail');clearFieldError('grpLoginPw');
+$('logoutBtn').addEventListener('click', function(){
+    if(!confirm('Yakin ingin keluar?')) return;
+    appData.isLoggedIn = false; saveData();
+    $('mainDashboard').style.display = 'none';
+    $('registerView').style.display = 'none';
+    $('loginView').style.display = 'block';
+    $('modeSelector').style.display = 'flex';
+    $('loginEmail').value = ''; $('loginPassword').value = '';
+    clearFieldError('grpLoginEmail'); clearFieldError('grpLoginPw');
     $('loginOverlay').classList.remove('hidden');
-    toast('Anda telah keluar','info');
+    toast('Anda telah keluar', 'info');
 });
 
-// ===== KEYBOARD SHORTCUTS =====
-document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-overlay.active').forEach(function(m){m.classList.remove('active');});});
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(function(m){ m.classList.remove('active'); }); });
 </script>
 </body>
 </html>
