@@ -106,8 +106,8 @@ h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 .panel-icon-wrapper.gold{background:linear-gradient(145deg,#f5f3ff,#ede9fe);box-shadow:6px 6px 16px rgba(124,58,237,0.12)}
 .panel-icon-wrapper.teal{background:linear-gradient(145deg,#f0fdfa,#ccfbf1);box-shadow:6px 6px 16px rgba(20,184,166,0.12)}
 .panel-icon-wrapper.blue{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:6px 6px 16px rgba(59,130,246,0.12)}
-.panel-icon-wrapper svg{width:28px;height:28px;transition:transform .3s}
-.panel-card:hover .panel-icon-wrapper svg{transform:scale(1.1)}
+.panel-icon-wrapper svg,.panel-icon-wrapper img{width:28px;height:28px;transition:transform .3s;object-fit:contain}
+.panel-card:hover .panel-icon-wrapper svg,.panel-card:hover .panel-icon-wrapper img{transform:scale(1.1)}
 .panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:1px;color:var(--text-white);margin-bottom:8px}
 .panel-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
 .consult-features{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
@@ -524,13 +524,13 @@ Catatan Monalisa
 
 <div class="panel-grid">
 <div class="panel-card">
-<div class="panel-icon-wrapper red"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+<div class="panel-icon-wrapper red"><img src="icon-avshunt.png" alt="Ikon AV-Shunt"></div>
 <div class="panel-title">Skrining dan monitor AV-Shunt</div>
 <div class="panel-subtitle">Periksa kondisi AKSES VASKULER AV-Shunt Anda sebelum dan sesudah cuci darah.</div>
 <div class="panel-actions"><button class="btn btn-primary" id="btnOpenAkses">Mulai Pemeriksaan</button></div>
 </div>
 <div class="panel-card">
-<div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+<div class="panel-icon-wrapper blue"><img src="icon-cvc.png" alt="Ikon CVC/CDL"></div>
 <div class="panel-title">Skrining Khusus CVC/CDL</div>
 <div class="panel-subtitle">Pemeriksaan khusus, penilaian, dan pelaporan untuk Kateter Double Lumen (CVC/CDL).</div>
 <div class="panel-actions"><button class="btn btn-consult" id="btnOpenCVC">Mulai Skrining CVC</button></div>
@@ -560,7 +560,7 @@ Catatan Monalisa
 <div class="panel-actions"><button class="btn btn-teal" id="btnOpenLiteratur">Lihat Semua</button></div>
 </div>
 <div class="panel-card">
-<div class="panel-icon-wrapper blue"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+<div class="panel-icon-wrapper blue"><img src="icon-consultation.png" alt="Ikon Konsultasi"></div>
 <div class="panel-title">Konsultasi</div>
 <div class="panel-subtitle">Tanya langsung ke tim perawat atau dokter HD tentang saluran Hemodialisis Anda.</div>
 <div class="consult-features">
